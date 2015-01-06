@@ -1,0 +1,167 @@
+" vim: set runtimepath=~/pentadactyl
+" vim: set filetype=vim :
+
+loadplugins '\.(js|penta)$'
+group user
+
+"============================= My Settings ============================="
+
+set runtimepath^=~/Dropbox/Tools/Pentadactyl/.pentadactyl
+
+"USER INTERFACE - Dark colors
+colorscheme zenburn
+"highlight StatusLine color:black
+
+"Show just Tabs and Status. Alt-Down and Alt-Up to unhide / hide Menu, Toolbar, and Bookmarks
+map -b -s <A-PageDown> :set guioptions+=mTB<CR>
+map -b -s <A-PageUp> :set guioptions-=mTB<CR>
+
+"Go to Gmail when starting Firefox
+autocmd Enter google.com :buffer Gmail
+
+"Follow hints only after hitting enter
+set followhints=1
+
+set hintkeys=abcd
+
+set visualbell
+set showtabline=always
+"set laststatus=2
+set titlestring=Firefox
+"set strictfocus=*:despotic
+"set showstatuslinks=2
+
+"set editor='C:\\Program\ Files\ (x86)\\Vim\\vim74\\gvim.exe -f'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"KEY BINDINGS
+""Fixes hitting Tab in Firebug
+"inoremap <Tab> <C-z>
+
+""Select/Copy/Paste/Undo correctly
+"Insert mode
+imap -b <C-a> <C-v><C-a>
+imap -b <C-c> <C-v><C-c>
+imap -b <C-x> <C-v><C-x>
+imap -b <C-S-v> <C-v>
+imap -b <C-z> <C-v><C-z>
+
+"Paste in Insert, Text Edit, and Command Line modes
+map -m i,t,c <C-v> <Pass>
+
+"All other modes
+map -b <C-a> <C-v><C-a>
+map -b <C-c> <C-v><C-c>
+map -b <C-x> <C-v><C-x>
+
+" Print
+map -b p P
+
+" Search
+"command -nargs=* search tabopen https://www.google.com/#q=<args>
+"command! showSearch toolbarshow Googlebar Lite Toolbar
+"map -b S :showSearch<CR> | S
+command! -nargs=* duck tabopen https://duckduckgo.com/?q=<args>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"SHORTCUTS
+map , <leader>
+map -b ,C  :!start %APPDATA%\Mozilla\Firefox\Profiles<CR>
+map -b <leader>d :downloads<CR>
+map <leader>a :toolbartoggle The Addon Bar<CR>
+map <leader>h :history<CR>
+map -b ,l <A-i>
+map -b ,n fnext<CR><Esc>
+map -b ,o <A-o>
+map -b ,r oreadlater<CR>
+map <leader>s <A-w>
+map <leader>k :duck 
+map <leader>g :toolbartoggle Googlebar Lite Toolbar<CR>
+map -b ,S :source ~/.pentadactylrc<CR>
+map <leader>t :pintab!<CR>
+map -b ,v :!start /B gvim ~/Dropbox/Tools/Pentadactyl/pentadactylrc.vim<CR>
+map -b ,x fsign out<CR>
+map <silent> <leader>/ :nohlfind<CR>
+
+map ; <dialog>
+map -b <dialog>p :preferences<CR>
+map -b <dialog>P :hardcopy<CR>
+map -b <dialog>b <C-S-B>
+map -b <dialog>a :dialog addons<CR>
+map -b <dialog>c :dialog console<CR>
+map -b <dialog>d :dialog downloads<CR>
+map -b <dialog>T otodo<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"NAVIGATION
+""Page
+map -b j 6<C-e>
+map -b k 6<C-y>
+map -b J <C-d>
+map -b K <C-u>
+
+""Tabs - gt/gT instead of tnext/tprevious, to avoid conflicts on GrooveShark
+map -b -s h gT
+map -b -s l gt
+map -b -s <C-l> :tabmove! +1<CR>
+map -b -s <C-h> :tabmove! -1<CR>
+
+map -b -s x :tabclose<CR>
+map -b -s X u
+
+""Tab Groups
+map -b -s <C-~> <C-S-E>
+map -b -s <C-Tab> <C-`>
+"map -b -s <A-Tab> <Nop>
+" map -b -s <C-`> <C-~>
+
+""History - already set by default
+"map -b H <C-o>
+"map -b L <C-i>
+"nmap <silent> <Esc> :stop<CR>
+
+" Switch Tabs
+"map -b -m n,v,t,c,o <C-Space> <C-^>
+map -b -s <C-`> <C-^>
+
+"Music
+"map -b -s <C-`> :b Grooveshark<CR>
+"map -b -s <C-`> :b 8tracks<CR>
+
+"Lastpass
+map -b -m i <C-Space> <A-PageDown>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"COMPLETION
+"set wildoptions=auto
+set complete=sl
+set history=100
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"SEARCH
+"set defsearch=duckduckgo
+"set suggestengines=google,duckduckgo
+set findcase=smart
+set hlfind
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"SITE SPECIFIC
+set strictfocus+='mail.google.com':laissez-faire
+set passkeys+='mail.google.com':adfijkLnoprsz#?<CR>,gl,gs,gt
+autocmd LocationChange evernote.com :normal! <C-z>
+autocmd LocationChange codeskulptor.org :normal! <C-z>
+"autocmd LocationChange '.*/wp-admin/.*' :normal! <C-z>
+
+
+""Qmarks - Load after ColorScheme has been loaded (otherwise get blank page when realoading page on firefox start)
+autocmd ColorScheme * silent qmark d http://drive.google.com/
+autocmd ColorScheme * silent qmark m http://mail.google.com/
+autocmd ColorScheme * silent qmark c https://calendar.google.com/
+autocmd ColorScheme * silent qmark o https://mail.chrysler.com/
+
+
+"============================= My Firefox Settings ============================="
+set! browser.tabs.closeWindowWithLastTab=false
+set! extensions.checkCompatibility=false
+set! browser.tabs.loadDivertedInBackground=true
