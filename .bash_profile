@@ -21,6 +21,35 @@ GIT_PS1_SHOWDIRTYSTATE=1
 # CYAN Style Prompt
 export PS1='\n\[\e[0;36m\]\W\[\e[1;36m\]$(__git_ps1) \[\e[0;36m\]$\[\e[0m\] '
 
+##################################### BASH #####################################
+alias l='ls -alF'
+alias ..='cd ..'
+alias ocd='cd $OLDPWD'
+alias md5='openssl md5'
+alias sha1='openssl sha1'
+alias ln=symlink
+
+alias vi='start gvim'
+alias vb='start gvim ~/.bash_profile'
+alias vj='vi manifest.json'
+alias nm='node manifest'
+alias grep='grep --color=auto'
+
+windows() { [[ -n "$WINDIR" ]]; }
+
+symlink() {
+    if windows; then
+        if [[ -d "$1" ]]; then # Windows link and target parameters are switched
+            cmd <<< "mklink /D \"$2\" \"${1//\//\\}\"" # Directory
+        else
+            cmd <<< "mklink \"$2\" \"${1//\//\\}\"" # File
+        fi
+    else
+        ln -s "$1" "$2" # Linux parameters
+    fi
+}
+
+
 ##################################### ANDROID #####################################
 #Android Platform Tools
 PATH=$PATH:~/android-sdk/platform-tools/:~/android-sdk/tools/
@@ -29,19 +58,6 @@ PATH=$PATH:~/android-sdk/platform-tools/:~/android-sdk/tools/
 alias avd='emulator -avd galaxy -no-audio -http-proxy http://127.0.0.1:6060'
 alias ai='adb install'
 alias au='adb uninstall'
-
-##################################### BASH #####################################
-alias l='ls -alF'
-alias ..='cd ..'
-alias ocd='cd $OLDPWD'
-alias md5='openssl md5'
-alias sha1='openssl sha1'
-
-alias vi='start gvim'
-alias vb='start gvim ~/Dropbox/Tools/Git/.bash_profile'
-alias vj='vi manifest.json'
-alias nm='node manifest'
-alias grep='grep --color=auto'
 
 ##################################### GIT #####################################
 

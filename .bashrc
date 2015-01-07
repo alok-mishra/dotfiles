@@ -1,3 +1,3 @@
-if [ -f ~/Dropbox/Tools/Git/.bash_profile ]; then  
-   source ~/Dropbox/Tools/Git/.bash_profile
+if [ -f ~/.bash_profile ]; then
+   source ~/.bash_profile
 fi 
