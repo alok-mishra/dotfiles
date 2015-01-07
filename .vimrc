@@ -108,8 +108,8 @@ endif
 
 "COLORS
 set background=dark
-colorscheme molokai
-" colorscheme badwolf
+" colorscheme molokai
+colorscheme badwolf
 
 highlight Search guifg=black guibg=yellowgreen gui=bold
 highlight LineNr guibg=#111111

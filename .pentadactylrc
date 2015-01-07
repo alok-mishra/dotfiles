@@ -6,10 +6,11 @@ group user
 
 "============================= My Settings ============================="
 
-set runtimepath^=~/Dropbox/Tools/Pentadactyl/.pentadactyl
+set runtimepath^=~/.pentadactyl
 
 "USER INTERFACE - Dark colors
-colorscheme zenburn
+"colorscheme zenburn
+colorscheme solarized-dark
 "highlight StatusLine color:black
 
 "Show just Tabs and Status. Alt-Down and Alt-Up to unhide / hide Menu, Toolbar, and Bookmarks
