@@ -115,5 +115,8 @@ alias gclv='git clone --local file:///C:/Workspace/Repository/Git/video.git'
 alias gar='git archive HEAD --format=zip > "../${PWD##*/}.zip"'
 alias gars='git archive --remote=file:///C:/Workspace/Repository/Git/Assembly.git master | tar -xv scripts/AHK/Storyline/ --strip-components=3'
 
+# GitHub
+alias dotfiles='git remote set-url origin git@alok-github:alok-mishra/dotfiles.git'
+
 ##################################### GO #####################################
 alias gor='go run'
