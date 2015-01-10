@@ -80,7 +80,7 @@ map <leader>k :duck
 map <leader>g :toolbartoggle Googlebar Lite Toolbar<CR>
 map -b ,S :source ~/.pentadactylrc<CR>
 map <leader>t :pintab!<CR>
-map -b ,v :!start /B gvim ~/Dropbox/Tools/Pentadactyl/pentadactylrc.vim<CR>
+map -b ,v :!start /B gvim ~/.pentadactylrc<CR>
 map -b ,x fsign out<CR>
 map <silent> <leader>/ :nohlfind<CR>
 
