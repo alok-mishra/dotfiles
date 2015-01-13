@@ -1,6 +1,8 @@
 "======================================== Platform Settings ====================================
 
-set nocompatible
+set nocompatible    "more than vi, VIMproved
+filetype off        "filetypes will be first handled by Vundle/Git repos
+
 source $VIMRUNTIME/vimrc_example.vim
 source $VIMRUNTIME/mswin.vim
 behave mswin
@@ -25,10 +27,11 @@ set guifontwide=NSimsun:h12
 
 "======================================== Vundle Settings ========================================
 
+
 " https://github.com/gmarik/Vundle.vim " Required for Windows (https://github.com/gmarik/vundle/wiki/Vundle-for-Windows) " * Git and Curl (http://code.google.com/p/msysgit/) " * HTTPS_PROXY is set on a corporate Windows machine filetype off " Point Vundle to ~, same as $USERPROFILE and $HOME in Windows
-set rtp+=~/Dropbox/Tools/Vim/.vim/bundle/Vundle.vim/
-" call vundle#rc('~/Dropbox/Tools/Vim/.vim/bundle')
-call vundle#begin('~/Dropbox/Tools/Vim/.vim/bundle')
+set rtp+=~/.vim/bundle/Vundle.vim
+" call vundle#begin('~/.vim/bundle')
+call vundle#begin()
 
 " Vundle managed by Vundle itself 'https://github.com/gmarik/vundle.git'
 Plugin 'gmarik/Vundle.vim'
@@ -71,14 +74,15 @@ Plugin 'sirver/ultisnips'
 Plugin 'honza/vim-snippets'
 
 " Syntax
-Plugin 'vim-scripts/actionscript.vim--Leider'
-Plugin 'vim-scripts/aspnetcs'
+Plugin 'elzr/vim-json'
+Plugin 'jeroenbourgois/vim-actionscript'
+" Plugin 'vim-scripts/aspnetcs'
 Plugin 'groenewege/vim-less'
 
 " Colors
 Plugin 'tomasr/molokai'
 Plugin 'sjl/badwolf'
-" Plugin 'chankaward/vim-railscasts-theme'
+Plugin 'chankaward/vim-railscasts-theme'
 
 " Tools
 Plugin 'duncansmart/less.js-windows'
@@ -108,8 +112,8 @@ endif
 
 "COLORS
 set background=dark
-" colorscheme molokai
-colorscheme badwolf
+colorscheme molokai
+" colorscheme badwolf
 
 highlight Search guifg=black guibg=yellowgreen gui=bold
 highlight LineNr guibg=#111111
