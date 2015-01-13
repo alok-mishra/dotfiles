@@ -1,8 +1,6 @@
 "======================================== Platform Settings ====================================
 
 set nocompatible    "more than vi, VIMproved
-filetype off        "filetypes will be first handled by Vundle/Git repos
-
 source $VIMRUNTIME/vimrc_example.vim
 source $VIMRUNTIME/mswin.vim
 behave mswin
@@ -27,6 +25,7 @@ set guifontwide=NSimsun:h12
 
 "======================================== Vundle Settings ========================================
 
+filetype off        "filetypes will be first handled by Vundle/Git repos
 
 " https://github.com/gmarik/Vundle.vim " Required for Windows (https://github.com/gmarik/vundle/wiki/Vundle-for-Windows) " * Git and Curl (http://code.google.com/p/msysgit/) " * HTTPS_PROXY is set on a corporate Windows machine filetype off " Point Vundle to ~, same as $USERPROFILE and $HOME in Windows
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -40,17 +39,21 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
-" Plugin 'majutsushi/tagbar'
 Plugin 'tmhedberg/matchit'
+Plugin 'kien/ctrlp.vim'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'scrooloose/syntastic'
+"
+" Plugin 'majutsushi/tagbar'
 " Plugin 'Lokaltog/vim-easymotion'
 " Plugin 'Valloric/YouCompleteMe'
 " Plugin 'Shougo/neocomplete.vim'
-Plugin 'kien/ctrlp.vim'
-Plugin 'tomtom/tcomment_vim'
 " Plugin 'fidian/hexmode'
-Plugin 'scrooloose/syntastic'
+
+"Git 
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
 
 "Handlebars 
 Plugin 'mustache/vim-mustache-handlebars'
@@ -80,9 +83,10 @@ Plugin 'jeroenbourgois/vim-actionscript'
 Plugin 'groenewege/vim-less'
 
 " Colors
+Plugin 'chankaward/vim-railscasts-theme'
 Plugin 'tomasr/molokai'
 Plugin 'sjl/badwolf'
-Plugin 'chankaward/vim-railscasts-theme'
+Plugin 'altercation/vim-colors-solarized'
 
 " Tools
 Plugin 'duncansmart/less.js-windows'
@@ -113,7 +117,6 @@ endif
 "COLORS
 set background=dark
 colorscheme molokai
-" colorscheme badwolf
 
 highlight Search guifg=black guibg=yellowgreen gui=bold
 highlight LineNr guibg=#111111
@@ -163,9 +166,7 @@ let mapleader=','
 let g:xml_syntax_folding = 1
 
 " FileTypes
-au BufRead,BufNewFile *.less set filetype=less shiftwidth=4
-au BufRead,BufNewFile *.as set filetype=actionscript
-au BufRead,BufNewFile *.aspx,*.asmx,*.ascx,*.master set filetype=aspnetcs
+" au BufRead,BufNewFile *.aspx,*.asmx,*.ascx,*.master set filetype=aspnetcs
 
 "au GUIEnter * simalt ~x         " maximize window on startup
 
@@ -255,8 +256,7 @@ map <leader>sm :set syntax=mustache<CR>
 map <leader>z :set foldmethod=syntax<CR>
 
 " Vim Quick Edit
-nmap <silent> <leader>v :e ~/.vimrc<CR>
-" nmap <silent> <leader>v :e ~/Dropbox/Tools/Vim/vimrc.vim<CR>
+nmap <silent> <leader>v :e ~/Dropbox/dotfiles/.vimrc<CR>
 nmap <silent> <leader>s :source ~/Dropbox/Tools/Vim/vimrc.vim<CR>
 
 " Maximize Wndow
