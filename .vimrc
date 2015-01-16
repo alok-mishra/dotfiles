@@ -79,7 +79,7 @@ Plugin 'honza/vim-snippets'
 " Syntax
 Plugin 'elzr/vim-json'
 Plugin 'jeroenbourgois/vim-actionscript'
-" Plugin 'vim-scripts/aspnetcs'
+Plugin 'vim-scripts/aspnetcs'
 Plugin 'groenewege/vim-less'
 
 " Colors
@@ -115,13 +115,25 @@ if has('multi_byte')
 endif
 
 "COLORS
+
+function! ForceColors()
+    highlight Search guifg=black guibg=yellowgreen gui=bold
+    highlight LineNr guibg=#111111
+    highlight Normal guibg=#000000
+    highlight CursorLine guibg=#101010
+endfunction
+
+function! ColorScheme(colorscheme)
+    execute "colorscheme " . a:colorscheme
+    call ForceColors()
+    :AirlineRefresh
+endfunction
+
 set background=dark
 colorscheme molokai
+autocmd FileType json call ColorScheme("railscasts")
 
-highlight Search guifg=black guibg=yellowgreen gui=bold
-highlight LineNr guibg=#111111
-highlight Normal guibg=#000000
-highlight CursorLine guibg=#101010
+call ForceColors()
 
 " highlight Directory guifg=#A6E22E gui=bold
 
@@ -166,7 +178,7 @@ let mapleader=','
 let g:xml_syntax_folding = 1
 
 " FileTypes
-" au BufRead,BufNewFile *.aspx,*.asmx,*.ascx,*.master set filetype=aspnetcs
+au BufRead,BufNewFile *.aspx,*.asmx,*.ascx,*.master set filetype=aspnetcs
 
 "au GUIEnter * simalt ~x         " maximize window on startup
 
@@ -376,6 +388,9 @@ let g:ctrlp_prompt_mappings = {
 
 " Markdown Vim Mode (disable folding)
 let g:vim_markdown_folding_disabled=1
+
+"Vim JSON
+let g:vim_json_syntax_conceal = 0
 
 "======================================== Work Automation ======================================
 

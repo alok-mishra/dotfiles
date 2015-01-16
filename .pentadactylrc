@@ -107,9 +107,6 @@ map -b -s l gt
 map -b -s <C-l> :tabmove! +1<CR>
 map -b -s <C-h> :tabmove! -1<CR>
 
-map -b -s x :tabclose<CR>
-map -b -s X u
-
 ""Tab Groups
 map -b -s <C-~> <C-S-E>
 map -b -s <C-Tab> <C-`>
