@@ -66,32 +66,32 @@ command! -nargs=* duck tabopen https://duckduckgo.com/?q=<args>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "SHORTCUTS
-map , <leader>
+" map , <leader>
 map -b ,C  :!start %APPDATA%\Mozilla\Firefox\Profiles<CR>
-map -b <leader>d :downloads<CR>
-map <leader>a :toolbartoggle The Addon Bar<CR>
-map <leader>h :history<CR>
+map -b ,d :downloads<CR>
+map ,a :toolbartoggle The Addon Bar<CR>
+map ,h :history<CR>
 map -b ,l <A-i>
 map -b ,n fnext<CR><Esc>
 map -b ,o <A-o>
 map -b ,r oreadlater<CR>
-map <leader>s <A-w>
-map <leader>k :duck 
-map <leader>g :toolbartoggle Googlebar Lite Toolbar<CR>
+map ,s <A-w>
+map ,k :duck 
+map ,g :toolbartoggle Googlebar Lite Toolbar<CR>
 map -b ,S :source ~/.pentadactylrc<CR>
-map <leader>t :pintab!<CR>
+map ,t :pintab!<CR>
 map -b ,v :!start /B gvim ~/.pentadactylrc<CR>
 map -b ,x fsign out<CR>
-map <silent> <leader>/ :nohlfind<CR>
+map <silent> ,/ :nohlfind<CR>
 
-map ; <dialog>
-map -b <dialog>p :preferences<CR>
-map -b <dialog>P :hardcopy<CR>
-map -b <dialog>b <C-S-B>
-map -b <dialog>a :dialog addons<CR>
-map -b <dialog>c :dialog console<CR>
-map -b <dialog>d :dialog downloads<CR>
-map -b <dialog>T otodo<CR>
+" map ; <dialog>
+map -b ;p :preferences<CR>
+map -b ;P :hardcopy<CR>
+map -b ;b <C-S-B>
+map -b ;a :dialog addons<CR>
+map -b ;c :dialog console<CR>
+map -b ;d :dialog downloads<CR>
+map -b ;T otodo<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "NAVIGATION
@@ -110,7 +110,7 @@ map -b -s <C-h> :tabmove! -1<CR>
 ""Tab Groups
 map -b -s <C-~> <C-S-E>
 map -b -s <C-Tab> <C-`>
-"map -b -s <A-Tab> <Nop>
+" map -b -s <A-Tab> <Nop>
 " map -b -s <C-`> <C-~>
 
 ""History - already set by default
