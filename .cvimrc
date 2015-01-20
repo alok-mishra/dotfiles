@@ -1,0 +1,5 @@
+let mapleader = ","
+map d closeTab
+map u lastClosedTab
+
+map s a
