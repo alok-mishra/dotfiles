@@ -2,4 +2,13 @@ let mapleader = ","
 map d closeTab
 map u lastClosedTab
 
+map h previousTab
+map l nextTab
+
 map s a
+
+map <leader>e :open! chrome://extensions<CR>
+map <leader>t :togglepin<CR>
+
+
+unmap a
