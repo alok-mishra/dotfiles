@@ -26,8 +26,7 @@ set followhints=1
 set hintkeys=abcd
 
 set visualbell
-set showtabline=always
-"set laststatus=2
+set showtabline=never
 set titlestring=Firefox
 "set strictfocus=*:despotic
 "set showstatuslinks=2
@@ -48,7 +47,7 @@ imap -b <C-S-v> <C-v>
 imap -b <C-z> <C-v><C-z>
 
 "Paste in Insert, Text Edit, and Command Line modes
-map -m i,t,c <C-v> <Pass>
+map -b -m i,t,c <C-v> <Pass>
 
 "All other modes
 map -b <C-a> <C-v><C-a>
@@ -67,31 +66,33 @@ command! -nargs=* duck tabopen https://duckduckgo.com/?q=<args>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "SHORTCUTS
 " map , <leader>
-map -b ,C  :!start %APPDATA%\Mozilla\Firefox\Profiles<CR>
+map -b ,a :toolbartoggle The Addon Bar<CR>
+map -b ,c  :!start %APPDATA%\Mozilla\Firefox\Profiles<CR>
 map -b ,d :downloads<CR>
-map ,a :toolbartoggle The Addon Bar<CR>
-map ,h :history<CR>
+map -b ,h :history<CR>
+map -b ,k :duck 
 map -b ,l <A-i>
 map -b ,n fnext<CR><Esc>
 map -b ,o <A-o>
+map -b ,p :pintab!<CR>
 map -b ,r oreadlater<CR>
-map ,s <A-w>
-map ,k :duck 
-map ,g :toolbartoggle Googlebar Lite Toolbar<CR>
+map -b ,s <A-w>
 map -b ,S :source ~/.pentadactylrc<CR>
-map ,t :pintab!<CR>
+map -b ,t otodo<CR>
 map -b ,v :!start /B gvim ~/.pentadactylrc<CR>
 map -b ,x fsign out<CR>
-map <silent> ,/ :nohlfind<CR>
+map <silent> -b ,/ :nohlfind<CR>
 
 " map ; <dialog>
-map -b ;p :preferences<CR>
-map -b ;P :hardcopy<CR>
-map -b ;b <C-S-B>
 map -b ;a :dialog addons<CR>
+map -b ;b <C-S-B>
 map -b ;c :dialog console<CR>
 map -b ;d :dialog downloads<CR>
-map -b ;T otodo<CR>
+map -b ;g :toolbartoggle Googlebar Lite Toolbar<CR>
+map -b ;p :preferences<CR>
+map -b ;P :hardcopy<CR>
+map -b ;s :set guioptions!=s<CR>
+map -b ;t :set showtabline!=always,never<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "NAVIGATION
