@@ -100,7 +100,7 @@ alias gr='git remote -v'
 alias gib='git init --bare'
 
 alias glo='git log --oneline'
-alias glg='git log --oneline --graph --all --decorate'
+alias glog='git log --oneline --graph --all --decorate'
 
 
 # Clone the default Package repo

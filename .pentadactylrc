@@ -4,7 +4,6 @@ loadplugins '\.(js|penta)$'
 group user
 
 "============================= My Settings ============================="
-
 set runtimepath^=~/.pentadactyl
 
 "USER INTERFACE - Dark colors
@@ -27,8 +26,6 @@ set hintkeys=asdfjkl;
 set visualbell
 set showtabline=always
 set titlestring=Firefox
-"set strictfocus=*:despotic
-"set showstatuslinks=status
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "KEY BINDINGS
@@ -70,11 +67,11 @@ map -b ,x fsign out<CR>
 map <silent> -b ,/ :nohlfind<CR>
 
 " map ; <dialog>
-map -b ;` :set fullscreen!<CR>
 map -b ;a :dialog addons<CR>
 map -b ;b <C-S-B>
 map -b ;c :dialog console<CR>
 map -b ;d :dialog downloads<CR>
+map -b ;f :set fullscreen!<CR>
 map -b ;g :toolbartoggle Googlebar Lite Toolbar<CR>
 map -b ;p :preferences<CR>
 map -b ;P :hardcopy<CR>
@@ -101,11 +98,6 @@ map -b -s <C-Tab> <C-`>
 " map -b -s <A-Tab> <Nop>
 " map -b -s <C-`> <C-~>
 
-""History - already set by default
-"map -b H <C-o>
-"map -b L <C-i>
-"nmap <silent> <Esc> :stop<CR>
-
 " Switch Tabs
 "map -b -m n,v,t,c,o <C-Space> <C-^>
 map -b -s <C-`> <C-^>
@@ -116,6 +108,7 @@ map -b -s <C-`> <C-^>
 
 "Lastpass
 map -b -m i <C-Space> <A-PageDown>
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "COMPLETION
@@ -131,10 +124,11 @@ set history=100
 set findcase=smart
 set hlfind
 
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "SITE SPECIFIC
 set strictfocus+='mail.google.com':laissez-faire
-set passkeys+='mail.google.com':adfijkLnoprsz#?<CR>,gl,gs,gt
+set passkeys+='mail.google.com':abdfijkLnoprsuz#?<CR>,gl,gs,gt
 autocmd LocationChange evernote.com :normal! <C-z>
 autocmd LocationChange codeskulptor.org :normal! <C-z>
 "autocmd LocationChange '.*/wp-admin/.*' :normal! <C-z>
