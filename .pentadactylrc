@@ -6,6 +6,13 @@ group user
 "============================= My Settings ============================="
 set runtimepath^=~/.pentadactyl
 
+set! browser.startup.page=3
+set! extensions.checkCompatibility=false
+set! browser.download.useDownloadDir=false
+set! browser.tabs.closeWindowWithLastTab=false
+set! browser.tabs.loadDivertedInBackground=true
+set! security.fileuri.strict_origin_policy=false
+
 "USER INTERFACE - Dark colors
 "colorscheme zenburn
 colorscheme solarized-dark
@@ -27,6 +34,7 @@ set visualbell
 set showtabline=always
 set titlestring=Firefox
 
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "KEY BINDINGS
 
@@ -46,8 +54,10 @@ map -b p P
 "map -b S :showSearch<CR> | S
 command! -nargs=* duck tabopen https://duckduckgo.com/?q=<args>
 
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "SHORTCUTS
+
 " map , <leader>
 map -b ,a :toolbartoggle The Addon Bar<CR>
 map -b ,c  :!start %APPDATA%\Mozilla\Firefox\Profiles<CR>
@@ -78,8 +88,10 @@ map -b ;P :hardcopy<CR>
 map -b ;s :set guioptions!=s<CR>
 map -b ;t :set showtabline!=always,never<CR>
 
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "NAVIGATION
+
 ""Page
 map -b j 6<C-e>
 map -b k 6<C-y>
@@ -133,7 +145,6 @@ autocmd LocationChange evernote.com :normal! <C-z>
 autocmd LocationChange codeskulptor.org :normal! <C-z>
 "autocmd LocationChange '.*/wp-admin/.*' :normal! <C-z>
 
-
 ""Qmarks - Load after ColorScheme has been loaded (otherwise get blank page when realoading page on firefox start)
 autocmd ColorScheme * silent qmark d http://drive.google.com/
 autocmd ColorScheme * silent qmark m http://mail.google.com/
@@ -141,7 +152,3 @@ autocmd ColorScheme * silent qmark c https://calendar.google.com/
 autocmd ColorScheme * silent qmark o https://mail.chrysler.com/
 
 
-"============================= My Firefox Settings ============================="
-set! browser.tabs.closeWindowWithLastTab=false
-set! extensions.checkCompatibility=false
-set! browser.tabs.loadDivertedInBackground=true

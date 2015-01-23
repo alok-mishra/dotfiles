@@ -51,14 +51,14 @@ Plugin 'scrooloose/syntastic'
 " Plugin 'Shougo/neocomplete.vim'
 " Plugin 'fidian/hexmode'
 
-"Git 
+"Git
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 
-"Handlebars 
+"Handlebars
 Plugin 'mustache/vim-mustache-handlebars'
 
-"Markdown 
+"Markdown
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 
@@ -73,7 +73,7 @@ Plugin 'jstemmer/gotags'
 " Plugin 'garbas/vim-snipmate'
 
 " UltiSnips
-Plugin 'sirver/ultisnips'
+" Plugin 'sirver/ultisnips'
 Plugin 'honza/vim-snippets'
 
 " Syntax
@@ -155,7 +155,7 @@ set cursorline
 set visualbell
 set shortmess=aoOtT     " Short Messages
 "set cmdheight=2        " One line looks better
-set fillchars+=vert:\ 
+set fillchars+=vert:\
 set nrformats-=octal    "Dot not assume a number is octal when ++ or --
 set relativenumber  " Line numbers relative to current line
 
@@ -265,7 +265,10 @@ map <leader>fx :set ft=xml<CR>
 map <leader>fp :set ft=php<CR>
 map <leader>sm :set syntax=mustache<CR>
 
+" Folding
 map <leader>z :set foldmethod=syntax<CR>
+noremap <Space> za
+noremap <S-Space> zMzv
 
 " Vim Quick Edit
 nmap <silent> <leader>v :e ~/Dropbox/dotfiles/.vimrc<CR>
@@ -276,6 +279,10 @@ nmap <leader>` :simalt ~x<CR>
 
 "Toggle Text Wrap
 nmap <leader>w :set wrap!<CR>
+
+" Markdown Headers
+map <leader>- <0yypv$r-
+map <leader>= <0yypv$r=
 
 " Arrow keys move lines
 "no <down> ddp
@@ -306,8 +313,11 @@ imap <leader>[ []<ESC>i
 map <leader>y "*y
 map <leader>yy "*yy
 noremap <leader>p "*p
-map <leader>P "*P
-map <leader>Y gg"*yG''
+map <leader>GY gg"*yG''
+
+" Append Copy and Paste into Clipboard
+map <leader>Y "Yyy:let @*=@y<CR>
+map <silent> <leader>P "*p:let @y=@_<CR>
 
 " Paste without copying visual selection
 vmap p "_dP
