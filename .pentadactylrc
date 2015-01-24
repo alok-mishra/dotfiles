@@ -60,7 +60,7 @@ command! -nargs=* duck tabopen https://duckduckgo.com/?q=<args>
 
 " map , <leader>
 map -b ,a :toolbartoggle The Addon Bar<CR>
-map -b ,c  :!start %APPDATA%\Mozilla\Firefox\Profiles<CR>
+map -b ,c :!start %APPDATA%\Mozilla\Firefox\Profiles<CR>
 map -b ,d :downloads<CR>
 map -b ,h :history<CR>
 map -b ,k :duck 
@@ -69,7 +69,7 @@ map -b ,n fnext<CR><Esc>
 map -b ,o <A-o>
 map -b ,p :pintab!<CR>
 map -b ,r oreadlater<CR>
-map -b ,s <A-w>
+map -b ,s <A-w>:echo "PickPocket!"<CR>
 map -b ,S :source ~/.pentadactylrc<CR>
 map -b ,t otodo<CR>
 map -b ,v :!start /B gvim ~/.pentadactylrc<CR>
@@ -146,9 +146,9 @@ autocmd LocationChange codeskulptor.org :normal! <C-z>
 "autocmd LocationChange '.*/wp-admin/.*' :normal! <C-z>
 
 ""Qmarks - Load after ColorScheme has been loaded (otherwise get blank page when realoading page on firefox start)
-autocmd ColorScheme * silent qmark d http://drive.google.com/
-autocmd ColorScheme * silent qmark m http://mail.google.com/
-autocmd ColorScheme * silent qmark c https://calendar.google.com/
-autocmd ColorScheme * silent qmark o https://mail.chrysler.com/
+silent qmark d http://drive.google.com/
+silent qmark m http://mail.google.com/
+silent qmark c https://calendar.google.com/
+silent qmark o https://mail.chrysler.com/
 
 
