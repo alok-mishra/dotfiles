@@ -22,7 +22,7 @@ GIT_PS1_SHOWDIRTYSTATE=1
 export PS1='\n\[\e[0;36m\]\W\[\e[1;36m\]$(__git_ps1) \[\e[0;36m\]$\[\e[0m\] '
 
 ##################################### BASH #####################################
-alias l='ls -alF'
+alias l='ls -lAF'
 alias ..='cd ..'
 alias ocd='cd $OLDPWD'
 alias md5='openssl md5'

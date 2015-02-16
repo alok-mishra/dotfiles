@@ -258,6 +258,10 @@ nmap <Bslash>a :call ToggleLanguage("Arabic")<CR>
 map <C-s> <esc>:w<CR>
 imap <C-s> <esc>:w<CR>
 
+" Spelling
+nmap <silent> <leader>s :set spell!<CR>
+nmap <silent> <leader>S z=1<CR>
+
 " FileTypes and Syntax Highlighting
 map <leader>fc :set ft=css<CR>
 map <leader>fh :set ft=html<CR>
@@ -272,7 +276,7 @@ noremap <S-Space> zMzv
 
 " Vim Quick Edit
 nmap <silent> <leader>v :e ~/Dropbox/dotfiles/.vimrc<CR>
-nmap <silent> <leader>s :source ~/Dropbox/Tools/Vim/vimrc.vim<CR>
+nmap <silent> <leader>V :source ~/Dropbox/Tools/Vim/vimrc.vim<CR>
 
 " Maximize Wndow
 nmap <leader>` :simalt ~x<CR>
