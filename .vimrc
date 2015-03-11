@@ -44,7 +44,7 @@ Plugin 'tmhedberg/matchit'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'scrooloose/syntastic'
-"
+
 " Plugin 'majutsushi/tagbar'
 " Plugin 'Lokaltog/vim-easymotion'
 " Plugin 'Valloric/YouCompleteMe'
@@ -53,7 +53,6 @@ Plugin 'scrooloose/syntastic'
 
 "Git
 Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
 
 "Handlebars
 Plugin 'mustache/vim-mustache-handlebars'
@@ -420,3 +419,6 @@ let @m='``0Djmt``0nwwvitp$n`t``'
 
 " supercase till end of word (needs to have double quotes to function)
 let @s="i<sup>\eea</sup>\e"
+
+" fix perception connection for new version
+let @p='gg/dllFqct"perception5/session.php'

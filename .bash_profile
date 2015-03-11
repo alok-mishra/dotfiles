@@ -99,21 +99,30 @@ alias gr='git remote -v'
 
 alias gib='git init --bare'
 
-alias glo='git log --oneline'
-alias glog='git log --oneline --graph --all --decorate'
+alias glo='git log --oneline -10'
+alias glog='glo --graph --all --decorate'
 
+# Set a environment variable for the repository
+repo=file:///C:/Workspace/Repository/Git
 
 # Clone the default Package repo
 alias gcl='git clone'
 alias gcld1='git clone --depth 1'
-alias gcla='git clone --local file:///C:/Workspace/Repository/Git/Assembly.git'
-alias gclp='git clone --local file:///C:/Workspace/Repository/Git/Package.git'
-alias gclm='git clone --local file:///C:/Workspace/Repository/Git/manifest.git'
-alias gclv='git clone --local file:///C:/Workspace/Repository/Git/video.git'
+alias gcla='git clone --recursive --local $repo/Assembly.git'
+alias gclp='git clone --local $repo/Package.git'
+alias gclm='git clone --local $repo/manifest.git'
+alias gclv='git clone --local $repo/video.git'
+alias gclas='git clone --local $repo/classes.git'
+alias gclf='git clone --local $repo/fla.git'
+
+alias gsa='git submodule add'
+alias gsu='git submodule update'
+
 
 # Archive and extract
 alias gar='git archive HEAD --format=zip > "../${PWD##*/}.zip"'
-alias gars='git archive --remote=file:///C:/Workspace/Repository/Git/Assembly.git master | tar -xv scripts/AHK/Storyline/ --strip-components=3'
+alias gara='git archive --remote=$repo/Assembly.git master | tar -xv'
+alias gars='git archive --remote=$repo/Assembly.git master | tar -xv shell/scripts/AHK/Storyline/ --strip-components=3'
 
 # GitHub
 # alias dotfiles='git remote set-url origin git@alok-github:alok-mishra/dotfiles.git'
