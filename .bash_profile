@@ -24,7 +24,7 @@ export PS1='\n\[\e[0;36m\]\W\[\e[1;36m\]$(__git_ps1) \[\e[0;36m\]$\[\e[0m\] '
 ##################################### BASH #####################################
 alias l='ls -lAF'
 alias ..='cd ..'
-alias ocd='cd $OLDPWD'
+alias ocd='cd "$OLDPWD"'
 alias md5='openssl md5'
 alias sha1='openssl sha1'
 alias ln=symlink
@@ -61,13 +61,19 @@ alias au='adb uninstall'
 
 ##################################### GIT #####################################
 
+# Set a environment variable for the repository
+repo=file:///C:/Workspace/Repository/Git
+
 alias g='git'
 
 alias gi='git init'
+alias gib='git init --bare'
 alias gs='git status'
 alias ga='git add'
 alias gaa='git add --all'
 
+
+# Branch / Checkout
 alias gb='git branch'
 alias gbm='git branch --merged'
 
@@ -84,6 +90,8 @@ alias stash='git stash'
 alias pop='git stash pop'
 alias reset='git reset --soft HEAD~1'
 
+
+# Fetch / Merge / Pull
 alias gm='git merge'
 alias gmm='git merge master'
 alias gmt='git mergetool'
@@ -92,22 +100,34 @@ alias gf='git fetch'
 alias gp='git pull'
 alias gpd1='git pull --depth 1'
 
+
+# Commit
 alias gco='git commit -m'
 alias gca='git commit -am'
 
+
+# Submodules
+alias gsa='git submodule add -b master'
+alias gsu='git submodule update'
+alias gsr='git submodule foreach --recursive'
+alias gps='git pull --recurse-submodules'
+
+
+# Remotes
 alias gr='git remote -v'
 
-alias gib='git init --bare'
 
+# Logs
 alias glo='git log --oneline -10'
 alias glog='glo --graph --all --decorate'
 
-# Set a environment variable for the repository
-repo=file:///C:/Workspace/Repository/Git
 
-# Clone the default Package repo
+# Clone
 alias gcl='git clone'
 alias gcld1='git clone --depth 1'
+
+
+# Repos
 alias gcla='git clone --recursive --local $repo/Assembly.git'
 alias gclp='git clone --local $repo/Package.git'
 alias gclm='git clone --local $repo/manifest.git'
@@ -115,18 +135,17 @@ alias gclv='git clone --local $repo/video.git'
 alias gclas='git clone --local $repo/classes.git'
 alias gclf='git clone --local $repo/fla.git'
 
-alias gsa='git submodule add'
-alias gsu='git submodule update'
 
-
-# Archive and extract
+# Archive / Extract
 alias gar='git archive HEAD --format=zip > "../${PWD##*/}.zip"'
 alias gara='git archive --remote=$repo/Assembly.git master | tar -xv'
-alias gars='git archive --remote=$repo/Assembly.git master | tar -xv shell/scripts/AHK/Storyline/ --strip-components=3'
+alias gars='git archive --remote=$repo/Assembly.git master | tar -xv shell/scripts/AHK/Storyline/ --strip-components=4'
+
 
 # GitHub
 # alias dotfiles='git remote set-url origin git@alok-github:alok-mishra/dotfiles.git'
 alias dotfiles='git remote set-url origin git@github.com:alok-mishra/dotfiles.git'
+
 
 ##################################### GO #####################################
 alias gor='go run'
