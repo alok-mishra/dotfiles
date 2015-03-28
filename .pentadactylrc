@@ -26,9 +26,8 @@ map -b -s <A-PageUp> :set guioptions-=mTB<CR>
 autocmd Enter google.com :buffer Gmail
 
 "Follow hints only after hitting enter
+" set hintkeys=asdfjkl;
 set followhints=1
-
-set hintkeys=asdfjkl;
 
 set visualbell
 set showtabline=always
@@ -150,5 +149,4 @@ silent qmark d http://drive.google.com/
 silent qmark m http://mail.google.com/
 silent qmark c https://calendar.google.com/
 silent qmark o https://mail.chrysler.com/
-
 

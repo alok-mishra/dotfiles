@@ -128,7 +128,8 @@ alias gcld1='git clone --depth 1'
 
 
 # Repos
-alias gcla='git clone --recursive --local $repo/Assembly.git'
+alias gcla='git clone --local $repo/Assembly.git'
+alias gclar='git clone --recursive --local $repo/Assembly.git'
 alias gclp='git clone --local $repo/Package.git'
 alias gclm='git clone --local $repo/manifest.git'
 alias gclv='git clone --local $repo/video.git'

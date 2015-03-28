@@ -67,12 +67,14 @@ Plugin 'nsf/gocode', {'rtp': 'vim/'}
 Plugin 'jstemmer/gotags'
 
 " SnipMate
-" Plugin 'MarcWeber/vim-addon-mw-utils'
-" Plugin 'tomtom/tlib_vim'
-" Plugin 'garbas/vim-snipmate'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
 
 " UltiSnips
 " Plugin 'sirver/ultisnips'
+
+" Snippets
 Plugin 'honza/vim-snippets'
 
 " Syntax
@@ -96,7 +98,8 @@ call vundle#end()
 
 "FILE
 filetype plugin indent on
-set nobackup
+set nobackup    " do not create a backup file
+set noundofile  " do not create an undo file
 set hidden      " allow editing new buffers while unsaved changes remain
 
 "Always set fileformats to unix
