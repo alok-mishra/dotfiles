@@ -30,7 +30,7 @@ alias sha1='openssl sha1'
 alias ln=symlink
 
 alias vi='start gvim'
-alias vb='start gvim ~/.bash_profile'
+alias vb='vi ~/.bash_profile'
 alias vj='vi manifest.json'
 alias nm='node manifest'
 alias grep='grep --color=auto'
@@ -64,58 +64,21 @@ alias au='adb uninstall'
 # Set a environment variable for the repository
 repo=file:///C:/Workspace/Repository/Git
 
-alias g='git'
 
+if [ -f ~/dotfiles/.zprezto/modules/git/alias.zsh ]; then
+    source ~/dotfiles/.zprezto/modules/git/alias.zsh 2> /dev/null
+    alias vg='vi ~/dotfiles/.zprezto/modules/git/alias.zsh'
+fi 
+
+# Common
 alias gi='git init'
 alias gib='git init --bare'
 alias gs='git status'
 alias ga='git add'
 alias gaa='git add --all'
 
-
-# Branch / Checkout
-alias gb='git branch'
-alias gbm='git branch --merged'
-
-alias gch='git checkout'
-alias gchb='git checkout -b'
-alias gchm='git checkout master'
-alias gchf='git checkout master --'
-
-alias gd='git diff'
-alias gdt='git difftool'
-alias gdm='git diff master'
-
-alias stash='git stash'
-alias pop='git stash pop'
-alias reset='git reset --soft HEAD~1'
-
-
-# Fetch / Merge / Pull
-alias gm='git merge'
-alias gmm='git merge master'
-alias gmt='git mergetool'
-
-alias gf='git fetch'
-alias gp='git pull'
-alias gpd1='git pull --depth 1'
-
-
-# Commit
-alias gco='git commit -m'
-alias gca='git commit -am'
-
-
-# Submodules
-alias gsa='git submodule add -b master'
-alias gsu='git submodule update'
-alias gsr='git submodule foreach --recursive'
-alias gps='git pull --recurse-submodules'
-
-
 # Remotes
 alias gr='git remote -v'
-
 
 # Logs
 alias glo='git log --oneline -10'

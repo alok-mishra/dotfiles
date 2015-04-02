@@ -132,9 +132,10 @@ function! ColorScheme(colorscheme)
 endfunction
 
 set background=dark
-colorscheme molokai
+colorscheme solarized
 autocmd FileType json call ColorScheme("railscasts")
 
+" Custom Colors
 call ForceColors()
 
 " highlight Directory guifg=#A6E22E gui=bold
@@ -424,4 +425,4 @@ let @m='``0Djmt``0nwwvitp$n`t``'
 let @s="i<sup>\eea</sup>\e"
 
 " fix perception connection for new version
-let @p='gg/dllFqct"perception5/session.php'
+let @p='gg/php/dllFqct"perception5/session.php'
