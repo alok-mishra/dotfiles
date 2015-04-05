@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-# bootstrap a new configuration
+# Bootstrap a new configuration
 
-cd "$(dirname "$0")"
+cd "$(dirname "$0")/.."
 DOTFILES_ROOT=$(pwd)
 
 set -e
@@ -31,8 +31,6 @@ setup_gitconfig () {
   if ! [ -f git/gitconfig.symlink ]
   then
     info 'setup gitconfig'
-
-    git_credential='cache'
 
     user ' - What is your github author name?'
     read -e git_authorname
@@ -133,7 +131,7 @@ install_dotfiles () {
   done
 }
 
-# setup_gitconfig
+setup_gitconfig
 install_dotfiles
 
 
