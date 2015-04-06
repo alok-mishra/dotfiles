@@ -14,7 +14,12 @@ fi
 
 # all of our zsh files
 typeset -U config_files
-config_files=($ZSH/**/*.zsh)
+
+# config_files=($ZSH/**/*.zsh)
+
+# just get the zsh files immediately inside the topic areas
+# config_files=$(find $ZSH -maxdepth 2 -name '*.zsh')
+config_files=($ZSH/*/*.zsh)
 
 # load the path files
 for file in ${(M)config_files:#*/path.zsh}
