@@ -65,51 +65,15 @@ alias au='adb uninstall'
 repo=file:///C:/Workspace/Repository/Git
 
 
-if [ -f ~/dotfiles/.zprezto/modules/git/alias.zsh ]; then
-    source ~/dotfiles/.zprezto/modules/git/alias.zsh 2> /dev/null
-    alias vg='vi ~/dotfiles/.zprezto/modules/git/alias.zsh'
+if [ -f ~/.dotfiles/prezto/modules/git/alias.zsh ]; then
+    source ~/.dotfiles/prezto/modules/git/alias.zsh 2> /dev/null
+    alias vgp='vi ~/.dotfiles/prezto/modules/git/alias.zsh'
 fi 
 
-# Common
-alias gi='git init'
-alias gib='git init --bare'
-alias gs='git status'
-alias ga='git add'
-alias gaa='git add --all'
-
-# Remotes
-alias gr='git remote -v'
-
-# Logs
-alias glo='git log --oneline -10'
-alias glog='glo --graph --all --decorate'
-
-
-# Clone
-alias gcl='git clone'
-alias gcld1='git clone --depth 1'
-
-
-# Repos
-alias gcla='git clone --local $repo/Assembly.git'
-alias gclar='git clone --recursive --local $repo/Assembly.git'
-alias gclp='git clone --local $repo/Package.git'
-alias gclm='git clone --local $repo/manifest.git'
-alias gclv='git clone --local $repo/video.git'
-alias gclas='git clone --local $repo/classes.git'
-alias gclf='git clone --local $repo/fla.git'
-
-
-# Archive / Extract
-alias gar='git archive HEAD --format=zip > "../${PWD##*/}.zip"'
-alias gara='git archive --remote=$repo/Assembly.git master | tar -xv'
-alias gars='git archive --remote=$repo/Assembly.git master | tar -xv shell/scripts/AHK/Storyline/ --strip-components=4'
-
-
-# GitHub
-# alias dotfiles='git remote set-url origin git@alok-github:alok-mishra/dotfiles.git'
-alias dotfiles='git remote set-url origin git@github.com:alok-mishra/dotfiles.git'
-
+if [ -f ~/.dotfiles/git/aliases.zsh ]; then
+    source ~/.dotfiles/git/aliases.zsh
+    alias vgg='vi ~/.dotfiles/git/aliases.zsh'
+fi 
 
 ##################################### GO #####################################
 alias gor='go run'
