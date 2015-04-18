@@ -12,6 +12,7 @@ set! browser.download.useDownloadDir=false
 set! browser.tabs.closeWindowWithLastTab=false
 set! browser.tabs.loadDivertedInBackground=true
 set! security.fileuri.strict_origin_policy=false
+set! extensions.lastpass.searchHkKeyCode=0
 
 "USER INTERFACE - Dark colors
 "colorscheme zenburn
