@@ -60,7 +60,7 @@ command! -nargs=* duck tabopen https://duckduckgo.com/?q=<args>
 
 " map , <leader>
 map -b ,a :toolbartoggle The Addon Bar<CR>
-map -b ,c :!start %APPDATA%\Mozilla\Firefox\Profiles<CR>
+map -b ,C :!start %APPDATA%\Mozilla\Firefox\Profiles<CR>
 map -b ,d :downloads<CR>
 map -b ,h :history<CR>
 map -b ,k :duck 
@@ -81,7 +81,8 @@ map <silent> -b ,/ :nohlfind<CR>
 " map ; <dialog>
 map -b ;a :dialog addons<CR>
 map -b ;b <C-S-B>
-map -b ;c :dialog console<CR>
+map -b ;c :dialog customizetoolbar<CR>
+map -b ;C :dialog console<CR>
 map -b ;d :dialog downloads<CR>
 map -b ;f :set fullscreen!<CR>
 map -b ;g :toolbartoggle Googlebar Lite Toolbar<CR>
