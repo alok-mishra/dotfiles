@@ -72,6 +72,8 @@ map -b ,r oreadlater<CR>
 map -b ,s <A-w>:echo "PickPocket!"<CR>
 map -b ,S :source ~/.pentadactylrc<CR>
 map -b ,t otodo<CR>
+map -b ,u :extdisable uBlock<CR>
+map -b ,U :extenable uBlock<CR>
 map -b ,v :!start /B gvim ~/.pentadactylrc<CR>
 map -b ,x fsign out<CR>
 map <silent> -b ,/ :nohlfind<CR>

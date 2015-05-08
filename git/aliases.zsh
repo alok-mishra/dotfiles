@@ -10,7 +10,7 @@ alias gr='git remote -v'
 
 # Logs
 alias glo='git log --oneline -10'
-alias glog='glo --graph --all --decorate'
+alias glog='git log --oneline --graph --all --decorate'
 
 
 # Clone
@@ -19,7 +19,8 @@ alias gcld1='git clone --depth 1'
 
 
 # Branch / Checkout / Diff
-alias gb='git branch -a'
+alias gb='git branch'
+alias gba='git branch -a'
 alias gbm='git branch --merged'
 
 alias gch='git checkout'
@@ -34,7 +35,11 @@ alias gdt='git difftool'
 
 alias stash='git stash'
 alias pop='git stash pop'
-alias reset='git reset --soft HEAD~1'
+
+# Reset
+alias gR='git reset --mixed HEAD~1'
+alias gRs='git reset --soft HEAD~1'
+alias gRh='git reset --hard HEAD~1'
 
 
 # Fetch / Merge / Pull
@@ -47,8 +52,6 @@ alias gmt='git mergetool'
 alias gp='git pull'
 alias gp1='git pull --depth 1'
 
-alias gP='git push'
-
 
 # Commit
 alias gco='git commit -m'
@@ -57,8 +60,8 @@ alias gcv='git commit --verbose --all'
 
 
 # Submodules
-alias gsa='git submodule add -b master'
-alias gsu='git submodule update'
+alias gsa='git submodule add'
+alias gsu='git submodule update --init --recursive'
 alias gsr='git submodule foreach --recursive'
 alias gps='git pull --recurse-submodules'
 
@@ -66,7 +69,8 @@ alias gps='git pull --recurse-submodules'
 # Repos
 alias gcla='git clone --local $repo/Assembly.git'
 alias gclar='git clone --recursive --local $repo/Assembly.git'
-alias gclp='git clone --local $repo/Package.git'
+alias gclp='git clone $repo/Package.git'
+alias gclpb='git clone $repo/Package.git -b'
 alias gclm='git clone --local $repo/manifest.git'
 alias gclv='git clone --local $repo/video.git'
 alias gclas='git clone --local $repo/classes.git'

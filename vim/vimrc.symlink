@@ -278,7 +278,8 @@ noremap <Space> za
 noremap <S-Space> zMzv
 
 " Vim Quick Edit
-nmap <silent> <leader>v :e ~/Dropbox/dotfiles/.vimrc<CR>
+"nmap <silent> <leader>v :e ~/Dropbox/dotfiles/.vimrc<CR>
+nmap <silent> <leader>v :e ~/.dotfiles/vim/vimrc.symlink<CR>
 nmap <silent> <leader>V :source ~/Dropbox/Tools/Vim/vimrc.vim<CR>
 
 " Maximize Wndow
@@ -425,4 +426,4 @@ let @m='``0Djmt``0nwwvitp$n`t``'
 let @s="i<sup>\eea</sup>\e"
 
 " fix perception connection for new version
-let @p='gg/php/dllFqct"perception5/session.php'
+let @p='gg:silent!/php/dllFqct"perception5/session.php'
