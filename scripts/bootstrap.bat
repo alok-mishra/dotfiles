@@ -5,6 +5,8 @@ cmd <<< "mklink /D .dotfiles Dropbox\dotfiles"
 cmd <<< "mklink .bashrc .dotfiles\bash\.bashrc"
 cmd <<< "mklink .bash_profile .dotfiles\bash\.bash_profile"
 
+cmd <<< "mklink .gitconfig .dotfiles\git\gitconfig.symlink"
+
 cmd <<< "mklink /D .vim Dropbox\Tools\Vim\.vim"
 cmd <<< "mklink .vimrc .dotfiles\vim\vimrc.symlink"
 

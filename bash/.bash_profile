@@ -49,6 +49,17 @@ symlink() {
     fi
 }
 
+##################################### SSH #####################################
+
+ssh() {
+    if [ `uname -n` != 'PULSAR' ]; then
+        cat ~/.ssh/config.proxy  ~/.ssh/config > /tmp/ssh_config
+        command ssh -F /tmp/ssh_config $1
+    else
+        command ssh $1
+    fi
+}
+
 
 ##################################### ANDROID #####################################
 #Android Platform Tools
