@@ -85,8 +85,8 @@ Plugin 'groenewege/vim-less'
 
 " Colors
 Plugin 'chankaward/vim-railscasts-theme'
+Plugin 'morhetz/gruvbox'
 Plugin 'tomasr/molokai'
-Plugin 'sjl/badwolf'
 Plugin 'altercation/vim-colors-solarized'
 
 " Tools
@@ -132,7 +132,7 @@ function! ColorScheme(colorscheme)
 endfunction
 
 set background=dark
-colorscheme solarized
+colorscheme gruvbox
 "autocmd FileType json call ColorScheme("railscasts")
 
 " Custom Colors
@@ -258,19 +258,23 @@ endfunction
 
 nmap <Bslash>a :call ToggleLanguage("Arabic")<CR>
 
+" Generates the appropriate output based on FileType
+nmap <leader>g :call Generate()<CR>
+
 " Save File
 map <C-s> <esc>:w<CR>
 imap <C-s> <esc>:w<CR>
 
 " Spelling
-nmap <silent> <leader>s :set spell!<CR>
-nmap <silent> <leader>S z=1<CR>
+nmap <silent> <leader>S :set spell!<CR>
+nmap <silent> <leader>Z z=1<CR>
 
 " FileTypes and Syntax Highlighting
 map <leader>fc :set ft=css<CR>
 map <leader>fh :set ft=html<CR>
 map <leader>fx :set ft=xml<CR>
 map <leader>fp :set ft=php<CR>
+
 map <leader>sm :set syntax=mustache<CR>
 
 " Folding
@@ -332,6 +336,10 @@ map <silent> <leader>P "*p:let @y=@_<CR>
 vmap p "_dP
 
 "====== Plugin Mappings ======
+
+" Syntastic
+nmap <leader>s :SyntasticCheck<CR>
+
 " CtrlP
 cmap <C-L> <C-F>
 cmap <C-H> <C-B>
@@ -349,7 +357,7 @@ vmap <leader>t :Tabularize /
 nmap <leader>t :Tabularize /
 
 " Go
-au FileType go nmap <leader>g  :!go run %<CR><CR>
+" au FileType go nmap <leader>g  :!go run %<CR><CR>
 " au FileType go nmap <leader>r <Plug>(go-run)
 " au FileType go nmap <leader>b <Plug>(go-build)
 " au FileType go nmap <leader>t <Plug>(go-test)
@@ -369,6 +377,9 @@ imap <C-SPACE> <C-x><C-o>
 
 
 "======================================== Plugin Settings ======================================
+
+" Syntastic - already set
+" let g:syntastic_javascript_checkers = ['jshint']
 
 "Taglist
 "let Tlist_Use_Horiz_Window = 1 "Sets window to split horizontally
@@ -412,6 +423,14 @@ let g:vim_markdown_folding_disabled=1
 let g:vim_json_syntax_conceal = 0
 
 "======================================== Work Automation ======================================
+
+" Generate the appropriate file
+function! Generate()
+    "Just manifest for now, but will add more later on FileType condition
+    ":silent !node manifest & pause
+    :silent !node manifest
+endfunction
+
 
 " MACROS
 

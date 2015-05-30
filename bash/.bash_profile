@@ -29,7 +29,7 @@ alias md5='openssl md5'
 alias sha1='openssl sha1'
 alias ln=symlink
 
-alias vi='start gvim'
+alias vi='start /b gvim'
 alias vb='vi ~/.bash_profile'
 alias vj='vi manifest.json'
 alias nm='node manifest'
