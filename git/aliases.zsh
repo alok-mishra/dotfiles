@@ -6,7 +6,7 @@ alias ga='git add'
 alias gaa='git add --all'
 
 # Remotes
-alias gr='git remote -v'
+# alias gr='git remote -v'
 
 # Logs
 alias glo='git log --oneline -10'
@@ -37,12 +37,12 @@ alias stash='git stash'
 alias pop='git stash pop'
 
 # Reset
-alias gR='git reset --mixed HEAD~1'
-alias gRs='git reset --soft HEAD~1'
-alias gRh='git reset --hard HEAD~1'
+# alias gR='git reset --mixed HEAD~1'
+# alias gRs='git reset --soft HEAD~1'
+# alias gRh='git reset --hard HEAD~1'
 
 
-# Fetch / Merge / Pull
+# Fetch / Merge / Pull / Rebase
 alias gf='git fetch'
 
 alias gm='git merge'
@@ -52,6 +52,7 @@ alias gmt='git mergetool'
 alias gp='git pull'
 alias gp1='git pull --depth 1'
 
+alias grm='git rebase master'
 
 # Commit
 alias gco='git commit -m'
@@ -60,10 +61,10 @@ alias gcv='git commit --verbose --all'
 
 
 # Submodules
-alias gsa='git submodule add'
-alias gsu='git submodule update --init --recursive'
-alias gsr='git submodule foreach --recursive'
-alias gps='git pull --recurse-submodules'
+# alias gsa='git submodule add'
+# alias gsu='git submodule update --init --recursive'
+alias gSr='git submodule foreach --recursive'
+alias gSp='git pull --recurse-submodules'
 
 
 # Repos

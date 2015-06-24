@@ -154,3 +154,5 @@ silent qmark m http://mail.google.com/
 silent qmark c https://calendar.google.com/
 silent qmark o https://mail.chrysler.com/
 
+"Add-On Styles
+style -name ublock * #nav-bar * { visibility: visible; }

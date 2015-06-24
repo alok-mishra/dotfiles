@@ -155,13 +155,13 @@ set columns=120
 set lines=56
 set cursorline
 set visualbell
-set shortmess=aoOtT     " Short Messages
-"set cmdheight=2        " Two line height command line, one line looks better
+set shortmess=aoOtT   " Short Messages
+" set cmdheight=2     " Two line height command line, one line looks better
 set fillchars+=vert:\
-set nrformats-=octal    "Dot not assume a number is octal when ++ or --
-"set relativenumber      " Line numbers relative to current line
-set textwidth=0         " Do not auto insert line breaks
-set formatoptions-=t    "Do not insert line breaks at
+set nrformats-=octal  " Dot not assume a number is octal when ++ or --
+" set relativenumber  " Line numbers relative to current line
+set textwidth=0       " Do not auto insert line breaks
+set formatoptions-=t  " Do not insert line breaks at
 
 "TABS
 set smarttab        " insert spaces instead of tabs
@@ -378,7 +378,7 @@ imap <C-SPACE> <C-x><C-o>
 
 "======================================== Plugin Settings ======================================
 
-" Syntastic - already set
+" Syntastic
 " let g:syntastic_javascript_checkers = ['jshint']
 
 "Taglist
@@ -428,7 +428,11 @@ let g:vim_json_syntax_conceal = 0
 function! Generate()
     "Just manifest for now, but will add more later on FileType condition
     ":silent !node manifest & pause
-    :silent !node manifest
+    if (&ft=='less')
+        :execute ":Silent " . expand('~') . '/Dropbox/Tools/Vim/.vim/bundle/less.js-windows/lessc --clean-css % %:r.css'
+    else
+        :silent !node manifest
+    endif
 endfunction
 
 
