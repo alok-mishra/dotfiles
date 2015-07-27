@@ -6,7 +6,8 @@ alias ga='git add'
 alias gaa='git add --all'
 
 # Remotes
-# alias gr='git remote -v'
+alias gR='git remote'
+alias gRv='git remote -v'
 
 # Logs
 alias glo='git log --oneline -10'
@@ -42,7 +43,7 @@ alias pop='git stash pop'
 # alias gRh='git reset --hard HEAD~1'
 
 
-# Fetch / Merge / Pull / Rebase
+# Fetch / Merge / Pull / Rebase / Push
 alias gf='git fetch'
 
 alias gm='git merge'
@@ -51,6 +52,8 @@ alias gmt='git mergetool'
 
 alias gp='git pull'
 alias gp1='git pull --depth 1'
+
+alias gP='git push'
 
 alias grm='git rebase master'
 
@@ -61,8 +64,9 @@ alias gcv='git commit --verbose --all'
 
 
 # Submodules
-# alias gsa='git submodule add'
-# alias gsu='git submodule update --init --recursive'
+alias gS='git submodule'
+alias gSa='git submodule add'
+alias gSu='git submodule update --init --recursive'
 alias gSr='git submodule foreach --recursive'
 alias gSp='git pull --recurse-submodules'
 
@@ -81,10 +85,11 @@ alias gclf='git clone --local $repo/fla.git'
 # Archive / Extract
 alias gar='git archive HEAD --format=zip > "../${PWD##*/}.zip"'
 alias gara='git archive --remote=$repo/Assembly.git master | tar -xv'
-alias gars='git archive --remote=$repo/Assembly.git master | tar -xv shell/scripts/AHK/Storyline/ --strip-components=4'
+alias gars='git archive --remote=$repo/Assembly.git master | tar -xv shell/scripts/Storyline/ --strip-components=4'
 
 
 # GitHub
 # alias dotfiles='git remote set-url origin git@alok-github:alok-mishra/dotfiles.git'
-alias dotfiles='git remote set-url origin git@github.com:alok-mishra/dotfiles.git'
+alias dotremote='git remote set-url origin git@github.com:alok-mishra/dotfiles.git'
+alias dotfiles='git clone git@github.com:alok-mishra/dotfiles.git'
 

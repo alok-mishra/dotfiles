@@ -33,7 +33,8 @@ alias vi='start /b gvim'
 alias vb='vi ~/.bash_profile'
 alias vj='vi manifest.json'
 alias nm='node manifest'
-alias grep='grep --color=auto'
+alias ns='node shellcolor'
+# alias grep='grep --color=auto'
 
 windows() { [[ -n "$WINDIR" ]]; }
 
