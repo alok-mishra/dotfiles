@@ -38,9 +38,9 @@ alias stash='git stash'
 alias pop='git stash pop'
 
 # Reset
-# alias gR='git reset --mixed HEAD~1'
-# alias gRs='git reset --soft HEAD~1'
-# alias gRh='git reset --hard HEAD~1'
+alias gwRm='git reset --mixed HEAD~1'
+alias gwRs='git reset --soft HEAD~1'
+alias gwRh='git reset --hard HEAD~1'
 
 
 # Fetch / Merge / Pull / Rebase / Push
@@ -54,6 +54,7 @@ alias gp='git pull'
 alias gp1='git pull --depth 1'
 
 alias gP='git push'
+alias gPf='git push --force'
 
 alias grm='git rebase master'
 
@@ -85,7 +86,7 @@ alias gclf='git clone --local $repo/fla.git'
 # Archive / Extract
 alias gar='git archive HEAD --format=zip > "../${PWD##*/}.zip"'
 alias gara='git archive --remote=$repo/Assembly.git master | tar -xv'
-alias gars='git archive --remote=$repo/Assembly.git master | tar -xv shell/scripts/Storyline/ --strip-components=4'
+alias gars='git archive --remote=$repo/Assembly.git master | tar -xv shell/scripts/Storyline/ --strip-components=3'
 
 
 # GitHub

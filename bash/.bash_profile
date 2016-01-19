@@ -4,7 +4,8 @@
 # Simple
 # export PS1='\W$(__git_ps1 "(%s)") $'
 
-GIT_PS1_SHOWDIRTYSTATE=1
+GIT_PS1_SHOWDIRTYSTATE=true
+GIT_PS1_SHOWUNTRACKEDFILES=true
 
 # 30m - Black
 # 31m - Red
@@ -21,6 +22,13 @@ GIT_PS1_SHOWDIRTYSTATE=1
 # CYAN Style Prompt
 export PS1='\n\[\e[0;36m\]\W\[\e[1;36m\]$(__git_ps1) \[\e[0;36m\]$\[\e[0m\] '
 
+##################################### DOCKER #####################################
+export DOCKER_TLS_VERIFY="1"
+export DOCKER_HOST="tcp://192.168.99.100:2376"
+export DOCKER_CERT_PATH="C:\Users\t5005a0\.docker\machine\machines\devbox"
+export DOCKER_MACHINE_NAME="devbox"
+
+
 ##################################### BASH #####################################
 alias l='ls -lAF'
 alias ..='cd ..'
@@ -29,12 +37,39 @@ alias md5='openssl md5'
 alias sha1='openssl sha1'
 alias ln=symlink
 
-alias vi='start /b gvim'
+alias vi='start //b gvim'
 alias vb='vi ~/.bash_profile'
 alias vj='vi manifest.json'
 alias nm='node manifest'
 alias ns='node shellcolor'
+# alias rocky='./cntlm -c cntlm.ini -M https://www.google.com'
+alias rocky='./cntlm -H -c cntlm.ini'
 # alias grep='grep --color=auto'
+
+# DOCKER
+alias dm='docker-machine'
+alias dmip='docker-machine ip devbox'
+alias denv='docker-machine env devbox --shell bash'
+
+alias dp='docker ps -a'
+alias dps='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Command}}\t{{.Ports}}\t{{.Names}}"'
+alias dpa='docker ps -a --format "table {{.ID}}\t{{.Image}}\t{{.Command}}\t{{.Ports}}\t{{.Names}}"'
+
+
+alias dat=attach_terminal
+attach_terminal() { docker exec -it "$1" bash; }
+
+alias dim='docker images'
+
+alias dsa='docker start $(docker ps -a -q)'
+alias dSa='docker stop $(docker ps -a -q)'
+
+alias dRm='docker rm'
+# alias dRa='docker rm $(docker ps -a -q)'
+
+# ATOM
+alias alp='apm list --installed --bare > ~/Dropbox/dotfiles/.atom/.packages'
+alias aip='apm install --packages-file ~/Dropbox/dotfiles/.atom/.packages'
 
 windows() { [[ -n "$WINDIR" ]]; }
 
@@ -53,7 +88,7 @@ symlink() {
 ##################################### SSH #####################################
 
 ssh() {
-    if [ `uname -n` != 'PULSAR' ]; then
+    if [ `uname -n` != 'Pulsar' ]; then
         cat ~/.ssh/config.proxy  ~/.ssh/config > /tmp/ssh_config
         command ssh -F /tmp/ssh_config $1
     else
