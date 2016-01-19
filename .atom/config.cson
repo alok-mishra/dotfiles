@@ -1,0 +1,31 @@
+"*":
+  "exception-reporting":
+    userId: "e5c0789c-ba3d-d564-3c34-510d722686a0"
+  welcome:
+    showOnStartup: false
+  core:
+    themes: [
+      "one-dark-ui"
+      "base16-tomorrow-dark-theme"
+    ]
+    autoHideMenuBar: true
+  editor:
+    invisibles: {}
+    tabLength: 4
+    fontSize: 12
+    softWrap: true
+  "vim-mode": {}
+  "terminal-plus":
+    core:
+      shell: "C:\\Workspace\\Apps\\Git\\bin\\sh.exe"
+    style: {}
+  minimap:
+    displayMinimapOnLeft: true
+  "autocomplete-plus":
+    useCoreMovementCommands: false
+  "sync-settings":
+    _lastBackupHash: "faa21404f91f7d33a186f846361440fa577a8a2a"
+    personalAccessToken: "9f4de58172b729970f339511cf3ee4dd7e515de4"
+    gistId: "4db7c568f141b7d34551"
+    _analyticsUserId: "anonymousID"
+    analytics: false

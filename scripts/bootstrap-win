@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+# Bootstrap a new configuration
+
+cd "$(dirname "$0")/.."
+DOTFILES_ROOT=$(pwd)
+
+set -e
+
+echo ''
+
+info () {
+    printf "  [ \033[00;34m..\033[0m ] $1"
+}
+
+user () {
+    printf "\r  [ \033[0;33m?\033[0m ] $1 "
+}
+
+success () {
+    printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"
+}
+
+fail () {
+    printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"
+    echo ''
+    exit
+}
+
+cd ~
+pwd
+
+cmd <<< "mklink /D .dotfiles Dropbox\dotfiles"
+
+cmd <<< "mklink .bashrc .dotfiles\bash\.bashrc"
+cmd <<< "mklink .bash_profile .dotfiles\bash\.bash_profile"
+
+cmd <<< "mklink .gitconfig .dotfiles\git\.gitconfig"
+
+cmd <<< "mklink /D .vim Dropbox\Tools\Vim\.vim"
+cmd <<< "mklink .vimrc .dotfiles\vim\.vimrc"
+
+cmd <<< "mklink /D .pentadactyl .dotfiles\pentadactyl\pentadactyl.symlink"
+cmd <<< "mklink .pentadactylrc .dotfiles\pentadactyl\pentadactylrc.symlink"
+
+cmd <<< "mklink /D .ssh Dropbox\Tools\Keys\.ssh"
