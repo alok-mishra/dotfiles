@@ -182,7 +182,17 @@ set shiftwidth=4    " how many spaces a tab uses when shifting << >>
 " Change Leader from \ to ,
 let mapleader=','
 
-let g:xml_syntax_folding = 1
+set foldlevel=1
+" set foldlevelstart=1
+
+let javaScript_fold=1         " JavaScript
+let perl_fold=1               " Perl
+let php_folding=1             " PHP
+let r_syntax_folding=1        " R
+let ruby_fold=1               " Ruby
+let sh_fold_enabled=1         " sh
+let vimsyn_folding='af'       " Vim script
+let xml_syntax_folding=1      " XML
 
 " FileTypes
 au BufRead,BufNewFile *.aspx,*.asmx,*.ascx,*.master set filetype=aspnetcs
@@ -281,16 +291,20 @@ map <leader>fp :set ft=php<CR>
 map <leader>sm :set syntax=mustache<CR>
 
 " Folding
-map <leader>z :set foldmethod=syntax<CR>
+map <leader>zs :set foldmethod=syntax<CR>
 noremap <Space> za
 noremap <S-Space> zMzv
+map <leader>zm :set foldmethod=manual<CR>
+nmap t zfat<CR>
 
 " Vim Quick Edit
 nmap <silent> <leader>v :e ~/.dotfiles/vim/.vimrc<CR>
 nmap <silent> <leader>V :source ~/.dotfiles/vim/.vimrc<CR>
 
 " Maximize Wndow
-nmap <leader>` :simalt ~x<CR>
+nmap <leader>` <ESC>:simalt ~x<CR><C-W>=
+" Restore Wndow
+nmap <leader>~ <ESC>:simalt ~r<CR><C-W>=
 
 "Toggle Text Wrap
 nmap <leader>w :set wrap!<CR>
@@ -368,7 +382,7 @@ nmap <leader>t :Tabularize /
 " Output css for less files - :t(no path) :r(no extension)
 "!lessc --clean-css % %:r.css<CR>
 "nnoremap <leader>l :execute ':silent !' . expand('~') . '/Dropbox/Tools/Vim/.vim/bundle/less.js-windows/lessc --clean-css % %:r.css'<CR>
-nnoremap <leader>l :execute "!" . substitute(expand('~'), '\', '/', '') . '/Dropbox/Tools/Vim/.vim/bundle/less.js-windows/lessc --clean-css "%" "%:r.css"'<CR>
+nnoremap <leader>l :execute "!" . substitute(expand('~'), '\\', '/', 'g') . '/Dropbox/Tools/Vim/.vim/bundle/less.js-windows/lessc --clean-css "%" "%:r.css"'<CR>
 
 "======================================== Experimental ========================================
 set number "line numbers
@@ -431,7 +445,7 @@ function! Generate()
     "Just manifest for now, but will add more later on FileType condition
     ":silent !node manifest & pause
     if (&ft=='less')
-        :execute ":Silent " . substitute(expand('~'), '\', '/', '') . '/Dropbox/Tools/Vim/.vim/bundle/less.js-windows/lessc --clean-css "%" "%:r.css"'
+        :execute ":Silent " . substitute(expand('~'), '\\', '/', 'g') . '/Dropbox/Tools/Vim/.vim/bundle/less.js-windows/lessc --clean-css "%" "%:r.css"'
     else
         :silent !node manifest
     endif

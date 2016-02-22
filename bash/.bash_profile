@@ -61,6 +61,7 @@ attach_terminal() { docker exec -it "$1" bash; }
 
 alias dim='docker images'
 
+alias ds='docker start'
 alias dsa='docker start $(docker ps -a -q)'
 alias dSa='docker stop $(docker ps -a -q)'
 

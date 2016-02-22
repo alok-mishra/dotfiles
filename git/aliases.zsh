@@ -50,10 +50,10 @@ alias gm='git merge'
 alias gmm='git merge master'
 alias gmt='git mergetool'
 
-alias gp='git pull'
+alias pull='git pull'
 alias gp1='git pull --depth 1'
 
-alias gP='git push'
+alias push='git push'
 alias gPf='git push --force'
 
 alias grm='git rebase master'
@@ -62,6 +62,11 @@ alias grm='git rebase master'
 alias gco='git commit -m'
 alias gca='git commit -am'
 alias gcv='git commit --verbose --all'
+
+# Tag
+alias gt='git tag'
+alias gta='git tag -a'
+alias gt1='git tag -a 1.0 -m'
 
 
 # Submodules

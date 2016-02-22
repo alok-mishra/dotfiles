@@ -153,6 +153,7 @@ set strictfocus+='mail.google.com':laissez-faire
 set passkeys+='mail.google.com':abdfiJKLnoprsuz#?.<CR>,gl,gs,gt
 autocmd LocationChange evernote.com :normal! <C-z>
 autocmd LocationChange codeskulptor.org :normal! <C-z>
+autocmd LocationChange docs.google.com :normal! <C-z>
 "autocmd LocationChange '.*/wp-admin/.*' :normal! <C-z>
 
 ""Qmarks - Load after ColorScheme has been loaded (otherwise get blank page when realoading page on firefox start)
