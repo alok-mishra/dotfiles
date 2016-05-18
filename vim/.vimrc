@@ -175,6 +175,7 @@ set autoindent      " uses the indent from the previous line
 set tabstop=4       " how many spaces an actual tab shows
 set softtabstop=4   " how many spaces a tab uses in insert mode
 set shiftwidth=4    " how many spaces a tab uses when shifting << >>
+set nofoldenable    " all text is unfolded at start
 
 
 "======================================== Vim Environment ======================================
@@ -182,17 +183,13 @@ set shiftwidth=4    " how many spaces a tab uses when shifting << >>
 " Change Leader from \ to ,
 let mapleader=','
 
-set foldlevel=1
-" set foldlevelstart=1
+let g:xml_syntax_folding = 1
 
-let javaScript_fold=1         " JavaScript
-let perl_fold=1               " Perl
-let php_folding=1             " PHP
-let r_syntax_folding=1        " R
-let ruby_fold=1               " Ruby
-let sh_fold_enabled=1         " sh
-let vimsyn_folding='af'       " Vim script
-let xml_syntax_folding=1      " XML
+set foldmethod=syntax
+
+set foldlevel=0
+" set foldlevelstart=100
+
 
 " FileTypes
 au BufRead,BufNewFile *.aspx,*.asmx,*.ascx,*.master set filetype=aspnetcs
@@ -291,10 +288,9 @@ map <leader>fp :set ft=php<CR>
 map <leader>sm :set syntax=mustache<CR>
 
 " Folding
-map <leader>zs :set foldmethod=syntax<CR>
+map <leader>z :set foldmethod=indent<CR>
 noremap <Space> za
 noremap <S-Space> zMzv
-map <leader>zm :set foldmethod=manual<CR>
 nmap t zfat<CR>
 
 " Vim Quick Edit
@@ -340,6 +336,7 @@ imap <leader>[ []<ESC>i
 
 " Clipboard Copy Paste
 map <leader>y "*y
+map <leader>d "*d
 map <leader>yy "*yy
 noremap <leader>p "*p
 map <leader>GY gg"*yG''
@@ -404,7 +401,7 @@ imap <C-SPACE> <C-x><C-o>
 let tlist_actionscript_settings = 'actionscript;c:class;f:method;p:property;v:variable'
 
 "NERDTree
-let NERDTreeWinPos=1
+" let NERDTreeWinPos=1
 
 "Tagbar
 let g:tagbar_ctags_bin = 'C:\Ctags5.8\ctags.exe'
@@ -454,6 +451,9 @@ endfunction
 
 " MACROS
 
+" Paste external clipboard between tags
+let @p='vit"*P'
+
 " Text Elements - paste script text into xml data. Start above line and jump to text before executing
 let @t='0mtD``jj0bbbvi]p`tj'
 
@@ -463,10 +463,11 @@ let @m='``0Djmt``0nwwvitp$n`t``'
 "let @m='0mtD``0nwwvitpnn`tj' "Old way
 
 " Super Char - supercase till end of word (needs to have double quotes to function)
-let @s="i<sup>\eea</sup>\e"
+let @s='i<sup>\eea</sup>\e'
 
 " Perception String - fix perception connection for new version
-let @p='gg:silent!/php/dllFqct"perception5/session.php'
+let @k='gg:silent!/php/dllFqct"perception5/session.php'
 
-" JSON Topic Titles - add quotes and commas for each line till end of section
-let @j=''
+" JSON Topic Titles - pastes list of titles from clipboard, adds quotes/commas to lines of section
+" Place cursor inside topic block
+let @j='vi]x"*Pvi]I"vi]:s/$/\",/f,xj=%:nohls'

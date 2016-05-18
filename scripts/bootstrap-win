@@ -39,8 +39,9 @@ cmd <<< "mklink .gitconfig .dotfiles\git\.gitconfig"
 
 cmd <<< "mklink /D .vim Dropbox\Tools\Vim\.vim"
 cmd <<< "mklink .vimrc .dotfiles\vim\.vimrc"
+cmd <<< "mklink .cvimrc .dotfiles\vim\.cvimrc"
 
-cmd <<< "mklink /D .pentadactyl .dotfiles\pentadactyl\pentadactyl.symlink"
-cmd <<< "mklink .pentadactylrc .dotfiles\pentadactyl\pentadactylrc.symlink"
+cmd <<< "mklink /D .pentadactyl .dotfiles\pentadactyl\.pentadactyl"
+cmd <<< "mklink .pentadactylrc .dotfiles\pentadactyl\.pentadactylrc"
 
 cmd <<< "mklink /D .ssh Dropbox\Tools\Keys\.ssh"

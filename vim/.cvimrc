@@ -1,3 +1,14 @@
+set nohud
+set nosmoothscroll
+set noautofocus
+
+set typelinkhints
+set numerichints    "requried for typelinkhints
+
+let searchlimit = 20
+let scrollstep = 60
+let barposition = "bottom"
+
 let mapleader = ","
 map d closeTab
 map u lastClosedTab
@@ -5,10 +16,22 @@ map u lastClosedTab
 map h previousTab
 map l nextTab
 
-map s a
+map s :tabnew google
 
 map <leader>e :open! chrome://extensions<CR>
-map <leader>t :togglepin<CR>
+map <leader>p :togglepin<CR>
 
+map R reloadTabUncached
+
+map <C-u> scrollPageUp
+map <C-d> scrollPageDown
 
 unmap a
+
+map p P     "openPasteTab
+
+let configpath = '/c:/users/alok/.cvimrc'
+set localconfig " Update settings via local file.
+
+" Tip: In order for automatic inclusion of .cvimrc, allow access to File URLs for cVim extension and :source /path/to/.cvimrc once.
+" Symbolic links may interfere also

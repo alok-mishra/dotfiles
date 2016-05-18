@@ -1,0 +1,65 @@
+"*":
+  "atom-compile-less": {}
+  "atom-material-ui":
+    colors:
+      abaseColor:
+        red: 255
+        green: 128
+        blue: 0
+        alpha: 1
+    tabs:
+      compactTabs: true
+    ui:
+      panelContrast: true
+  "atom-terminal":
+    app: "C:\\Workspace\\Apps\\Git\\usr\\bin\\mintty.exe"
+    args: "/usr/bin/bash --login -i"
+  "autocomplete-plus":
+    useCoreMovementCommands: false
+  core:
+    autoHideMenuBar: true
+    automaticallyUpdate: false
+    disabledPackages: [
+      "node-debugger"
+      "wrap-guide"
+    ]
+    themes: [
+      "atom-material-ui"
+      "base16-tomorrow-dark-theme"
+    ]
+  editor:
+    fontSize: 12
+    invisibles: {}
+    scrollPastEnd: true
+    showIndentGuide: true
+    softWrap: true
+    tabLength: 4
+  "exception-reporting":
+    userId: "e5c0789c-ba3d-d564-3c34-510d722686a0"
+  "highlight-selected":
+    hideHighlightOnSelectedWord: true
+    ignoreCase: true
+    lightTheme: true
+  "merge-conflicts":
+    gitPath: "C:\\Workspace\\Apps\\Git\\git.exe"
+  minimap: {}
+  "sync-settings":
+    _analyticsUserId: "anonymousId"
+    _lastBackupHash: ""
+    gistId: ""
+    personalAccessToken: ""
+  "terminal-plus":
+    core:
+      shell: "C:\\Workspace\\Apps\\Git\\usr\\bin\\bash.exe"
+      shellArguments: "--login -i"
+    style: {}
+  "vim-mode-plus":
+    clearHighlightSearchOnResetNormalMode: true
+    highlightSearch: true
+    ignoreCaseForSearch: true
+    ignoreCaseForSearchCurrentWord: true
+    incrementalSearch: true
+    useSmartcaseForSearch: true
+    useSmartcaseForSearchCurrentWord: true
+  welcome:
+    showOnStartup: false

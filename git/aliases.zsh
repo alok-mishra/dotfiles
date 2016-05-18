@@ -36,6 +36,7 @@ alias gdt='git difftool'
 
 alias stash='git stash'
 alias pop='git stash pop'
+alias cache='git rm -r --cached .'
 
 # Reset
 alias gwRm='git reset --mixed HEAD~1'
@@ -82,7 +83,7 @@ alias gcla='git clone --local $repo/Assembly.git'
 alias gclar='git clone --recursive --local $repo/Assembly.git'
 alias gclp='git clone $repo/Package.git'
 alias gclpb='git clone $repo/Package.git -b'
-alias gclm='git clone --local $repo/manifest.git'
+alias gclm='git clone $repo/manifest.git'
 alias gclv='git clone --local $repo/video.git'
 alias gclas='git clone --local $repo/classes.git'
 alias gclf='git clone --local $repo/fla.git'
@@ -92,6 +93,7 @@ alias gclf='git clone --local $repo/fla.git'
 alias gar='git archive HEAD --format=zip > "../${PWD##*/}.zip"'
 alias gara='git archive --remote=$repo/Assembly.git master | tar -xv'
 alias gars='git archive --remote=$repo/Assembly.git master | tar -xv shell/scripts/Storyline/ --strip-components=3'
+alias garp='git archive --remote=$repo/Assembly.git master | tar -xv shell/scripts/Package/ --strip-components=3'
 
 
 # GitHub

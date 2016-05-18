@@ -26,12 +26,29 @@
 # Atom Flight Manual:
 # https://atom.io/docs/latest/using-atom-basic-customization#cson
 
-'atom-text-editor.vim-mode:not(.insert-mode)':
-  ';': 'ex-mode:open'
+# 'atom-text-editor.vim-mode:not(.insert-mode)':
+#   ';': 'ex-mode:open'
+#'atom-text-editor.vim-mode-plus:normal-mode':
+
+'atom-text-editor.vim-mode-plus:not(.insert-mode)':
+
+  ':': 'vim-mode-plus-ex-mode:open'
+  ';': 'vim-mode-plus-ex-mode:open'
+  '!': 'vim-mode-plus-ex-mode:toggle-setting'
+
+  'ctrl-c': 'core:copy'
+  'ctrl-v': 'core:paste'
   'ctrl-h': 'pane:show-previous-item'
   'ctrl-l': 'pane:show-next-item'
 
-'body atom-text-editor.autocomplete-active':
+  ', s c': 'sync-settings:check-backup'
+  ', s b': 'sync-settings:backup'
+  ', s r': 'sync-settings:restore'
+
+  ', /': 'vim-mode-plus:clear-highlight-search'
+
+
+'atom-text-editor.autocomplete-active':
   'ctrl-n': 'autocomplete-plus:move-down'
   'ctrl-p': 'autocomplete-plus:move-up'
   'ctrl-j': 'autocomplete-plus:move-down'
@@ -40,3 +57,11 @@
   'pagedown': 'autocomplete-plus:page-down'
   'home': 'autocomplete-plus:move-to-top'
   'end': 'autocomplete-plus:move-to-bottom'
+
+# 'atom-text-editor':
+ # 'ctrl-l': 'unset!'
+ # 'ctrl-l': 'pane:show-next-item'
+
+'body':
+  'ctrl-h': 'pane:show-previous-item'
+  'ctrl-l': 'pane:show-next-item'

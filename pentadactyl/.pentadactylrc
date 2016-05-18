@@ -151,6 +151,7 @@ set hlfind
 "SITE SPECIFIC
 set strictfocus+='mail.google.com':laissez-faire
 set passkeys+='mail.google.com':abdfiJKLnoprsuz#?.<CR>,gl,gs,gt
+set passkeys+='todoist.com':q
 autocmd LocationChange evernote.com :normal! <C-z>
 autocmd LocationChange codeskulptor.org :normal! <C-z>
 autocmd LocationChange docs.google.com :normal! <C-z>
