@@ -2,7 +2,13 @@
 
 # Bootstrap a new configuration
 
-cd "$(dirname "$0")/.."
+# This doesn't work because you're in admin folder
+#cd "$(dirname "$0")/.."
+
+# So start in user's Dropbox/dotfiles/scripts
+cd ../../../
+pwd
+
 DOTFILES_ROOT=$(pwd)
 
 set -e
@@ -27,8 +33,6 @@ fail () {
     exit
 }
 
-cd ~
-pwd
 
 cmd <<< "mklink /D .dotfiles Dropbox\dotfiles"
 
@@ -41,7 +45,9 @@ cmd <<< "mklink /D .vim Dropbox\Tools\Vim\.vim"
 cmd <<< "mklink .vimrc .dotfiles\vim\.vimrc"
 cmd <<< "mklink .cvimrc .dotfiles\vim\.cvimrc"
 
-cmd <<< "mklink /D .pentadactyl .dotfiles\pentadactyl\.pentadactyl"
-cmd <<< "mklink .pentadactylrc .dotfiles\pentadactyl\.pentadactylrc"
+cmd <<< "mklink /D .vimfx .dotfiles\vimfx"
+
+#cmd <<< "mklink /D .pentadactyl .dotfiles\pentadactyl\.pentadactyl"
+#cmd <<< "mklink .pentadactylrc .dotfiles\pentadactyl\.pentadactylrc"
 
 cmd <<< "mklink /D .ssh Dropbox\Tools\Keys\.ssh"

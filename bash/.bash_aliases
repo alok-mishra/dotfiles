@@ -14,6 +14,8 @@ alias dp='docker ps -a'
 alias dps='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Command}}\t{{.Ports}}\t{{.Names}}"'
 alias dpa='docker ps -a --format "table {{.ID}}\t{{.Image}}\t{{.Command}}\t{{.Ports}}\t{{.Names}}"'
 
+alias dlo='docker logs'
+
 alias dRmf='docker rm -f'
 # alias dRaf='docker rm -f $(docker ps -a -q)'
 
@@ -51,3 +53,7 @@ alias up='sudo apt-get update && time sudo apt-get dist-upgrade'
 alias sqldump='mysqldump --socket=/home/mysql/mysql.sock --user wordpress --password=raeh3AVaeche wordpress > ~/backups/starfish.sql'
 
 alias sqlstart='sudo service mysql start'
+
+if [ -f ~/.aliases ]; then
+    source .aliases
+fi

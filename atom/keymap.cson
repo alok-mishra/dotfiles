@@ -1,67 +1,54 @@
-# Your keymap
-#
-# Atom keymaps work similarly to style sheets. Just as style sheets use
-# selectors to apply styles to elements, Atom keymaps use selectors to associate
-# keystrokes with events in specific contexts. Unlike style sheets however,
-# each selector can only be declared once.
-#
-# You can create a new keybinding in this file by typing "key" and then hitting
-# tab.
-#
-# Here's an example taken from Atom's built-in keymap:
-#
-# 'atom-text-editor':
-#   'enter': 'editor:newline'
-#
-# 'atom-workspace':
-#   'ctrl-shift-p': 'core:move-up'
-#   'ctrl-p': 'core:move-down'
-#
-# You can find more information about keymaps in these guides:
-# * https://atom.io/docs/latest/using-atom-basic-customization#customizing-key-bindings
-# * https://atom.io/docs/latest/behind-atom-keymaps-in-depth
-#
-# This file uses CoffeeScript Object Notation (CSON).
-# If you are unfamiliar with CSON, you can read more about it in the
-# Atom Flight Manual:
-# https://atom.io/docs/latest/using-atom-basic-customization#cson
-
-# 'atom-text-editor.vim-mode:not(.insert-mode)':
-#   ';': 'ex-mode:open'
-#'atom-text-editor.vim-mode-plus:normal-mode':
-
-'atom-text-editor.vim-mode-plus:not(.insert-mode)':
-
-  ':': 'vim-mode-plus-ex-mode:open'
-  ';': 'vim-mode-plus-ex-mode:open'
-  '!': 'vim-mode-plus-ex-mode:toggle-setting'
-
-  'ctrl-c': 'core:copy'
-  'ctrl-v': 'core:paste'
-  'ctrl-h': 'pane:show-previous-item'
-  'ctrl-l': 'pane:show-next-item'
-
-  ', s c': 'sync-settings:check-backup'
-  ', s b': 'sync-settings:backup'
-  ', s r': 'sync-settings:restore'
-
-  ', /': 'vim-mode-plus:clear-highlight-search'
-
-
-'atom-text-editor.autocomplete-active':
-  'ctrl-n': 'autocomplete-plus:move-down'
-  'ctrl-p': 'autocomplete-plus:move-up'
-  'ctrl-j': 'autocomplete-plus:move-down'
-  'ctrl-k': 'autocomplete-plus:move-up'
-  'pageup': 'autocomplete-plus:page-up'
-  'pagedown': 'autocomplete-plus:page-down'
-  'home': 'autocomplete-plus:move-to-top'
-  'end': 'autocomplete-plus:move-to-bottom'
-
-# 'atom-text-editor':
- # 'ctrl-l': 'unset!'
- # 'ctrl-l': 'pane:show-next-item'
+# http://flight-manual.atom.io/behind-atom/sections/keymaps-in-depth/
 
 'body':
-  'ctrl-h': 'pane:show-previous-item'
-  'ctrl-l': 'pane:show-next-item'
+    'ctrl-w': 'unset!'
+    'ctrl-h': 'pane:show-previous-item'
+    'ctrl-l': 'pane:show-next-item'
+    'ctrl-shift-w': 'tabs:close-all-tabs'
+    'ctrl-alt-w': 'tabs:close-other-tabs'
+
+'atom-text-editor':
+    'ctrl-alt-w': 'unset!'
+
+'atom-text-editor.editor':
+    'ctrl-l': 'pane:show-next-item'
+
+'atom-text-editor.vim-mode-plus:not(.insert-mode)':
+    ':': 'vim-mode-plus-ex-mode:open'
+    ';': 'vim-mode-plus-ex-mode:open'
+    '!': 'vim-mode-plus-ex-mode:toggle-setting'
+
+    'ctrl-a': 'core:select-all'
+    'ctrl-c': 'core:copy'
+    'ctrl-v': 'core:paste'
+    'ctrl-h': 'pane:show-previous-item'
+    'ctrl-l': 'pane:show-next-item'
+
+    ', s c': 'sync-settings:check-backup'
+    ', s b': 'sync-settings:backup'
+    ', s r': 'sync-settings:restore'
+
+    ', /': 'vim-mode-plus:clear-highlight-search'
+
+'atom-text-editor.vim-mode-plus.insert-mode':
+    'j k': 'vim-mode-plus:activate-normal-mode'
+    'k j': 'vim-mode-plus:activate-normal-mode'
+
+'atom-text-editor.vim-mode-plus.normal-mode':
+    'S': 'vim-mode-plus:surround-smart-word'
+    'y s': 'vim-mode-plus:surround'
+    'y s w': 'vim-mode-plus:surround-word'
+    'm s': 'vim-mode-plus:map-surround'
+    'd s': 'vim-mode-plus:delete-surround-any-pair'
+    'c s': 'vim-mode-plus:change-surround-any-pair'
+
+'atom-text-editor.autocomplete-active':
+    'ctrl-n': 'autocomplete-plus:move-down'
+    'ctrl-p': 'autocomplete-plus:move-up'
+    'ctrl-j': 'autocomplete-plus:move-down'
+    'ctrl-k': 'autocomplete-plus:move-up'
+    'pageup': 'autocomplete-plus:page-up'
+    'pagedown': 'autocomplete-plus:page-down'
+    'home': 'autocomplete-plus:move-to-top'
+    'end': 'autocomplete-plus:move-to-bottom'
+

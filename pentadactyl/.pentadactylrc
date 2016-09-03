@@ -120,9 +120,13 @@ map -b -s <C-Tab> <C-`>
 " map -b -s <A-Tab> <Nop>
 " map -b -s <C-`> <C-~>
 
-" Switch Tabs
+""Switch Tabs
 "map -b -m n,v,t,c,o <C-Space> <C-^>
 map -b -s <C-`> <C-^>
+"
+""Remove Tab
+map -b x d
+
 
 "Music
 "map -b -s <C-`> :b Grooveshark<CR>
@@ -150,7 +154,7 @@ set hlfind
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "SITE SPECIFIC
 set strictfocus+='mail.google.com':laissez-faire
-set passkeys+='mail.google.com':abdfiJKLnoprsuz#?.<CR>,gl,gs,gt
+set passkeys+='mail.google.com':abdfiJKLnoprsuxz#?.<CR>,gl,gs,gt
 set passkeys+='todoist.com':q
 autocmd LocationChange evernote.com :normal! <C-z>
 autocmd LocationChange codeskulptor.org :normal! <C-z>

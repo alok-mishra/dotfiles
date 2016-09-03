@@ -1,19 +1,6 @@
-/*
- * Your Stylesheet
- *
- * This stylesheet is loaded when Atom starts up and is reloaded automatically
- * when it is changed and saved.
- *
- * Add your own CSS or Less to fully customize Atom.
- * If you are unfamiliar with Less, you can read more about it here:
- * http://lesscss.org
- */
-
-
-/*
- * Examples
- * (To see them, uncomment and save)
- */
+@teal: #066;
+@cobalt: #069;
+@orange: #F80;
 
 // style the background color of the tree view
 .tree-view {
@@ -32,10 +19,14 @@ atom-text-editor::shadow .cursor {
 }
 
 atom-text-editor::shadow .vim-mode-plus-highlight-search .region {
-    border-color: #009966;
-    background-color: #006699;
+    border-color: @cobalt;
+    background-color: @teal;
 }
 
 .command-palette .list-group .character-match {
-    color: #F80;
+    color: @orange;
+}
+
+.btn.selected, .btn.btn-default.selected {
+    background: @teal;
 }

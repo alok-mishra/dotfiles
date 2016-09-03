@@ -1,34 +1,26 @@
 "*":
   "atom-compile-less": {}
-  "atom-material-ui":
-    colors:
-      abaseColor:
-        red: 255
-        green: 128
-        blue: 0
-        alpha: 1
-    tabs:
-      compactTabs: true
-    ui:
-      panelContrast: true
   "atom-terminal":
     app: "C:\\Workspace\\Apps\\Git\\usr\\bin\\mintty.exe"
     args: "/usr/bin/bash --login -i"
   "autocomplete-plus":
+    minimumWordLength: 2
     useCoreMovementCommands: false
+  "bracket-matcher":
+    autocompleteBrackets: false
   core:
     autoHideMenuBar: true
     automaticallyUpdate: false
     disabledPackages: [
       "node-debugger"
+      "merge-conflicts"
       "wrap-guide"
     ]
     themes: [
-      "atom-material-ui"
+      "one-dark-ui"
       "base16-tomorrow-dark-theme"
     ]
   editor:
-    fontSize: 12
     invisibles: {}
     scrollPastEnd: true
     showIndentGuide: true
@@ -40,9 +32,13 @@
     hideHighlightOnSelectedWord: true
     ignoreCase: true
     lightTheme: true
+  linter:
+    showErrorPanel: false
   "merge-conflicts":
     gitPath: "C:\\Workspace\\Apps\\Git\\git.exe"
   minimap: {}
+  "one-dark-ui":
+    layoutMode: "Compact"
   "sync-settings":
     _analyticsUserId: "anonymousId"
     _lastBackupHash: ""
@@ -63,3 +59,5 @@
     useSmartcaseForSearchCurrentWord: true
   welcome:
     showOnStartup: false
+  whitespace:
+    ensureSingleTrailingNewline: false

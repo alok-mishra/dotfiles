@@ -1,4 +1,0 @@
-proxy=http://127.0.0.1:6060/
-http-proxy=http://127.0.0.1:6060/
-https-proxy=http://127.0.0.1:6060/
-strict-ssl=false

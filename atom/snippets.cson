@@ -19,3 +19,20 @@
 # If you are unfamiliar with CSON, you can read more about it in the
 # Atom Flight Manual:
 # https://atom.io/docs/latest/using-atom-basic-customization#cson
+
+'.source.ts':
+    'ng2 component':
+        'prefix': 'ng2c'
+        'body': """
+            import { Component${1:, Input} } from '@angular/core';
+
+            @Component({
+                selector: '$2',
+            })
+            export class $3 {
+            }
+        """
+
+    'ng2 import':
+        'prefix': 'ng2i'
+        'body': "import { $1 } from './$2';"

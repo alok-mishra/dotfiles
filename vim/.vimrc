@@ -83,6 +83,7 @@ Plugin 'elzr/vim-json'
 Plugin 'jeroenbourgois/vim-actionscript'
 Plugin 'vim-scripts/aspnetcs'
 Plugin 'groenewege/vim-less'
+Plugin 'cakebaker/scss-syntax.vim'
 
 " Colors
 Plugin 'chankaward/vim-railscasts-theme'
@@ -282,8 +283,9 @@ nmap <silent> <leader>Z z=1<CR>
 " FileTypes and Syntax Highlighting
 map <leader>fc :set ft=css<CR>
 map <leader>fh :set ft=html<CR>
-map <leader>fx :set ft=xml<CR>
+map <leader>fj :set ft=javascript<CR>
 map <leader>fp :set ft=php<CR>
+map <leader>fx :set ft=xml<CR>
 
 map <leader>sm :set syntax=mustache<CR>
 
@@ -443,6 +445,8 @@ function! Generate()
     ":silent !node manifest & pause
     if (&ft=='less')
         :execute ":Silent " . substitute(expand('~'), '\\', '/', 'g') . '/Dropbox/Tools/Vim/.vim/bundle/less.js-windows/lessc --clean-css "%" "%:r.css"'
+    elseif (&ft=='scss')
+        :execute ':Silent node-sass "%" "%:r.css"'
     else
         :silent !node manifest
     endif

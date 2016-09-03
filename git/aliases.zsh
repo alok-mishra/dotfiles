@@ -100,4 +100,6 @@ alias garp='git archive --remote=$repo/Assembly.git master | tar -xv shell/scrip
 # alias dotfiles='git remote set-url origin git@alok-github:alok-mishra/dotfiles.git'
 alias dotremote='git remote set-url origin git@github.com:alok-mishra/dotfiles.git'
 alias dotfiles='git clone git@github.com:alok-mishra/dotfiles.git'
-
+github_init() { curl -u "alok-mishra" https://api.github.com/user/repos -d "{'name':$1,'description':$2}"; }
+alias ghi='github_init'
+alias gclng2='git clone https://github.com/angular/quickstart.git'
