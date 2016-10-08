@@ -45,19 +45,22 @@ alias gwRh='git reset --hard HEAD~1'
 
 
 # Fetch / Merge / Pull / Rebase / Push
-alias gf='git fetch'
+alias fetch='git fetch'
+alias pull='git pull'
+alias push='git push'
+alias force='git push --force'
+
+alias trackall='for remote in `git branch -r | grep -v "\->"`; do git branch --track ${remote#origin/} $remote; done;'
+alias fetchall='git fetch --all'
+alias pushall='git push --all'
 
 alias gm='git merge'
 alias gmm='git merge master'
 alias gmt='git mergetool'
 
-alias pull='git pull'
 alias gp1='git pull --depth 1'
 
-alias push='git push'
-alias gPf='git push --force'
-
-alias grm='git rebase master'
+alias grm='git rebase origin/master'
 
 # Commit
 alias gco='git commit -m'
@@ -87,6 +90,7 @@ alias gclm='git clone $repo/manifest.git'
 alias gclv='git clone --local $repo/video.git'
 alias gclas='git clone --local $repo/classes.git'
 alias gclf='git clone --local $repo/fla.git'
+alias gcln='git clone $repo/newdealer.git'
 
 
 # Archive / Extract

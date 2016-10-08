@@ -16,6 +16,7 @@
       "merge-conflicts"
       "wrap-guide"
     ]
+    telemetryConsent: "no"
     themes: [
       "one-dark-ui"
       "base16-tomorrow-dark-theme"
@@ -39,6 +40,8 @@
   minimap: {}
   "one-dark-ui":
     layoutMode: "Compact"
+  pigments:
+    markerType: "native-underline"
   "sync-settings":
     _analyticsUserId: "anonymousId"
     _lastBackupHash: ""
@@ -49,6 +52,8 @@
       shell: "C:\\Workspace\\Apps\\Git\\usr\\bin\\bash.exe"
       shellArguments: "--login -i"
     style: {}
+  "tree-view":
+    hideIgnoredNames: true
   "vim-mode-plus":
     clearHighlightSearchOnResetNormalMode: true
     highlightSearch: true

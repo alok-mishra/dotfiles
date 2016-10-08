@@ -16,7 +16,7 @@ alias dpa='docker ps -a --format "table {{.ID}}\t{{.Image}}\t{{.Command}}\t{{.Po
 
 alias dlo='docker logs'
 
-alias dRmf='docker rm -f'
+alias dRf='docker rm -f'
 # alias dRaf='docker rm -f $(docker ps -a -q)'
 
 alias dat=attach_terminal
@@ -38,12 +38,12 @@ alias dssh='ssh docker@192.168.99.100'
 
 if [ -f ~/.dotfiles/prezto/modules/git/alias.zsh ]; then
     source ~/.dotfiles/prezto/modules/git/alias.zsh 2> /dev/null
-    alias vgp='vi ~/.dotfiles/prezto/modules/git/alias.zsh'
+    alias vigp='vi ~/.dotfiles/prezto/modules/git/alias.zsh'
 fi 
 
 if [ -f ~/.dotfiles/git/aliases.zsh ]; then
     source ~/.dotfiles/git/aliases.zsh
-    alias vgg='vi ~/.dotfiles/git/aliases.zsh'
+    alias vig='vi ~/.dotfiles/git/aliases.zsh'
 fi
 
 alias backup='tar -cvzf ~/backups/www.tar.gz /var/www/'

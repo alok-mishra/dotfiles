@@ -1,0 +1,17 @@
+alias 7x=extract_to_folder
+extract_to_folder() {
+    7z x -y -o$1 $1.7z;
+    find $1 -type d -exec chmod 755 {} \;
+}
+
+# Pass multiple files for scp to newdealer i.e:
+# scpnd 2016 q2 file1.7z file2.7z ...
+alias scpnd=send_to_newdealer
+send_to_newdealer() {
+    scp ${@:3} dev:/var/www/dev/newdealer/$1/$2/
+}
+
+alias swatch=sass_watch
+sass_watch() {
+    sass --watch $1 $2
+}

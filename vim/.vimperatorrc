@@ -1,0 +1,175 @@
+" vim: set filetype=vim :
+
+"============================= My Settings ============================="
+set runtimepath^=~/vimperator
+
+set! browser.startup.page=3
+set! extensions.checkCompatibility=false
+set! browser.download.useDownloadDir=false
+set! browser.tabs.closeWindowWithLastTab=false
+set! browser.tabs.loadDivertedInBackground=true
+set! security.fileuri.strict_origin_policy=false
+set! extensions.lastpass.searchHkKeyCode=0
+
+"USER INTERFACE - Dark colors
+colorscheme indigo
+"highlight StatusLine color:black
+
+set gui=none,tabs
+
+"Show just Tabs and Status. Alt-Down and Alt-Up to unhide / hide Menu, Toolbar, and Bookmarks
+nnoremap <A-PageDown> :set gui=all<CR>
+nnoremap <A-PageUp> :set gui=none,tabs<CR>
+
+"Go to Gmail when starting Firefox
+"V! autocmd Enter google.com :buffer Gmail
+
+"Follow hints only after hitting enter
+set followhints=1
+
+" Dot not set hintkeys to letters, as we can currently just start typing the
+" link to narrow down the selection
+" set hintkeys=asdfjkl;
+
+set visualbell
+"V! set showtabline=always
+set titlestring=Firefox
+"set showstatuslinks=3
+"set editor='gvim' // Already Set
+"set editor='atom --wait <file>'
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"KEY BINDINGS
+
+"Select/Cut/Copy/Paste/Undo everywhere
+"map -b -m n,v,i,t,c <C-x> <Pass>
+"map -b -m n,v,i,t,c <C-a> <Pass>
+"map -b -m n,v,i,t,c <C-c> <Pass>
+"map -b -m n,v,i,t,c <C-v> <Pass>
+"map -b -m n,v,i,t,c <C-z> <Pass>
+
+" map n,v,i,t,c <C-a> <C-v><C-a>
+" map n,v,i,t,c <C-x> <C-v><C-x>
+" map n,v,i,t,c <C-c> <C-v><C-c>
+" map n,v,i,t,c <C-v> <C-v><C-v>
+" map n,v,i,t,c <C-z> <C-v><C-z>
+
+map <C-a> i<C-a>
+inoremap <C-a> <Insert><C-a><Insert>
+
+" Print
+map p P
+
+" Search
+"command -nargs=* search tabopen https://www.google.com/#q=<args>
+"command! showSearch toolbarshow Googlebar Lite Toolbar
+"map -b S :showSearch<CR> | S
+command! -nargs=* duck tabopen https://duckduckgo.com/?q=<args>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"SHORTCUTS
+
+"map , <leader>
+map ,a :toolbartoggle The Addon Bar<CR>
+map ,C :!start %APPDATA%\Mozilla\Firefox\Profiles<CR>
+map ,d :downloads<CR>
+map ,h :history<CR>
+map ,k :duck
+map ,l <A-i>
+map ,n fnext<CR><Esc>
+map ,o <A-o>
+map ,p :set apptab!<CR>
+map ,r oreadlater<CR>
+map ,s <A-w>:echo "PickPocket!"<CR>
+map ,S :source ~/.vimperatorrc<CR>
+map ,t ttodo<CR>
+map ,u :extdisable uBlock<CR>
+map ,U :extenable uBlock<CR>
+map ,v :!start /B gvim ~/.vimperatorrc<CR>
+map ,x fsign out<CR>
+map <silent> ,/ :nohlsearch<CR>
+
+" map ; <dialog>
+map ;a :dialog addons<CR>
+map ;b <C-S-B>
+map ;c :dialog customizetoolbar<CR>
+map ;C :dialog console<CR>
+map ;d :dialog downloads<CR>
+map ;f :set fullscreen!<CR>
+map ;g :toolbartoggle Googlebar Lite Toolbar<CR>
+map ;p :preferences<CR>
+map ;P :hardcopy<CR>
+map ;s :set guioptions!=s<CR>
+"V! map ;t :set showtabline!=always,never<CR>
+
+map s ogoogle 
+map S tgoogle 
+
+" map b :bmarks! 
+" noremap B b
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"NAVIGATION
+
+""Page
+map j 6<C-e>
+map k 6<C-y>
+map J <C-d>
+map K <C-u>
+
+""Tabs - gt/gT instead of tnext/tprevious, to avoid conflicts on GrooveShark
+map h gT
+map l gt
+map <C-l> :tabmove! +1<CR>
+map <C-h> :tabmove! -1<CR>
+
+""Switch Tabs
+map <C-`> <C-^>
+
+""Remove Tab
+map x d
+
+
+"Lastpass
+inoremap <C-Space> <A-PageDown>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"COMPLETION
+"set wildoptions=auto
+
+""complete: bookmarks, location, search
+set complete=bls
+
+set history=100
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"SEARCH
+"set defsearch=duckduckgo
+"set suggestengines=google,duckduckgo
+"V! set findcase=smart
+"V! set hlfind
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"SITE SPECIFIC
+"V! set strictfocus+='mail.google.com':laissez-faire
+"V! set passkeys+='mail.google.com':abdfiJKLnoprsuxz#?.<CR>,gl,gs,gt
+"V! set passkeys+='todoist.com':q
+autocmd LocationChange evernote.com :normal! <C-z>
+autocmd LocationChange codeskulptor.org :normal! <C-z>
+autocmd LocationChange docs.google.com :normal! <C-z>
+"autocmd LocationChange '.*/wp-admin/.*' :normal! <C-z>
+
+""Qmarks - Load after ColorScheme has been loaded (otherwise get blank page when realoading page on firefox start)
+silent qmark d http://drive.google.com/
+silent qmark m http://mail.google.com/
+silent qmark c https://calendar.google.com/
+silent qmark o https://mail.chrysler.com/
+
+"Add-On Styles
+"style -name ublock * #nav-bar * { visibility: visible; }

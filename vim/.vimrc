@@ -53,7 +53,7 @@ Plugin 'scrooloose/syntastic'
 " Plugin 'fidian/hexmode'
 
 "Git
-Plugin 'tpope/vim-fugitive'
+"Plugin 'tpope/vim-fugitive' (( This one causes problems ))
 
 "Handlebars
 Plugin 'mustache/vim-mustache-handlebars'
@@ -62,10 +62,10 @@ Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 
-" GoLang
-Plugin 'fatih/vim-go'
-Plugin 'nsf/gocode', {'rtp': 'vim/'}
-Plugin 'jstemmer/gotags'
+" GoLang (not needed right now)
+" Plugin 'fatih/vim-go'
+" Plugin 'nsf/gocode', {'rtp': 'vim/'}
+" Plugin 'jstemmer/gotags'
 
 " SnipMate
 Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -472,6 +472,8 @@ let @s='i<sup>\eea</sup>\e'
 " Perception String - fix perception connection for new version
 let @k='gg:silent!/php/dllFqct"perception5/session.php'
 
-" JSON Topic Titles - pastes list of titles from clipboard, adds quotes/commas to lines of section
-" Place cursor inside topic block
-let @j='vi]x"*Pvi]I"vi]:s/$/\",/f,xj=%:nohls'
+" JSON Topic Titles - pastes list of titles from clipboard, adds quotes/commas to lines of section. Removes whitespace. (Place cursor inside topic block)
+let @j='vi]x"*Pvi]:g/^$/dvi]I"vi]:s/\s*$/\",/f,xj=%:nohls'
+
+" JSON Image and Audio entries for New Dealer - pastes list of absolute paths from clipboard, removes all except filename, adds quotes/commas to lines of section. (Place cursor inside images or audio block)
+let @n='vi]x"*Pvi]T\xvi]:s/\..*//vi]I"vi]:s/$/\",/f,xj0=%:nohls'

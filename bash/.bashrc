@@ -37,12 +37,12 @@ alias dnmf='export DOCKER_MACHINE_NAME="finance"'
 
 if [ -f ~/.dotfiles/bash/.bash_aliases ]; then
     source ~/.dotfiles/bash/.bash_aliases
-    alias vba='vi ~/.dotfiles/bash/.bash_aliases'
+    alias viba='vi ~/.dotfiles/bash/.bash_aliases'
 fi
 
 if [ -f ~/.dotfiles/bash/.aliases ]; then
     source ~/.dotfiles/bash/.aliases
-    alias vba='vi ~/.dotfiles/bash/.aliases'
+    alias via='vi ~/.dotfiles/bash/.aliases'
 fi
 
 alias md5='openssl md5'
@@ -52,7 +52,7 @@ alias path='echo "${PATH//:/$'"'"'\n'"'"'}"'
 alias sshc='ssh-copy-id -i ~/.ssh/id_rsa'
 
 alias vi='start //b gvim'
-alias vb='vi ~/.bashrc'
+alias vib='vi ~/.bashrc'
 alias vj='vi manifest.json'
 alias nm='node manifest'
 alias gurp='gars && gulp'

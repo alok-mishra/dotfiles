@@ -13,6 +13,15 @@ vimfx.set('mode.normal.tab_select_next', 'l');
 vimfx.set('mode.normal.scroll_half_page_down', 'J');
 vimfx.set('mode.normal.scroll_half_page_up', 'K');
 
+vimfx.set('mode.normal.scroll_half_page_up', 'K');
+
+// vimfx.addOptionOverrides([true, {prevent_autofocus: true}]);
+
+
+vimfx.addKeyOverrides(
+  [ location => location.hostname === 'mail.google.com', ['h', 'j', 'k', 'l'] ]
+  // [ location => location.hostname === 'mail.google.com', ['j', 'k'] ]
+)
 
 /***************** CUSTOM COMMANDS *****************/
 
@@ -37,3 +46,5 @@ vimfx.addCommand({
         console.log('Location Append')
 });
 vimfx.set('custom.mode.normal.append_location_bar', 'O');
+
+// network.automatic-ntlm-auth.trusted-uris: mconnect ? 

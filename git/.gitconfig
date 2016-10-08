@@ -1,22 +1,25 @@
 [user]
-        name = Alok Mishra
-        email = alok@alokmishra.com
+    name = Alok Mishra
+    email = alok@alokmishra.com
 [color]
-        diff = auto
-        status = auto
-        branch = auto
-        ui = true
+    ui = true
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+    ui = true
+    pager = true
 [diff]
-	tool = bc3
-[difftool "bc3"]
-	path = C:/Program Files (x86)/Beyond Compare 4/BComp.exe
+    tool = bc
+[difftool "bc"]
+    path = C:/Workspace/Apps/Beyond Compare 4/BComp.exe
 [merge]
-	tool = bc3
-[mergetool "bc3"]
-	path = C:/Program Files (x86)/Beyond Compare 4/BComp.exe
+    tool = bc
+[mergetool "bc"]
+    path = C:/Workspace/Apps/Beyond Compare 4/BComp.exe
 [push]
-	default = simple
+    default = simple
 [mergetool]
-	keepBackup = false
+    keepBackup = false
 [core]
     editor = gvim
