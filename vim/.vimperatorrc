@@ -139,10 +139,10 @@ inoremap <C-Space> <A-PageDown>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "COMPLETION
-"set wildoptions=auto
+"set wildmode=full
 
-""complete: bookmarks, location, search
-set complete=bls
+""complete items in order: search & keywords, smart location, bookmarks
+set complete=slb
 
 set history=100
 
