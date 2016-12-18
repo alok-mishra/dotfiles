@@ -38,6 +38,8 @@ set titlestring=Firefox
 "set editor='gvim' // Already Set
 "set editor='atom --wait <file>'
 
+" focus the content instead of text field
+set focuscontent
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "KEY BINDINGS
@@ -162,7 +164,7 @@ set history=100
 "V! set passkeys+='todoist.com':q
 autocmd LocationChange evernote.com :normal! <C-z>
 autocmd LocationChange codeskulptor.org :normal! <C-z>
-autocmd LocationChange docs.google.com :normal! <C-z>
+" autocmd LocationChange docs.google.com :normal! <C-z>
 "autocmd LocationChange '.*/wp-admin/.*' :normal! <C-z>
 
 ""Qmarks - Load after ColorScheme has been loaded (otherwise get blank page when realoading page on firefox start)
