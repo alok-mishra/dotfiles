@@ -30,7 +30,7 @@ alias gchm='git checkout master'
 
 alias gd='git diff'
 alias gdn='git diff --name-only'
-alias gdm='git diff master'
+alias gdm='git diff origin/master'
 
 alias gdt='git difftool'
 
@@ -48,7 +48,7 @@ alias gwRh='git reset --hard HEAD~1'
 alias fetch='git fetch'
 alias pull='git pull'
 alias push='git push'
-alias force='git push --force'
+alias pushf='git push --force'
 
 alias trackall='for remote in `git branch -r | grep -v "\->"`; do git branch --track ${remote#origin/} $remote; done;'
 alias fetchall='git fetch --all'
@@ -61,6 +61,7 @@ alias gmt='git mergetool'
 alias gp1='git pull --depth 1'
 
 alias grm='git rebase origin/master'
+alias grc='git rebase --continue'
 
 # Commit
 alias gco='git commit -m'

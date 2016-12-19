@@ -8,6 +8,11 @@ extract_to_folder() {
 # scpnd 2016 q2 file1.7z file2.7z ...
 alias scpnd=send_to_newdealer
 send_to_newdealer() {
+    if [[ $# -eq 0 ]]; then
+        echo "Usage: scpnd 2016 q2 package1.7z package2.7z ..."
+        return
+    fi
+
     scp ${@:3} dev:/var/www/dev/newdealer/$1/$2/
 }
 

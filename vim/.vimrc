@@ -53,7 +53,10 @@ Plugin 'scrooloose/syntastic'
 " Plugin 'fidian/hexmode'
 
 "Git
-"Plugin 'tpope/vim-fugitive' (( This one causes problems ))
+" Plugin 'airblade/vim-gitgutter'
+
+" (( This one causes problems ))
+Plugin 'tpope/vim-fugitive'
 
 "Handlebars
 Plugin 'mustache/vim-mustache-handlebars'
@@ -452,6 +455,17 @@ function! Generate()
     endif
 endfunction
 
+function! TwiddleCase(str)
+  if a:str ==# toupper(a:str)
+    let result = tolower(a:str)
+  elseif a:str ==# tolower(a:str)
+    let result = substitute(a:str,'\(\<\w\+\>\)', '\u\1', 'g')
+  else
+    let result = toupper(a:str)
+  endif
+  return result
+endfunction
+vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgvl
 
 " MACROS
 

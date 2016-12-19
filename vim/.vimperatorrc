@@ -129,8 +129,8 @@ map <C-h> :tabmove! -1<CR>
 ""Switch Tabs
 map <C-`> <C-^>
 
-""Remove Tab
-map x d
+""Force Close Tab
+map D :tabclose!<CR>
 
 
 "Lastpass
@@ -141,8 +141,8 @@ inoremap <C-Space> <A-PageDown>
 "COMPLETION
 "set wildoptions=auto
 
-""complete: bookmarks, location, search
-set complete=bls
+""complete: bookmarks, search
+set complete=sb
 
 set history=100
 
@@ -160,9 +160,13 @@ set history=100
 "V! set strictfocus+='mail.google.com':laissez-faire
 "V! set passkeys+='mail.google.com':abdfiJKLnoprsuxz#?.<CR>,gl,gs,gt
 "V! set passkeys+='todoist.com':q
+
+" Ignore Keys On Specific Sites
+":ignorekeys add todoist\\.com -except t,o,h,j,k,l  " NOT WORKING
+
 autocmd LocationChange evernote.com :normal! <C-z>
 autocmd LocationChange codeskulptor.org :normal! <C-z>
-autocmd LocationChange docs.google.com :normal! <C-z>
+" autocmd LocationChange docs.google.com :normal! <C-z>
 "autocmd LocationChange '.*/wp-admin/.*' :normal! <C-z>
 
 ""Qmarks - Load after ColorScheme has been loaded (otherwise get blank page when realoading page on firefox start)
@@ -172,4 +176,4 @@ silent qmark c https://calendar.google.com/
 silent qmark o https://mail.chrysler.com/
 
 "Add-On Styles
-"style -name ublock * #nav-bar * { visibility: visible; }
+style -name ublock * #nav-bar * { visibility: visible; }

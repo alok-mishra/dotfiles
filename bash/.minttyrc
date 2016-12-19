@@ -1,0 +1,13 @@
+BoldAsFont=no
+Columns=140
+Rows=60
+Font=Envy Code R for Powerline
+FontHeight=10
+Term=xterm-256color
+Transparency=off
+CursorType=block
+CursorBlinks=yes
+BackgroundColour=0,0,0
+Locale=en_US
+Charset=UTF-8
+Answerback=

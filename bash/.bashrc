@@ -49,10 +49,12 @@ alias md5='openssl md5'
 alias sha1='openssl sha1'
 alias ln=symlink
 alias path='echo "${PATH//:/$'"'"'\n'"'"'}"'
-alias sshc='ssh-copy-id -i ~/.ssh/id_rsa'
+alias sshca='ssh-copy-id -i ~/.ssh/id_rsa'
+alias sshcr='ssh-copy-id -i ~/.ssh/mediarave_rsa'
 
 alias vi='start //b gvim'
 alias vib='vi ~/.bashrc'
+alias vic='vi ~/ssh/config'
 alias vj='vi manifest.json'
 alias nm='node manifest'
 alias gurp='gars && gulp'
