@@ -38,6 +38,8 @@ set titlestring=Firefox
 "set editor='gvim' // Already Set
 "set editor='atom --wait <file>'
 
+" focus the content instead of text field
+set focuscontent
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "KEY BINDINGS
@@ -139,10 +141,10 @@ inoremap <C-Space> <A-PageDown>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "COMPLETION
-"set wildoptions=auto
+"set wildmode=full
 
-""complete: bookmarks, search
-set complete=sb
+""complete items in order: search & keywords, smart location, bookmarks
+set complete=slb
 
 set history=100
 
