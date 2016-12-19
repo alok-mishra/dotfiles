@@ -54,7 +54,7 @@ alias sshcr='ssh-copy-id -i ~/.ssh/mediarave_rsa'
 
 alias vi='start //b gvim'
 alias vib='vi ~/.bashrc'
-alias vic='vi ~/ssh/config'
+alias vic='vi ~/.ssh/config'
 alias vj='vi manifest.json'
 alias nm='node manifest'
 alias gurp='gars && gulp'

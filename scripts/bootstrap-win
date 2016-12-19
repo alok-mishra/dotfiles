@@ -33,8 +33,9 @@ fail () {
     exit
 }
 
+# Using /J directory junctions instead of /D directory links. /J works better with apps and git
 
-cmd <<< "mklink /D .dotfiles Dropbox\dotfiles"
+cmd <<< "mklink /J .dotfiles Dropbox\dotfiles"
 
 cmd <<< "mklink .bashrc .dotfiles\bash\.bashrc"
 cmd <<< "mklink .bash_profile .dotfiles\bash\.bash_profile"
@@ -43,12 +44,12 @@ cmd <<< "mklink .minttyrc .dotfiles\bash\.minttyrc"
 
 cmd <<< "mklink .gitconfig .dotfiles\git\.gitconfig"
 
-cmd <<< "mklink /D .vim Dropbox\Tools\Vim\.vim"
+cmd <<< "mklink /J .vim Dropbox\Tools\Vim\.vim"
 cmd <<< "mklink .vimrc .dotfiles\vim\.vimrc"
 cmd <<< "mklink .cvimrc .dotfiles\vim\.cvimrc"
 cmd <<< "mklink .vimperatorrc .dotfiles\vim\.vimperatorrc"
 
-cmd <<< "mklink /D .ssh Dropbox\Tools\Keys\.ssh"
+cmd <<< "mklink /J .ssh Dropbox\Tools\Keys\.ssh"
 
 # Deprecated
 #cmd <<< "mklink /D .vimfx .dotfiles\vimfx"
