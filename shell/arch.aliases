@@ -1,0 +1,2 @@
+alias up='sudo pacman -Syu'
+alias Runs='sudo pacman -Runs'

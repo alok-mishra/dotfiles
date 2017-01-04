@@ -5,7 +5,7 @@
 # This doesn't work because you're in admin folder
 #cd "$(dirname "$0")/.."
 
-# So start in user's Dropbox/dotfiles/scripts
+# So start in user's Dropbox/dotfiles/shell
 cd ../../../
 pwd
 
@@ -37,10 +37,10 @@ fail () {
 
 cmd <<< "mklink /J .dotfiles Dropbox\dotfiles"
 
-cmd <<< "mklink .bashrc .dotfiles\bash\.bashrc"
-cmd <<< "mklink .bash_profile .dotfiles\bash\.bash_profile"
+cmd <<< "mklink .bashrc .dotfiles\shell\.bashrc"
+cmd <<< "mklink .bash_profile .dotfiles\shell\.bash_profile"
 
-cmd <<< "mklink .minttyrc .dotfiles\bash\.minttyrc"
+cmd <<< "mklink .minttyrc .dotfiles\shell\.minttyrc"
 
 cmd <<< "mklink .gitconfig .dotfiles\git\.gitconfig"
 

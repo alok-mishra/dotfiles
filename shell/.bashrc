@@ -35,14 +35,14 @@ alias dnmf='export DOCKER_MACHINE_NAME="finance"'
 
 ##################################### BASH #####################################
 
-if [ -f ~/.dotfiles/bash/.bash_aliases ]; then
-    source ~/.dotfiles/bash/.bash_aliases
-    alias viba='vi ~/.dotfiles/bash/.bash_aliases'
+if [ -f ~/.dotfiles/shell/.aliases ]; then
+    source ~/.dotfiles/shell/.aliases
+    alias via='vi ~/.dotfiles/shell/.aliases'
 fi
 
-if [ -f ~/.dotfiles/bash/.aliases ]; then
-    source ~/.dotfiles/bash/.aliases
-    alias via='vi ~/.dotfiles/bash/.aliases'
+if [ -f ~/.dotfiles/shell/work.aliases ]; then
+    source ~/.dotfiles/shell/work.aliases
+    alias viwa='vi ~/.dotfiles/shell/work.aliases'
 fi
 
 alias md5='openssl md5'

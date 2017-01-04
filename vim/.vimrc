@@ -12,10 +12,7 @@ if has('unix')
     " set guifont=Consolas\ 10
     " set guifont=Envy\ Code\ R\ for\ Powerline\ 10
 else "has('win32') || has('win64')
-    set guifont=Consolas:h10
-    set guifont=Envy_Code_R:h10
-    set guifont=Envy_Code_R_for_Powerline:h10
-    set guifont=Droid_Sans_Mono_Slashed_for_Pow:h10
+    set guifont=Envy_Code_R_for_Powerline:h10,Droid_Sans_Mono_Slashed_for_Pow:h10,Consolas:h10
 
     " Maximize window on startup
     au GUIEnter * simalt ~x

@@ -1,4 +1,6 @@
+alias ls='ls --color=auto'
 alias l='ls -hAlF'
+alias vi='vim'
 
 alias ..='cd ..'
 alias ocd='cd "$OLDPWD"'
