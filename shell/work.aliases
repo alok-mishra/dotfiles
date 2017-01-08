@@ -1,3 +1,19 @@
+alias vi='start //b gvim'
+alias vj='vi manifest.json'
+alias nm='node manifest'
+alias gurp='gars && gulp'
+# alias rocky='./cntlm -c cntlm.ini -M https://www.google.com'
+alias rocky='./cntlm -H -c cntlm.ini'
+
+##################################### DOCKER #####################################
+export DOCKER_TLS_VERIFY="1"
+export DOCKER_HOST="tcp://192.168.99.100:2376"
+export DOCKER_CERT_PATH="C:\Users\t5005a0\.docker\machine\machines\devbox"
+export DOCKER_MACHINE_NAME="devbox"
+
+alias dnmf='export DOCKER_MACHINE_NAME="finance"'
+
+##################################### DEV #####################################
 alias 7x=extract_to_folder
 extract_to_folder() {
     7z x -y -o$1 $1.7z;
@@ -20,3 +36,37 @@ alias swatch=sass_watch
 sass_watch() {
     sass --watch $1 $2
 }
+
+##################################### GIT #####################################
+# Set a environment variable for the repository
+repo=file:///C:/Workspace/Repository/Git
+
+# Repos
+alias gcla='git clone --local $repo/Assembly.git'
+alias gclar='git clone --recursive --local $repo/Assembly.git'
+alias gclp='git clone $repo/Package.git'
+alias gclm='git clone $repo/manifest.git'
+alias gclv='git clone --local $repo/video.git'
+alias gcls='git clone --local $repo/classes.git'
+alias gclf='git clone --local $repo/fla.git'
+alias gcln='git clone $repo/newdealer.git'
+
+alias gclr=clone_package_rebase
+clone_package_rebase() {
+    if [[ $# -eq 0 ]]; then
+        gclp
+    else
+        dir=${1^}
+        gclp -b $1 $dir
+        cd $dir
+        grm;
+        rm -rf .git
+        vi zip_package.bat
+        exit
+    fi
+}
+
+# Archive / Extract
+alias gara='git archive --remote=$repo/Assembly.git master | tar -xv'
+alias gars='git archive --remote=$repo/Assembly.git master | tar -xv shell/scripts/Storyline/ --strip-components=3'
+alias garp='git archive --remote=$repo/Assembly.git master | tar -xv shell/scripts/Package/ --strip-components=3'

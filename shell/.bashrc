@@ -25,16 +25,7 @@ export PS1='\n\[\e[0;36m\]\W\[\e[1;36m\]$(__git_ps1) \[\e[0;36m\]$\[\e[0m\] '
 # Directory Colors
 # export LS_COLORS='di=0;35:'
 
-##################################### DOCKER #####################################
-export DOCKER_TLS_VERIFY="1"
-export DOCKER_HOST="tcp://192.168.99.100:2376"
-export DOCKER_CERT_PATH="C:\Users\t5005a0\.docker\machine\machines\devbox"
-export DOCKER_MACHINE_NAME="devbox"
-
-alias dnmf='export DOCKER_MACHINE_NAME="finance"'
-
-##################################### BASH #####################################
-
+##################################### SHELL #####################################
 if [ -f ~/.dotfiles/shell/.aliases ]; then
     source ~/.dotfiles/shell/.aliases
     alias via='vi ~/.dotfiles/shell/.aliases'
@@ -45,36 +36,18 @@ if [ -f ~/.dotfiles/shell/work.aliases ]; then
     alias viwa='vi ~/.dotfiles/shell/work.aliases'
 fi
 
-alias md5='openssl md5'
-alias sha1='openssl sha1'
-alias ln=symlink
-alias path='echo "${PATH//:/$'"'"'\n'"'"'}"'
-alias sshca='ssh-copy-id -i ~/.ssh/id_rsa'
-alias sshcr='ssh-copy-id -i ~/.ssh/mediarave_rsa'
-
-alias vi='start //b gvim'
-alias vib='vi ~/.bashrc'
-alias vic='vi ~/.ssh/config'
-alias vj='vi manifest.json'
-alias nm='node manifest'
-alias gurp='gars && gulp'
-# alias rocky='./cntlm -c cntlm.ini -M https://www.google.com'
-alias rocky='./cntlm -H -c cntlm.ini'
-# alias grep='grep --color=auto'
-
-# ATOM
-alias alp='apm list --installed --bare > ~/Dropbox/dotfiles/atom/.packages'
-alias aip='apm install --packages-file ~/Dropbox/dotfiles/atom/.packages'
-alias aiv='apm install --verbose'
-alias aul='apm upgrade --list'
-alias auv='apm upgrade --verbose'
+if [ -f ~/.dotfiles/shell/home.aliases ]; then
+    source ~/.dotfiles/shell/home.aliases
+    alias viha='vi ~/.dotfiles/shell/home.aliases'
+fi
 
 windows() { [[ -n "$WINDIR" ]]; }
 
+alias ln=symlink
 symlink() {
     if windows; then
         if [[ -d "$1" ]]; then # Windows link and target parameters are switched
-            cmd <<< "mklink /D \"$2\" \"${1//\//\\}\"" # Directory
+            cmd <<< "mklink /J \"$2\" \"${1//\//\\}\"" # Directory
         else
             cmd <<< "mklink \"$2\" \"${1//\//\\}\"" # File
         fi
@@ -84,7 +57,6 @@ symlink() {
 }
 
 ##################################### SSH #####################################
-
 pssh() {
     if [ `uname -n` != 'Pulsar' ]; then
         cat ~/.ssh/config.proxy  ~/.ssh/config > /tmp/ssh_config
@@ -93,21 +65,3 @@ pssh() {
         command ssh $1
     fi
 }
-
-
-##################################### ANDROID #####################################
-#Android Platform Tools
-PATH=$PATH:~/android-sdk/platform-tools/:~/android-sdk/tools/
-
-# Android aliases
-alias avd='emulator -avd galaxy -no-audio -http-proxy http://127.0.0.1:6060'
-alias adbi='adb install'
-alias adbu='adb uninstall'
-
-##################################### GIT #####################################
-
-# Set a environment variable for the repository
-repo=file:///C:/Workspace/Repository/Git
-
-##################################### GO #####################################
-alias gor='go run'

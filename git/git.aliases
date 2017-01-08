@@ -8,16 +8,15 @@ alias gaa='git add --all'
 # Remotes
 alias gR='git remote'
 alias gRv='git remote -v'
+alias gRa='git remote add'
 
 # Logs
 alias glo='git log --oneline -10'
 alias glog='git log --oneline --graph --all --decorate'
 
-
 # Clone
 alias gcl='git clone'
 alias gcld1='git clone --depth 1'
-
 
 # Branch / Checkout / Diff
 alias gb='git branch'
@@ -42,7 +41,6 @@ alias cache='git rm -r --cached .'
 alias gwRm='git reset --mixed HEAD~1'
 alias gwRs='git reset --soft HEAD~1'
 alias gwRh='git reset --hard HEAD~1'
-
 
 # Fetch / Merge / Pull / Rebase / Push
 alias fetch='git fetch'
@@ -73,7 +71,6 @@ alias gt='git tag'
 alias gta='git tag -a'
 alias gt1='git tag -a 1.0 -m'
 
-
 # Submodules
 alias gS='git submodule'
 alias gSa='git submodule add'
@@ -82,24 +79,8 @@ alias gSr='git submodule foreach --recursive'
 alias gSp='git pull --recurse-submodules'
 
 
-# Repos
-alias gcla='git clone --local $repo/Assembly.git'
-alias gclar='git clone --recursive --local $repo/Assembly.git'
-alias gclp='git clone $repo/Package.git'
-alias gclpb='git clone $repo/Package.git -b'
-alias gclm='git clone $repo/manifest.git'
-alias gclv='git clone --local $repo/video.git'
-alias gclas='git clone --local $repo/classes.git'
-alias gclf='git clone --local $repo/fla.git'
-alias gcln='git clone $repo/newdealer.git'
-
-
 # Archive / Extract
 alias gar='git archive HEAD --format=zip > "../${PWD##*/}.zip"'
-alias gara='git archive --remote=$repo/Assembly.git master | tar -xv'
-alias gars='git archive --remote=$repo/Assembly.git master | tar -xv shell/scripts/Storyline/ --strip-components=3'
-alias garp='git archive --remote=$repo/Assembly.git master | tar -xv shell/scripts/Package/ --strip-components=3'
-
 
 # GitHub
 # alias dotfiles='git remote set-url origin git@alok-github:alok-mishra/dotfiles.git'

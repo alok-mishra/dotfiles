@@ -1,13 +1,22 @@
 alias ls='ls --color=auto'
 alias l='ls -hAlF'
 alias vi='vim'
+alias grep='grep --color=auto'
 
 alias ..='cd ..'
 alias ocd='cd "$OLDPWD"'
 
-alias wcd='cd /var/www/'
+alias md5='openssl md5'
+alias sha1='openssl sha1'
+alias path='echo "${PATH//:/$'"'"'\n'"'"'}"'
+alias sshca='ssh-copy-id -i ~/.ssh/id_rsa'
+alias sshcr='ssh-copy-id -i ~/.ssh/mediarave_rsa'
 
-# DOCKER
+alias vib='vi ~/.bashrc'
+alias vis='vi ~/.ssh/config'
+
+
+##################################### DOCKER #####################################
 alias dm='docker-machine'
 alias dmip='docker-machine ip devbox'
 alias denv='docker-machine env devbox --shell bash'
@@ -34,19 +43,15 @@ alias dSa='docker stop $(docker ps -a -q)'
 alias dssh='ssh docker@192.168.99.100'
 
 
-
 ##################################### GIT #####################################
-
-
-if [ -f ~/.dotfiles/prezto/modules/git/alias.zsh ]; then
-    source ~/.dotfiles/prezto/modules/git/alias.zsh 2> /dev/null
-    alias vigp='vi ~/.dotfiles/prezto/modules/git/alias.zsh'
-fi 
-
-if [ -f ~/.dotfiles/git/aliases.zsh ]; then
-    source ~/.dotfiles/git/aliases.zsh
-    alias vig='vi ~/.dotfiles/git/aliases.zsh'
+if [ -f ~/.dotfiles/git/git.aliases ]; then
+    source ~/.dotfiles/git/git.aliases
+    alias vig='vi ~/.dotfiles/git/git.aliases'
 fi
+
+
+##################################### WEB #####################################
+alias wcd='cd /var/www/'
 
 alias backup='tar -cvzf ~/backups/www.tar.gz /var/www/'
 
@@ -56,6 +61,26 @@ alias sqldump='mysqldump --socket=/home/mysql/mysql.sock --user wordpress --pass
 
 alias sqlstart='sudo service mysql start'
 
+# Source local aliases
 if [ -f ~/.aliases ]; then
     source .aliases
 fi
+
+##################################### ATOM #####################################
+alias alp='apm list --installed --bare > ~/Dropbox/dotfiles/atom/.packages'
+alias aip='apm install --packages-file ~/Dropbox/dotfiles/atom/.packages'
+alias aiv='apm install --verbose'
+alias aul='apm upgrade --list'
+alias auv='apm upgrade --verbose'
+
+##################################### ANDROID #####################################
+#Android Platform Tools
+PATH=$PATH:~/android-sdk/platform-tools/:~/android-sdk/tools/
+
+# Android aliases
+alias avd='emulator -avd galaxy -no-audio -http-proxy http://127.0.0.1:6060'
+alias adbi='adb install'
+alias adbu='adb uninstall'
+
+##################################### GO #####################################
+alias gor='go run'

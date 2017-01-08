@@ -46,13 +46,13 @@ cmd <<< "mklink .gitconfig .dotfiles\git\.gitconfig"
 
 cmd <<< "mklink /J .vim Dropbox\Tools\Vim\.vim"
 cmd <<< "mklink .vimrc .dotfiles\vim\.vimrc"
-cmd <<< "mklink .cvimrc .dotfiles\vim\.cvimrc"
 cmd <<< "mklink .vimperatorrc .dotfiles\vim\.vimperatorrc"
+cmd <<< "mklink /J .vimperator\colors .dotfiles\vim\.vimperatorrc\colors"
 
 cmd <<< "mklink /J .ssh Dropbox\Tools\Keys\.ssh"
 
 # Deprecated
+#cmd <<< "mklink .cvimrc .dotfiles\vim\.cvimrc"
 #cmd <<< "mklink /D .vimfx .dotfiles\vimfx"
-
 #cmd <<< "mklink /D .pentadactyl .dotfiles\pentadactyl\.pentadactyl"
 #cmd <<< "mklink .pentadactylrc .dotfiles\pentadactyl\.pentadactylrc"

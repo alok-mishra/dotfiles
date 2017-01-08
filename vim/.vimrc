@@ -194,6 +194,7 @@ set foldlevel=0
 
 " FileTypes
 au BufRead,BufNewFile *.aspx,*.asmx,*.ascx,*.master set filetype=aspnetcs
+au BufRead,BufNewFile *.aliases set filetype=sh
 
 "au GUIEnter * simalt ~x         " maximize window on startup
 

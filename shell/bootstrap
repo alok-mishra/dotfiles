@@ -4,13 +4,13 @@
 
 ln -s ~/Dropbox/dotfiles ~/.dotfiles
 
+ln -s ~/.dotfiles/zsh/.zshrc ~/.zshrc
+
+ln -s ~/.dotfiles/git/.gitconfig ~/.gitconfig
+
 ln -s ~/Dropbox/Tools/Vim/.vim ~/.vim
-
-ln -s ~/Dropbox/Tools/Keys/.ssh ~/.ssh
-
 ln -s ~/.dotfiles/vim/.vimrc ~/.vimrc
 ln -s ~/.dotfiles/vim/.vimperatorrc ~/.vimperatorrc
 ln -s ~/.dotfiles/vim/vimperator/colors ~/.vimperator/colors
 
-ln -s ~/.dotfiles/zsh/.zshrc ~/.zshrc
-ln -s ~/.dotfiles/git/.gitconfig ~/.gitconfig
+ln -s ~/Dropbox/Tools/Keys/.ssh ~/.ssh
