@@ -11,6 +11,9 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+#################################################################################
+
+bindkey '^R' history-incremental-search-backward
 
 ##################################### SHELL #####################################
 if [ -f ~/.dotfiles/shell/.aliases ]; then

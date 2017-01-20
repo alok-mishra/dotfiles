@@ -33,9 +33,10 @@ fail () {
     exit
 }
 
-# Using /J directory junctions instead of /D directory links. /J works better with apps and git
+# Started using /J directory junctions instead of /D directory links. /J works better with apps and git,
+# but found out that this causes problems with recursion in Dropbox. Switching back to /D
 
-cmd <<< "mklink /J .dotfiles Dropbox\dotfiles"
+cmd <<< "mklink /D .dotfiles Dropbox\dotfiles"
 
 cmd <<< "mklink .bashrc .dotfiles\shell\.bashrc"
 cmd <<< "mklink .bash_profile .dotfiles\shell\.bash_profile"
@@ -44,12 +45,12 @@ cmd <<< "mklink .minttyrc .dotfiles\shell\.minttyrc"
 
 cmd <<< "mklink .gitconfig .dotfiles\git\.gitconfig"
 
-cmd <<< "mklink /J .vim Dropbox\Tools\Vim\.vim"
+cmd <<< "mklink /D .vim Dropbox\Tools\Vim\.vim"
 cmd <<< "mklink .vimrc .dotfiles\vim\.vimrc"
 cmd <<< "mklink .vimperatorrc .dotfiles\vim\.vimperatorrc"
-cmd <<< "mklink /J .vimperator\colors .dotfiles\vim\.vimperatorrc\colors"
+cmd <<< "mklink /D .vimperator\colors .dotfiles\vim\.vimperatorrc\colors"
 
-cmd <<< "mklink /J .ssh Dropbox\Tools\Keys\.ssh"
+cmd <<< "mklink /D .ssh Dropbox\Tools\Keys\.ssh"
 
 # Deprecated
 #cmd <<< "mklink .cvimrc .dotfiles\vim\.cvimrc"

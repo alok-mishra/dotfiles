@@ -144,7 +144,7 @@ inoremap <C-Space> <A-PageDown>
 "set wildmode=full
 
 ""complete items in order: search & keywords, smart location, bookmarks
-set complete=slb
+set complete=sbl
 
 set history=100
 
