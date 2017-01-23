@@ -6,9 +6,10 @@ alias ga='git add'
 alias gaa='git add --all'
 
 # Remotes
-alias gR='git remote'
-alias gRv='git remote -v'
-alias gRa='git remote add'
+alias gr='git remote'
+alias grv='git remote -v'
+alias gra='git remote add'
+alias gru='git remote set-url'
 
 # Logs
 alias glo='git log --oneline -10'
@@ -58,8 +59,8 @@ alias gmt='git mergetool'
 
 alias gp1='git pull --depth 1'
 
-alias grm='git rebase origin/master'
-alias grc='git rebase --continue'
+alias gRm='git rebase origin/master'
+alias gRc='git rebase --continue'
 
 # Commit
 alias gco='git commit -m'

@@ -4,7 +4,7 @@
 
 ln -s ~/Dropbox/dotfiles ~/.dotfiles
 
-ln -s ~/.dotfiles/zsh/.zshrc ~/.zshrc
+ln -s ~/.dotfiles/shell/.zshrc ~/.zshrc
 
 ln -s ~/.dotfiles/git/.gitconfig ~/.gitconfig
 

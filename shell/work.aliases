@@ -13,7 +13,47 @@ export DOCKER_MACHINE_NAME="devbox"
 
 alias dnmf='export DOCKER_MACHINE_NAME="finance"'
 
+##################################### GIT #####################################
+# Set a environment variable for the repository
+repo=file:///C:/Workspace/Repository/Git
+
+# Repos
+alias gcla='git clone --local $repo/Assembly.git'
+alias gclar='git clone --recursive --local $repo/Assembly.git'
+alias gclp='git clone $repo/Package.git'
+alias gclm='git clone $repo/manifest.git'
+alias gclv='git clone --local $repo/video.git'
+alias gcls='git clone --local $repo/classes.git'
+alias gclf='git clone --local $repo/fla.git'
+alias gcln='git clone $repo/newdealer.git'
+alias gclr=clone_package_rebase
+
+# Archive / Extract
+alias gara='git archive --remote=$repo/Assembly.git master | tar -xv'
+alias gars='git archive --remote=$repo/Assembly.git master | tar -xv shell/scripts/Storyline/ --strip-components=3'
+alias garp='git archive --remote=$repo/Assembly.git master | tar -xv shell/scripts/Package/ --strip-components=3'
+
+clone_package_rebase() {
+    if [[ $# -eq 0 ]]; then
+        gclp .
+    else
+        if [ "$2" = "." ]; then
+            dir="."
+        else
+            dir=${1^}
+        fi
+        gclp -b $1 $dir
+        cd $dir
+        grm;
+    fi
+
+    rm -rf .git
+    vi zip_package.bat
+    exit
+}
+
 ##################################### DEV #####################################
+
 alias 7x=extract_to_folder
 extract_to_folder() {
     7z x -y -o$1 $1.7z;
@@ -37,41 +77,7 @@ sass_watch() {
     sass --watch $1 $2
 }
 
-##################################### GIT #####################################
-# Set a environment variable for the repository
-repo=file:///C:/Workspace/Repository/Git
-
-# Repos
-alias gcla='git clone --local $repo/Assembly.git'
-alias gclar='git clone --recursive --local $repo/Assembly.git'
-alias gclp='git clone $repo/Package.git'
-alias gclm='git clone $repo/manifest.git'
-alias gclv='git clone --local $repo/video.git'
-alias gcls='git clone --local $repo/classes.git'
-alias gclf='git clone --local $repo/fla.git'
-alias gcln='git clone $repo/newdealer.git'
-
-alias gclr=clone_package_rebase
-clone_package_rebase() {
-    if [[ $# -eq 0 ]]; then
-        gclp .
-    else
-        if [ "$2" = "." ]; then
-            dir="."
-        else
-            dir=${1^}
-        fi
-        gclp -b $1 $dir
-        cd $dir
-        grm;
-    fi
-
-    rm -rf .git
-    vi zip_package.bat
-    exit
-}
-
-# Execute from within Beyond Compare
+# Execute from an immediate directory within a project via Beyond Compare
 archive_project() {
     cd ..
 
@@ -85,26 +91,28 @@ archive_project() {
 
     if [[ $project =~ ^[0-9]{2}-[0-9]{3} ]]; then
         
-        echo "Removing excess directories ..."
+        echo "Removing excess ..."
         rm -rf "2 Design"
         rm -rf "4 Production/Assembly"
         rm -rf "4 Production/Interactive Assembly"
-        rm *7z
+        rm -f "$project".7z
 
         echo "Archiving \"$project\" ..."
         "C:\Program Files\7-Zip\7z.exe" a "$project" .
-        "C:\Program Files\7-Zip\7z.exe" l *.7z '-xr!.git'
-        echo "Removing Production ..."
-        rm -rf "4 Production/Package/manifest/.git"
-        rm -rf "4 Production/Interactive Package/manifest/.git"
-        rm -RI "4 Production"
+        # "C:\Program Files\7-Zip\7z.exe" l *.7z '-xr!.git'
+        "C:\Program Files\7-Zip\7z.exe" l "$project".7z '-xr!.git'
+        manifest_size=$("C:\Program Files\7-Zip\7z.exe" l "$project".7z  | grep 'manifest\\manifest.json' | tr -s ' ' | cut -d ' ' -f 4)
+
+        if [[ "$manifest_size" -gt 1500 ]]; then
+            echo "Removing Production ..."
+            rm -rf "4 Production"
+            sleep 2
+        else
+            echo ""
+            read -p "Something went wrong, the manifest file seems too small! ... Press enter to dismiss ..."
+        fi
+
     else
-        echo "\"$project\" is not a valid project!"
-        sleep 2
+        read -p "\"$project\" is not a valid project! ... Press enter to dismiss ..."
     fi
 }
-
-# Archive / Extract
-alias gara='git archive --remote=$repo/Assembly.git master | tar -xv'
-alias gars='git archive --remote=$repo/Assembly.git master | tar -xv shell/scripts/Storyline/ --strip-components=3'
-alias garp='git archive --remote=$repo/Assembly.git master | tar -xv shell/scripts/Package/ --strip-components=3'
