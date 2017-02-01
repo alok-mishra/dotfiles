@@ -45,10 +45,11 @@ cmd <<< "mklink .minttyrc .dotfiles\shell\.minttyrc"
 
 cmd <<< "mklink .gitconfig .dotfiles\git\.gitconfig"
 
-cmd <<< "mklink /D .vim Dropbox\Tools\Vim\.vim"
 cmd <<< "mklink .vimrc .dotfiles\vim\.vimrc"
+cmd <<< "mklink /D .vim Dropbox\Tools\Vim\.vim"
+
 cmd <<< "mklink .vimperatorrc .dotfiles\vim\.vimperatorrc"
-cmd <<< "mklink /D .vimperator\colors .dotfiles\vim\.vimperatorrc\colors"
+cmd <<< "mklink /D vimperator\colors ..\.dotfiles\vim\vimperator\colors"
 
 cmd <<< "mklink /D .ssh Dropbox\Tools\Keys\.ssh"
 

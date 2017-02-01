@@ -1,6 +1,11 @@
+" Setup: Sync directly with online dropbox link for automatic updates, git will updated once comitted.
+" https://www.dropbox.com/s/tjvejwvc1n78h43/.cvimrc?dl=1
+
 set nohud
 set nosmoothscroll
 set noautofocus
+
+set autoupdategist
 
 set typelinkhints
 set numerichints    "requried for typelinkhints
@@ -10,13 +15,16 @@ let scrollstep = 60
 let barposition = "bottom"
 
 let mapleader = ","
+
+"NAVIGATION
+
 map d closeTab
 map u lastClosedTab
 
 map h previousTab
 map l nextTab
 
-map s :tabnew google
+map S :tabnew google 
 
 map <leader>e :open! chrome://extensions<CR>
 map <leader>p :togglepin<CR>
@@ -28,10 +36,13 @@ map <C-d> scrollPageDown
 
 unmap a
 
-map p P     "openPasteTab
+map y yy
+map p P
 
-let configpath = '/c:/users/alok/.cvimrc'
-set localconfig " Update settings via local file.
+" NOT USING THE FOLLOWING ANYMORE - since I can't do cross platform / cross machine easily
+" ... > Settings > Extensions > cVim > [x] Allow access to file URLs
+" Symbolic links may interfere
+" Put this in both cVim settings and here in .cvimrc. Then restart Chrome
+"let configpath = 'c:/users/alok/Dropbox/dotfiles/vim/.cvimrc'
+"set localconfig " Update settings via local file.
 
-" Tip: In order for automatic inclusion of .cvimrc, allow access to File URLs for cVim extension and :source /path/to/.cvimrc once.
-" Symbolic links may interfere also

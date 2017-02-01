@@ -10,6 +10,7 @@ set! browser.tabs.closeWindowWithLastTab=false
 set! browser.tabs.loadDivertedInBackground=true
 set! security.fileuri.strict_origin_policy=false
 set! extensions.lastpass.searchHkKeyCode=0
+set! image.animation_mode=once
 
 "USER INTERFACE - Dark colors
 colorscheme indigo

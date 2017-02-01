@@ -20,13 +20,14 @@ repo=file:///C:/Workspace/Repository/Git
 # Repos
 alias gcla='git clone --local $repo/Assembly.git'
 alias gclar='git clone --recursive --local $repo/Assembly.git'
-alias gclp='git clone $repo/Package.git'
-alias gclm='git clone $repo/manifest.git'
 alias gclv='git clone --local $repo/video.git'
 alias gcls='git clone --local $repo/classes.git'
 alias gclf='git clone --local $repo/fla.git'
 alias gcln='git clone $repo/newdealer.git'
-alias gclr=clone_package_rebase
+# alias gclp='git clone $repo/Package.git'
+# alias gclm='git clone $repo/manifest.git'
+alias gclp=clone_package_rebase
+alias gclm=clone_manifest_rebase
 
 # Archive / Extract
 alias gara='git archive --remote=$repo/Assembly.git master | tar -xv'
@@ -34,21 +35,44 @@ alias gars='git archive --remote=$repo/Assembly.git master | tar -xv shell/scrip
 alias garp='git archive --remote=$repo/Assembly.git master | tar -xv shell/scripts/Package/ --strip-components=3'
 
 clone_package_rebase() {
-    if [[ $# -eq 0 ]]; then
-        gclp .
+    if [[ ($# -eq 0 || "$1" = "." ) && "$PWD" =~ Package ]]; then
+        git clone $repo/package.git .
+        dir="."
     else
         if [ "$2" = "." ]; then
             dir="."
         else
             dir=${1^}
         fi
-        gclp -b $1 $dir
-        cd $dir
-        grm;
+
+        if [[ $# -ne 0 && "$1" != "." ]]; then
+            git clone $repo/package.git -b $1 $dir
+        else
+            read -p "You aren't in a Package directory ... Press enter to dismiss ..."
+            exit
+        fi
     fi
 
+    cd $dir
+    git rebase origin/master
     rm -rf .git
     vi zip_package.bat
+    exit
+}
+
+clone_manifest_rebase() {
+    if [[ $# -ne 0 ]]; then
+        dir=${1^}
+        mkdir $dir
+        cd $dir
+        git clone $repo/manifest.git -b $1
+    else
+        git clone $repo/manifest.git
+    fi
+
+    cd manifest
+    git rebase origin/master
+    vi manifest.json
     exit
 }
 
@@ -82,7 +106,7 @@ archive_project() {
     cd ..
 
     if [[ "${PWD:1:1}" != "c" ]]; then
-        echo "Sorry, you must be in your local project folder."
+        echo "Sorry, you need to be in your local machine's project folder!"
         sleep 2
         return
     fi
@@ -99,14 +123,13 @@ archive_project() {
 
         echo "Archiving \"$project\" ..."
         "C:\Program Files\7-Zip\7z.exe" a "$project" .
-        # "C:\Program Files\7-Zip\7z.exe" l *.7z '-xr!.git'
         "C:\Program Files\7-Zip\7z.exe" l "$project".7z '-xr!.git'
         manifest_size=$("C:\Program Files\7-Zip\7z.exe" l "$project".7z  | grep 'manifest\\manifest.json' | tr -s ' ' | cut -d ' ' -f 4)
 
-        if [[ "$manifest_size" -gt 1500 ]]; then
+        if [[ "$manifest_size" -gt 600 ]]; then
             echo "Removing Production ..."
             rm -rf "4 Production"
-            sleep 2
+            # sleep 2
         else
             echo ""
             read -p "Something went wrong, the manifest file seems too small! ... Press enter to dismiss ..."
