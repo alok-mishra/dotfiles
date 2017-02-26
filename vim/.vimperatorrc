@@ -165,7 +165,9 @@ set history=100
 "V! set passkeys+='todoist.com':q
 
 " Ignore Keys On Specific Sites
-":ignorekeys add todoist\\.com -except t,o,h,j,k,l  " NOT WORKING
+" - when a key is re-mapped, those individual mapped key presses also need to be added
+ignorekeys add -except :,h,j,k,l,g,t,d,<C-e>,<C-y> mail\\.google\\.com
+ignorekeys add -except :,6,h,j,k,l,g,t,d,<C-e>,<C-y> todoist\\.com
 
 autocmd LocationChange evernote.com :normal! <C-z>
 autocmd LocationChange codeskulptor.org :normal! <C-z>
@@ -180,3 +182,6 @@ silent qmark o https://mail.chrysler.com/
 
 "Add-On Styles
 style -name ublock * #nav-bar * { visibility: visible; }
+
+"End
+echomsg "settings loaded..."
