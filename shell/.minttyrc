@@ -1,6 +1,6 @@
 BoldAsFont=no
-Columns=140
-Rows=60
+Columns=100
+Rows=50
 Font=Consolas
 FontHeight=10
 BellFlash=yes

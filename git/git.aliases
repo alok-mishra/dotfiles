@@ -12,6 +12,7 @@ alias gra='git remote add'
 alias gru='git remote set-url'
 
 # Logs
+alias gl='git log'
 alias glo='git log --oneline -10'
 alias glog='git log --oneline --graph --all --decorate'
 
@@ -66,6 +67,7 @@ alias gRc='git rebase --continue'
 alias gco='git commit -m'
 alias gca='git commit -am'
 alias gcv='git commit --verbose --all'
+alias gcA='git commit -a --amend'
 
 # Tag
 alias gt='git tag'

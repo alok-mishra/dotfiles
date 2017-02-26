@@ -24,10 +24,10 @@ alias gclv='git clone --local $repo/video.git'
 alias gcls='git clone --local $repo/classes.git'
 alias gclf='git clone --local $repo/fla.git'
 alias gcln='git clone $repo/newdealer.git'
-# alias gclp='git clone $repo/Package.git'
-# alias gclm='git clone $repo/manifest.git'
-alias gclp=clone_package_rebase
-alias gclm=clone_manifest_rebase
+alias gclp='git clone $repo/Package.git'
+alias gclm='git clone $repo/manifest.git'
+alias gcrp=clone_package_rebase
+alias gcrm=clone_manifest_rebase
 
 # Archive / Extract
 alias gara='git archive --remote=$repo/Assembly.git master | tar -xv'
@@ -62,9 +62,14 @@ clone_package_rebase() {
 
 clone_manifest_rebase() {
     if [[ $# -ne 0 ]]; then
-        dir=${1^}
-        mkdir $dir
-        cd $dir
+        if [ "$2" = "." ]; then
+            dir="."
+        else
+            dir=${1^}
+            mkdir $dir
+            cd $dir
+        fi
+
         git clone $repo/manifest.git -b $1
     else
         git clone $repo/manifest.git
@@ -117,6 +122,7 @@ archive_project() {
         
         echo "Removing excess ..."
         rm -rf "2 Design"
+        rm -rf "3 Development"
         rm -rf "4 Production/Assembly"
         rm -rf "4 Production/Interactive Assembly"
         rm -f "$project".7z
@@ -124,15 +130,24 @@ archive_project() {
         echo "Archiving \"$project\" ..."
         "C:\Program Files\7-Zip\7z.exe" a "$project" .
         "C:\Program Files\7-Zip\7z.exe" l "$project".7z '-xr!.git'
-        manifest_size=$("C:\Program Files\7-Zip\7z.exe" l "$project".7z  | grep 'manifest\\manifest.json' | tr -s ' ' | cut -d ' ' -f 4)
+        manifests=$("C:\Program Files\7-Zip\7z.exe" l "$project".7z  | grep 'manifest\\manifest.json' | tr -s ' ' | cut -d ' ' -f 4)
 
-        if [[ "$manifest_size" -gt 600 ]]; then
+        for size in $manifests
+        do
+            if [[ $size -gt 600 ]]; then
+                archived=true;
+                echo "This manifest in the archive looks good.."
+            else
+                archived=false;
+                echo ""
+                read -p "Not removing Production, a manifest file seems too small! ..."
+                exit
+            fi
+        done
+
+        if [[ $archived = true ]]; then
             echo "Removing Production ..."
             rm -rf "4 Production"
-            # sleep 2
-        else
-            echo ""
-            read -p "Something went wrong, the manifest file seems too small! ... Press enter to dismiss ..."
         fi
 
     else

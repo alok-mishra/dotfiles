@@ -48,7 +48,7 @@ alias dssh='ssh docker@192.168.99.100'
 ##################################### GIT #####################################
 if [ -f ~/.dotfiles/git/git.aliases ]; then
     source ~/.dotfiles/git/git.aliases
-    alias vig='vi ~/.dotfiles/git/git.aliases'
+    alias viga='vi ~/.dotfiles/git/git.aliases'
 fi
 
 
