@@ -46,19 +46,6 @@ set focuscontent
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "KEY BINDINGS
 
-"Select/Cut/Copy/Paste/Undo everywhere
-"map -b -m n,v,i,t,c <C-x> <Pass>
-"map -b -m n,v,i,t,c <C-a> <Pass>
-"map -b -m n,v,i,t,c <C-c> <Pass>
-"map -b -m n,v,i,t,c <C-v> <Pass>
-"map -b -m n,v,i,t,c <C-z> <Pass>
-
-" map n,v,i,t,c <C-a> <C-v><C-a>
-" map n,v,i,t,c <C-x> <C-v><C-x>
-" map n,v,i,t,c <C-c> <C-v><C-c>
-" map n,v,i,t,c <C-v> <C-v><C-v>
-" map n,v,i,t,c <C-z> <C-v><C-z>
-
 map <C-a> i<C-a>
 inoremap <C-a> <Insert><C-a><Insert>
 
@@ -160,29 +147,23 @@ set history=100
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"SITE SPECIFIC
-"V! set strictfocus+='mail.google.com':laissez-faire
-"V! set passkeys+='mail.google.com':abdfiJKLnoprsuxz#?.<CR>,gl,gs,gt
-"V! set passkeys+='todoist.com':q
-
-" Ignore Keys On Specific Sites
+"SITE SPECIFIC (Ignore Keys) On Specific Sites
 " - when a key is re-mapped, those individual mapped key presses also need to be added
-ignorekeys add -except :,h,j,k,l,g,t,d,<C-e>,<C-y> mail\\.google\\.com
-ignorekeys add -except :,6,h,j,k,l,g,t,d,<C-e>,<C-y> todoist\\.com
+ignorekeys add -except :,6,h,j,k,l,H,g,t,d,<C-e>,<C-y> mail\\.google\\.com
+ignorekeys add -except :,6,h,j,k,l,H,g,t,d,<C-e>,<C-y> todoist\\.com
 
-autocmd LocationChange evernote.com :normal! <C-z>
-autocmd LocationChange codeskulptor.org :normal! <C-z>
+" autocmd LocationChange evernote.com :normal! <C-z>
+" autocmd LocationChange codeskulptor.org :normal! <C-z>
 " autocmd LocationChange docs.google.com :normal! <C-z>
-"autocmd LocationChange '.*/wp-admin/.*' :normal! <C-z>
+" autocmd LocationChange '.*/wp-admin/.*' :normal! <C-z>
 
 ""Qmarks - Load after ColorScheme has been loaded (otherwise get blank page when realoading page on firefox start)
+silent qmark c https://calendar.google.com/
 silent qmark d http://drive.google.com/
 silent qmark m http://mail.google.com/
-silent qmark c https://calendar.google.com/
-silent qmark o https://mail.chrysler.com/
 
 "Add-On Styles
 style -name ublock * #nav-bar * { visibility: visible; }
 
 "End
-echomsg "settings loaded..."
+echomsg "Vimperator settings loaded..."
