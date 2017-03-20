@@ -56,6 +56,7 @@
     hideIgnoredNames: true
   "vim-mode-plus":
     clearHighlightSearchOnResetNormalMode: true
+    clearPersistentSelectionOnResetNormalMode: true
     highlightSearch: true
     ignoreCaseForSearch: true
     ignoreCaseForSearchCurrentWord: true

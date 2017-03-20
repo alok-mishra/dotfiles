@@ -467,8 +467,11 @@ vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgvl
 
 " MACROS
 
+" Paste external clipboard between quotes
+let @p='vi""*P'
+
 " Paste external clipboard between tags
-let @p='vit"*P'
+let @g='vit"*P'
 
 " Text Elements - paste script text into xml data. Start above line and jump to text before executing
 let @t='0mtD``jj0bbbvi]p`tj'

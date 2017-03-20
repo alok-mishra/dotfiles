@@ -53,7 +53,8 @@ fi
 
 
 ##################################### WEB #####################################
-alias wcd='cd /var/www/'
+alias wcd=www_cd
+www_cd() { cd /var/www/$1; }
 
 alias backup='tar -cvzf ~/backups/www.tar.gz /var/www/'
 
