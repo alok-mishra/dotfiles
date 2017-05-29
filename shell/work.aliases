@@ -34,6 +34,7 @@ alias gara='git archive --remote=$repo/Assembly.git master | tar -xv'
 alias gars='git archive --remote=$repo/Assembly.git master | tar -xv shell/scripts/Storyline/ --strip-components=3'
 alias garp='git archive --remote=$repo/Assembly.git master | tar -xv shell/scripts/Package/ --strip-components=3'
 
+## gcrp
 clone_package_rebase() {
     if [[ ($# -eq 0 || "$1" = "." ) && "$PWD" =~ Package ]]; then
         git clone $repo/package.git .
@@ -41,6 +42,8 @@ clone_package_rebase() {
     else
         if [ "$2" = "." ]; then
             dir="."
+        elif [ "$1" = "master" ]; then
+            dir="English"
         else
             dir=${1^}
         fi
@@ -60,15 +63,19 @@ clone_package_rebase() {
     exit
 }
 
+## gcrm
 clone_manifest_rebase() {
     if [[ $# -ne 0 ]]; then
         if [ "$2" = "." ]; then
             dir="."
+        elif [ "$1" = "master" ]; then
+            dir="English"
         else
             dir=${1^}
-            mkdir $dir
-            cd $dir
         fi
+
+        mkdir $dir
+        cd $dir
 
         git clone $repo/manifest.git -b $1
     else

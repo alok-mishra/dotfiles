@@ -55,6 +55,9 @@ Plugin 'scrooloose/syntastic'
 " (( This one causes problems ))
 Plugin 'tpope/vim-fugitive'
 
+"Arduino
+Plugin 'jplaut/vim-arduino-ino'
+
 "Handlebars
 Plugin 'mustache/vim-mustache-handlebars'
 

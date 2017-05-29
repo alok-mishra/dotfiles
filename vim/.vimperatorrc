@@ -11,7 +11,7 @@ set! browser.tabs.loadDivertedInBackground=true
 set! security.fileuri.strict_origin_policy=false
 set! extensions.lastpass.searchHkKeyCode=0
 set! image.animation_mode=once
-set! media.autoplay.enabled=false
+set! media.autoplay.enabled=true
 
 "USER INTERFACE - Dark colors
 colorscheme indigo
@@ -79,6 +79,7 @@ map ,t ttodo<CR>
 map ,u :extdisable uBlock<CR>
 map ,U :extenable uBlock<CR>
 map ,v :!start /B gvim ~/.vimperatorrc<CR>
+map ,w <C-S-Y>
 map ,x fsign out<CR>
 map <silent> ,/ :nohlsearch<CR>
 
@@ -149,8 +150,9 @@ set history=100
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "SITE SPECIFIC (Ignore Keys) On Specific Sites
 " - when a key is re-mapped, those individual mapped key presses also need to be added
-ignorekeys add -except :,6,h,j,k,l,H,g,t,d,<C-e>,<C-y> mail\\.google\\.com
-ignorekeys add -except :,6,h,j,k,l,H,g,t,d,<C-e>,<C-y> todoist\\.com
+ignorekeys add -except :,6,h,j,k,l,H,g,t,d,S,<C-e>,<C-y> mail\\.google\\.com
+ignorekeys add -except :,6,h,j,k,l,H,g,t,d,S,<C-e>,<C-y> todoist\\.com
+ignorekeys add -except :,6,h,j,k,l,H,g,t,d,S,<C-e>,<C-y> circuits\\.io
 
 " autocmd LocationChange evernote.com :normal! <C-z>
 " autocmd LocationChange codeskulptor.org :normal! <C-z>
@@ -166,4 +168,4 @@ silent qmark m http://mail.google.com/
 style -name ublock * #nav-bar * { visibility: visible; }
 
 "End
-echomsg "Vimperator settings loaded..."
+echomsg "settings loaded..."
