@@ -150,9 +150,9 @@ set history=100
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "SITE SPECIFIC (Ignore Keys) On Specific Sites
 " - when a key is re-mapped, those individual mapped key presses also need to be added
-ignorekeys add -except :,6,h,j,k,l,H,g,t,d,S,<C-e>,<C-y> mail\\.google\\.com
-ignorekeys add -except :,6,h,j,k,l,H,g,t,d,S,<C-e>,<C-y> todoist\\.com
-ignorekeys add -except :,6,h,j,k,l,H,g,t,d,S,<C-e>,<C-y> circuits\\.io
+ignorekeys add -except :,6,h,j,k,l,H,g,t,d,y,Y,S,<C-e>,<C-y> mail\\.google\\.com
+ignorekeys add -except :,6,h,j,k,l,H,g,t,d,y,Y,S,<C-e>,<C-y> todoist\\.com
+ignorekeys add -except :,6,h,j,k,l,H,g,t,d,y,Y,S,<C-e>,<C-y> circuits\\.io
 
 " autocmd LocationChange evernote.com :normal! <C-z>
 " autocmd LocationChange codeskulptor.org :normal! <C-z>

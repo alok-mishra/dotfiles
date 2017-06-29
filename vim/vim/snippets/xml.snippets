@@ -1,0 +1,82 @@
+# SCO.xml debug
+snippet debug
+	<parameter name="debug" value="true" />
+# SCORM item for Saba
+snippet sis
+	<item identifier="sco${1:0000}" identifierref="res-$1" isvisible="true">
+		<title>${2:{VISUAL}}</title>
+		<imsss:sequencing>
+			<imsss:controlMode choice="true" choiceExit="true" flow="true" forwardOnly="false" useCurrentAttemptObjectiveInfo="false" useCurrentAttemptProgressInfo="false" />
+			<imsss:rollupRules objectiveMeasureWeight="0" rollupObjectiveSatisfied="true" rollupProgressCompletion="true" />
+			<imsss:deliveryControls tracked="true" completionSetByContent="true" objectiveSetByContent="true" />
+		</imsss:sequencing>
+	</item>
+	${3}
+# SCORM item for Latitude 
+snippet si
+	<item identifier="sco${1:0000}" identifierref="res-$1" isvisible="true">
+		<title>${3:{VISUAL}}</title>
+		<imsss:sequencing>
+			<imsss:controlMode choice="true" choiceExit="true" flow="true" forwardOnly="false" useCurrentAttemptObjectiveInfo="false" useCurrentAttemptProgressInfo="false" />
+
+			<imsss:sequencingRules>
+				<imsss:preConditionRule>
+					<imsss:ruleConditions>
+						<imsss:ruleCondition condition="completed" />
+						<imsss:ruleCondition referencedObjective="course_complete" operator="not" condition="objectiveStatusKnown" />
+					</imsss:ruleConditions>
+					<imsss:ruleAction action="skip" />
+				</imsss:preConditionRule>
+			</imsss:sequencingRules>
+
+			<imsss:rollupRules rollupObjectiveSatisfied="false" rollupProgressCompletion="false" />
+
+			<imsss:objectives>
+				<imsss:primaryObjective objectiveID="obj_${2:COURSECODE}_$1">
+					<imsss:mapInfo targetObjectiveID="gObj_$2_$1" readSatisfiedStatus="true" readNormalizedMeasure="false" writeSatisfiedStatus="true" writeNormalizedMeasure="false"/>
+				</imsss:primaryObjective>
+				<imsss:objective objectiveID="course_complete">
+					<imsss:mapInfo targetObjectiveID="gObj_$2_all" readSatisfiedStatus="true" readNormalizedMeasure="false"  writeSatisfiedStatus="false" writeNormalizedMeasure="false"/>
+				</imsss:objective>
+			</imsss:objectives>
+
+			<imsss:deliveryControls tracked="true" completionSetByContent="true" objectiveSetByContent="true" />
+		</imsss:sequencing>
+	</item>
+	${4}
+# SCORM Rule Condition
+snippet src
+	<imsss:ruleCondition operator="not" referencedObjective="obj_${2:COURSECODE}_${1:1}000" condition="objectiveStatusKnown" />
+	${3}
+# SCORM resource
+snippet sr
+	<resource identifier="res-${1:0000}" type="webcontent" xml:base="content/en/$1/" href="shell.html" adlcp:scormType="sco">
+		<file href="shell.html" />
+		<file href="shell.swf" />
+		<file href="$1.swf" />
+		<file href="sco.xml" />
+		<dependency identifierref="res-shared-js" />
+	</resource>
+	${2}
+# SCO bullet
+snippet sb
+	<text name="bullet${1}"><![CDATA[${2:{VISUAL}}]]></text>
+	${3}
+# SCO bullet indent
+snippet sbi
+	<text name="bullet${1}" indent="true"><![CDATA[${2:{VISUAL}}]]></text>
+	${3}
+
+# Mobile page element
+snippet mp
+	<page id="${1:0}" title="${2:Title}">
+		<section>
+			<image>${3:image}.jpg</image>
+				<text>
+					<h2></h2>
+					<p></p>
+				</text>
+		</section>
+	</page>
+	${4}
+
