@@ -60,8 +60,8 @@ alias backup='tar -cvzf ~/backups/www.tar.gz /var/www/'
 
 alias up='sudo apt-get update && time sudo apt-get dist-upgrade'
 
+alias sqllog='sudo tail -100 /var/log/mysql/error.log'
 alias sqldump='mysqldump --socket=/home/mysql/mysql.sock --user wordpress --password=raeh3AVaeche wordpress > ~/backups/starfish.sql'
-
 alias sqlstart='sudo service mysql start'
 
 # Source local aliases
