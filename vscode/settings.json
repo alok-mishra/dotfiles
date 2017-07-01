@@ -1,0 +1,19 @@
+// Place your settings in this file to overwrite the default settings
+{
+    "terminal.integrated.shell.windows": "C:\\Apps\\Git\\bin\\bash.exe",
+    "workbench.colorTheme": "One Dark Pro",
+    "workbench.iconTheme": "material-icon-theme",
+
+    "vim.disableAnnoyingNeovimMessage": true,
+
+    "sync.gist": "81d70764925a6d3af00c35b3feb00fb0",
+    "sync.lastUpload": "2017-07-01T07:35:09.423Z",
+    "sync.autoDownload": false,
+    "sync.autoUpload": false,
+    "sync.lastDownload": "",
+    "sync.forceDownload": false,
+    "sync.anonymousGist": false,
+    "sync.host": "",
+    "sync.pathPrefix": "",
+    "sync.quietSync": false
+}
