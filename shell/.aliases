@@ -60,7 +60,7 @@ alias backup='tar -cvzf ~/backups/www.tar.gz /var/www/'
 
 alias up='sudo apt-get update && time sudo apt-get dist-upgrade'
 
-alias sqllog='sudo tail -100 /var/log/mysql/error.log'
+alias sqllog='sudo cat /var/log/mysql/error.log'
 alias sqldump='mysqldump --socket=/home/mysql/mysql.sock --user wordpress --password=raeh3AVaeche wordpress > ~/backups/starfish.sql'
 alias sqlstart='sudo service mysql start'
 
@@ -68,6 +68,9 @@ alias sqlstart='sudo service mysql start'
 if [ -f ~/.aliases ]; then
     source .aliases
 fi
+
+##################################### FLUTTER  #####################################
+export PATH=$PATH:~/sdk/flutter/bin
 
 ##################################### ATOM #####################################
 alias alp='apm list --installed --bare > ~/Dropbox/dotfiles/atom/.packages'
@@ -78,7 +81,7 @@ alias auv='apm upgrade --verbose'
 
 ##################################### ANDROID #####################################
 #Android Platform Tools
-PATH=$PATH:~/android-sdk/platform-tools/:~/android-sdk/tools/
+PATH=$PATH:~/sdk/android/platform-tools/:~/sdk/android/tools/
 
 # Android aliases
 alias avd='emulator -avd galaxy -no-audio -http-proxy http://127.0.0.1:6060'
