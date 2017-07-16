@@ -52,7 +52,7 @@ if [ -f ~/.dotfiles/git/git.aliases ]; then
 fi
 
 
-##################################### WEB #####################################
+##################################### ADMIN #####################################
 alias wcd=www_cd
 www_cd() { cd /var/www/$1; }
 
@@ -60,9 +60,15 @@ alias backup='tar -cvzf ~/backups/www.tar.gz /var/www/'
 
 alias up='sudo apt-get update && time sudo apt-get dist-upgrade'
 
-alias sqllog='sudo cat /var/log/mysql/error.log'
-alias sqldump='mysqldump --socket=/home/mysql/mysql.sock --user wordpress --password=raeh3AVaeche wordpress > ~/backups/starfish.sql'
-alias sqlstart='sudo service mysql start'
+alias dblog='sudo cat /var/log/mysql/error.log'
+alias dbdump='mysqldump --socket=/home/mysql/mysql.sock --user wordpress --password=raeh3AVaeche wordpress > ~/backups/starfish.sql'
+alias dbres='sudo service mysql start'
+
+alias weblog='sudo cat /var/log/apache2/access.log'
+alias rpclog='sudo grep xmlrpc /var/log/apache2/access.log'
+alias webres='sudo service apache2 restart'
+
+alias blockrpc='sudo a2enconf block-xmlrpc'
 
 # Source local aliases
 if [ -f ~/.aliases ]; then
@@ -72,12 +78,14 @@ fi
 ##################################### FLUTTER  #####################################
 export PATH=$PATH:~/sdk/flutter/bin
 
+
 ##################################### ATOM #####################################
 alias alp='apm list --installed --bare > ~/Dropbox/dotfiles/atom/.packages'
 alias aip='apm install --packages-file ~/Dropbox/dotfiles/atom/.packages'
 alias aiv='apm install --verbose'
 alias aul='apm upgrade --list'
 alias auv='apm upgrade --verbose'
+
 
 ##################################### ANDROID #####################################
 #Android Platform Tools
