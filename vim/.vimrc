@@ -159,7 +159,7 @@ set splitright
 set equalalways
 set laststatus=2
 set columns=120
-set lines=46
+set lines=40
 set cursorline
 set visualbell
 set shortmess=aoOtT   " Short Messages
