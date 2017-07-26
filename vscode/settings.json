@@ -7,13 +7,15 @@
     "vim.disableAnnoyingNeovimMessage": true,
 
     "sync.gist": "81d70764925a6d3af00c35b3feb00fb0",
-    "sync.lastUpload": "2017-07-02T01:27:33.882Z",
+    "sync.lastUpload": "",
     "sync.autoDownload": false,
     "sync.autoUpload": false,
-    "sync.lastDownload": "2017-07-01T07:35:09.423Z",
+    "sync.lastDownload": "",
     "sync.forceDownload": false,
     "sync.anonymousGist": false,
     "sync.host": "",
     "sync.pathPrefix": "",
-    "sync.quietSync": false
+    "sync.quietSync": false,
+    "sync.askGistName": false,
+    "window.menuBarVisibility": "toggle"
 }
