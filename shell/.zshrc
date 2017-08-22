@@ -27,7 +27,7 @@ if [ -f ~/.dotfiles/shell/home.aliases ]; then
 fi
 
 # Antigen - The plugin manager for zsh.
-source /usr/share/zsh/share/antigen.zsh
+# source /usr/share/zsh/share/antigen.zsh
 
 
 # # Load the oh-my-zsh's library.

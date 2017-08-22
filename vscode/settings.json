@@ -1,16 +1,22 @@
-// Place your settings in this file to overwrite the default settings
 {
+    // VSCode
     "terminal.integrated.shell.windows": "C:\\Apps\\Git\\bin\\bash.exe",
     "workbench.colorTheme": "One Dark Pro",
     "workbench.iconTheme": "material-icon-theme",
 
+    // Vim
     "vim.disableAnnoyingNeovimMessage": true,
 
+    // Sass
+    "php.validate.enable": false,
+    "easysass.compileAfterSave": false,
+
+    // Sync
     "sync.gist": "81d70764925a6d3af00c35b3feb00fb0",
     "sync.lastUpload": "",
+    "sync.lastDownload": "",
     "sync.autoDownload": false,
     "sync.autoUpload": false,
-    "sync.lastDownload": "",
     "sync.forceDownload": false,
     "sync.anonymousGist": false,
     "sync.host": "",

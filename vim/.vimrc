@@ -24,11 +24,15 @@ set guifontwide=NSimsun:h12
 
 "======================================== Vundle Settings ========================================
 
-filetype off        "filetypes will be first handled by Vundle/Git repos
+filetype off        "Temporarily disable filetypes, it will be first handled by Vundle/Git repos
 
-" https://github.com/gmarik/Vundle.vim " Required for Windows (https://github.com/gmarik/vundle/wiki/Vundle-for-Windows) " * Git and Curl (http://code.google.com/p/msysgit/) " * HTTPS_PROXY is set on a corporate Windows machine filetype off " Point Vundle to ~, same as $USERPROFILE and $HOME in Windows
+"git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
+
+" HTTPS_PROXY needs to be set on a corporate Windows machine
+
+" Point Vundle to ~, same as $USERPROFILE and $HOME in Windows
 set rtp+=~/.vim/bundle/Vundle.vim
-" call vundle#begin('~/.vim/bundle')
+
 call vundle#begin()
 
 " Vundle managed by Vundle itself 'https://github.com/gmarik/vundle.git'
