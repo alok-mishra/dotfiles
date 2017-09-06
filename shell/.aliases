@@ -58,7 +58,8 @@ www_cd() { cd /var/www/$1; }
 
 alias backup='tar -cvzf ~/backups/www.tar.gz /var/www/'
 
-alias up='sudo apt-get update && time sudo apt-get dist-upgrade'
+alias up='sudo apt-get update && time sudo apt-get upgrade'
+alias upd='sudo apt-get update && time sudo apt-get dist-upgrade'
 
 alias dblog='sudo cat /var/log/mysql/error.log'
 alias dbdump='mysqldump --socket=/home/mysql/mysql.sock --user wordpress --password=raeh3AVaeche wordpress > ~/backups/starfish.sql'
@@ -89,7 +90,7 @@ alias auv='apm upgrade --verbose'
 
 ##################################### ANDROID #####################################
 #Android Platform Tools
-PATH=$PATH:~/sdk/android/platform-tools/:~/sdk/android/tools/
+PATH=$PATH:~/sdk/android/platform-tools/:~/sdk/android/tools/:~/sdk/android/tools/bin
 
 # Android aliases
 alias avd='emulator -avd galaxy -no-audio -http-proxy http://127.0.0.1:6060'
