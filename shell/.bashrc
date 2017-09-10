@@ -3,21 +3,10 @@
 
 # Simple
 # export PS1='\W$(__git_ps1 "(%s)") $'
+# 30m Black,  31m Red, 32m - Green, 33m - Yellow, 34m - Blue, 35m - Purple, 36m - Cyan, 37m - White, 0m - Reset, 0 - Normal, 1 - Bold
 
 GIT_PS1_SHOWDIRTYSTATE=true
 GIT_PS1_SHOWUNTRACKEDFILES=true
-
-# 30m - Black
-# 31m - Red
-# 32m - Green
-# 33m - Yellow
-# 34m - Blue
-# 35m - Purple
-# 36m - Cyan
-# 37m - White
-# 0m - Reset
-# 0 - Normal
-# 1 - Bold
 
 # CYAN Style Prompt
 export PS1='\n\[\e[0;36m\]\W\[\e[1;36m\]$(__git_ps1) \[\e[0;36m\]$\[\e[0m\] '
@@ -53,15 +42,5 @@ symlink() {
         fi
     else
         ln -s "$1" "$2" # Linux parameters
-    fi
-}
-
-##################################### SSH #####################################
-pssh() {
-    if [ `uname -n` != 'Pulsar' ]; then
-        cat ~/.ssh/config.proxy  ~/.ssh/config > /tmp/ssh_config
-        command ssh -F /tmp/ssh_config $1
-    else
-        command ssh $1
     fi
 }

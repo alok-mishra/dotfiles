@@ -92,8 +92,11 @@ alias auv='apm upgrade --verbose'
 #Android Platform Tools
 PATH=$PATH:~/sdk/android/platform-tools/:~/sdk/android/tools/:~/sdk/android/tools/bin
 
-# Android aliases
-alias avd='emulator -avd galaxy -no-audio -http-proxy http://127.0.0.1:6060'
+alias avdlst='avdmanager.bat list avd'
+alias avdgal='avdmanager.bat create avd --force --name "galaxy" --abi "google_apis/x86" --device "Galaxy Nexus" --package "system-images;android-18;google_apis;x86"'
+alias avdnex='avdmanager.bat create avd --force --name "nexus" --abi "google_apis/x86" --device "Nexus 5X" --package "system-images;android-25;google_apis;x86"'
+alias aemnex='emulator -avd nexus -gpu on -skin 1080x1920'
+alias aemgal='emulator -avd galaxy -gpu on -skin 720x1280'
 alias adbi='adb install'
 alias adbu='adb uninstall'
 
