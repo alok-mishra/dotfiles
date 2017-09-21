@@ -42,14 +42,18 @@ clone_package_rebase() {
     else
         if [ "$2" = "." ]; then
             dir="."
-        elif [ "$1" = "master" ]; then
-            dir="English"
         else
             dir=${1^}
         fi
 
+        if [ "$1" = "english" ]; then
+            branch="master"
+        else
+            branch=${1}
+        fi
+
         if [[ $# -ne 0 && "$1" != "." ]]; then
-            git clone $repo/package.git -b $1 $dir
+            git clone $repo/package.git -b $branch $dir
         else
             read -p "You aren't in a Package directory ... Press enter to dismiss ..."
             exit

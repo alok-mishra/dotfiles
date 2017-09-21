@@ -329,8 +329,8 @@ nmap j gj
 nmap k gk
 
 " Makes it easier to increment and decrement
-nnoremap <C-k> <C-a>
-nnoremap <C-j> <C-x>
+nnoremap <A-k> <C-a>
+nnoremap <A-j> <C-x>
 
 "Center line in window upon search and jumps
 " nmap n nzz
@@ -369,8 +369,8 @@ cmap <C-L> <C-F>
 cmap <C-H> <C-B>
 
 " TComment
-nmap <leader>c <C-_><C-_>
-vmap <leader>c <C-_>b
+" nmap <C-_> <C-_><C-_>
+" vmap <C-_> <C-_>b
 
 " NERDTree
 map <F12> :NERDTreeToggle<CR>B<CR>
@@ -390,7 +390,7 @@ nmap <leader>t :Tabularize /
 " Output css for less files - :t(no path) :r(no extension)
 "!lessc --clean-css % %:r.css<CR>
 "nnoremap <leader>l :execute ':silent !' . expand('~') . '/Dropbox/Tools/Vim/.vim/bundle/less.js-windows/lessc --clean-css % %:r.css'<CR>
-nnoremap <leader>l :execute "!" . substitute(expand('~'), '\\', '/', 'g') . '/Dropbox/Tools/Vim/.vim/bundle/less.js-windows/lessc --clean-css "%" "%:r.css"'<CR>
+nnoremap <leader>l :execute "!" . substitute(expand('~'), '\\', '/', 'g') . '/.vim/bundle/less.js-windows/lessc --clean-css "%" "%:r.css"'<CR>
 
 "======================================== Experimental ========================================
 set number "line numbers
@@ -453,7 +453,7 @@ function! Generate()
     "Just manifest for now, but will add more later on FileType condition
     ":silent !node manifest & pause
     if (&ft=='less')
-        :execute ":Silent " . substitute(expand('~'), '\\', '/', 'g') . '/Dropbox/Tools/Vim/.vim/bundle/less.js-windows/lessc --clean-css "%" "%:r.css"'
+        :execute ":Silent " . substitute(expand('~'), '\\', '/', 'g') . '/.vim/bundle/less.js-windows/lessc --clean-css "%" "%:r.css"'
     elseif (&ft=='scss')
         :execute ':Silent node-sass "%" "%:r.css"'
     else
@@ -475,14 +475,14 @@ vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgvl
 
 " MACROS
 
-" Paste external clipboard between quotes
-let @p='vi""*P'
+" Paste external clipboard between tags, and trim ending spaces.
+let @p='vit"*Pvit:s/\%V\s\+$//e:nohls'
 
-" Paste external clipboard between tags
-let @g='vit"*P'
+" Paste external clipboard containing numbers between quotes, and trim everything except digits. \%V matches only inside visual selection
+let @n='vi""*Pvi":s/\%V[^0-9]//g:nohls'
 
 " Text Elements - paste script text into xml data. Start above line and jump to text before executing
-let @t='0mtD``jj0bbbvi]p`tj'
+let @x='0mtD``jj0bbbvi]p`tj'
 
 " Menu Titles - paste rows of titles or other xml tag information.
 " Search for tag to replace (note line number), navigate to first row of new text, and jump to line number before executing
@@ -499,4 +499,4 @@ let @k='gg:silent!/php/dllFqct"perception5/session.php'
 let @j='vi]x"*Pvi]:g/^$/dvi]I"vi]:s/\s*$/\",/f,xj=%:nohls'
 
 " JSON Image and Audio entries for New Dealer - pastes list of absolute paths from clipboard, removes all except filename, adds quotes/commas to lines of section. (Place cursor inside images or audio block)
-let @n='vi]x"*Pvi]T\xvi]:s/\..*//vi]I"vi]:s/$/\",/f,xj0=%:nohls'
+let @d='vi]x"*Pvi]T\xvi]:s/\..*//vi]I"vi]:s/$/\",/f,xj0=%:nohls'
