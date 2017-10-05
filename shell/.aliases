@@ -57,6 +57,8 @@ alias wcd=www_cd
 www_cd() { cd /var/www/$1; }
 
 alias backup='tar -cvzf ~/backups/www.tar.gz /var/www/'
+alias compress='tar -cvzf ~/backups/backup.tar.gz'
+alias extract='tar -xvf'
 
 alias up='sudo apt-get update && time sudo apt-get upgrade'
 alias upd='sudo apt-get update && time sudo apt-get dist-upgrade'
@@ -95,8 +97,8 @@ PATH=$PATH:~/sdk/android/platform-tools/:~/sdk/android/tools/:~/sdk/android/tool
 alias avdlst='avdmanager.bat list avd'
 alias avdgal='avdmanager.bat create avd --force --name "galaxy" --abi "google_apis/x86" --device "Galaxy Nexus" --package "system-images;android-18;google_apis;x86"'
 alias avdnex='avdmanager.bat create avd --force --name "nexus" --abi "google_apis/x86" --device "Nexus 5X" --package "system-images;android-25;google_apis;x86"'
-alias aemnex='emulator -avd nexus -gpu on -skin 1080x1920'
-alias aemgal='emulator -avd galaxy -gpu on -skin 720x1280'
+alias emunex='emulator -avd nexus -gpu on -skin 1080x1920'
+alias emugal='emulator -avd galaxy -gpu on -skin 720x1280'
 alias adbi='adb install'
 alias adbu='adb uninstall'
 

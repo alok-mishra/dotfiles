@@ -476,7 +476,8 @@ vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgvl
 " MACROS
 
 " Paste external clipboard between tags, and trim ending spaces.
-let @p='vit"*Pvit:s/\%V\s\+$//e:nohls'
+let @t='vit"*Pvit:s/\%V\s\+$//e:nohls'
+let @p='vi""*Pvi":s/\%V\s\+$//e:nohls'
 
 " Paste external clipboard containing numbers between quotes, and trim everything except digits. \%V matches only inside visual selection
 let @n='vi""*Pvi":s/\%V[^0-9]//g:nohls'

@@ -1,2 +1,3 @@
-alias up='sudo pacman -Syu'
-alias Runs='sudo pacman -Runs'
+alias pacu='pacaur -Syu' # sync repos and update packages
+alias pacr='pacaur -Runs' # remove package and dependencies of not being used
+alias pacc='pacaur -Sc' # clear cache for packages not yet installed
