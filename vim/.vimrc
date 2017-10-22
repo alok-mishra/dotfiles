@@ -8,11 +8,11 @@ behave mswin
 set runtimepath^=~/Dropbox/Tools/Vim/.vim
 set directory^=~/
 
-"if has('unix')
+if has('unix')
     " set guifont=Consolas\ 10
-    " set guifont=Envy\ Code\ R\ for\ Powerline\ 10
-"else "has('win32') || has('win64')
-if has('win32') || has('win64')
+    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
+elseif has('win32') || has('win64')
+" if has('win32') || has('win64')
     set guifont=Envy_Code_R_for_Powerline:h10,Droid_Sans_Mono_Slashed_for_Pow:h10,Consolas:h10
 
     " Maximize window on startup
@@ -475,9 +475,9 @@ vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgvl
 
 " MACROS
 
-" Paste external clipboard between tags, and trim ending spaces.
-let @t='vit"*Pvit:s/\%V\s\+$//e:nohls'
-let @p='vi""*Pvi":s/\%V\s\+$//e:nohls'
+" Paste external clipboard between tags, and trim trailing spaces.
+let @t='vit"*Pvit:s/\%V\s\+</</e:nohls'
+let @p='vi""*Pvi":s/\%V\s\+"/"/e:nohls'
 
 " Paste external clipboard containing numbers between quotes, and trim everything except digits. \%V matches only inside visual selection
 let @n='vi""*Pvi":s/\%V[^0-9]//g:nohls'

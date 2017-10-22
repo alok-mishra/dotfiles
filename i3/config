@@ -1,0 +1,169 @@
+###### ###### ###### ###### ###### ###### ###### ######
+#  i3 config - https://i3wm.org/docs/userguide.html   #
+###### ###### ###### ###### ###### ###### ###### ###### # Mod keys
+set $mod Mod4
+set $alt Mod1
+
+# set $term rxvt-unicode ## todo
+
+# Font for window titles.
+font pango:DejaVu Sans Mono 10 
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec i3-sensible-terminal
+
+# kill focused window
+bindsym $mod+q kill
+
+# start dmenu (a program launcher)
+bindsym $mod+m exec dmenu_run
+
+# only displays applications with a .desktop file.
+bindsym $alt+m exec --no-startup-id i3-dmenu-desktop
+
+# focus container on the left, bottom, top, right
+bindsym $alt+h focus left
+bindsym $alt+j focus down
+bindsym $alt+k focus up
+bindsym $alt+l focus right
+bindsym $alt+shift+h move left
+bindsym $alt+shift+j move down
+bindsym $alt+shift+k move up
+bindsym $alt+shift+l move right
+
+# alternatively, use the cursor keys
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+bindsym $mod+shift+Left move left
+bindsym $mod+shift+Down move down
+bindsym $mod+shift+Up move up
+bindsym $mod+shift+Right move right
+
+# split orientation - toggle between horizontal and vertical
+bindsym $mod+v split toggle
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+# bindsym $mod+s layout stacking
+# bindsym $mod+t layout tabbed
+bindsym $mod+t layout toggle split
+bindsym $mod+s layout toggle all
+
+# toggle tiling / floating
+bindsym $mod+shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+p focus parent
+
+# focus the child container
+bindsym $mod+c focus child
+
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+
+bindsym $mod+h workspace prev
+bindsym $mod+l workspace next
+
+
+# move focused container to workspace
+bindsym $mod+shift+1 move container to workspace 1
+bindsym $mod+shift+2 move container to workspace 2
+bindsym $mod+shift+3 move container to workspace 3
+bindsym $mod+shift+4 move container to workspace 4
+bindsym $mod+shift+5 move container to workspace 5
+bindsym $mod+shift+6 move container to workspace 6
+
+bindsym $mod+shift+h move container to workspace prev; workspace prev
+bindsym $mod+shift+l move container to workspace next; workspace next
+
+######------ Assignments ------######
+assign [class="qutebrowser"] → web
+
+
+
+# reload the configuration file
+bindsym $mod+r reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+shift+x exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+
+# Resize Windows
+# ==============================================================================
+mode "resize" {
+    # These bindings trigger as soon as you enter the resize mode
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize shrink height 10 px or 10 ppt
+    bindsym k resize grow height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
+
+    # same bindings, but for the arrow keys
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+$alt+r mode "resize"
+
+# i3bar Status
+# ==============================================================================
+bar {
+        status_command i3status
+        mode hide # dock, hide, invisible
+        hidden_state hide # show, hide
+        modifier $mod
+        position bottom
+        font pango: DejaVu Sans Mono for Powerline 10
+        tray_output primary
+        tray_padding 0
+        # workspace_buttons yes
+        # status_command bumblebee-status -m nic disk:root cpu memory battery date time pasink pasource dnf -p root.path=/ time.format="%H:%M CW %V" date.format="%a, %b %d %Y" -t solarized-powerline
+}
+
+
+######------ Gaps ------######
+gaps inner 20
+gaps outer 10
+# smart_gaps on
+
+
+######------ Brightness ------######
+#
+
+
+# Apps
+# ==============================================================================
+bindsym $alt+c exec google-chrome-stable
+bindsym $alt+f exec firefox
+bindsym $alt+q exec qutebrowser
+bindsym $alt+r exec i3-sensible-terminal -e ranger
+bindsym $alt+v exec gvim ~/.config/i3/config
+
+
+######------ Startup ------######
+
+# Bring screen to a readable size on a HiDPI screen
+exec_always --no-startup-id xrandr --output HDMI1 --off --output VIRTUAL1 --off --output eDP1 --primary --mode 1920x1080 --pos 0x0 --rotate normal
+
+exec --no-startup-id dropbox-cli start

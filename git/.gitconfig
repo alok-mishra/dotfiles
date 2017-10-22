@@ -22,4 +22,4 @@
 [mergetool]
     keepBackup = false
 [core]
-    editor = gvim
+    editor = vim

@@ -1,3 +1,11 @@
-alias pacu='pacaur -Syu' # sync repos and update packages
+alias paci='pacaur -S'    # install a package
+alias pacu='pacaur -Syu'  # sync repos and update packages
 alias pacr='pacaur -Runs' # remove package and dependencies of not being used
-alias pacc='pacaur -Sc' # clear cache for packages not yet installed
+alias pacc='pacaur -Sc'   # clear cache for packages not yet installed
+alias pacs='pacaur -Qs'   # search what is installed
+alias pack='pacman-key --populate archlinux'   # populate the package signing keys
+
+alias up='pacu'
+
+alias vi3='vi ~/.config/i3/config'
+alias viq='vi ~/.config/qutebrowser/config.py'

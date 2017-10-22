@@ -18,21 +18,22 @@ alias dnmf='export DOCKER_MACHINE_NAME="finance"'
 repo=file:///C:/Workspace/Repository/Git
 
 # Repos
-alias gcla='git clone --local $repo/Assembly.git'
-alias gclar='git clone --recursive --local $repo/Assembly.git'
-alias gclv='git clone --local $repo/video.git'
-alias gcls='git clone --local $repo/classes.git'
-alias gclf='git clone --local $repo/fla.git'
-alias gcln='git clone $repo/newdealer.git'
-alias gclp='git clone $repo/Package.git'
+alias gcla='git clone $repo/assembly.git'
+alias gclar='git clone --recursive --local $repo/assembly.git'
+alias gclp='git clone $repo/package.git'
 alias gclm='git clone $repo/manifest.git'
+alias gcls='git clone $repo/scripts.git'
+alias gclv='git clone $repo/video.git'
+alias gclc='git clone $repo/classes.git'
+alias gclf='git clone $repo/fla.git'
+alias gcln='git clone $repo/newdealer.git'
 alias gcrp=clone_package_rebase
 alias gcrm=clone_manifest_rebase
 
 # Archive / Extract
 alias gara='git archive --remote=$repo/Assembly.git master | tar -xv'
-alias gars='git archive --remote=$repo/Assembly.git master | tar -xv shell/scripts/Storyline/ --strip-components=3'
-alias garp='git archive --remote=$repo/Assembly.git master | tar -xv shell/scripts/Package/ --strip-components=3'
+alias gars='git archive --remote=$repo/scripts.git master | tar -xv storyline/ --strip-components=1'
+alias garr='git archive --remote=$repo/Assembly.git master | tar -xv shell/templates/retrofit/ --strip-components=3'
 
 ## gcrp
 clone_package_rebase() {
@@ -72,16 +73,20 @@ clone_manifest_rebase() {
     if [[ $# -ne 0 ]]; then
         if [ "$2" = "." ]; then
             dir="."
-        elif [ "$1" = "master" ]; then
-            dir="English"
         else
             dir=${1^}
+        fi
+
+        if [ "$1" = "english" ]; then
+            branch="master"
+        else
+            branch=${1}
         fi
 
         mkdir $dir
         cd $dir
 
-        git clone $repo/manifest.git -b $1
+        git clone $repo/manifest.git -b $branch
     else
         git clone $repo/manifest.git
     fi

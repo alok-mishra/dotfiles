@@ -1,5 +1,5 @@
 " Setup: Sync directly with online dropbox link for automatic updates, git will updated once comitted.
-" https://www.dropbox.com/s/tjvejwvc1n78h43/.cvimrc?dl=1
+" https://www.dropbox.com/s/06wjicemz4te1dl/.cvimrc?dl=1
 
 set nohud
 set nosmoothscroll
@@ -24,7 +24,7 @@ map u lastClosedTab
 map h previousTab
 map l nextTab
 
-map S :tabnew google 
+map S :tabnew google<space>
 
 map <leader>e :open! chrome://extensions<CR>
 map <leader>p :togglepin<CR>
