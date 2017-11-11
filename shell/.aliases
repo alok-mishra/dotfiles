@@ -9,11 +9,11 @@ alias ocd='cd "$OLDPWD"'
 alias md5='openssl md5'
 alias sha1='openssl sha1'
 alias path='echo "${PATH//:/$'"'"'\n'"'"'}"'
-alias sshca='ssh-copy-id -i ~/.ssh/id_rsa'
-alias sshcr='ssh-copy-id -i ~/.ssh/mediarave_rsa'
+alias scpid='ssh-copy-id -i ~/.ssh/id_rsa'
+alias scpidr='ssh-copy-id -i ~/.ssh/mediarave_rsa'
 
 alias vib='vi ~/.bashrc'
-alias vis='vi ~/.ssh/config'
+alias vic='vi ~/.ssh/config'
 
 alias sr='screen -r'
 

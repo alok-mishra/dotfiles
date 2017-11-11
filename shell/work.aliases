@@ -63,7 +63,7 @@ clone_package_rebase() {
 
     cd $dir
     git rebase origin/master
-    rm -rf .git
+    rm -rf .git*
     vi zip_package.bat
     exit
 }
@@ -144,7 +144,7 @@ archive_project() {
         rm -f "$project".7z
 
         echo "Archiving \"$project\" ..."
-        "C:\Program Files\7-Zip\7z.exe" a "$project" .
+        "C:\Program Files\7-Zip\7z.exe" a "$project".7z .
         "C:\Program Files\7-Zip\7z.exe" l "$project".7z '-xr!.git'
         manifests=$("C:\Program Files\7-Zip\7z.exe" l "$project".7z  | grep 'manifest\\manifest.json' | tr -s ' ' | cut -d ' ' -f 4)
 
@@ -152,11 +152,11 @@ archive_project() {
         do
             if [[ $size -gt 600 ]]; then
                 archived=true;
-                echo "This manifest in the archive looks good.."
+                echo "This manifest in the archive looks good!"
             else
                 archived=false;
                 echo ""
-                read -p "Not removing Production, a manifest file seems too small! ..."
+                read -p "Not removing Production, a manifest file seems too small ... Press enter to dismiss ..."
                 exit
             fi
         done

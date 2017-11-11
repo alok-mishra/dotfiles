@@ -1,10 +1,16 @@
 ###### ###### ###### ###### ###### ###### ###### ######
 #  i3 config - https://i3wm.org/docs/userguide.html   #
-###### ###### ###### ###### ###### ###### ###### ###### # Mod keys
+###### ###### ###### ###### ###### ###### ###### ######
+
+
+# Settings
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 set $mod Mod4
 set $alt Mod1
+set $molt Mod4+Mod1
 
-# set $term rxvt-unicode ## todo
+# Mouse
+focus_follows_mouse no
 
 # Font for window titles.
 font pango:DejaVu Sans Mono 10 
@@ -12,43 +18,82 @@ font pango:DejaVu Sans Mono 10
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# start a terminal
+
+# Appearance
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+gaps inner 20
+gaps outer 10
+#smart_gaps on
+
+hide_edge_borders both
+
+
+# Assignments (xprop WM_CLASS)
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+assign [class="Waterfox"] → web
+assign [class="Google-chrome"] → web
+
+for_window [class="^.*"] border pixel 6 
+
+
+# Audio
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+# Brightness
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+# Apps
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+bindsym $molt+w exec --no-startup-id waterfox
+bindsym $molt+c exec --no-startup-id google-chrome-stable
+bindsym $molt+f exec --no-startup-id firefox
+bindsym $molt+q exec --no-startup-id qutebrowser
+bindsym $molt+r exec --no-startup-id i3-sensible-terminal -e ranger
+
+
+
+# Keybindings (Navigation)
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# Terminal
+# set $term rxvt-unicode ## todo
 bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+q kill
 
-# start dmenu (a program launcher)
-bindsym $mod+m exec dmenu_run
+# start dmenu program launcher
+bindsym $mod+Shift+m exec --no-startup-id dmenu_run
+# only display applications with a .desktop file.
+bindsym $mod+m exec --no-startup-id i3-dmenu-desktop
 
-# only displays applications with a .desktop file.
-bindsym $alt+m exec --no-startup-id i3-dmenu-desktop
 
 # focus container on the left, bottom, top, right
 bindsym $alt+h focus left
 bindsym $alt+j focus down
 bindsym $alt+k focus up
 bindsym $alt+l focus right
-bindsym $alt+shift+h move left
-bindsym $alt+shift+j move down
-bindsym $alt+shift+k move up
-bindsym $alt+shift+l move right
+bindsym $alt+Shift+h move left
+bindsym $alt+Shift+j move down
+bindsym $alt+Shift+k move up
+bindsym $alt+Shift+l move right
+
+bindsym $alt+Tab focus floating
 
 # alternatively, use the cursor keys
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
-bindsym $mod+shift+Left move left
-bindsym $mod+shift+Down move down
-bindsym $mod+shift+Up move up
-bindsym $mod+shift+Right move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
 
 # split orientation - toggle between horizontal and vertical
-bindsym $mod+v split toggle
-
-# enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+v split toggle
 
 # change container layout (stacked, tabbed, toggle split)
 # bindsym $mod+s layout stacking
@@ -56,8 +101,11 @@ bindsym $mod+f fullscreen toggle
 bindsym $mod+t layout toggle split
 bindsym $mod+s layout toggle all
 
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
 # toggle tiling / floating
-bindsym $mod+shift+space floating toggle
+bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -78,34 +126,32 @@ bindsym $mod+6 workspace 6
 
 bindsym $mod+h workspace prev
 bindsym $mod+l workspace next
+bindsym $mod+Shift+Tab workspace prev
+bindsym $mod+Tab workspace next
 
 
 # move focused container to workspace
-bindsym $mod+shift+1 move container to workspace 1
-bindsym $mod+shift+2 move container to workspace 2
-bindsym $mod+shift+3 move container to workspace 3
-bindsym $mod+shift+4 move container to workspace 4
-bindsym $mod+shift+5 move container to workspace 5
-bindsym $mod+shift+6 move container to workspace 6
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
 
-bindsym $mod+shift+h move container to workspace prev; workspace prev
-bindsym $mod+shift+l move container to workspace next; workspace next
-
-######------ Assignments ------######
-assign [class="qutebrowser"] → web
-
+bindsym $mod+Shift+h move container to workspace prev; workspace prev
+bindsym $mod+Shift+l move container to workspace next; workspace next
 
 
 # reload the configuration file
 bindsym $mod+r reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+shift+r restart
+bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+shift+x exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+# bindsym $mod+Shift+x exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 
 # Resize Windows
-# ==============================================================================
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 mode "resize" {
     # These bindings trigger as soon as you enter the resize mode
     bindsym h resize shrink width 10 px or 10 ppt
@@ -124,16 +170,41 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 
-bindsym $mod+$alt+r mode "resize"
+bindsym $alt+r mode "resize"
+
+
+# System Control
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+set $lock i3lock && sleep 1
+
+set $mode_system "System [l]ock, [L]ogout, [r]eboot, [s]uspend, [S]hutdown"
+mode $mode_system {
+    bindsym l exec --no-startup-id $lock, mode "default"
+    bindsym Shift+l exec --no-startup-id i3-msg exit, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym s exec --no-startup-id $lock && systemctl suspend, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
+
+    # back to normal: q, Enter or Escape
+    bindsym q mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+x mode $mode_system
+
+# Edit the config file directly
+bindsym $mod+v exec gvim ~/.config/i3/config
+
 
 # i3bar Status
-# ==============================================================================
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 bar {
         status_command i3status
-        mode hide # dock, hide, invisible
-        hidden_state hide # show, hide
+        i3bar_command i3bar -t
+        # mode hide # dock, hide, invisible
+        # hidden_state hide # show, hide
         modifier $mod
-        position bottom
+        position top
         font pango: DejaVu Sans Mono for Powerline 10
         tray_output primary
         tray_padding 0
@@ -142,28 +213,11 @@ bar {
 }
 
 
-######------ Gaps ------######
-gaps inner 20
-gaps outer 10
-# smart_gaps on
-
-
-######------ Brightness ------######
-#
-
-
-# Apps
-# ==============================================================================
-bindsym $alt+c exec google-chrome-stable
-bindsym $alt+f exec firefox
-bindsym $alt+q exec qutebrowser
-bindsym $alt+r exec i3-sensible-terminal -e ranger
-bindsym $alt+v exec gvim ~/.config/i3/config
-
-
-######------ Startup ------######
+# Startup
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Bring screen to a readable size on a HiDPI screen
 exec_always --no-startup-id xrandr --output HDMI1 --off --output VIRTUAL1 --off --output eDP1 --primary --mode 1920x1080 --pos 0x0 --rotate normal
 
 exec --no-startup-id dropbox-cli start
+exec --no-startup-id feh --bg-fill ~/Documents/wallpapers/space.jpg

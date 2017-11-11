@@ -3,13 +3,20 @@
     "terminal.integrated.shell.windows": "C:\\Apps\\Git\\bin\\bash.exe",
     "workbench.colorTheme": "One Dark Pro",
     "workbench.iconTheme": "material-icon-theme",
+    "editor.wordWrap": "on",
 
     // Vim
     "vim.disableAnnoyingNeovimMessage": true,
 
     // Sass
     "php.validate.enable": false,
-    "easysass.compileAfterSave": false,
+    "easysass.compileAfterSave": true,
+    "easysass.formats": [
+        {
+            "format": "compact",
+            "extension": ".css"
+        }
+    ],
 
     // Sync
     "sync.gist": "81d70764925a6d3af00c35b3feb00fb0",
@@ -23,5 +30,10 @@
     "sync.pathPrefix": "",
     "sync.quietSync": false,
     "sync.askGistName": false,
+
+    "files.associations": {
+        "*.aliases": "shellscript"
+    },
+
     "window.menuBarVisibility": "toggle"
 }

@@ -8,7 +8,7 @@ set noautofocus
 set autoupdategist
 
 set typelinkhints
-set numerichints    "requried for typelinkhints
+" set numerichints    "requried for typelinkhints
 
 let searchlimit = 20
 let scrollstep = 60
@@ -20,6 +20,9 @@ let mapleader = ","
 
 map d closeTab
 map u lastClosedTab
+
+map <C-h> moveTabLeft
+map <C-l> moveTabRight
 
 map h previousTab
 map l nextTab
@@ -36,13 +39,18 @@ map <C-d> scrollPageDown
 
 unmap a
 
-map y yy
+map Y vy
+map y yankDocumentUrl
 map p P
 
 " NOT USING THE FOLLOWING ANYMORE - since I can't do cross platform / cross machine easily
 " ... > Settings > Extensions > cVim > [x] Allow access to file URLs
 " Symbolic links may interfere
+"
 " Put this in both cVim settings and here in .cvimrc. Then restart Chrome
-"let configpath = 'c:/users/alok/Dropbox/dotfiles/vim/.cvimrc'
-"set localconfig " Update settings via local file.
+" let configpath = 'c:/users/alok/.dotfiles/vim/.cvimrc'
+" let configpath = '/home/alok/.dotfiles/vim/.cvimrc'
+
+" Update settings via local file.
+" set localconfig
 
