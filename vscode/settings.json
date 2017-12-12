@@ -5,18 +5,17 @@
     "workbench.iconTheme": "material-icon-theme",
     "editor.wordWrap": "on",
 
-    // Vim
-    "vim.disableAnnoyingNeovimMessage": true,
-
     // Sass
-    "php.validate.enable": false,
-    "easysass.compileAfterSave": true,
-    "easysass.formats": [
+    "liveSassCompile.settings.generateMap": false,
+    "liveSassCompile.settings.formats":[
         {
             "format": "compact",
-            "extension": ".css"
+            "extensionName": ".css"
         }
     ],
+
+    // PHP
+    "php.validate.enable": false,
 
     // Sync
     "sync.gist": "81d70764925a6d3af00c35b3feb00fb0",
@@ -35,5 +34,7 @@
         "*.aliases": "shellscript"
     },
 
-    "window.menuBarVisibility": "toggle"
+    "window.menuBarVisibility": "toggle",
+    "vim.disableAnnoyingNeovimMessage": true,
+    "git.enableSmartCommit": true
 }

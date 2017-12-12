@@ -27,6 +27,7 @@ alias gclv='git clone $repo/video.git'
 alias gclc='git clone $repo/classes.git'
 alias gclf='git clone $repo/fla.git'
 alias gcln='git clone $repo/newdealer.git'
+alias gcle='git clone $repo/exam.git'
 alias gcrp=clone_package_rebase
 alias gcrm=clone_manifest_rebase
 

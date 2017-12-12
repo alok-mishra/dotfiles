@@ -92,6 +92,7 @@ Plugin 'jeroenbourgois/vim-actionscript'
 Plugin 'vim-scripts/aspnetcs'
 Plugin 'groenewege/vim-less'
 Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'PotatoesMaster/i3-vim-syntax'
 
 " Colors
 Plugin 'chankaward/vim-railscasts-theme'

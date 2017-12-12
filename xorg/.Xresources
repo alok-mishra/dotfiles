@@ -1,0 +1,21 @@
+! .Xreousrces
+! https://wiki.archlinux.org/index.php/Rxvt-unicode
+!
+! xrdb -merge ~/.Xresources
+
+! do not scroll with output
+URxvt*scrollTtyOutput: false
+
+! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+URxvt*scrollWithBuffer: true
+
+! scroll back to the bottom on keypress
+URxvt*scrollTtyKeypress: true
+
+! Font
+! URxvt.font: xft:monaco:size=8
+
+urxvt*scrollBar: false
+
+urxvt*transparent: true
+urxvt*shading: 40

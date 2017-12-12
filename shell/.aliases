@@ -1,5 +1,6 @@
 alias ls='ls --color=auto'
-alias l='ls -hAlF'
+alias l='ls -hlF'
+alias ll='ls -hAlF'
 alias vi='vim'
 alias grep='grep --color=auto'
 
@@ -79,6 +80,9 @@ alias blockrpc='sudo a2enconf block-xmlrpc'
 if [ -f ~/.aliases ]; then
     source .aliases
 fi
+
+##################################### ANGULAR  ##################################### 
+alias ngs='ng server --open'
 
 ##################################### FLUTTER  #####################################
 export PATH=$PATH:~/sdk/flutter/bin
