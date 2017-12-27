@@ -16,7 +16,13 @@
         "key": "ctrl+pagedown",
         "command": "-workbench.action.nextEditor"
     },
-    {   "key": "ctrl+shift+`",
-        "command": "workbench.action.toggleMaximizedPanel"
+    {
+        "key": "alt+`",
+        "command": "workbench.action.terminal.focus"
+    },
+    {
+        "key": "alt+`",
+        "command": "workbench.action.focusActiveEditorGroup",
+        "when": "terminalFocus"
     }
 ]

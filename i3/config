@@ -11,10 +11,10 @@ set $molt Mod4+Mod1
 
 set $ws1 1:term
 set $ws2 2:web
-set $ws3 3:misc
+set $ws3 3:mess
 set $ws4 4:code
 set $ws5 5:data
-set $ws6 6:music
+set $ws6 6:media
 
 # Mouse
 focus_follows_mouse no
@@ -29,7 +29,7 @@ floating_modifier $mod
 # Appearance
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 gaps inner 20
-gaps outer 20
+gaps outer 10
 #smart_gaps on
 
 # hide_edge_borders both
@@ -56,6 +56,17 @@ assign [class="Waterfox"] 2:web
 for_window [class="^.*"] border pixel 2, focus
 
 
+
+# Configuration
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# reload the configuration file
+# bindsym $mod+r reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+shift+r restart
+# exit i3 (logs you out of your X session)
+# bindsym $mod+Shift+x exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+
 # Media Control
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
@@ -79,44 +90,8 @@ bindsym $molt+q exec --no-startup-id qutebrowser
 bindsym $molt+r exec --no-startup-id i3-sensible-terminal -e ranger
 
 
-
-# Keybindings (Navigation)
+# Layout Keybindings
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-# Terminal
-# set $term rxvt-unicode ## todo
-bindsym $mod+Return exec i3-sensible-terminal
-
-# kill focused window
-bindsym $mod+q kill
-
-# start dmenu program launcher
-bindsym $mod+Shift+m exec --no-startup-id dmenu_run
-# only display applications with a .desktop file.
-bindsym $mod+m exec --no-startup-id i3-dmenu-desktop
-
-
-# focus container on the left, bottom, top, right
-bindsym $alt+h focus left
-bindsym $alt+j focus down
-bindsym $alt+k focus up
-bindsym $alt+l focus right
-bindsym $alt+Shift+h move left
-bindsym $alt+Shift+j move down
-bindsym $alt+Shift+k move up
-bindsym $alt+Shift+l move right
-
-bindsym $alt+Tab focus floating
-
-# alternatively, use the cursor keys
-bindsym $alt+Left focus left
-bindsym $alt+Down focus down
-bindsym $alt+Up focus up
-bindsym $alt+Right focus right
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
 
 # split orientation - toggle between horizontal and vertical
  bindsym $mod+z split toggle
@@ -128,19 +103,45 @@ bindsym $mod+t layout toggle split
 bindsym $mod+s layout toggle all
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+bindsym $mod+space fullscreen toggle
 
-# toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+# toggle / focus - tiling / floating
+bindsym $mod+f floating toggle
+bindsym $mod+shift+space focus mode_toggle
 
-# change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
-
-# focus the parent container
+# focus the parent / child container
 bindsym $mod+p focus parent
-
-# focus the child container
 bindsym $mod+c focus child
+
+
+# Window Keybindings (Navigation)
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# Terminal
+# set $term rxvt-unicode ## todo
+bindsym $mod+Return exec i3-sensible-terminal
+
+# kill focused window
+bindsym $mod+q kill
+
+# start dmenu program launcher
+bindsym $mod+shift+m exec --no-startup-id dmenu_run
+# only display applications with a .desktop file.
+bindsym $mod+m exec --no-startup-id i3-dmenu-desktop
+
+# focus container on the left, bottom, top, right
+bindsym $alt+h focus left
+bindsym $alt+j focus down
+bindsym $alt+k focus up
+bindsym $alt+l focus right
+bindsym $alt+shift+h move left
+bindsym $alt+shift+j move down
+bindsym $alt+shift+k move up
+bindsym $alt+shift+l move right
+
+
+# Workspace Keybindings
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -151,33 +152,24 @@ bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6
 
 bindsym $mod+h workspace prev
-bindsym $mod+Left workspace prev
-bindsym $mod+Shift+Tab workspace prev
+bindsym $mod+left workspace prev
+bindsym $mod+shift+tab workspace prev
 
 bindsym $mod+l workspace next
-bindsym $mod+Right workspace next
-bindsym $mod+Tab workspace next
-
+bindsym $mod+right workspace next
+bindsym $mod+tab workspace next
 
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+shift+1 move container to workspace $ws1
+bindsym $mod+shift+2 move container to workspace $ws2
+bindsym $mod+shift+3 move container to workspace $ws3
+bindsym $mod+shift+4 move container to workspace $ws4
+bindsym $mod+shift+5 move container to workspace $ws5
+bindsym $mod+shift+6 move container to workspace $ws6
 
-bindsym $mod+Shift+h move container to workspace prev; workspace prev
-bindsym $mod+Shift+l move container to workspace next; workspace next
-
-
-# reload the configuration file
-bindsym $mod+r reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-# bindsym $mod+Shift+x exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+shift+h move container to workspace prev; workspace prev
+bindsym $mod+shift+l move container to workspace next; workspace next
 
 
 # Resize Windows
@@ -200,7 +192,7 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 
-bindsym $alt+r mode "resize"
+bindsym $mod+r mode "resize"
 
 
 # System Control
@@ -240,7 +232,7 @@ bar {
         tray_padding 0
         # workspace_buttons yes
         # status_command bumblebee-status -m nic disk:root cpu memory battery date time pasink pasource dnf -p root.path=/ time.format="%H:%M CW %V" date.format="%a, %b %d %Y" -t gruvbox-powerline
-        status_command bumblebee-status -m nic disk:root memory date time pasink pasource dnf cpu battery -p root.path=/ time.format="%H:%M CW %V" date.format="%a, %b %d %Y" -t gruvbox-powerline
+        status_command bumblebee-status -m nic disk:root memory date time pasink pasource dnf cpu battery -p root.path=/ time.format="%r" date.format="%a, %b %d %Y" -t gruvbox-powerline
 }
 
 
@@ -251,6 +243,9 @@ bar {
 exec_always --no-startup-id xrandr --output HDMI1 --off --output VIRTUAL1 --off --output eDP1 --primary --mode 1920x1080 --pos 0x0 --rotate normal
 
 # exec_always --no-startup-id ~/.config/polybar/launch.sh
+
+# Set tap-to-click on the touchpad (xorg-xinput)
+exec --no-startup-id xinput set-prop 12 298 1
 
 exec --no-startup-id dropbox-cli start
 exec --no-startup-id feh --bg-fill ~/Documents/wallpapers/aurora.jpg

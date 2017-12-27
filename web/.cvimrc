@@ -14,10 +14,8 @@ let searchlimit = 20
 let scrollstep = 60
 let barposition = "bottom"
 
-let mapleader = ","
 
-"NAVIGATION
-
+"------ NAVIGATION ------"
 map d closeTab
 map u lastClosedTab
 
@@ -29,8 +27,11 @@ map l nextTab
 
 map S :tabnew google<space>
 
+
+let mapleader = ","
 map <leader>e :open! chrome://extensions<CR>
 map <leader>p :togglepin<CR>
+map ,d :chrome downloads
 
 map R reloadTabUncached
 
@@ -42,6 +43,14 @@ unmap a
 map Y vy
 map y yankDocumentUrl
 map p P
+
+
+
+"------ SEARCH ENGINES ------"
+let searchengine fin = "https://www.google.com/search?tbm=fin&q=%s"
+let searchengine slick = ["https://slickdeals.net/", "https://slickdeals.net/newsearch.php?q=%s"]
+
+let completionengines = ["google", "amazon"]
 
 " NOT USING THE FOLLOWING ANYMORE - since I can't do cross platform / cross machine easily
 " ... > Settings > Extensions > cVim > [x] Allow access to file URLs

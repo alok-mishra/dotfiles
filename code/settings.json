@@ -35,6 +35,5 @@
     },
 
     "window.menuBarVisibility": "toggle",
-    "vim.disableAnnoyingNeovimMessage": true,
     "git.enableSmartCommit": true
 }

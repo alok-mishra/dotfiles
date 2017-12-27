@@ -82,7 +82,11 @@ if [ -f ~/.aliases ]; then
 fi
 
 ##################################### ANGULAR  ##################################### 
+export PATH=$PATH:~/.config/yarn/global/node_modules/.bin
+
 alias ngs='ng server --open'
+alias nggc='ng generate component'
+alias nggl='ng generate class'
 
 ##################################### FLUTTER  #####################################
 export PATH=$PATH:~/sdk/flutter/bin

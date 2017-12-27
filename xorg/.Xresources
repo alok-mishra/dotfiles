@@ -19,3 +19,6 @@ urxvt*scrollBar: false
 
 urxvt*transparent: true
 urxvt*shading: 40
+
+! Font
+urxvt*font: xft:DejavuSansMono:size=9
