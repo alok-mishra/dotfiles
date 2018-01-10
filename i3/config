@@ -7,7 +7,7 @@
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 set $mod Mod4
 set $alt Mod1
-set $molt Mod4+Mod1
+set $malt Mod4+Mod1
 
 set $ws1 1:term
 set $ws2 2:web
@@ -60,7 +60,7 @@ for_window [class="^.*"] border pixel 2, focus
 # Configuration
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # reload the configuration file
-# bindsym $mod+r reload
+bindsym $mod+r reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+shift+r restart
 # exit i3 (logs you out of your X session)
@@ -82,12 +82,13 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 2
 
 # Apps
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# bindsym $molt+w exec --no-startup-id waterfox
-bindsym $molt+c exec --no-startup-id code
-bindsym $molt+w exec --no-startup-id google-chrome-stable
-bindsym $molt+f exec --no-startup-id firefox
-bindsym $molt+q exec --no-startup-id qutebrowser
-bindsym $molt+r exec --no-startup-id i3-sensible-terminal -e ranger
+# bindsym $malt+w exec --no-startup-id waterfox
+bindsym $malt+b exec --no-startup-id i3-sensible-terminal -e bc
+bindsym $malt+c exec --no-startup-id code
+bindsym $malt+f exec --no-startup-id firefox
+bindsym $malt+q exec --no-startup-id qutebrowser
+bindsym $malt+r exec --no-startup-id i3-sensible-terminal -e ranger
+bindsym $malt+w exec --no-startup-id google-chrome-stable
 
 
 # Layout Keybindings
@@ -152,12 +153,12 @@ bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6
 
 bindsym $mod+h workspace prev
-bindsym $mod+left workspace prev
-bindsym $mod+shift+tab workspace prev
+bindsym $mod+Left workspace prev
+bindsym $mod+shift+Tab workspace prev
 
 bindsym $mod+l workspace next
-bindsym $mod+right workspace next
-bindsym $mod+tab workspace next
+bindsym $mod+Right workspace next
+bindsym $mod+Tab workspace next
 
 
 # move focused container to workspace
@@ -190,9 +191,10 @@ mode "resize" {
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
 }
 
-bindsym $mod+r mode "resize"
+bindsym $mod+w mode "resize"
 
 
 # System Control
@@ -221,18 +223,24 @@ bindsym $mod+v exec --no-startup-id gvim ~/.config/i3/config
 # i3bar Status
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 bar {
+        status_command i3blocks 
         # status_command i3status
-        i3bar_command i3bar -t
+        # i3bar_command i3bar -t
         # mode hide # dock, hide, invisible
         # hidden_state hide # show, hide
         # modifier $mod
         position top
-        font pango: DejaVu Sans Mono for Powerline 10
+        font pango: FontAwesome 12, DejaVu Sans Mono for Powerline 10
         tray_output primary
         tray_padding 0
+        # strip_workspace_numbers yes
+
+        colors {
+        }
+
         # workspace_buttons yes
         # status_command bumblebee-status -m nic disk:root cpu memory battery date time pasink pasource dnf -p root.path=/ time.format="%H:%M CW %V" date.format="%a, %b %d %Y" -t gruvbox-powerline
-        status_command bumblebee-status -m nic disk:root memory date time pasink pasource dnf cpu battery -p root.path=/ time.format="%r" date.format="%a, %b %d %Y" -t gruvbox-powerline
+        # status_command bumblebee-status -m nic disk:root memory date time pasink pasource dnf cpu battery -p root.path=/ time.format="%r" date.format="%a, %b %d %Y" -t gruvbox-powerline
 }
 
 
@@ -245,7 +253,7 @@ exec_always --no-startup-id xrandr --output HDMI1 --off --output VIRTUAL1 --off 
 # exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 # Set tap-to-click on the touchpad (xorg-xinput)
-exec --no-startup-id xinput set-prop 12 298 1
+exec --no-startup-id xinput set-prop "SYN2602:00 06CB:78D3 Touchpad" "libinput Tapping Enabled" 1
 
 exec --no-startup-id dropbox-cli start
 exec --no-startup-id feh --bg-fill ~/Documents/wallpapers/aurora.jpg

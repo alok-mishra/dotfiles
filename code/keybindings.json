@@ -5,16 +5,16 @@
         "command": "workbench.action.previousEditor"
     },
     {
-        "key": "ctrl+pageup",
-        "command": "-workbench.action.previousEditor"
-    },
-    {
         "key": "ctrl+l",
         "command": "workbench.action.nextEditor"
     },
     {
-        "key": "ctrl+pagedown",
-        "command": "-workbench.action.nextEditor"
+        "key": "ctrl+alt+h",
+        "command": "workbench.action.terminal.focusPrevious"
+    },
+    {
+        "key": "ctrl+alt+l",
+        "command": "workbench.action.terminal.focusNext"
     },
     {
         "key": "alt+`",
@@ -24,5 +24,37 @@
         "key": "alt+`",
         "command": "workbench.action.focusActiveEditorGroup",
         "when": "terminalFocus"
-    }
+    },
+    {
+        "key": "ctrl+w ctrl+w",
+        "command": "workbench.action.closeActiveEditor"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "workbench.action.quickOpenNavigatePreviousInFilePicker",
+        "when": "inFilesPicker && inQuickOpen"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "workbench.action.quickOpenNavigateNextInFilePicker",
+        "when": "inFilesPicker && inQuickOpen"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "workbench.action.quickOpenNavigateNextInTerminalPicker",
+        "when": "inQuickOpen"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "workbench.action.quickOpenNavigatePreviousInTerminalPicker",
+        "when": "inQuickOpen"
+    },
+    {
+        "key": "ctrl+alt+d",
+        "command": "syncing.downloadSettings"
+    },
+    {
+        "key": "ctrl+alt+u",
+        "command": "syncing.uploadSettings"
+    },
 ]

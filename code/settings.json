@@ -1,11 +1,59 @@
 {
-    // VSCode
-    "terminal.integrated.shell.windows": "C:\\Apps\\Git\\bin\\bash.exe",
+    ////// VSCODE //////
+    "terminal.integrated.shell.windows": "C:\\Workspace\\Apps\\Git\\bin\\bash.exe",
     "workbench.colorTheme": "One Dark Pro",
     "workbench.iconTheme": "material-icon-theme",
+    "material-icon-theme.activeIconPack": "angular",
     "editor.wordWrap": "on",
 
-    // Sass
+    "workbench.colorCustomizations": {
+        "editor.background": "#1D2021",
+        "editor.selectionBackground": "#689D6A44",
+        "editorCursor.foreground": "#BBB",
+        "editor.lineHighlightBackground": "#282828",
+    },
+
+    "editor.selectionHighlight": false,
+
+
+    ////// MISCELLANEOUS //////
+    "git.enableSmartCommit": true,
+    "php.validate.enable": false,
+    "window.menuBarVisibility": "toggle",
+
+    "files.associations": {
+        "*.aliases": "shellscript"
+    },
+
+
+    ////// VIM //////
+
+    "vim.handleKeys":{
+        "<C-a>": false,
+        "<C-c>": false,
+        "<C-v>": false,
+        "<C-f>": false,
+        "<C-y>": false,
+    },
+
+    "vim.hlsearch": true,
+    "vim.searchHighlightColor": "rgba(104, 157, 106, 0.4)", // #689D6A
+    // "vim.searchHighlightColor": "rgba(214, 96, 16, 0.4)", // #D65D0E
+
+    // use native undo and redo
+    "vim.otherModesKeyBindings": [
+        {
+            "before": ["u"], "after": [],
+            "commands": [ { "command": "undo" } ]
+        },
+        {
+            "before": ["C-r"], "after": [],
+            "commands": [ { "command": "redo" } ]
+        },
+    ],
+
+
+    ////// SASS //////
     "liveSassCompile.settings.generateMap": false,
     "liveSassCompile.settings.formats":[
         {
@@ -14,26 +62,4 @@
         }
     ],
 
-    // PHP
-    "php.validate.enable": false,
-
-    // Sync
-    "sync.gist": "81d70764925a6d3af00c35b3feb00fb0",
-    "sync.lastUpload": "",
-    "sync.lastDownload": "",
-    "sync.autoDownload": false,
-    "sync.autoUpload": false,
-    "sync.forceDownload": false,
-    "sync.anonymousGist": false,
-    "sync.host": "",
-    "sync.pathPrefix": "",
-    "sync.quietSync": false,
-    "sync.askGistName": false,
-
-    "files.associations": {
-        "*.aliases": "shellscript"
-    },
-
-    "window.menuBarVisibility": "toggle",
-    "git.enableSmartCommit": true
 }

@@ -7,6 +7,8 @@ set noautofocus
 
 set autoupdategist
 
+set autohidecursor
+
 set typelinkhints
 " set numerichints    "requried for typelinkhints
 
@@ -16,6 +18,9 @@ let barposition = "bottom"
 
 
 "------ NAVIGATION ------"
+
+unmap x
+
 map d closeTab
 map u lastClosedTab
 
@@ -28,10 +33,11 @@ map l nextTab
 map S :tabnew google<space>
 
 
-let mapleader = ","
-map <leader>e :open! chrome://extensions<CR>
-map <leader>p :togglepin<CR>
-map ,d :chrome downloads
+map ,p :togglepin<CR>
+map ,d :chrome downloads<CR>
+map ,s :settings<CR>
+map ,S :open! chrome://settings<CR>
+map ,e :open! chrome://extensions<CR>
 
 map R reloadTabUncached
 
@@ -49,8 +55,27 @@ map p P
 "------ SEARCH ENGINES ------"
 let searchengine fin = "https://www.google.com/search?tbm=fin&q=%s"
 let searchengine slick = ["https://slickdeals.net/", "https://slickdeals.net/newsearch.php?q=%s"]
+let searchengine lucid = ["https://lucidlife.wordpress.com/", "https://lucidlife.wordpress.com/?s=%s&submit=Go"]
+let searchengine yt = ["https://www.youtube.com/", "https://www.youtube.com/results?search_query=%s"]
 
 let completionengines = ["google", "amazon"]
+
+
+"------ QUICK MARKS ------"
+let qmark c = ["https://www.coursera.org/", "https://material.angular.io/"]
+let qmark m = ["https://www.gmail.com/"]
+
+
+"------ Blacklists ------"
+"let blacklists = ['https://mail.google.com/*']
+
+site '*://mail.google.com/*' {
+  unmap J
+  unmap K
+  unmap c
+  unmap o
+  unmap x
+}
 
 " NOT USING THE FOLLOWING ANYMORE - since I can't do cross platform / cross machine easily
 " ... > Settings > Extensions > cVim > [x] Allow access to file URLs

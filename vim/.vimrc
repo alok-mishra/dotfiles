@@ -182,9 +182,9 @@ set expandtab       " uses the correct number of spaces
 set smartindent     " automatically indents based on language
 set shiftround      " round indent to a multiple of shiftwidth
 set autoindent      " uses the indent from the previous line
-set tabstop=2       " how many spaces an actual tab shows
-set softtabstop=2   " how many spaces a tab uses in insert mode
-set shiftwidth=2    " how many spaces a tab uses when shifting << >>
+set tabstop=3       " how many spaces an actual tab shows
+set softtabstop=3   " how many spaces a tab uses in insert mode
+set shiftwidth=3    " how many spaces a tab uses when shifting << >>
 set nofoldenable    " all text is unfolded at start
 
 

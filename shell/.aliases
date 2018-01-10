@@ -84,6 +84,7 @@ fi
 ##################################### ANGULAR  ##################################### 
 export PATH=$PATH:~/.config/yarn/global/node_modules/.bin
 
+alias ngn='ng new --style=scss'
 alias ngs='ng server --open'
 alias nggc='ng generate component'
 alias nggl='ng generate class'
