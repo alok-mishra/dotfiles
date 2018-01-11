@@ -204,6 +204,7 @@ set foldlevel=0
 " FileTypes
 au BufRead,BufNewFile *.aspx,*.asmx,*.ascx,*.master set filetype=aspnetcs
 au BufRead,BufNewFile *.aliases set filetype=sh
+au FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
 "au GUIEnter * simalt ~x         " maximize window on startup
 
