@@ -67,15 +67,15 @@ let qmark m = ["https://www.gmail.com/"]
 
 
 "------ Blacklists ------"
-"let blacklists = ['https://mail.google.com/*']
+let blacklists = ['https://mail.google.com/*']
 
-site '*://mail.google.com/*' {
-  unmap J
-  unmap K
-  unmap c
-  unmap o
-  unmap x
-}
+" site '*://mail.google.com/*' {
+"   unmap J
+"   unmap K
+"   unmap c
+"   unmap o
+"   unmap x
+" }
 
 " NOT USING THE FOLLOWING ANYMORE - since I can't do cross platform / cross machine easily
 " ... > Settings > Extensions > cVim > [x] Allow access to file URLs

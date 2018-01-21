@@ -86,6 +86,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 2
 bindsym $malt+b exec --no-startup-id i3-sensible-terminal -e bc
 bindsym $malt+c exec --no-startup-id code
 bindsym $malt+f exec --no-startup-id firefox
+bindsym $malt+n exec --no-startup-id nautilus
 bindsym $malt+q exec --no-startup-id qutebrowser
 bindsym $malt+r exec --no-startup-id i3-sensible-terminal -e ranger
 bindsym $malt+w exec --no-startup-id google-chrome-stable
@@ -129,6 +130,9 @@ bindsym $mod+q kill
 bindsym $mod+shift+m exec --no-startup-id dmenu_run
 # only display applications with a .desktop file.
 bindsym $mod+m exec --no-startup-id i3-dmenu-desktop
+
+# Mount USB - seems like SD cards get automounted
+# bindsym $mod+u exec --no-startup-id udisksctl mount -b /dev/sdb1
 
 # focus container on the left, bottom, top, right
 bindsym $alt+h focus left
@@ -201,11 +205,11 @@ bindsym $mod+w mode "resize"
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 set $lock i3lock && sleep 1
 
-set $mode_system "System [l]ock, [L]ogout, [r]eboot, [s]uspend, [S]hutdown"
+set $mode_system "System [l]ock, [L]ogout, [R]eboot, [s]uspend, [S]hutdown"
 mode $mode_system {
     bindsym l exec --no-startup-id $lock, mode "default"
     bindsym Shift+l exec --no-startup-id i3-msg exit, mode "default"
-    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+r exec --no-startup-id systemctl reboot, mode "default"
     bindsym s exec --no-startup-id $lock && systemctl suspend, mode "default"
     bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
 

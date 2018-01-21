@@ -88,6 +88,7 @@ alias ngn='ng new --style=scss'
 alias ngs='ng server --open'
 alias nggc='ng generate component'
 alias nggl='ng generate class'
+alias ngb='ng build --prod'
 
 ##################################### FLUTTER  #####################################
 export PATH=$PATH:~/sdk/flutter/bin
