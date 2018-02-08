@@ -5,42 +5,16 @@
     "workbench.iconTheme": "material-icon-theme",
     "material-icon-theme.activeIconPack": "angular",
     "editor.wordWrap": "on",
-
-    // "workbench.colorCustomizations": {
-    //     "editor.background": "#1D2021",
-    //     "editor.selectionBackground": "#689D6A44",
-    //     "editorCursor.foreground": "#BBB",
-    //     "editor.lineHighlightBackground": "#282828",
-    // },
-
     "editor.selectionHighlight": false,
 
 
-    ////// MISCELLANEOUS //////
-    "git.enableSmartCommit": true,
-    "php.validate.enable": false,
-    "window.menuBarVisibility": "toggle",
-
-    "beautify.config": {
-        "indent_size": 4,
-        "newline_between_rules": true,
-        "space_around_combinator": true,
-    },
-
-    "files.associations": {
-        "*.aliases": "shellscript"
-    },
-
-
     ////// VIM //////
-
     "vim.handleKeys":{
         "<C-a>": false,
         "<C-c>": false,
         "<C-f>": false,
         "<C-k>": false,
         "<C-v>": false,
-        "<C-w>": false,
         "<C-y>": false,
     },
 
@@ -70,7 +44,30 @@
         }
     ],
 
-    ////// SERVER //////
+
+    ////// MISCELLANEOUS //////
+    "git.enableSmartCommit": true,
+    "php.validate.enable": false,
     "liveServer.settings.donotShowInfoMsg": true,
+    "material-icon-theme.showUpdateMessage": false,    
+    "window.menuBarVisibility": "toggle",
+
+    "beautify.config": {
+        "indent_size": 4,
+        "newline_between_rules": true,
+        "space_around_combinator": true,
+    },
+
+    "files.associations": {
+        "*.aliases": "shellscript"
+    },
+
+
+    // "workbench.colorCustomizations": {
+    //     "editor.background": "#1D2021",
+    //     "editor.selectionBackground": "#689D6A44",
+    //     "editorCursor.foreground": "#BBB",
+    //     "editor.lineHighlightBackground": "#282828",
+    // },
 
 }

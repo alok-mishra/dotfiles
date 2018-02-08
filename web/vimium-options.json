@@ -1,5 +1,5 @@
 {
-  "settingsVersion": "1.62.8",
+  "settingsVersion": "1.62.4",
   "exclusionRules": [
     {
       "pattern": "https?://mail.google.com/*",
@@ -9,7 +9,7 @@
   "filterLinkHints": false,
   "waitForEnterForFilteredHints": true,
   "hideHud": false,
-  "keyMappings": "# Insert your preferred key mappings here.\n\nunmap x\nunmap X\nunmap d\nunmap u\n\nmap h previousTab\nmap l nextTab\n\nd removeTab\nu restoreTab",
+  "keyMappings": "# Insert your preferred key mappings here.\n\nunmap x\nunmap X\nunmap d\nunmap u\n\nmap <c-d> scrollPageDown\nmap <c-u> scrollPageUp\n\nmap h previousTab\nmap l nextTab\n\nmap d removeTab\nmap u restoreTab",
   "linkHintCharacters": "sadfjklewcmpgh",
   "linkHintNumbers": "0123456789",
   "newTabUrl": "about:newtab",

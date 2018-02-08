@@ -67,7 +67,7 @@ let qmark m = ["https://www.gmail.com/"]
 
 
 "------ Blacklists ------"
-let blacklists = ['https://mail.google.com/*']
+let blacklists = ['http://127.0.0.1/*', 'http://localhost/*', 'https://mail.google.com/*']
 
 " site '*://mail.google.com/*' {
 "   unmap J

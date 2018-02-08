@@ -502,5 +502,5 @@ let @k='gg:silent!/php/dllFqct"perception5/session.php'
 " JSON Topic Titles - pastes list of titles from clipboard, adds quotes/commas to lines of section. Removes whitespace. (Place cursor inside topic block)
 let @j='vi]x"*Pvi]:g/^$/dvi]I"vi]:s/\s*$/\",/f,xj=%:nohls'
 
-" JSON Image and Audio entries for New Dealer - pastes list of absolute paths from clipboard, removes all except filename, adds quotes/commas to lines of section. (Place cursor inside images or audio block)
-let @d='vi]x"*Pvi]T\xvi]:s/\..*//vi]I"vi]:s/$/\",/f,xj0=%:nohls'
+" JSON Image and Audio entries for Fast Track - pastes list of absolute paths from clipboard, removes all except filename, adds quotes/commas to lines of section. (Place cursor inside images or audio block)
+let @f='vi]x"*Pvi]T\xvi]:s/\..*//vi]I"vi]:s/$/\",/f,xj0=%:nohls'

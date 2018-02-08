@@ -26,7 +26,7 @@
         "when": "terminalFocus"
     },
     {
-        "key": "ctrl+w ctrl+w",
+        "key": "ctrl+alt+w",
         "command": "workbench.action.closeActiveEditor"
     },
     {
