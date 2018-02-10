@@ -1,6 +1,6 @@
 alias ls='ls --color=auto'
-alias l='ls -hlF'
-alias ll='ls -hAlF'
+alias l='ls -hAlF'
+alias ll='ls -hlF'
 alias vi='vim'
 alias grep='grep --color=auto'
 
@@ -49,8 +49,7 @@ alias dssh='ssh docker@192.168.99.100'
 
 
 ##################################### GIT #####################################
-if [ -f ~/.dotfiles/git/git.aliases ]; then
-    source ~/.dotfiles/git/git.aliases
+if [ -f ~/.dotfiles/git/git.aliases ]; then source ~/.dotfiles/git/git.aliases
     alias viga='vi ~/.dotfiles/git/git.aliases'
 fi
 
@@ -116,3 +115,10 @@ alias adbu='adb uninstall'
 
 ##################################### GO #####################################
 alias gor='go run'
+
+##################################### HOME ASSISTANT #####################################
+if [ -f /home/homeassistant/.homeassistant/ha.aliases ]; then
+   source /home/homeassistant/.homeassistant/ha.aliases
+   alias viha='vi /home/homeassistant/.homeassistant/ha.aliases'
+fi
+
