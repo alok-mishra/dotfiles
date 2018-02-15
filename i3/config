@@ -11,7 +11,7 @@ set $malt Mod4+Mod1
 
 set $ws1 1:term
 set $ws2 2:web
-set $ws3 3:mess
+set $ws3 3:misc
 set $ws4 4:code
 set $ws5 5:data
 set $ws6 6:media
@@ -76,8 +76,8 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 
 # Brightness
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-bindsym XF86MonBrightnessUp exec xbacklight -inc 2
-bindsym XF86MonBrightnessDown exec xbacklight -dec 2
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 2
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 2
 
 
 # Apps

@@ -11,6 +11,7 @@
     ////// VIM //////
     "vim.handleKeys":{
         "<C-a>": false,
+        "<C-b>": false,
         "<C-c>": false,
         "<C-f>": false,
         "<C-k>": false,
@@ -46,12 +47,6 @@
 
 
     ////// MISCELLANEOUS //////
-    "git.enableSmartCommit": true,
-    "php.validate.enable": false,
-    "liveServer.settings.donotShowInfoMsg": true,
-    "material-icon-theme.showUpdateMessage": false,    
-    "window.menuBarVisibility": "toggle",
-
     "beautify.config": {
         "indent_size": 4,
         "newline_between_rules": true,
@@ -62,6 +57,13 @@
         "*.aliases": "shellscript"
     },
 
+    "git.enableSmartCommit": true,
+    "php.validate.enable": false,
+    "liveServer.settings.donotShowInfoMsg": true,
+    "material-icon-theme.showUpdateMessage": false,    
+    "window.menuBarVisibility": "toggle",
+    "workbench.startupEditor": "newUntitledFile",
+    "explorer.confirmDelete": false,
 
     // "workbench.colorCustomizations": {
     //     "editor.background": "#1D2021",

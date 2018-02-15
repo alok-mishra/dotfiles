@@ -49,6 +49,8 @@
         "command": "workbench.action.quickOpenNavigatePreviousInTerminalPicker",
         "when": "inQuickOpen"
     },
+
+    // SYNC //
     {
         "key": "ctrl+alt+d",
         "command": "syncing.downloadSettings"
