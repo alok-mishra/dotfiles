@@ -2,6 +2,9 @@
 #  i3 config - https://i3wm.org/docs/userguide.html   #
 ###### ###### ###### ###### ###### ###### ###### ######
 
+# Font Icons:
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+set $icons            
 
 # Settings
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -9,18 +12,19 @@ set $mod Mod4
 set $alt Mod1
 set $malt Mod4+Mod1
 
-set $ws1 1:term
-set $ws2 2:web
-set $ws3 3:misc
-set $ws4 4:code
-set $ws5 5:data
-set $ws6 6:media
+# 1:Terminal, 2:Web, 3:Miscellaneous, 4:Code, 5:Social, 6:Media
+set $ws1 "1:  "
+set $ws2 "2:  "
+set $ws3 "3:  "
+set $ws4 "4:  "
+set $ws5 "5:  "
+set $ws6 "6:  "
 
 # Mouse
 focus_follows_mouse no
 
 # Font for window titles.
-font pango:DejaVu Sans Mono 10 
+font pango:DejaVu Sans Mono, FontAwesome 10 
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -49,9 +53,8 @@ client.background       #ffffff
 
 # Assignments (xprop WM_CLASS)
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-assign [class="Google-chrome"] 2:web
-assign [class="Code"] 4:code
-assign [class="Waterfox"] 2:web
+assign [class="Google-chrome"] $ws2
+assign [class="Code"] $ws4
 
 for_window [class="^.*"] border pixel 2, focus
 
@@ -226,26 +229,34 @@ bindsym $mod+v exec --no-startup-id gvim ~/.config/i3/config
 
 # i3bar Status
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 bar {
-        status_command i3blocks 
-        # status_command i3status
+        position top
+        status_command SCRIPT_DIR=~/.config/i3/blocklets i3blocks -c ~/.config/i3/i3blocks.conf
         # i3bar_command i3bar -t
+        # status_command i3status
         # mode hide # dock, hide, invisible
         # hidden_state hide # show, hide
         # modifier $mod
-        position top
-        font pango: FontAwesome 12, DejaVu Sans Mono for Powerline 10
+
+        font pango: DejaVu Sans Mono, FontAwesome 12
         tray_output primary
         tray_padding 0
-        # strip_workspace_numbers yes
+        strip_workspace_numbers yes
 
         colors {
+            background #00000000
+            statusline #CCCCCC
         }
-
-        # workspace_buttons yes
-        # status_command bumblebee-status -m nic disk:root cpu memory battery date time pasink pasource dnf -p root.path=/ time.format="%H:%M CW %V" date.format="%a, %b %d %Y" -t gruvbox-powerline
-        # status_command bumblebee-status -m nic disk:root memory date time pasink pasource dnf cpu battery -p root.path=/ time.format="%r" date.format="%a, %b %d %Y" -t gruvbox-powerline
 }
+
+bar {
+        position bottom
+        status_command i3blocks 
+        workspace_buttons no
+        tray_output none
+}
+
 
 
 # Startup

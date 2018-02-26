@@ -1,6 +1,6 @@
 alias ls='ls --color=auto'
 alias l='ls -hAlF'
-alias ll='ls -hlF'
+alias ll='ls -halF'
 alias vi='vim'
 alias grep='grep --color=auto'
 
