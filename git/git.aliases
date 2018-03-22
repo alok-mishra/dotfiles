@@ -97,5 +97,7 @@ alias ghi='github_init'
 alias gclng2='git clone https://github.com/angular/quickstart.git'
 
 # GitLab
+gitlab_clone() { git clone git@gitlab.com:mediarave/$1 $2; }
+alias gclgl='gitlab_clone'
 alias remotelabpackage='git remote add gitlab git@gitlab.com:fcapi/package.git'
 alias remotelabmanifest='git remote add gitlab git@gitlab.com:fcapi/manifest.git'

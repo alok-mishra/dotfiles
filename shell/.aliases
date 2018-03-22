@@ -20,6 +20,8 @@ alias sr='screen -r'
 
 alias sf='setfont sun12x22'
 
+alias calc='bc --quiet'
+
 
 ##################################### DOCKER #####################################
 alias dm='docker-machine'
@@ -39,6 +41,14 @@ alias dat=attach_terminal
 attach_terminal() { docker exec -it "$1" bash; }
 
 alias dim='docker images'
+alias diP='docker image prune'
+alias dRmi='docker rmi'
+
+alias dvl='docker volume ls'
+alias dvP='docker volume prune'
+
+alias dc='docker-compose'
+alias dcup='docker-compose up -d'
 
 alias ds='docker start'
 alias dS='docker stop'
@@ -66,8 +76,10 @@ alias up='sudo apt-get update && time sudo apt-get upgrade'
 alias upd='sudo apt-get update && time sudo apt-get dist-upgrade'
 
 alias dblog='sudo cat /var/log/mysql/error.log'
-alias dbdump='mysqldump --socket=/home/mysql/mysql.sock --user wordpress --password=raeh3AVaeche wordpress > ~/backups/starfish.sql'
 alias dbres='sudo service mysql start'
+alias dbbak=db_backup
+db_backup() { mysqldump --user wordpress --password=$1 wordpress > ~/backups/db-backup.sql; }
+
 
 alias weblog='sudo cat /var/log/apache2/access.log'
 alias rpclog='sudo grep xmlrpc /var/log/apache2/access.log'

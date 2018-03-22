@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  db:
+    image: mysql
+    volumes:
+      - ./.data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootDBPass
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wpDBPass
+
+  wp:
+    image: wordpress
+    volumes:
+      - ./:/var/www/html
+    links:
+      - db:mysql
+    ports:
+      - 80:80
+    restart: always
+    environment:
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wpDBPass
