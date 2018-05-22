@@ -32,6 +32,7 @@ alias gchm='git checkout master'
 alias gd='git diff'
 alias gdn='git diff --name-only'
 alias gdm='git diff origin/master'
+alias gdo='git diff origin'
 
 alias gdt='git difftool'
 
@@ -50,12 +51,12 @@ alias pull='git pull'
 alias push='git push'
 alias pushf='git push --force'
 
-alias echoall='for remote in `git branch -r | grep -v "\->"`; do echo ${remote#origin/} $remote; done'
+alias showall='for remote in `git branch -r | grep -v "\->" | grep origin`; do echo ${remote#origin/} $remote; done;'
 
 # 
-alias trackall='for remote in `git branch -r | grep -v "\->"`; do git branch --track ${remote#origin/} $remote; done;'
+alias trackall='for remote in `git branch -r | grep -v "\->" | grep origin`; do git branch --track ${remote#origin/} $remote; done;'
 alias fetchall='git fetch --all'
-alias pushall='git push REMOTE --all'
+alias pullall='git pull --all'
 
 alias gm='git merge'
 alias gmm='git merge master'
@@ -99,5 +100,6 @@ alias gclng2='git clone https://github.com/angular/quickstart.git'
 # GitLab
 gitlab_clone() { git clone git@gitlab.com:mediarave/$1 $2; }
 alias gclgl='gitlab_clone'
+alias pushalllab='git push gitlab --all'
 alias remotelabpackage='git remote add gitlab git@gitlab.com:fcapi/package.git'
 alias remotelabmanifest='git remote add gitlab git@gitlab.com:fcapi/manifest.git'

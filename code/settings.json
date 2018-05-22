@@ -6,6 +6,7 @@
     "material-icon-theme.activeIconPack": "angular",
     "editor.wordWrap": "on",
     "editor.selectionHighlight": false,
+    "editor.detectIndentation": false,
 
 
     ////// VIM //////
@@ -19,6 +20,7 @@
         "<C-y>": false,
     },
 
+    "vim.leader": ",",
     "vim.hlsearch": true,
     "vim.searchHighlightColor": "rgba(104, 157, 106, 0.4)", // #689D6A
     // "vim.searchHighlightColor": "rgba(214, 96, 16, 0.4)", // #D65D0E
@@ -35,15 +37,32 @@
         },
     ],
 
+    "vim.otherModesKeyBindingsNonRecursive": [
+        {
+            "before":["leader", "/"], "after":[],
+            "commands": [ { "command": ":nohl", "args": [] } ]
+        },
+        {
+            "before":["leader", "b"], "after":[],
+            "commands": [ { "command": "workbench.action.tasks.build", "args": [] } ]
+        },
+        {
+            "before": ["leader", "w"], "after": [],
+            "commands": [ { "command": "workbench.action.files.save", "args": [] } ]
+        }
+    ],
 
     ////// SASS //////
-    "liveSassCompile.settings.generateMap": false,
     "liveSassCompile.settings.formats":[
         {
             "format": "compact",
             "extensionName": ".css"
         }
     ],
+    "liveSassCompile.settings.includeItems": [
+        // "**/css/**",
+    ],
+    "liveSassCompile.settings.generateMap": false,
 
 
     ////// MISCELLANEOUS //////
@@ -57,19 +76,49 @@
         "*.aliases": "shellscript"
     },
 
+    "terminal.integrated.showExitAlert": false,
     "git.enableSmartCommit": true,
     "php.validate.enable": false,
     "liveServer.settings.donotShowInfoMsg": true,
     "material-icon-theme.showUpdateMessage": false,    
     "window.menuBarVisibility": "toggle",
     "workbench.startupEditor": "newUntitledFile",
+    "workbench.statusBar.feedback.visible": false,
     "explorer.confirmDelete": false,
+    "gitlens.keymap": "alternate",
+    "telemetry.enableTelemetry": false,
+    "telemetry.enableCrashReporter": false,
 
-    // "workbench.colorCustomizations": {
-    //     "editor.background": "#1D2021",
-    //     "editor.selectionBackground": "#689D6A44",
-    //     "editorCursor.foreground": "#BBB",
-    //     "editor.lineHighlightBackground": "#282828",
-    // },
+    ////// AREA UNDER DEVELOPMENT //////
+    "vim.leader": "<space>",
+    "vim.otherModesKeyBindingsNonRecursive": [
+        {
+            "before":["leader", "n"], "after":[],
+            "commands": [ { "command": ":nohl", "args": [] } ]
+        },
+        {
+            "before": ["leader", "s"], "after": [],
+            "commands": [ { "command": "workbench.action.files.save", "args": [] } ]
+        }
+    ],
+
+    "workbench.colorCustomizations": {
+        "editorSuggestWidget.selectedBackground": "#076678"
+        // "editor.background": "#1D2021",
+        // "editor.selectionBackground": "#689D6A44",
+        // "editorCursor.foreground": "#BBB",
+        // "editor.lineHighlightBackground": "#282828",
+    },
+    "gitlens.advanced.messages": {
+        "suppressCommitHasNoPreviousCommitWarning": false,
+        "suppressCommitNotFoundWarning": false,
+        "suppressFileNotUnderSourceControlWarning": false,
+        "suppressGitVersionWarning": false,
+        "suppressLineUncommittedWarning": false,
+        "suppressNoRepositoryWarning": false,
+        "suppressResultsExplorerNotice": false,
+        "suppressShowKeyBindingsNotice": true
+    },
+    "explorer.confirmDragAndDrop": false,
 
 }

@@ -48,7 +48,8 @@ alias dvl='docker volume ls'
 alias dvP='docker volume prune'
 
 alias dc='docker-compose'
-alias dcup='docker-compose up -d'
+alias dcu='docker-compose up -d'
+alias dcd='docker-compose down'
 
 alias ds='docker start'
 alias dS='docker stop'
@@ -92,11 +93,17 @@ if [ -f ~/.aliases ]; then
     source .aliases
 fi
 
+##################################### Node / Yarn ##################################### 
+
+alias nga='npm -g --verbose install'
+alias yga='yarn global --verbose add'
+alias ygu='yarn global --verbose upgrade'
+
 ##################################### ANGULAR  ##################################### 
 export PATH=$PATH:~/.config/yarn/global/node_modules/.bin
 
 alias ngn='ng new --style=scss'
-alias ngs='ng server --open'
+alias ngs='ng serve --open'
 alias nggc='ng generate component'
 alias nggl='ng generate class'
 alias ngb='ng build --prod'

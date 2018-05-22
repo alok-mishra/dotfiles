@@ -196,10 +196,10 @@ mode "resize" {
     bindsym l resize grow width 10 px or 10 ppt
 
     # same bindings, but for the arrow keys
-    bindsym Left resize shrink width 10 px or 10 ppt
-    bindsym Down resize grow height 10 px or 10 ppt
-    bindsym Up resize shrink height 10 px or 10 ppt
-    bindsym Right resize grow width 10 px or 10 ppt
+    bindsym Left resize shrink width 20 px or 20 ppt
+    bindsym Down resize grow height 20 px or 20 ppt
+    bindsym Up resize shrink height 20 px or 20 ppt
+    bindsym Right resize grow width 20 px or 20 ppt
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -239,7 +239,7 @@ bindsym $mod+v exec --no-startup-id gvim ~/.config/i3/config
 
 bar {
         position top
-        status_command SCRIPT_DIR=~/.config/i3/blocklets i3blocks -c ~/.config/i3/i3blocks.conf
+        status_command SCRIPT_DIR=~/.config/i3/blocklets i3blocks -c ~/.config/i3/i3blocks-top.conf
         # i3bar_command i3bar -t
         # status_command i3status
         # mode hide # dock, hide, invisible
@@ -259,7 +259,7 @@ bar {
 
 bar {
         position bottom
-        status_command SCRIPT_DIR=~/.config/i3/blocklets i3blocks -c ~/.config/i3/i3blocks-bottom.conf
+        status_command SCRIPT_DIR=~/.config/i3/blocklets i3blocks -c ~/.config/i3/i3blocks-bot.conf
         workspace_buttons no
         tray_output none
 }
