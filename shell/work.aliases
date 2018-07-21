@@ -65,7 +65,7 @@ clone_package_rebase() {
     cd $dir
     git rebase origin/master
     rm -rf .git*
-    vi zip_package.bat
+    vi zip-package.bat
     exit
 }
 

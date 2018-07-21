@@ -1,16 +1,41 @@
 {
     ////// VSCODE //////
-    "terminal.integrated.shell.windows": "C:\\Workspace\\Apps\\Git\\bin\\bash.exe",
-    "workbench.colorTheme": "Gruvbox Dark Medium",
-    "workbench.iconTheme": "material-icon-theme",
-    "material-icon-theme.activeIconPack": "angular",
+    "editor.fontFamily": "Consolas, monospace",
     "editor.wordWrap": "on",
     "editor.selectionHighlight": false,
     "editor.detectIndentation": false,
+    "editor.formatOnSave": true,
 
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+
+    "material-icon-theme.activeIconPack": "angular",
+    "material-icon-theme.showUpdateMessage": false,
+
+    "telemetry.enableTelemetry": false,
+    "telemetry.enableCrashReporter": false,
+
+    "terminal.integrated.shell.windows": "C:\\Workspace\\Apps\\Git\\bin\\bash.exe",
+    "terminal.integrated.showExitAlert": false,
+
+    "window.menuBarVisibility": "toggle",
+
+    "workbench.colorTheme": "Gruvbox Dark Hard",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.statusBar.feedback.visible": false,
+    "workbench.settings.openDefaultSettings": false,
+
+    "[jsonc]": {
+        "editor.formatOnSave": false
+    },
+
+    "files.associations": {
+        "*.aliases": "shellscript"
+    },
 
     ////// VIM //////
-    "vim.handleKeys":{
+    "vim.handleKeys": {
         "<C-a>": false,
         "<C-b>": false,
         "<C-c>": false,
@@ -20,13 +45,14 @@
         "<C-y>": false,
     },
 
-    "vim.leader": ",",
+    "vim.leader": "<space>",
     "vim.hlsearch": true,
     "vim.searchHighlightColor": "rgba(104, 157, 106, 0.4)", // #689D6A
     // "vim.searchHighlightColor": "rgba(214, 96, 16, 0.4)", // #D65D0E
 
     // use native undo and redo
-    "vim.otherModesKeyBindings": [
+
+    "vim.normalModeKeyBindings": [
         {
             "before": ["u"], "after": [],
             "commands": [ { "command": "undo" } ]
@@ -37,7 +63,7 @@
         },
     ],
 
-    "vim.otherModesKeyBindingsNonRecursive": [
+    "vim.normalModeKeyBindingsNonRecursive": [
         {
             "before":["leader", "/"], "after":[],
             "commands": [ { "command": ":nohl", "args": [] } ]
@@ -47,78 +73,37 @@
             "commands": [ { "command": "workbench.action.tasks.build", "args": [] } ]
         },
         {
+            "before":["leader", "n"], "after":[],
+            "commands": [ { "command": ":nohl", "args": [] } ]
+        },
+        {
             "before": ["leader", "w"], "after": [],
             "commands": [ { "command": "workbench.action.files.save", "args": [] } ]
         }
     ],
 
     ////// SASS //////
-    "liveSassCompile.settings.formats":[
-        {
-            "format": "compact",
-            "extensionName": ".css"
-        }
-    ],
-    "liveSassCompile.settings.includeItems": [
-        // "**/css/**",
-    ],
-    "liveSassCompile.settings.generateMap": false,
 
+    // Use node-sass command line instead of an extension
 
     ////// MISCELLANEOUS //////
-    "beautify.config": {
-        "indent_size": 4,
-        "newline_between_rules": true,
-        "space_around_combinator": true,
-    },
 
-    "files.associations": {
-        "*.aliases": "shellscript"
-    },
+    "prettier.tabWidth": 4,
+    "prettier.singleQuote": true,
+    "prettier.trailingComma": "es5",
 
-    "terminal.integrated.showExitAlert": false,
+    "markdown.preview.breaks": true,
     "git.enableSmartCommit": true,
     "php.validate.enable": false,
-    "liveServer.settings.donotShowInfoMsg": true,
-    "material-icon-theme.showUpdateMessage": false,    
-    "window.menuBarVisibility": "toggle",
-    "workbench.startupEditor": "newUntitledFile",
-    "workbench.statusBar.feedback.visible": false,
-    "explorer.confirmDelete": false,
-    "gitlens.keymap": "alternate",
-    "telemetry.enableTelemetry": false,
-    "telemetry.enableCrashReporter": false,
 
     ////// AREA UNDER DEVELOPMENT //////
-    "vim.leader": "<space>",
-    "vim.otherModesKeyBindingsNonRecursive": [
-        {
-            "before":["leader", "n"], "after":[],
-            "commands": [ { "command": ":nohl", "args": [] } ]
-        },
-        {
-            "before": ["leader", "s"], "after": [],
-            "commands": [ { "command": "workbench.action.files.save", "args": [] } ]
-        }
-    ],
-
     "workbench.colorCustomizations": {
-        "editorSuggestWidget.selectedBackground": "#076678"
+        "editorSuggestWidget.selectedBackground": "#076678",
+        "tab.activeForeground": "#fe8019"
         // "editor.background": "#1D2021",
         // "editor.selectionBackground": "#689D6A44",
         // "editorCursor.foreground": "#BBB",
         // "editor.lineHighlightBackground": "#282828",
     },
-    "gitlens.advanced.messages": {
-        "suppressCommitHasNoPreviousCommitWarning": false,
-        "suppressCommitNotFoundWarning": false,
-        "suppressFileNotUnderSourceControlWarning": false,
-        "suppressGitVersionWarning": false,
-        "suppressLineUncommittedWarning": false,
-        "suppressNoRepositoryWarning": false,
-        "suppressResultsExplorerNotice": false,
-        "suppressShowKeyBindingsNotice": true
-    },
-    "explorer.confirmDragAndDrop": false,
 
 }

@@ -16,6 +16,9 @@ services:
     image: wordpress
     volumes:
       - ./:/var/www/html
+
+      # Disable cache and increase file size limits at the same time
+      - ./php-config.ini:/usr/local/etc/php/conf.d/opcache-recommended.ini
     links:
       - db:mysql
     ports:

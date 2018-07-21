@@ -4,7 +4,8 @@
 
 # Font Icons:
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-set $icons            
+set $icons              
+
 
 # Settings
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -14,7 +15,7 @@ set $malt Mod4+Mod1
 
 # 1:Terminal, 2:Web, 3:Miscellaneous, 4:Code, 5:Social, 6:Media
 set $ws1 "1:  "
-set $ws2 "2:  "
+set $ws2 "2:  "
 set $ws3 "3:  "
 set $ws4 "4:  "
 set $ws5 "5:  "
@@ -57,9 +58,10 @@ client.background       #ffffff
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # $ xprop WM_CLASS
 assign [class="URxvt"] $ws1
-assign [class="Google-chrome"] $ws2
+assign [class="Firefox"] $ws2
 assign [class="Bcompare"] $ws3
 assign [class="Code"] $ws4
+assign [class="Google-chrome"] $ws5
 assign [class="Gimp"] $ws6
 
 for_window [class="^.*"] border pixel 2, focus
@@ -99,6 +101,7 @@ bindsym $malt+q exec --no-startup-id qutebrowser
 bindsym $malt+r exec --no-startup-id i3-sensible-terminal -e ranger
 bindsym $malt+s exec --no-startup-id speedcrunch
 bindsym $malt+w exec --no-startup-id google-chrome-stable
+bindsym $malt+space exec --no-startup-id rofi -show run
 
 
 # Layout Keybindings

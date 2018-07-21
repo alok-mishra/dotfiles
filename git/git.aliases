@@ -53,7 +53,7 @@ alias pushf='git push --force'
 
 alias showall='for remote in `git branch -r | grep -v "\->" | grep origin`; do echo ${remote#origin/} $remote; done;'
 
-# 
+# Track
 alias trackall='for remote in `git branch -r | grep -v "\->" | grep origin`; do git branch --track ${remote#origin/} $remote; done;'
 alias fetchall='git fetch --all'
 alias pullall='git pull --all'
@@ -66,6 +66,12 @@ alias gp1='git pull --depth 1'
 
 alias gRm='git rebase origin/master'
 alias gRc='git rebase --continue'
+alias gRs='git rebase --skip'
+
+git_remove_filter_branch() { git filter-branch --force --index-filter "git rm --cached --ignore-unmatch $1" --prune-empty --tag-name-filter cat -- --all; }
+alias gRfb='git_remove_filter_branch'
+
+
 
 # Commit
 alias gco='git commit -m'
@@ -95,7 +101,6 @@ alias dotremote='git remote set-url origin git@github.com:alok-mishra/dotfiles.g
 alias dotfiles='git clone git@github.com:alok-mishra/dotfiles.git'
 github_init() { curl -u "alok-mishra" https://api.github.com/user/repos -d "{'name':$1,'description':$2}"; }
 alias ghi='github_init'
-alias gclng2='git clone https://github.com/angular/quickstart.git'
 
 # GitLab
 gitlab_clone() { git clone git@gitlab.com:mediarave/$1 $2; }

@@ -9,21 +9,32 @@
         "command": "workbench.action.nextEditor"
     },
     {
-        "key": "ctrl+alt+h",
-        "command": "workbench.action.terminal.focusPrevious"
+        "key": "ctrl+h",
+        "command": "workbench.action.terminal.focusPrevious",
+        "when": "terminalFocus"
     },
     {
-        "key": "ctrl+alt+l",
-        "command": "workbench.action.terminal.focusNext"
-    },
-    {
-        "key": "alt+`",
-        "command": "workbench.action.terminal.focus"
+        "key": "ctrl+l",
+        "command": "workbench.action.terminal.focusNext",
+        "when": "terminalFocus"
     },
     {
         "key": "alt+`",
         "command": "workbench.action.focusActiveEditorGroup",
+    },
+    {
+        "key": "alt+`",
+        "command": "workbench.action.terminal.focus",
+        "when": "editorFocus"
+    },
+    {
+        "key": "ctrl+`",
+        "command": "workbench.action.toggleMaximizedPanel",
         "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+alt+z",
+        "command": "workbench.action.toggleZenMode"
     },
     {
         "key": "ctrl+alt+w",
@@ -49,7 +60,6 @@
         "command": "workbench.action.quickOpenNavigatePreviousInTerminalPicker",
         "when": "inQuickOpen"
     },
-
     // SYNC //
     {
         "key": "ctrl+alt+d",
@@ -58,5 +68,23 @@
     {
         "key": "ctrl+alt+u",
         "command": "syncing.uploadSettings"
+    },
+    // Miscellaneous //
+    {
+        "key": "ctrl+alt+g",
+        "command": "git.viewHistory"
+    },
+    {
+        "key": "shift+c",
+        "command": "workbench.files.action.collapseExplorerFolders",
+        "when": "filesExplorerFocus"
+    },
+    {
+        "key": "ctrl+alt+r",
+        "command": "workbench.action.reloadWindow"
+    },
+    {
+        "key": "ctrl+alt+p",
+        "command": "editor.action.peekTypeDefinition"
     },
 ]

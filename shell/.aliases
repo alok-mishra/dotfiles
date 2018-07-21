@@ -95,16 +95,17 @@ fi
 
 ##################################### Node / Yarn ##################################### 
 
-alias nga='npm -g --verbose install'
 alias yga='yarn global --verbose add'
 alias ygu='yarn global --verbose upgrade'
+
+alias sass='node-sass --output-style compact'
 
 ##################################### ANGULAR  ##################################### 
 export PATH=$PATH:~/.config/yarn/global/node_modules/.bin
 
-alias ngn='ng new --style=scss'
+alias ngn='ng new --routing --style=scss --skip-install'
 alias ngs='ng serve --open'
-alias nggc='ng generate component'
+alias nggc='ng generate component --flat --inline-style --inline-template --spec=false'
 alias nggl='ng generate class'
 alias ngb='ng build --prod'
 
