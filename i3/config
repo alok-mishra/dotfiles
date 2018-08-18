@@ -60,9 +60,11 @@ client.background       #ffffff
 assign [class="URxvt"] $ws1
 assign [class="Firefox"] $ws2
 assign [class="Bcompare"] $ws3
+assign [class="Gimp"] $ws3
 assign [class="Code"] $ws4
 assign [class="Google-chrome"] $ws5
-assign [class="Gimp"] $ws6
+assign [class="Spotify"] $ws6
+
 
 for_window [class="^.*"] border pixel 2, focus
 
@@ -99,9 +101,10 @@ bindsym $malt+f exec --no-startup-id firefox
 bindsym $malt+n exec --no-startup-id nautilus
 bindsym $malt+q exec --no-startup-id qutebrowser
 bindsym $malt+r exec --no-startup-id i3-sensible-terminal -e ranger
+bindsym $mod+backslash exec --no-startup-id i3-sensible-terminal -e ranger
 bindsym $malt+s exec --no-startup-id speedcrunch
 bindsym $malt+w exec --no-startup-id google-chrome-stable
-bindsym $malt+space exec --no-startup-id rofi -show run
+bindsym control+shift+space exec --no-startup-id rofi -show run
 
 
 # Layout Keybindings
@@ -113,8 +116,8 @@ bindsym $malt+space exec --no-startup-id rofi -show run
 # change container layout (stacked, tabbed, toggle split)
 # bindsym $mod+s layout stacking
 # bindsym $mod+t layout tabbed
-bindsym $mod+t layout toggle split
-bindsym $mod+s layout toggle all
+bindsym $mod+s layout toggle split
+bindsym $mod+t layout toggle all
 
 # enter fullscreen mode for the focused container
 bindsym $mod+space fullscreen toggle

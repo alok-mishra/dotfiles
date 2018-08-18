@@ -57,6 +57,7 @@ alias showall='for remote in `git branch -r | grep -v "\->" | grep origin`; do e
 alias trackall='for remote in `git branch -r | grep -v "\->" | grep origin`; do git branch --track ${remote#origin/} $remote; done;'
 alias fetchall='git fetch --all'
 alias pullall='git pull --all'
+alias pushfall='git push --force --all'
 
 alias gm='git merge'
 alias gmm='git merge master'
@@ -67,10 +68,18 @@ alias gp1='git pull --depth 1'
 alias gRm='git rebase origin/master'
 alias gRc='git rebase --continue'
 alias gRs='git rebase --skip'
+alias gRa='git rebase --abort'
 
-git_remove_filter_branch() { git filter-branch --force --index-filter "git rm --cached --ignore-unmatch $1" --prune-empty --tag-name-filter cat -- --all; }
+# Remove sensitive and binary files from list git history. Push force all branches afterwards.
+git_remove_filter_branch() { git filter-branch --force --index-filter "git rm -r --cached --ignore-unmatch $1" --prune-empty --tag-name-filter cat -- --all; }
 alias gRfb='git_remove_filter_branch'
 
+## After removal: (https://help.github.com/articles/removing-sensitive-data-from-a-repository/)
+# git push origin --force --all
+# git push origin --force --tags
+# git for-each-ref --format='delete %(refname)' refs/original | git update-ref --stdin
+# git reflog expire --expire=now --all
+# git gc --prune=now
 
 
 # Commit

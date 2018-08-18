@@ -1,6 +1,7 @@
 {
     ////// VSCODE //////
-    "editor.fontFamily": "Consolas, monospace",
+    "editor.fontFamily": "Ligconsolata, Consolas, Liga Hack, Droid Sans Mono, monospace",
+    "editor.fontLigatures": true,
     "editor.wordWrap": "on",
     "editor.selectionHighlight": false,
     "editor.detectIndentation": false,
@@ -17,14 +18,23 @@
 
     "terminal.integrated.shell.windows": "C:\\Workspace\\Apps\\Git\\bin\\bash.exe",
     "terminal.integrated.showExitAlert": false,
+    "terminal.integrated.rendererType": "dom",
 
     "window.menuBarVisibility": "toggle",
+
+    "breadcrumbs.enabled": true,
 
     "workbench.colorTheme": "Gruvbox Dark Hard",
     "workbench.iconTheme": "material-icon-theme",
     "workbench.startupEditor": "newUntitledFile",
     "workbench.statusBar.feedback.visible": false,
     "workbench.settings.openDefaultSettings": false,
+    "workbench.editor.enablePreview": false,
+
+    "extensions.ignoreRecommendations": true,
+    "extensions.showRecommendationsOnlyOnDemand": true,
+    
+    "files.eol": "\n",
 
     "[jsonc]": {
         "editor.formatOnSave": false
@@ -91,7 +101,11 @@
     "prettier.tabWidth": 4,
     "prettier.singleQuote": true,
     "prettier.trailingComma": "es5",
+    "prettier.disableLanguages": [
+        "css",
+    ],
 
+    "syncing.pokaYokeThreshold": 0,
     "markdown.preview.breaks": true,
     "git.enableSmartCommit": true,
     "php.validate.enable": false,
