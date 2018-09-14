@@ -23,7 +23,8 @@ alias sf='setfont sun12x22'
 alias calc='bc --quiet'
 
 
-##################################### DOCKER #####################################
+############################## DOCKER ##############################
+
 alias dm='docker-machine'
 alias dmip='docker-machine ip devbox'
 alias denv='docker-machine env devbox --shell bash'
@@ -59,13 +60,13 @@ alias dSa='docker stop $(docker ps -a -q)'
 alias dssh='ssh docker@192.168.99.100'
 
 
-##################################### GIT #####################################
+############################## GIT  ##############################
 if [ -f ~/.dotfiles/git/git.aliases ]; then source ~/.dotfiles/git/git.aliases
     alias viga='vi ~/.dotfiles/git/git.aliases'
 fi
 
 
-##################################### ADMIN #####################################
+############################## ADMIN  ##############################
 alias wcd=www_cd
 www_cd() { cd /var/www/$1; }
 
@@ -93,14 +94,13 @@ if [ -f ~/.aliases ]; then
     source .aliases
 fi
 
-##################################### Node / Yarn ##################################### 
-
+############################## NODE  ##############################
 alias yga='yarn global --verbose add'
 alias ygu='yarn global --verbose upgrade'
 
 alias sass='node-sass --output-style compact'
 
-##################################### ANGULAR  ##################################### 
+############################## ANGULAR ##############################
 export PATH=$PATH:~/.config/yarn/global/node_modules/.bin
 
 alias ngn='ng new --routing --style=scss --skip-install'
@@ -111,11 +111,11 @@ alias nggp='ng generate pipe --flat --spec=false'
 alias nggs='ng generate service --flat --spec=false'
 alias ngb='ng build --prod'
 
-##################################### FLUTTER  #####################################
+############################## FLUTTER ##############################
 export PATH=$PATH:~/sdk/flutter/bin
 
 
-##################################### ATOM #####################################
+############################## ATOM ##############################
 alias alp='apm list --installed --bare > ~/Dropbox/dotfiles/atom/.packages'
 alias aip='apm install --packages-file ~/Dropbox/dotfiles/atom/.packages'
 alias aiv='apm install --verbose'
@@ -123,7 +123,7 @@ alias aul='apm upgrade --list'
 alias auv='apm upgrade --verbose'
 
 
-##################################### ANDROID #####################################
+############################## ANDROID ##############################
 #Android Platform Tools
 PATH=$PATH:~/sdk/android/platform-tools/:~/sdk/android/tools/:~/sdk/android/tools/bin
 
@@ -135,10 +135,10 @@ alias emugal='emulator -avd galaxy -gpu on -skin 720x1280'
 alias adbi='adb install'
 alias adbu='adb uninstall'
 
-##################################### GO #####################################
+############################## GO ##############################
 alias gor='go run'
 
-##################################### HOME ASSISTANT #####################################
+############################## HASS  ##############################
 if [ -f /home/homeassistant/.homeassistant/ha.aliases ]; then
    source /home/homeassistant/.homeassistant/ha.aliases
    alias viha='vi /home/homeassistant/.homeassistant/ha.aliases'

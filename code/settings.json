@@ -22,23 +22,18 @@
 
     "window.menuBarVisibility": "toggle",
 
-    "breadcrumbs.enabled": true,
+    // "breadcrumbs.enabled": true,
 
     "workbench.colorTheme": "Gruvbox Dark Hard",
     "workbench.iconTheme": "material-icon-theme",
     "workbench.startupEditor": "newUntitledFile",
     "workbench.statusBar.feedback.visible": false,
     "workbench.settings.openDefaultSettings": false,
-    "workbench.editor.enablePreview": false,
 
     "extensions.ignoreRecommendations": true,
     "extensions.showRecommendationsOnlyOnDemand": true,
     
     "files.eol": "\n",
-
-    "[jsonc]": {
-        "editor.formatOnSave": false
-    },
 
     "files.associations": {
         "*.aliases": "shellscript"
@@ -92,18 +87,24 @@
         }
     ],
 
-    ////// SASS //////
+    ////// FORMATTING //////
 
-    // Use node-sass command line instead of an extension
-
-    ////// MISCELLANEOUS //////
+    "[jsonc]": {
+        "editor.formatOnSave": false
+    },
 
     "prettier.tabWidth": 4,
+    "prettier.printWidth": 120,
     "prettier.singleQuote": true,
     "prettier.trailingComma": "es5",
+    "prettier.tslintIntegration": true,
     "prettier.disableLanguages": [
         "css",
+        "yaml",
     ],
+
+
+    ////// MISCELLANEOUS //////
 
     "syncing.pokaYokeThreshold": 0,
     "markdown.preview.breaks": true,

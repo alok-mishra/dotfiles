@@ -75,11 +75,13 @@ git_remove_filter_branch() { git filter-branch --force --index-filter "git rm -r
 alias gRfb='git_remove_filter_branch'
 
 ## After removal: (https://help.github.com/articles/removing-sensitive-data-from-a-repository/)
-# git push origin --force --all
-# git push origin --force --tags
 # git for-each-ref --format='delete %(refname)' refs/original | git update-ref --stdin
 # git reflog expire --expire=now --all
 # git gc --prune=now
+# git push origin --force --all
+
+## If there are tags:
+# git push origin --force --tags
 
 
 # Commit

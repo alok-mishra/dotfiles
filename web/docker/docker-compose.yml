@@ -4,13 +4,16 @@ services:
   db:
     image: mysql
     volumes:
-      - ./.data:/var/lib/mysql
+      - ./.db:/var/lib/mysql
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: rootDBPass
+      MYSQL_ROOT_PASSWORD: rootpass
       MYSQL_DATABASE: wordpress
       MYSQL_USER: wordpress
-      MYSQL_PASSWORD: wpDBPass
+      MYSQL_PASSWORD: datapass
+
+    # Workaround to allow data volumes on the current directory on Windows
+    command: mysqld --innodb-flush-method=littlesync --innodb-use-native-aio=OFF --log_bin=ON
 
   wp:
     image: wordpress
@@ -26,4 +29,4 @@ services:
     restart: always
     environment:
       WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: wpDBPass
+      WORDPRESS_DB_PASSWORD: datapass

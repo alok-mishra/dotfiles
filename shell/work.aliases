@@ -6,12 +6,15 @@ alias gurp='gars && gulp'
 alias rocky='./cntlm -H -c cntlm.ini'
 
 ##################################### DOCKER #####################################
-export DOCKER_TLS_VERIFY="1"
-export DOCKER_HOST="tcp://192.168.99.100:2376"
-export DOCKER_CERT_PATH="C:\Users\t5005a0\.docker\machine\machines\devbox"
-export DOCKER_MACHINE_NAME="devbox"
+# export DOCKER_TLS_VERIFY="1"
+# export DOCKER_HOST="tcp://192.168.99.100:2376"
+# export DOCKER_CERT_PATH="C:\Users\t5005a0\.docker\machine\machines\dev"
+# export DOCKER_MACHINE_NAME="dev"
+#
+# alias dnmf='export DOCKER_MACHINE_NAME="finance"'
 
-alias dnmf='export DOCKER_MACHINE_NAME="finance"'
+eval "$(docker-machine env devbox)"
+
 
 ##################################### GIT #####################################
 # Set a environment variable for the repository

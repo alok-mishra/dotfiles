@@ -22,6 +22,7 @@ set $ws5 "5:  "
 set $ws6 "6:  "
 
 workspace_auto_back_and_forth yes
+bindsym $mod+grave workspace back_and_forth
 
 # Mouse
 focus_follows_mouse no
@@ -57,15 +58,14 @@ client.background       #ffffff
 # Assignments
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # $ xprop WM_CLASS
-assign [class="URxvt"] $ws1
+# assign [class="URxvt"] $ws1
+assign [class="Bcompare"] $ws1
 assign [class="Firefox"] $ws2
-assign [class="Bcompare"] $ws3
 assign [class="Gimp"] $ws3
 assign [class="Code"] $ws4
 assign [class="Google-chrome"] $ws5
-assign [class="Spotify"] $ws6
 
-
+# for_window [class="Spotify"] move to workspace $ws6
 for_window [class="^.*"] border pixel 2, focus
 
 
@@ -98,12 +98,13 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 2
 # bindsym $malt+w exec --no-startup-id waterfox
 bindsym $malt+c exec --no-startup-id code
 bindsym $malt+f exec --no-startup-id firefox
-bindsym $malt+n exec --no-startup-id nautilus
-bindsym $malt+q exec --no-startup-id qutebrowser
+bindsym $malt+m exec --no-startup-id speedcrunch
+bindsym $malt+n exec --no-startup-id nautilus; workspace $ws3
 bindsym $malt+r exec --no-startup-id i3-sensible-terminal -e ranger
+bindsym $malt+s exec --no-startup-id spotify; workspace $ws6
+bindsym $malt+t exec --no-startup-id i3-sensible-terminal; workspace $ws1
+# bindsym $malt+w exec --no-startup-id google-chrome-stable
 bindsym $mod+backslash exec --no-startup-id i3-sensible-terminal -e ranger
-bindsym $malt+s exec --no-startup-id speedcrunch
-bindsym $malt+w exec --no-startup-id google-chrome-stable
 bindsym control+shift+space exec --no-startup-id rofi -show run
 
 
