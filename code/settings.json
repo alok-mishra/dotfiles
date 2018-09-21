@@ -120,5 +120,6 @@
         // "editorCursor.foreground": "#BBB",
         // "editor.lineHighlightBackground": "#282828",
     },
+    "window.zoomLevel": 0,
 
 }

@@ -480,8 +480,20 @@ vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgvl
 " Paste external clipboard between tags, and trim trailing spaces.
 
 let @t=':let @*=substitute(@*,''\n$'','''',''g'')vit"*Pvit:s/\%V\s\+</</e:nohls'
-let @p='vi""*Pvi":s/\%V\s\+"/"/e:nohls'
+
+" Trim trailing spaces between quotes
+let @s='vi":s/\%V\s\+"/"/e:nohls'
+
+" Paste yanked text between quotes
 let @v='vi"p'
+" Paste external clipboard between quotes, and trim trailing spaces.
+let @p='vi""*P@s'
+" Remove \n chars from multi-line clip paste. Manipulate betweeen | chars first, then paste between quotes.
+let @w='o|"*PI|v/|:%jV:s/|//gDbb@v@sdd'
+
+" OLD: Paste external clipboard between quotes, and trim trailing spaces.
+" let @p='vi""*Pvi":s/\%V\s\+"/"/e\:nohls\'
+
 
 " Paste external clipboard containing numbers between quotes, and trim everything except digits. \%V matches only inside visual selection
 let @n='vi""*Pvi":s/\%V[^0-9]//g:nohls'
@@ -495,7 +507,7 @@ let @m='``0Djmt``0nwwvitp$n`t``'
 "let @m='0mtD``0nwwvitpnn`tj' "Old way
 
 " Super Char - supercase till end of word (needs to have double quotes to function)
-let @s='i<sup>\eea</sup>\e'
+let @u='i<sup>\eea</sup>\e'
 
 " Perception String - fix perception connection for new version
 let @k='gg:silent!/php/dllFqct"perception5/session.php'

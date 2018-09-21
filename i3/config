@@ -62,6 +62,7 @@ client.background       #ffffff
 assign [class="Bcompare"] $ws1
 assign [class="Firefox"] $ws2
 assign [class="Gimp"] $ws3
+assign [class="KeePass2"] $ws3
 assign [class="Code"] $ws4
 assign [class="Google-chrome"] $ws5
 

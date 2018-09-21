@@ -65,6 +65,22 @@ if [ -f ~/.dotfiles/git/git.aliases ]; then source ~/.dotfiles/git/git.aliases
     alias viga='vi ~/.dotfiles/git/git.aliases'
 fi
 
+# GitHub
+# alias dotfiles='git remote set-url origin git@alok-github:alok-mishra/dotfiles.git'
+alias dotremote='git remote set-url origin git@github.com:alok-mishra/dotfiles.git'
+alias dotfiles='git clone git@github.com:alok-mishra/dotfiles.git'
+github_init() { curl -u "alok-mishra" https://api.github.com/user/repos -d "{'name':$1,'description':$2}"; }
+alias ghi='github_init'
+
+# GitLab
+gitlab_clone() { git clone git@gitlab.com:mediarave/$1 $2; }
+alias gclgl='gitlab_clone'
+alias pushalllab='git push gitlab --all'
+alias remotelabpackage='git remote add gitlab git@gitlab.com:fcapi/package.git'
+alias remotelabmanifest='git remote add gitlab git@gitlab.com:fcapi/manifest.git'
+
+# WordPress
+alias gclwp='git clone --depth 1 https://github.com/WordPress/WordPress.git wordpress && rm -rf wordpress/.git'
 
 ############################## ADMIN  ##############################
 alias wcd=www_cd
