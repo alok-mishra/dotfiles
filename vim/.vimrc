@@ -16,8 +16,7 @@ elseif has('win32') || has('win64')
     set guifont=Envy_Code_R_for_Powerline:h10,Droid_Sans_Mono_Slashed_for_Pow:h10,Consolas:h10
 
     " Maximize window on startup
-    au GUIEnter * simalt ~x
-
+    " au GUIEnter * simalt ~x
 endif
 
 set guifontwide=NSimsun:h12
@@ -165,7 +164,7 @@ set splitright
 set equalalways
 set laststatus=2
 set columns=120
-set lines=40
+set lines=50
 set cursorline
 set visualbell
 set shortmess=aoOtT   " Short Messages
@@ -457,7 +456,7 @@ function! Generate()
     if (&ft=='less')
         :execute ":Silent " . substitute(expand('~'), '\\', '/', 'g') . '/.vim/bundle/less.js-windows/lessc --clean-css "%" "%:r.css"'
     elseif (&ft=='scss')
-        :execute ':Silent node-sass "%" "%:r.css"'
+        :execute ':Silent node-sass --output-style compact "%" "%:r.css"'
     else
         :silent !node manifest
     endif
@@ -489,7 +488,7 @@ let @v='vi"p'
 " Paste external clipboard between quotes, and trim trailing spaces.
 let @p='vi""*P@s'
 " Remove \n chars from multi-line clip paste. Manipulate betweeen | chars first, then paste between quotes.
-let @w='o|"*PI|v/|:%jV:s/|//gDbb@v@sdd'
+let @w='o|"*PI|v/|:%jV:s/|//gDbb@v@sddbbyi"'
 
 " OLD: Paste external clipboard between quotes, and trim trailing spaces.
 " let @p='vi""*Pvi":s/\%V\s\+"/"/e\:nohls\'

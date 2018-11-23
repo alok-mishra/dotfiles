@@ -1,8 +1,8 @@
-version: '3'
+version: '2'
 
 services:
   db:
-    image: mariadb
+    image: mysql
     volumes:
       - ./.db:/var/lib/mysql
     restart: always
@@ -22,8 +22,6 @@ services:
 
       # Disable cache and increase file size limits at the same time
       - ./php-config.ini:/usr/local/etc/php/conf.d/opcache-recommended.ini
-    depends_on:
-      - db
     links:
       - db:mysql
     ports:

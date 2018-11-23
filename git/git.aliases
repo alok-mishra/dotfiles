@@ -14,16 +14,21 @@ alias gru='git remote set-url'
 # Logs
 alias gl='git log'
 alias glo='git log --oneline -10'
-alias glog='git log --oneline --graph --all --decorate'
+alias glp='git log --pretty=format:"%h%x09%an%x09%ad%x09%s" --date=short -20'
+alias glg='git log --oneline --graph --all --decorate'
 
 # Clone
 alias gcl='git clone'
-alias gcld1='git clone --depth 1'
+alias gcl1='git clone --depth 1'
 
 # Branch / Checkout / Diff
 alias gb='git branch'
 alias gba='git branch -a'
+alias gbu='git branch -u'
+alias gbv='git branch -v'
 alias gbm='git branch --merged'
+alias gbD='git branch --delete'
+alias gbrD='git push origin --delete'
 
 alias gch='git checkout'
 alias gchb='git checkout -b'
@@ -60,6 +65,7 @@ alias pullall='git pull --all'
 alias pushfall='git push --force --all'
 
 alias gm='git merge'
+alias gms='git merge --squash'
 alias gmm='git merge master'
 alias gmt='git mergetool'
 

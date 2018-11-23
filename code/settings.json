@@ -22,7 +22,7 @@
 
     "window.menuBarVisibility": "toggle",
 
-    // "breadcrumbs.enabled": true,
+    "breadcrumbs.enabled": true,
 
     "workbench.colorTheme": "Gruvbox Dark Hard",
     "workbench.iconTheme": "material-icon-theme",
@@ -30,33 +30,39 @@
     "workbench.statusBar.feedback.visible": false,
     "workbench.settings.openDefaultSettings": false,
 
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+
     "extensions.ignoreRecommendations": true,
     "extensions.showRecommendationsOnlyOnDemand": true,
-    
+
     "files.eol": "\n",
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
 
     "files.associations": {
         "*.aliases": "shellscript"
     },
 
     ////// VIM //////
+    // "vim.leader": "<space>",
+    "vim.leader": ",",
+    "vim.hlsearch": true,
+    // "vim.searchHighlightColor": "rgba(104, 157, 106, 0.4)", // #689D6A
+    "vim.searchHighlightColor": "rgba(214, 96, 16, 0.4)", // #D65D0E
+    "vim.easymotion": true,
+
     "vim.handleKeys": {
-        "<C-a>": false,
-        "<C-b>": false,
-        "<C-c>": false,
-        "<C-f>": false,
-        "<C-k>": false,
-        "<C-v>": false,
-        "<C-y>": false,
+        "<C-a>": false, // select
+        "<C-b>": false, // vscode
+        "<C-c>": false, // copy
+        "<C-f>": false, // find
+        "<C-k>": false, // vscode
+        "<C-v>": false, // paste
+        "<C-y>": false, // redo
     },
 
-    "vim.leader": "<space>",
-    "vim.hlsearch": true,
-    "vim.searchHighlightColor": "rgba(104, 157, 106, 0.4)", // #689D6A
-    // "vim.searchHighlightColor": "rgba(214, 96, 16, 0.4)", // #D65D0E
-
-    // use native undo and redo
-
+    // Native Undo and Redo
     "vim.normalModeKeyBindings": [
         {
             "before": ["u"], "after": [],
@@ -82,7 +88,7 @@
             "commands": [ { "command": ":nohl", "args": [] } ]
         },
         {
-            "before": ["leader", "w"], "after": [],
+            "before": ["leader", "s"], "after": [],
             "commands": [ { "command": "workbench.action.files.save", "args": [] } ]
         }
     ],
@@ -110,16 +116,19 @@
     "markdown.preview.breaks": true,
     "git.enableSmartCommit": true,
     "php.validate.enable": false,
+    "html.format.wrapLineLength": 0,
 
     ////// AREA UNDER DEVELOPMENT //////
     "workbench.colorCustomizations": {
         "editorSuggestWidget.selectedBackground": "#076678",
-        "tab.activeForeground": "#fe8019"
-        // "editor.background": "#1D2021",
-        // "editor.selectionBackground": "#689D6A44",
-        // "editorCursor.foreground": "#BBB",
-        // "editor.lineHighlightBackground": "#282828",
+        "tab.activeForeground": "#d3869b",
+        "tab.activeBorder": "#b16286",
+        "editorCursor.foreground": "#CCC",
+        "tab.inactiveBackground": "#282828",
+        "tab.activeBackground": "#1d2021"
     },
     "window.zoomLevel": 0,
+    "python.jediEnabled": false,
+    "window.titleBarStyle": "custom",
 
 }
