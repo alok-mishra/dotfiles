@@ -45,10 +45,13 @@ alias stash='git stash'
 alias pop='git stash pop'
 alias cache='git rm -r --cached .'
 
-# Reset
+# Reset / Clean
 alias gwRm='git reset --mixed HEAD~1'
 alias gwRs='git reset --soft HEAD~1'
 alias gwRh='git reset --hard HEAD~1'
+
+alias gCn='git clean -n'
+alias gCf='git clean -f'
 
 # Fetch / Merge / Pull / Rebase / Push
 alias fetch='git fetch'

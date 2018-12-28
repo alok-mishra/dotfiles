@@ -129,6 +129,6 @@
     },
     "window.zoomLevel": 0,
     "python.jediEnabled": false,
-    "window.titleBarStyle": "custom",
+    "python.linting.pylintEnabled": true
 
 }

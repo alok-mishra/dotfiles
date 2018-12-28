@@ -1,0 +1,62 @@
+#!/usr/bin/env python3
+
+# Copyright 2018 Alok Mishra
+# batalert: battery level indicator with critical alert - i3blocks script
+
+from subprocess import check_output as out
+
+batout = out(['acpi', '-b']).decode('utf8')
+
+if batout:
+    bats = batout.split('\n')
+    for bat in bats:
+        # time = re.match(r"(\d+):(\d+)", bat)
+        if (not bat) or ("unavailable" in bat):
+            continue
+
+        # print(bat)
+
+        attributes = bat.split(': ')[1].split(',')
+
+        state = attributes[0].strip().lower()
+        percent = attributes[1].strip()
+
+        time = '00:00'
+        if len(attributes) > 2:
+            remaining = attributes[2].split(':')
+            time = remaining[0].strip() + ':' + remaining[1].strip()
+else:
+    exit()
+
+bat_level = ('', '', '', '', '', '')
+color_level = ('red', 'tomato', 'orange', 'gold', 'yellow', 'white')
+
+
+def display(state, percent, time):
+
+    display = '{} <span color="{}">{}  {}</span> {}'
+    remaining = '(' + time + ')'
+    icon = ''
+
+    if state == 'charging':
+        icon = ' '
+    elif state == 'full':
+        icon = ' '
+    elif state == 'unknown':
+        icon = ' '
+
+    level_index = int(percent[:-1])//int(100/len(bat_level))
+
+    if level_index == len(bat_level):
+        level_index = level_index - 1
+
+    if int(percent[:-1]) == 100:
+        remaining = ''
+
+    if (int(percent[:-1])) <= 10:
+        out(['notify-send', '-u', 'critical', 'BATTERY LOW! (' + percent + ')'])
+
+    return display.format(icon, color_level[level_index], bat_level[level_index], percent, remaining)
+
+
+print(display(state, percent, time))

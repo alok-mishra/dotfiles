@@ -58,9 +58,9 @@ client.background       #ffffff
 # Assignments
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # $ xprop WM_CLASS
-# assign [class="URxvt"] $ws1
-assign [class="Bcompare"] $ws1
+assign [class="URxvt"] $ws1
 assign [class="Firefox"] $ws2
+assign [class="Bcompare"] $ws3
 assign [class="Gimp"] $ws3
 assign [class="KeePass2"] $ws3
 assign [class="Code"] $ws4
@@ -96,7 +96,6 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 2
 
 # Apps
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# bindsym $malt+w exec --no-startup-id waterfox
 bindsym $malt+c exec --no-startup-id code
 bindsym $malt+f exec --no-startup-id firefox
 bindsym $malt+m exec --no-startup-id speedcrunch
@@ -104,9 +103,11 @@ bindsym $malt+n exec --no-startup-id nautilus; workspace $ws3
 bindsym $malt+r exec --no-startup-id i3-sensible-terminal -e ranger
 bindsym $malt+s exec --no-startup-id spotify; workspace $ws6
 bindsym $malt+t exec --no-startup-id i3-sensible-terminal; workspace $ws1
-# bindsym $malt+w exec --no-startup-id google-chrome-stable
+bindsym $malt+w exec --no-startup-id google-chrome-stable
 bindsym $mod+backslash exec --no-startup-id i3-sensible-terminal -e ranger
-bindsym control+shift+space exec --no-startup-id rofi -show run
+bindsym control+shift+space exec --no-startup-id "rofi -theme gruvbox-dark -modi run,calc -show run"
+# bindsym control+shift+space exec --no-startup-id "rofi -theme gruvbox-dark -combi-modi combi,run,calc -modi combi -show run"
+# bindsym control+shift+space exec --no-startup-id "rofi -show run -show calc -modi calc -no-show-match -no-sort" 
 
 
 # Layout Keybindings
@@ -139,6 +140,7 @@ bindsym $mod+c focus child
 # Terminal
 # set $term rxvt-unicode ## todo
 bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+shift+Return exec i3-sensible-terminal -e gnome-terminal
 
 # kill focused window
 bindsym $mod+q kill

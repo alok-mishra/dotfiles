@@ -3,6 +3,8 @@ alias l='ls -hAlF'
 alias ll='ls -halF'
 alias vi='vim'
 alias grep='grep --color=auto'
+alias hc='rm ~/.bash_history && history -c'
+alias x='exit'
 
 alias ..='cd ..'
 alias ocd='cd "$OLDPWD"'
@@ -86,8 +88,10 @@ alias gclwp='git clone --depth 1 https://github.com/WordPress/WordPress.git word
 alias wcd=www_cd
 www_cd() { cd /var/www/$1; }
 
-alias backup='tar -cvzf ~/backups/www.tar.gz /var/www/'
-alias compress='tar -cvzf ~/backups/backup.tar.gz'
+alias wbak=www_backup
+www_backup() { tar -cvzf ~/backups/$1.tar.gz /var/www/$1; }
+
+alias compress='tar -cvzf ../${PWD##*/}.tar.gz .'
 alias extract='tar -xvf'
 
 alias up='sudo apt-get update && time sudo apt-get upgrade'
@@ -109,6 +113,14 @@ alias blockrpc='sudo a2enconf block-xmlrpc'
 if [ -f ~/.aliases ]; then
     source .aliases
 fi
+
+############################## PYTHON ##############################
+alias pcl='conda list'
+alias pci='conda install'
+alias pcu='conda update'
+alias pcc='conda create -n'
+alias pca='conda activate'
+alias pcd='conda deactivate'
 
 ############################## NODE  ##############################
 alias yga='yarn global --verbose add'
@@ -160,4 +172,3 @@ if [ -f /home/homeassistant/.homeassistant/ha.aliases ]; then
    source /home/homeassistant/.homeassistant/ha.aliases
    alias viha='vi /home/homeassistant/.homeassistant/ha.aliases'
 fi
-

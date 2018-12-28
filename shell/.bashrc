@@ -16,6 +16,10 @@ else
     fi
 
     if [ -f ~/.dotfiles/shell/arch.aliases ]; then
+
+        export PATH="/home/alok/sdk/miniconda/bin:$PATH"
+        . /home/alok/sdk/miniconda/etc/profile.d/conda.sh
+
         source ~/.dotfiles/shell/arch.aliases
         alias viaa='vi ~/.dotfiles/shell/arch.aliases'
     fi
@@ -53,9 +57,3 @@ symlink() {
     fi
 }
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# added by Miniconda3 installer
-export PATH="/home/alok/sdk/miniconda/bin:$PATH"
