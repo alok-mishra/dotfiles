@@ -3,7 +3,7 @@ alias gi='git init'
 alias gib='git init --bare'
 alias gs='git status'
 alias ga='git add'
-alias gaa='git add --all'
+alias gaa='git add --all :/'
 
 # Remotes
 alias gr='git remote'
@@ -46,9 +46,10 @@ alias pop='git stash pop'
 alias cache='git rm -r --cached .'
 
 # Reset / Clean
-alias gwRm='git reset --mixed HEAD~1'
-alias gwRs='git reset --soft HEAD~1'
-alias gwRh='git reset --hard HEAD~1'
+alias gwRm='git reset --mixed HEAD'
+alias gwRs='git reset --soft HEAD'
+alias gwRh='git reset --hard HEAD'
+alias gwRH='git reset --hard HEAD~1'
 
 alias gCn='git clean -n'
 alias gCf='git clean -f'

@@ -285,6 +285,7 @@ nmap <leader>g :call Generate()<CR>
 
 " Save File
 map <C-A-s> <esc>:browse :w<CR>
+map <leader>s <esc>:w<CR>
 
 " Spelling
 nmap <silent> <leader>S :set spell!<CR>
@@ -297,7 +298,7 @@ map <leader>fj :set ft=javascript<CR>
 map <leader>fp :set ft=php<CR>
 map <leader>fx :set ft=xml<CR>
 
-map <leader>sm :set syntax=mustache<CR>
+" map <leader>sm :set syntax=mustache<CR>
 
 " Folding
 map <leader>z :set foldmethod=indent<CR>
@@ -363,7 +364,7 @@ vmap p "_dP
 "====== Plugin Mappings ======
 
 " Syntastic
-nmap <leader>s :SyntasticCheck<CR>
+" nmap <leader>s :SyntasticCheck<CR>
 
 " CtrlP
 cmap <C-L> <C-F>

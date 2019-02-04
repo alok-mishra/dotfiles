@@ -88,9 +88,6 @@ alias gclwp='git clone --depth 1 https://github.com/WordPress/WordPress.git word
 alias wcd=www_cd
 www_cd() { cd /var/www/$1; }
 
-alias wbak=www_backup
-www_backup() { tar -cvzf ~/backups/$1.tar.gz /var/www/$1; }
-
 alias compress='tar -cvzf ../${PWD##*/}.tar.gz .'
 alias extract='tar -xvf'
 
@@ -109,6 +106,12 @@ alias webres='sudo service apache2 restart'
 
 alias blockrpc='sudo a2enconf block-xmlrpc'
 
+alias wbak=www_backup
+www_backup() { tar -cvzf ~/backups/$1.tar.gz /var/www/$1; }
+
+alias warc=static_archive
+static_archive() { wget -P $2 -mpck --user-agent="" -e robots=off --wait 1 -E $1; }
+
 # Source local aliases
 if [ -f ~/.aliases ]; then
     source .aliases
@@ -116,7 +119,9 @@ fi
 
 ############################## PYTHON ##############################
 alias pcl='conda list'
+alias pcle='conda env list'
 alias pci='conda install'
+alias pcic='conda install -c'
 alias pcu='conda update'
 alias pcc='conda create -n'
 alias pca='conda activate'
@@ -131,14 +136,14 @@ alias sass='node-sass --output-style compact'
 ############################## ANGULAR ##############################
 export PATH=$PATH:~/.config/yarn/global/node_modules/.bin
 
-alias ngn='ng new --routing --style=scss --skip-install'
 alias ngs='ng serve --open'
+alias ngb='ng build --prod'
+alias ngn='ng new --routing --style=scss --skip-install'
 alias nggc='ng generate component --flat --spec=false'
 alias nggl='ng generate class'
 alias nggm='ng generate module --flat'
 alias nggp='ng generate pipe --flat --spec=false'
 alias nggs='ng generate service --flat --spec=false'
-alias ngb='ng build --prod'
 
 ############################## FLUTTER ##############################
 export PATH=$PATH:~/sdk/flutter/bin

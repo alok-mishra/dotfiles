@@ -143,6 +143,7 @@ archive_project() {
         rm -rf "3 Development"
         rm -rf "4 Production/Assembly"
         rm -rf "4 Production/Interactive Assembly"
+        rm -f  "4 Production"/*.zip
         rm -f "$project".7z
 
         echo "Archiving \"$project\" ..."
@@ -166,6 +167,9 @@ archive_project() {
         if [[ $archived = true ]]; then
             echo "Removing Production ..."
             rm -rf "4 Production"
+        else
+            read -p "Manually remove this non-standard project. .... Press enter to dismiss ..."
+            exit
         fi
 
     else

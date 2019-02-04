@@ -1,12 +1,15 @@
 alias paci='pacaur -S'    # install a package
 alias pacu='pacaur -Syu'  # sync / refresh repos, update packages
+alias pacI='pacaur -Syu --ignore'  # sync / update, but ignore a package
 alias pacr='pacaur -Runs' # remove package and dependencies not being used
 alias pacc='pacaur -Sc'   # clear cache for packages not yet installed
 alias pacs='pacaur -Qs'   # search what is installed
 alias pack='pacman-key --populate archlinux'   # populate the package signing keys
+alias pacg='gpg --recv-key' # add a missing public key
 
 alias up='pacu'
 alias clean='paccache -r'
+
 
 alias vi3='vi ~/.config/i3/config'
 
