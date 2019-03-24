@@ -41,12 +41,12 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
-Plugin 'scrooloose/nerdtree'
 Plugin 'tmhedberg/matchit'
-Plugin 'kien/ctrlp.vim'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'scrooloose/syntastic'
 
+" Plugin 'scrooloose/nerdtree'
+" Plugin 'kien/ctrlp.vim'
 " Plugin 'majutsushi/tagbar'
 " Plugin 'Lokaltog/vim-easymotion'
 " Plugin 'Valloric/YouCompleteMe'
@@ -57,7 +57,7 @@ Plugin 'scrooloose/syntastic'
 " Plugin 'airblade/vim-gitgutter'
 
 " (( This one causes problems ))
-Plugin 'tpope/vim-fugitive'
+" Plugin 'tpope/vim-fugitive'
 
 "Arduino
 Plugin 'jplaut/vim-arduino-ino'
@@ -94,13 +94,13 @@ Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'PotatoesMaster/i3-vim-syntax'
 
 " Colors
-Plugin 'chankaward/vim-railscasts-theme'
 Plugin 'morhetz/gruvbox'
-Plugin 'tomasr/molokai'
-Plugin 'altercation/vim-colors-solarized'
+" Plugin 'chankaward/vim-railscasts-theme'
+" Plugin 'tomasr/molokai'
+" Plugin 'altercation/vim-colors-solarized'
 
 " Tools
-Plugin 'duncansmart/less.js-windows'
+" Plugin 'duncansmart/less.js-windows'
 
 " Plugin 'powerline/fonts'
 

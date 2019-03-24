@@ -3,7 +3,6 @@ alias l='ls -hAlF'
 alias ll='ls -halF'
 alias vi='vim'
 alias grep='grep --color=auto'
-alias hc='rm ~/.bash_history && history -c'
 alias x='exit'
 
 alias ..='cd ..'
@@ -24,6 +23,9 @@ alias sf='setfont sun12x22'
 
 alias calc='bc --quiet'
 
+alias hdc='rm ~/.bash_history && history -c'
+alias hdr=history_del_range
+history_del_range() { for i in {1..100}; do history -d $1; done; }
 
 ############################## DOCKER ##############################
 
@@ -53,6 +55,7 @@ alias dvP='docker volume prune'
 alias dc='docker-compose'
 alias dcu='docker-compose up -d'
 alias dcd='docker-compose down'
+alias dcp='cp -r ~/.dotfiles/web/project/. .'
 
 alias ds='docker start'
 alias dS='docker stop'

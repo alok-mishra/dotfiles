@@ -16,7 +16,7 @@
     "telemetry.enableTelemetry": false,
     "telemetry.enableCrashReporter": false,
 
-    "terminal.integrated.shell.windows": "C:\\Workspace\\Apps\\Git\\bin\\bash.exe",
+    "terminal.integrated.shell.windows": "C:\\Workspace\\.tmp\\.apps\\Git\\bin\\bash.exe",
     "terminal.integrated.showExitAlert": false,
     "terminal.integrated.rendererType": "dom",
 
@@ -124,11 +124,11 @@
         "tab.activeForeground": "#d3869b",
         "tab.activeBorder": "#b16286",
         "editorCursor.foreground": "#CCC",
-        "tab.inactiveBackground": "#282828",
-        "tab.activeBackground": "#1d2021"
+        "tab.activeBackground": "#282828"
     },
     "window.zoomLevel": 0,
     "python.jediEnabled": false,
-    "python.linting.pylintEnabled": true
-
+    "python.linting.pylintEnabled": true,
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
 }

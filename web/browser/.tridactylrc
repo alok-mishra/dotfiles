@@ -1,0 +1,56 @@
+" Location: ~/.tridactylrc
+" :installnative to activate
+" :source to load (or restart)
+
+" Clear settings
+sanitise tridactyllocal tridactylsync
+" set newtab about:newtab
+
+" GUI
+guiset hoverlink right
+colors dark
+
+" Remove Keybindings
+unbind <C-f>
+
+" NAVIGATION
+bind l tabnext
+bind h tabprev
+bind t fillcmdline bmarks -t
+bind ,p pin
+
+" FIND
+bind / fillcmdline find
+bind ? fillcmdline find -?
+bind n findnext 1
+bind N findnext -1
+bind ,/ nohlsearch
+
+" COPY
+bind y clipboard yankcanon
+bind p clipboard tabopen
+
+"SYSTEM
+bind ;c viewconfig
+bind ;s source
+bind ;v exclaim gvim ~/.tridactylrc
+
+
+" Gmail Specific Keys allowed
+unbindurl mail.google.com .
+unbindurl mail.google.com a
+unbindurl mail.google.com f
+unbindurl mail.google.com j
+unbindurl mail.google.com k
+unbindurl mail.google.com o
+unbindurl mail.google.com s
+unbindurl mail.google.com x
+unbindurl mail.google.com u
+unbindurl mail.google.com J
+unbindurl mail.google.com K
+
+bind --mode=ignore l tabnext
+bind --mode=ignore h tabprev
+
+" Syntax Colors
+" vim: set filetype=vim:
