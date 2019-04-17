@@ -3,30 +3,35 @@
 " :source to load (or restart)
 
 " Clear settings
-sanitise tridactyllocal tridactylsync
-" set newtab about:newtab
+" sanitise tridactyllocal tridactylsync
 
-" GUI
-guiset hoverlink right
+" THEME
 colors dark
 
-" Remove Keybindings
+" CONFIGURATION
+guiset hoverlink right
+set incsearch true
+set allowautofocus false
+
+"UNBIND
 unbind <C-f>
 
-" NAVIGATION
+"NAVIGATION
+bind --mode=ignore l tabnext
+bind --mode=ignore h tabprev
 bind l tabnext
 bind h tabprev
 bind t fillcmdline bmarks -t
 bind ,p pin
 
-" FIND
+"FIND
 bind / fillcmdline find
 bind ? fillcmdline find -?
 bind n findnext 1
 bind N findnext -1
 bind ,/ nohlsearch
 
-" COPY
+"COPY
 bind y clipboard yankcanon
 bind p clipboard tabopen
 
@@ -35,6 +40,13 @@ bind ;c viewconfig
 bind ;s source
 bind ;v exclaim gvim ~/.tridactylrc
 
+"SEARCH
+set searchurls.ll https://lucidlife.wordpress.com/?s=%s
+set searchurls.st https://stocktwits.com/symbol/%s
+set searchurls.tv https://www.tradingview.com/chart/?symbol=%s
+set searchurls.yt https://www.youtube.com/results?search_query=%s
+
+"SITES
 
 " Gmail Specific Keys allowed
 unbindurl mail.google.com .
@@ -48,9 +60,7 @@ unbindurl mail.google.com x
 unbindurl mail.google.com u
 unbindurl mail.google.com J
 unbindurl mail.google.com K
-
-bind --mode=ignore l tabnext
-bind --mode=ignore h tabprev
+unbindurl mail.google.com U
 
 " Syntax Colors
 " vim: set filetype=vim:

@@ -1,0 +1,41 @@
+#!/usr/bin/env python3
+
+# Copyright 2019 Alok Mishra
+# audiotrack: display artist, title, and album of playing song - i3blocks script
+
+import subprocess
+import os
+import datetime
+
+playerstatus = subprocess.call(['playerctl', 'status'],
+                               stdout=subprocess.DEVNULL)
+
+if(playerstatus > 0):
+    exit()
+
+artist = subprocess.check_output(
+    ['playerctl', 'metadata', 'artist'], universal_newlines=True).strip()
+# ['playerctl', 'metadata', 'artist'], stderr=subprocess.STDOUT, shell=True, universal_newlines=True)
+
+title = subprocess.check_output(
+    ['playerctl', 'metadata', 'title'], universal_newlines=True).strip()
+
+album = subprocess.check_output(
+    ['playerctl', 'metadata', 'album'], universal_newlines=True).strip()
+
+if artist == '':
+    artist = 'Advertisement'
+    album = 'Muted ' + datetime.datetime.now().strftime(" %H:%M:%S")
+    subprocess.call(['pactl', 'set-sink-input-mute', '0', '1'],
+                    stdout=subprocess.DEVNULL)
+else:
+    subprocess.call(['pactl', 'set-sink-input-mute', '0', '0'],
+                    stdout=subprocess.DEVNULL)
+
+print(artist + ' - ' + title + ' [' + album + ']')
+
+if os.environ.get('BLOCK_BUTTON') == "1":
+    subprocess.call(['playerctl', 'play-pause'], stdout=subprocess.DEVNULL)
+
+if os.environ.get('BLOCK_BUTTON') == "3":
+    subprocess.call(['playerctl', 'next'], stdout=subprocess.DEVNULL)

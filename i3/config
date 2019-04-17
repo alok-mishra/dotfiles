@@ -4,7 +4,7 @@
 
 # Font Icons:
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-set $icons              
+set $icons             
 
 
 # Settings
@@ -28,7 +28,7 @@ bindsym $mod+grave workspace back_and_forth
 focus_follows_mouse no
 
 # Font for window titles.
-font pango:DejaVu Sans Mono, FontAwesome 10 
+font pango:DejaVu Sans Mono, FontAwesome 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -41,7 +41,7 @@ gaps outer 10
 #smart_gaps on
 
 # hide_edge_borders both
-# border pixel 2 
+# border pixel 2
 
 # class                 border  backgr. text    indicator child_border
 # client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
@@ -83,7 +83,7 @@ bindsym $mod+shift+r restart
 
 # Media Control
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10 i3blocks 
+bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10 i3blocks
 bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks
 bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+10 i3blocks
 
@@ -99,7 +99,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 2
 bindsym $malt+c exec --no-startup-id code
 bindsym $malt+f exec --no-startup-id firefox
 bindsym $malt+m exec --no-startup-id speedcrunch
-bindsym $malt+n exec --no-startup-id nautilus; workspace $ws3
+bindsym $malt+n exec --no-startup-id nautilus
 bindsym $malt+r exec --no-startup-id i3-sensible-terminal -e ranger
 bindsym $malt+s exec --no-startup-id spotify; workspace $ws6
 bindsym $malt+t exec --no-startup-id i3-sensible-terminal; workspace $ws1
@@ -107,7 +107,7 @@ bindsym $malt+w exec --no-startup-id google-chrome-stable
 bindsym $mod+backslash exec --no-startup-id i3-sensible-terminal -e ranger
 bindsym control+shift+space exec --no-startup-id "rofi -theme gruvbox-dark -modi run,calc -show run"
 # bindsym control+shift+space exec --no-startup-id "rofi -theme gruvbox-dark -combi-modi combi,run,calc -modi combi -show run"
-# bindsym control+shift+space exec --no-startup-id "rofi -show run -show calc -modi calc -no-show-match -no-sort" 
+# bindsym control+shift+space exec --no-startup-id "rofi -show run -show calc -modi calc -no-show-match -no-sort"
 
 
 # Layout Keybindings
@@ -232,7 +232,7 @@ mode $mode_system {
     bindsym Shift+l exec --no-startup-id i3-msg exit, mode "default"
     bindsym Shift+r exec --no-startup-id systemctl reboot, mode "default"
     bindsym s exec --no-startup-id $lock && systemctl suspend, mode "default"
-    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
+    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
 
     # back to normal: q, Enter or Escape
     bindsym q mode "default"
@@ -248,9 +248,15 @@ bindsym $mod+v exec --no-startup-id gvim ~/.config/i3/config
 # i3bar Status
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+# bar {
+#     status_command    python ~/.path/to/your/config/file.py
+#     position          bottom
+#     workspace_buttons yes
+# }
+
 bar {
         position top
-        status_command SCRIPT_DIR=~/.config/i3/blocklets i3blocks -c ~/.config/i3/i3blocks-top.conf
+        status_command SCRIPT_DIR=~/.config/i3 i3blocks -c ~/.config/i3/i3blocks-top.conf
         # i3bar_command i3bar -t
         # status_command i3status
         # mode hide # dock, hide, invisible

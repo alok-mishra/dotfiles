@@ -49,11 +49,12 @@ cmd <<< "mklink .gitconfig .dotfiles\git\.gitconfig"
 cmd <<< "mklink .vimrc .dotfiles\vim\.vimrc"
 cmd <<< "mklink /D .vim\snippets ..\.dotfiles\vim\vim\snippets"
 
-cmd <<< "mklink .vimperatorrc .dotfiles\vim\.vimperatorrc"
-cmd <<< "mklink /D vimperator\colors ..\.dotfiles\vim\vimperator\colors"
+cmd <<< "mklink .tridactylrc .dotfiles\web\browser\.tridactylrc"
 
 # Deprecated
 #cmd <<< "mklink .cvimrc .dotfiles\vim\.cvimrc"
 #cmd <<< "mklink /D .vimfx .dotfiles\vimfx"
 #cmd <<< "mklink /D .pentadactyl .dotfiles\pentadactyl\.pentadactyl"
 #cmd <<< "mklink .pentadactylrc .dotfiles\pentadactyl\.pentadactylrc"
+# cmd <<< "mklink .vimperatorrc .dotfiles\vim\.vimperatorrc"
+# cmd <<< "mklink /D vimperator\colors ..\.dotfiles\vim\vimperator\colors"

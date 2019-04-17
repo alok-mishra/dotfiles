@@ -1,11 +1,12 @@
 {
     ////// VSCODE //////
-    "editor.fontFamily": "Ligconsolata, Consolas, Liga Hack, Droid Sans Mono, monospace",
+    "editor.fontFamily": "Ligconsolata, Consolas, FontAwesome, Droid Sans Mono, monospace",
     "editor.fontLigatures": true,
     "editor.wordWrap": "on",
     "editor.selectionHighlight": false,
     "editor.detectIndentation": false,
     "editor.formatOnSave": true,
+    "editor.suggestSelection": "first",
 
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
@@ -28,8 +29,9 @@
     "workbench.iconTheme": "material-icon-theme",
     "workbench.startupEditor": "newUntitledFile",
     "workbench.statusBar.feedback.visible": false,
+    "workbench.list.automaticKeyboardNavigation": false,
+    "workbench.list.keyboardNavigation": "filter",
     "workbench.settings.openDefaultSettings": false,
-
     "workbench.editor.enablePreviewFromQuickOpen": false,
 
     "extensions.ignoreRecommendations": true,
@@ -90,7 +92,13 @@
         {
             "before": ["leader", "s"], "after": [],
             "commands": [ { "command": "workbench.action.files.save", "args": [] } ]
-        }
+        },
+
+        // MACROS
+        {
+            // Paste Clipboard
+            "before": ["@", "p"], "after": [ "v", "i", "\"", "\"", "*", "P"]
+        },
     ],
 
     ////// FORMATTING //////
@@ -111,12 +119,10 @@
 
 
     ////// MISCELLANEOUS //////
-
-    "syncing.pokaYokeThreshold": 0,
     "markdown.preview.breaks": true,
     "git.enableSmartCommit": true,
     "php.validate.enable": false,
-    "html.format.wrapLineLength": 0,
+    "html.format.wrapAttributes":"auto",
 
     ////// AREA UNDER DEVELOPMENT //////
     "workbench.colorCustomizations": {
@@ -126,9 +132,6 @@
         "editorCursor.foreground": "#CCC",
         "tab.activeBackground": "#282828"
     },
-    "window.zoomLevel": 0,
     "python.jediEnabled": false,
     "python.linting.pylintEnabled": true,
-    "editor.suggestSelection": "first",
-    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
 }
