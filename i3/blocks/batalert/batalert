@@ -53,7 +53,7 @@ def display(state, percent, time):
     if int(percent[:-1]) == 100:
         remaining = ''
 
-    if (int(percent[:-1])) <= 10:
+    if ((state != 'charging') and ((int(percent[:-1])) <= 10)):
         out(['notify-send', '-u', 'critical', 'BATTERY LOW! (' + percent + ')'])
 
     return display.format(icon, color_level[level_index], bat_level[level_index], percent, remaining)

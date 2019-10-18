@@ -17,22 +17,27 @@ set allowautofocus false
 unbind <C-f>
 
 "NAVIGATION
-bind --mode=ignore l tabnext
-bind --mode=ignore h tabprev
+" bind --mode=ignore l tabnext
+" bind --mode=ignore h tabprev
 bind l tabnext
 bind h tabprev
+bind o fillcmdline bmarks
 bind t fillcmdline bmarks -t
-bind ,p pin
 
-"FIND
-bind / fillcmdline find
-bind ? fillcmdline find -?
-bind n findnext 1
-bind N findnext -1
+"TOOLS
+bind ,p pin
 bind ,/ nohlsearch
 
+"FIND
+" bind / fillcmdline find
+" bind ? fillcmdline find -?
+bind n findnext 1
+bind N findnext -1
+" bind n <C-g>
+" bind N <C-S-g>
+
 "COPY
-bind y clipboard yankcanon
+" bind y clipboard yankcanon
 bind p clipboard tabopen
 
 "SYSTEM
@@ -41,12 +46,17 @@ bind ;s source
 bind ;v exclaim gvim ~/.tridactylrc
 
 "SEARCH
+set searchurls.bl https://www.browserling.com/browse/win/7/chrome/72/%s
+set searchurls.gd https://drive.google.com/drive/search?q=%s
 set searchurls.ll https://lucidlife.wordpress.com/?s=%s
+set searchurls.sd https://slickdeals.net/newsearch.php?rating=2&q=%s
 set searchurls.st https://stocktwits.com/symbol/%s
 set searchurls.tv https://www.tradingview.com/chart/?symbol=%s
 set searchurls.yt https://www.youtube.com/results?search_query=%s
 
 "SITES
+blacklistadd hassio.local
+blacklistadd facebook.com
 
 " Gmail Specific Keys allowed
 unbindurl mail.google.com .

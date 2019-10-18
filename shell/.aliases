@@ -85,14 +85,21 @@ alias remotelabpackage='git remote add gitlab git@gitlab.com:fcapi/package.git'
 alias remotelabmanifest='git remote add gitlab git@gitlab.com:fcapi/manifest.git'
 
 # WordPress
-alias gclwp='git clone --depth 1 https://github.com/WordPress/WordPress.git wordpress && rm -rf wordpress/.git'
+alias gclwp=git_clone_wordpress
+git_clone_wordpress() {
+    dir="wordpress"
+    if [[ $# -ne 0 ]]; then
+        dir=${1}
+    fi
+    git clone --depth 1 https://github.com/WordPress/WordPress.git $dir && rm -rf $dir/.git;
+}
 
 ############################## ADMIN  ##############################
 alias wcd=www_cd
 www_cd() { cd /var/www/$1; }
 
 alias compress='tar -cvzf ../${PWD##*/}.tar.gz .'
-alias extract='tar -xvf'
+alias extract='tar -zxvf'
 
 alias up='sudo apt-get update && time sudo apt-get upgrade'
 alias upd='sudo apt-get update && time sudo apt-get dist-upgrade'
@@ -102,10 +109,12 @@ alias dbres='sudo service mysql start'
 alias dbbak=db_backup
 db_backup() { mysqldump --user wordpress --password=$1 wordpress > ~/backups/db-backup.sql; }
 
-
 alias weblog='sudo cat /var/log/apache2/access.log'
 alias rpclog='sudo grep xmlrpc /var/log/apache2/access.log'
+
 alias webres='sudo service apache2 restart'
+alias webrel='sudo systemctl reload apache2'
+alias fws='sudo ufw status numbered'
 
 alias blockrpc='sudo a2enconf block-xmlrpc'
 
@@ -131,10 +140,13 @@ alias pca='conda activate'
 alias pcd='conda deactivate'
 
 ############################## NODE  ##############################
-alias yga='yarn global --verbose add'
+alias ys='yarn start'
+alias yga='yarn global add'
+alias yda='yarn --dev add'
+alias ygr='yarn global --verbose remove'
 alias ygu='yarn global --verbose upgrade'
 
-alias sass='node-sass --output-style compact'
+alias scss='node-sass --output-style compact'
 
 ############################## ANGULAR ##############################
 export PATH=$PATH:~/.config/yarn/global/node_modules/.bin

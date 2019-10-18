@@ -3,7 +3,7 @@ alias vj='vi manifest.json'
 alias nm='node manifest'
 alias gurp='gars && gulp'
 # alias rocky='./cntlm -c cntlm.ini -M https://www.google.com'
-alias rocky='./cntlm -H -c cntlm.ini'
+alias rocky='./cntlm -H -c cntlm.ini && vi cntlm.ini'
 
 ##################################### DOCKER #####################################
 
@@ -31,6 +31,9 @@ alias gcln='git clone $repo/newdealer.git'
 alias gcle='git clone $repo/exam.git'
 alias gcrp=clone_package_rebase
 alias gcrm=clone_manifest_rebase
+
+# Vue
+alias vcw='winpty vue.cmd create'
 
 # Archive / Extract
 alias gara='git archive --remote=$repo/Assembly.git master | tar -xv'

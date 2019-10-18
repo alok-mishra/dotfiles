@@ -1,10 +1,11 @@
-alias pac='yay --nodiffmenu'
+alias pac='yay'
 alias paci='pac -S'    # install a package
 alias pacu='pac -Syu'  # sync / refresh repos, update packages
 alias pacI='pac -Syu --ignore'  # sync / update, but ignore a package
 alias pacr='pac -Runs' # remove package and dependencies not being used
 alias pacc='pac -Sc && pac -c && paccache -r'   # clear cache for packages not yet installed
 alias pacs='pac -Qs'   # search packages installed
+alias pacq='pac -Qi'   # find packages dependant upon this
 alias paco='pac -Qu'   # outdated packages list
 alias pack='pac-key --populate archlinux'   # populate the package signing keys
 alias pacg='gpg --recv-key' # add a missing public key

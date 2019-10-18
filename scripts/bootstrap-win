@@ -5,7 +5,7 @@
 # This doesn't work because you're in admin folder
 #cd "$(dirname "$0")/.."
 
-# So start in user's Dropbox/dotfiles/shell
+# So start in user's sync/dotfiles/shell
 cd ../../../
 pwd
 
@@ -36,8 +36,8 @@ fail () {
 # Started using /J directory junctions instead of /D directory links. /J works better with apps and git,
 # but found out that this causes problems with recursion in Dropbox. Switching back to /D
 
-cmd <<< "mklink /D .ssh .tmp\Dropbox\Tools\Keys\.ssh"
-cmd <<< "mklink /D .dotfiles .tmp\Dropbox\dotfiles"
+cmd <<< "mklink /D .ssh .tmp\sync\keys\.ssh"
+cmd <<< "mklink /D .dotfiles .tmp\sync\dotfiles"
 
 cmd <<< "mklink .bashrc .dotfiles\shell\.bashrc"
 cmd <<< "mklink .bash_profile .dotfiles\shell\.bash_profile"
@@ -47,11 +47,11 @@ cmd <<< "mklink .minttyrc .dotfiles\shell\.minttyrc"
 cmd <<< "mklink .gitconfig .dotfiles\git\.gitconfig"
 
 cmd <<< "mklink .vimrc .dotfiles\vim\.vimrc"
-cmd <<< "mklink /D .vim\snippets ..\.dotfiles\vim\vim\snippets"
 
 cmd <<< "mklink .tridactylrc .dotfiles\web\browser\.tridactylrc"
 
 # Deprecated
+# cmd <<< "mklink /D .vim\snippets ..\.dotfiles\vim\vim\snippets"
 #cmd <<< "mklink .cvimrc .dotfiles\vim\.cvimrc"
 #cmd <<< "mklink /D .vimfx .dotfiles\vimfx"
 #cmd <<< "mklink /D .pentadactyl .dotfiles\pentadactyl\.pentadactyl"

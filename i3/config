@@ -59,7 +59,7 @@ client.background       #ffffff
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # $ xprop WM_CLASS
 # assign [class="URxvt"] $ws1
-assign [class="Firefox"] $ws2
+assign [class="firefox"] $ws2
 assign [class="Bcompare"] $ws3
 assign [class="Gimp"] $ws3
 assign [class="KeePass2"] $ws3
@@ -86,6 +86,9 @@ bindsym $mod+shift+r restart
 bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10 i3blocks
 bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks
 bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+10 i3blocks
+bindsym $malt+bracketleft exec playerctl previous
+bindsym $malt+bracketright exec playerctl next
+bindsym $malt+backslash exec playerctl play-pause
 
 
 # Brightness
@@ -98,6 +101,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 2
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 bindsym $malt+c exec --no-startup-id code
 bindsym $malt+f exec --no-startup-id firefox
+bindsym $malt+k exec --no-startup-id keepassxc
 bindsym $malt+m exec --no-startup-id speedcrunch
 bindsym $malt+n exec --no-startup-id nautilus
 bindsym $malt+r exec --no-startup-id i3-sensible-terminal -e ranger

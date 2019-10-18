@@ -57,16 +57,15 @@ alias gCf='git clean -f'
 # Fetch / Merge / Pull / Rebase / Push
 alias fetch='git fetch'
 alias pull='git pull'
-alias push='git push'
+alias push='git push --follow-tags'
 alias pushf='git push --force'
 
 alias showall='for remote in `git branch -r | grep -v "\->" | grep origin`; do echo ${remote#origin/} $remote; done;'
-
-# Track
 alias trackall='for remote in `git branch -r | grep -v "\->" | grep origin`; do git branch --track ${remote#origin/} $remote; done;'
 alias fetchall='git fetch --all'
 alias pullall='git pull --all'
 alias pushfall='git push --force --all'
+## Usage: trackall; pullall; pushfall gitlab;
 
 alias gm='git merge'
 alias gms='git merge --squash'
@@ -102,8 +101,9 @@ alias gcA='git commit -a --amend'
 
 # Tag
 alias gt='git tag'
-alias gta='git tag -a'
-alias gt1='git tag -a 1.0 -m'
+alias gt1='git tag -a v1.0 -m'
+alias gta='git_tag_message'
+git_tag_message() { git tag -a $1 -m $2; }
 
 # Submodules
 alias gS='git submodule'

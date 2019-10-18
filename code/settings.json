@@ -11,7 +11,7 @@
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
 
-    "material-icon-theme.activeIconPack": "angular",
+    "material-icon-theme.activeIconPack": "vue",
     "material-icon-theme.showUpdateMessage": false,
 
     "telemetry.enableTelemetry": false,
@@ -96,8 +96,12 @@
 
         // MACROS
         {
-            // Paste Clipboard
-            "before": ["@", "p"], "after": [ "v", "i", "\"", "\"", "*", "P"]
+            // Paste Clipboard between double quotes
+            "before": ["@", "\""], "after": [ "v", "i", "\"", "\"", "*", "P"]
+        },
+        {
+            // Paste Clipboard between single quotes
+            "before": ["@", "'"], "after": [ "v", "i", "'", "\"", "*", "P"]
         },
     ],
 
@@ -123,6 +127,11 @@
     "git.enableSmartCommit": true,
     "php.validate.enable": false,
     "html.format.wrapAttributes":"auto",
+    "vetur.format.enable": false,
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact",
+        "vue-html": "html",
+    },
 
     ////// AREA UNDER DEVELOPMENT //////
     "workbench.colorCustomizations": {
@@ -134,4 +143,6 @@
     },
     "python.jediEnabled": false,
     "python.linting.pylintEnabled": true,
+    "workbench.statusBar.visible": true,
+    "workbench.activityBar.visible": true,
 }

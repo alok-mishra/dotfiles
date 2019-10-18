@@ -1,14 +1,23 @@
 {
-    "name": "wordpress",
-    "version": "1.0.0",
-    "description": "mediaRAVE WordPress automations",
-    "main": "index.php",
-    "repository": "git@gitlab.com:mediarave",
+    "name": "project",
+    "version": "2.0.0",
+    "description": "Alok's Automations",
+    "main": "gulpfile.js",
+    "repository": "git@gitlab.com:alokmishra",
     "author": "Alok Mishra <alok@alokmishra.com>",
     "license": "UNLICENSED",
     "private": true,
-    "dependencies": {
-        "browser-sync": "^2.24.6",
+    "scripts": {
+        "build": "node exam",
+        "serve": "browser-sync start --server --directory --files \"src/content/*.html, src/content/styles/*.css, src/content/scripts/*.js\"  --startPath src/content",
+        "scss": "node-sass --output-style compact --watch src/content/styles/expert_exam.scss --output src/content/styles",
+        "start": "concurrently \"yarn serve\" \"yarn scss\""
+    },
+    "devDependencies": {
+        "browser-sync": "^2.26.7",
+        "concurrently": "^4.1.2",
+        "inquirer": "^6.2.1",
+        "node-sass": "^4.12.0"
         "gulp": "^3.9.1",
         "gulp-sass": "^4.0.1"
     }

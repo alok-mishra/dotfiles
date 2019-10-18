@@ -98,6 +98,14 @@
         "key": "ctrl+alt+s",
         "command": "workbench.action.files.saveWithoutFormatting"
     },
+    {
+        "key": "ctrl+alt+l",
+        "command": "workbench.action.moveEditorToRightGroup"
+    },
+    {
+        "key": "ctrl+alt+h",
+        "command": "workbench.action.moveEditorToLeftGroup"
+    },
 
     // Sync //
     {
@@ -110,20 +118,20 @@
     },
 
     // Bookmarks //
-    {
-        "key": "ctrl+alt+h",
-        "command": "bookmarks.jumpToPrevious",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "shift+alt+h",
-        "command": "bookmarks.expandSelectionToPrevious",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "ctrl+alt+b",
-        "command": "bookmarks.listFromAllFiles"
-    },
+    // {
+    //     "key": "ctrl+alt+h",
+    //     "command": "bookmarks.jumpToPrevious",
+    //     "when": "editorTextFocus"
+    // },
+    // {
+    //     "key": "shift+alt+h",
+    //     "command": "bookmarks.expandSelectionToPrevious",
+    //     "when": "editorTextFocus"
+    // },
+    // {
+    //     "key": "ctrl+alt+b",
+    //     "command": "bookmarks.listFromAllFiles"
+    // },
 
     // Explorer //
     {
@@ -190,24 +198,27 @@
         "command": "python.execInTerminal",
         "when": "editorFocus && !findInputFocussed && !replaceInputFocussed && !editorHasSelection && editorLangId == 'python'"
     },
-    {
-        "key": "ctrl+m ctrl+b",
-        "command": "md-shortcut.toggleBold",
-        "when": "editorTextFocus && editorLangId == 'markdown'"
-    },
-    {
-        "key": "ctrl+b",
-        "command": "-md-shortcut.toggleBold",
-        "when": "editorTextFocus && editorLangId == 'markdown'"
-    },
-    {
-        "key": "ctrl+m ctrl+8",
-        "command": "md-shortcut.toggleBullets",
-        "when": "editorTextFocus && editorLangId == 'markdown'"
-    },
-    {
-        "key": "ctrl+m ctrl+b",
-        "command": "-md-shortcut.toggleBullets",
-        "when": "editorTextFocus && editorLangId == 'markdown'"
-    },
+
+    // Markdown //
+    // {
+    //     "key": "ctrl+m ctrl+b",
+    //     "command": "md-shortcut.toggleBold",
+    //     "when": "editorTextFocus && editorLangId == 'markdown'"
+    // },
+    // {
+    //     "key": "ctrl+b",
+    //     "command": "-md-shortcut.toggleBold",
+    //     "when": "editorTextFocus && editorLangId == 'markdown'"
+    // },
+    // {
+    //     "key": "ctrl+m ctrl+8",
+    //     "command": "md-shortcut.toggleBullets",
+    //     "when": "editorTextFocus && editorLangId == 'markdown'"
+    // },
+    // {
+    //     "key": "ctrl+m ctrl+b",
+    //     "command": "-md-shortcut.toggleBullets",
+    //     "when": "editorTextFocus && editorLangId == 'markdown'"
+    // },
+
 ]
