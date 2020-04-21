@@ -1,21 +1,22 @@
-version: '3.3'
+version: '3'
 
 services:
   db:
-    image: mysql:5.7
-    container_name: db
+    image: mariadb
     volumes:
-      - data:/var/lib/mysql
+      - ./.db:/var/lib/mysql
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: rootpass
       MYSQL_DATABASE: wordpress
       MYSQL_USER: wordpress
-      MYSQL_PASSWORD: wordpress
+      MYSQL_PASSWORD: datapass
+
+    # Workaround to allow data volumes on the current directory on Windows
+    command: mysqld --innodb-flush-method=littlesync --innodb-use-native-aio=OFF --log_bin=ON
 
   wp:
     image: wordpress
-    container_name: wp
     volumes:
       - ./:/var/www/html
 
@@ -23,13 +24,11 @@ services:
       - ./php-config.ini:/usr/local/etc/php/conf.d/opcache-recommended.ini
     depends_on:
       - db
+    links:
+      - db:mysql
     ports:
       - 80:80
     restart: always
     environment:
-      WORDPRESS_DB_HOST: db
       WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: wordpress
-
-volumes:
-  data:
+      WORDPRESS_DB_PASSWORD: datapass

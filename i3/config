@@ -62,8 +62,9 @@ client.background       #ffffff
 assign [class="firefox"] $ws2
 assign [class="Bcompare"] $ws3
 assign [class="Gimp"] $ws3
-assign [class="KeePass2"] $ws3
+assign [class="keepassxc"] $ws3
 assign [class="Code"] $ws4
+assign [class="Olive"] $ws5
 assign [class="Google-chrome"] $ws5
 
 # for_window [class="Spotify"] move to workspace $ws6
@@ -104,6 +105,7 @@ bindsym $malt+f exec --no-startup-id firefox
 bindsym $malt+k exec --no-startup-id keepassxc
 bindsym $malt+m exec --no-startup-id speedcrunch
 bindsym $malt+n exec --no-startup-id nautilus
+bindsym $malt+o exec --no-startup-id olive-editor
 bindsym $malt+r exec --no-startup-id i3-sensible-terminal -e ranger
 bindsym $malt+s exec --no-startup-id spotify; workspace $ws6
 bindsym $malt+t exec --no-startup-id i3-sensible-terminal; workspace $ws1
@@ -299,6 +301,9 @@ exec_always --no-startup-id xrandr --output HDMI1 --off --output VIRTUAL1 --off 
 exec --no-startup-id xinput set-prop "SYN2602:00 06CB:78D3 Touchpad" "libinput Tapping Enabled" 1
 
 exec --no-startup-id redshift -P -O 5000
+
+exec --no-startup-id rclone mount gDrive: ~/sync/gDrive/
+exec --no-startup-id rclone mount gSync: ~/sync/gSync/
 
 exec --no-startup-id dropbox-cli start
 exec --no-startup-id feh --bg-fill ~/.config/backgrounds/aurora.jpg

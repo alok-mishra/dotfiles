@@ -18,6 +18,7 @@ alias vi3='vi ~/.config/i3/config'
 #nmcli device wifi connect "The SSID!" password "The Password" hidden true
 alias nml='nmcli device wifi list'
 alias nmc='nmcli device wifi connect'
+alias nmt='nmtui connect'
 
 alias services='systemctl list-unit-files --state=enabled'
 

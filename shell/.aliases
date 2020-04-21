@@ -4,6 +4,7 @@ alias ll='ls -halF'
 alias vi='vim'
 alias grep='grep --color=auto'
 alias x='exit'
+alias ag='alias | grep'
 
 alias ..='cd ..'
 alias ocd='cd "$OLDPWD"'
@@ -37,7 +38,7 @@ alias dp='docker ps -a'
 alias dps='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Command}}\t{{.Ports}}\t{{.Names}}"'
 alias dpa='docker ps -a --format "table {{.ID}}\t{{.Image}}\t{{.Command}}\t{{.Ports}}\t{{.Names}}"'
 
-alias dlo='docker logs'
+alias dl='docker logs'
 
 alias dRf='docker rm -f'
 # alias dRaf='docker rm -f $(docker ps -a -q)'
@@ -95,6 +96,8 @@ git_clone_wordpress() {
 }
 
 ############################## ADMIN  ##############################
+HISTTIMEFORMAT="%d/%m/%y %T "
+
 alias wcd=www_cd
 www_cd() { cd /var/www/$1; }
 
@@ -112,6 +115,7 @@ db_backup() { mysqldump --user wordpress --password=$1 wordpress > ~/backups/db-
 alias weblog='sudo cat /var/log/apache2/access.log'
 alias rpclog='sudo grep xmlrpc /var/log/apache2/access.log'
 
+alias chowd='sudo chown -R www-data:www-data .'
 alias webres='sudo service apache2 restart'
 alias webrel='sudo systemctl reload apache2'
 alias fws='sudo ufw status numbered'
@@ -143,6 +147,7 @@ alias pcd='conda deactivate'
 alias ys='yarn start'
 alias yga='yarn global add'
 alias yda='yarn --dev add'
+alias yul='yarn upgrade --latest'
 alias ygr='yarn global --verbose remove'
 alias ygu='yarn global --verbose upgrade'
 
@@ -162,6 +167,8 @@ alias nggs='ng generate service --flat --spec=false'
 
 ############################## FLUTTER ##############################
 export PATH=$PATH:~/sdk/flutter/bin
+
+alias gclfsdk='git clone --depth 1 https://github.com/flutter/flutter.git -b stable ~/sdk/flutter/'
 
 
 ############################## ATOM ##############################

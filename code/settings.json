@@ -34,6 +34,9 @@
     "workbench.settings.openDefaultSettings": false,
     "workbench.editor.enablePreviewFromQuickOpen": false,
 
+    "workbench.editor.limit.enabled": true,
+    "workbench.editor.limit.value": 6,
+
     "extensions.ignoreRecommendations": true,
     "extensions.showRecommendationsOnlyOnDemand": true,
 
@@ -43,8 +46,10 @@
     "files.trimTrailingWhitespace": true,
 
     "files.associations": {
-        "*.aliases": "shellscript"
+        "*.aliases": "shellscript",
+        "*.tridactylrc": "vimrc"
     },
+
 
     ////// VIM //////
     // "vim.leader": "<space>",
@@ -63,6 +68,7 @@
         "<C-v>": false, // paste
         "<C-y>": false, // redo
     },
+
 
     // Native Undo and Redo
     "vim.normalModeKeyBindings": [
@@ -106,7 +112,9 @@
     ],
 
     ////// FORMATTING //////
-
+    "[handlebars]": {
+        "editor.formatOnSave": false
+    },
     "[jsonc]": {
         "editor.formatOnSave": false
     },
@@ -115,9 +123,9 @@
     "prettier.printWidth": 120,
     "prettier.singleQuote": true,
     "prettier.trailingComma": "es5",
-    "prettier.tslintIntegration": true,
     "prettier.disableLanguages": [
-        "css",
+        "html",
+        "xml",
         "yaml",
     ],
 
@@ -125,13 +133,16 @@
     ////// MISCELLANEOUS //////
     "markdown.preview.breaks": true,
     "git.enableSmartCommit": true,
+    "timeline.showView": true,
     "php.validate.enable": false,
-    "html.format.wrapAttributes":"auto",
+    "html.format.contentUnformatted":"pre,code,textarea,b",
+    "html.format.unformatted": "b, span",
     "vetur.format.enable": false,
     "emmet.includeLanguages": {
         "javascript": "javascriptreact",
         "vue-html": "html",
     },
+
 
     ////// AREA UNDER DEVELOPMENT //////
     "workbench.colorCustomizations": {
@@ -141,8 +152,11 @@
         "editorCursor.foreground": "#CCC",
         "tab.activeBackground": "#282828"
     },
+
     "python.jediEnabled": false,
     "python.linting.pylintEnabled": true,
     "workbench.statusBar.visible": true,
     "workbench.activityBar.visible": true,
+    "window.zoomLevel": 0,
+    "liveServer.settings.donotShowInfoMsg": true,
 }

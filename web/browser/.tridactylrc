@@ -57,6 +57,8 @@ set searchurls.yt https://www.youtube.com/results?search_query=%s
 "SITES
 blacklistadd hassio.local
 blacklistadd facebook.com
+blacklistadd docs.google.com
+blacklistadd script.google.com
 
 " Gmail Specific Keys allowed
 unbindurl mail.google.com .

@@ -1,8 +1,9 @@
 alias vi='start //b gvim'
 alias vj='vi manifest.json'
+alias ne='node exam'
 alias nm='node manifest'
 alias gurp='gars && gulp'
-# alias rocky='./cntlm -c cntlm.ini -M https://www.google.com'
+alias gRe='git rebase origin/english'
 alias rocky='./cntlm -H -c cntlm.ini && vi cntlm.ini'
 
 ##################################### DOCKER #####################################
@@ -53,7 +54,7 @@ clone_package_rebase() {
         fi
 
         if [ "$1" = "english" ]; then
-            branch="master"
+            branch="english"
         else
             branch=${1}
         fi
@@ -178,4 +179,19 @@ archive_project() {
     else
         read -p "\"$project\" is not a valid project! ... Press enter to dismiss ..."
     fi
+}
+
+
+# Sync local repo with gitlab cloud repo
+alias glsync='gitlab_repo_sync'
+gitlab_repo_sync() {
+    git clone $repo/$1.git
+    cd $1
+    trackall
+    pullall
+    git remote add gitlab git@gitlab.com:fcapi/$1.git
+    fetchall
+    git branch -a
+    echo "============ Verify GitLab branches are unprotected if force push is required! ============"
+    pushrall gitlab
 }
