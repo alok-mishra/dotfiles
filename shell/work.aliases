@@ -141,7 +141,7 @@ archive_project() {
     project="${PWD##*/}"
 
     if [[ $project =~ ^[0-9]{2}-[0-9]{3} ]]; then
-        
+
         echo "Removing excess ..."
         rm -rf "2 Design"
         rm -rf "3 Development"
@@ -181,6 +181,10 @@ archive_project() {
     fi
 }
 
+
+# GitLab
+gitlab_clone_fcapi() { git clone git@gitlab.com:fcapi/$1 $2; }
+alias gclglf='gitlab_clone_fcapi'
 
 # Sync local repo with gitlab cloud repo
 alias glsync='gitlab_repo_sync'

@@ -79,8 +79,8 @@ github_init() { curl -u "alok-mishra" https://api.github.com/user/repos -d "{'na
 alias ghi='github_init'
 
 # GitLab
-gitlab_clone() { git clone git@gitlab.com:mediarave/$1 $2; }
-alias gclgl='gitlab_clone'
+gitlab_clone_mediarave() { git clone git@gitlab.com:mediarave/$1 $2; }
+alias gclglm='gitlab_clone_mediarave'
 alias pushalllab='git push gitlab --all'
 alias remotelabpackage='git remote add gitlab git@gitlab.com:fcapi/package.git'
 alias remotelabmanifest='git remote add gitlab git@gitlab.com:fcapi/manifest.git'

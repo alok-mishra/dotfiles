@@ -14,7 +14,7 @@ alias gru='git remote set-url'
 # Logs
 alias gl='git log'
 alias glo='git log --oneline -10'
-alias glp='git log --pretty=format:"%h%x09%an%x09%ad%x09%s" --date=short -20'
+alias gld='git log --pretty=format:"%h%x09%an%x09%ad%x09%s" --date=short -20'
 alias glg='git log --oneline --graph --all --decorate'
 
 # Clone
@@ -122,4 +122,3 @@ alias gSp='git pull --recurse-submodules'
 
 # Archive / Extract
 alias gar='git archive HEAD --format=zip > "../${PWD##*/}.zip"'
-
