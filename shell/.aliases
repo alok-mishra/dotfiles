@@ -9,7 +9,9 @@ alias ag='alias | grep'
 alias ..='cd ..'
 alias ocd='cd "$OLDPWD"'
 
-alias md5='openssl md5'
+alias md5=md5hash
+md5hash() { echo -n "$1" | openssl md5; }
+
 alias sha1='openssl sha1'
 alias path='echo "${PATH//:/$'"'"'\n'"'"'}"'
 alias scpid='ssh-copy-id -i ~/.ssh/id_rsa'
@@ -119,6 +121,10 @@ alias chowd='sudo chown -R www-data:www-data .'
 alias webres='sudo service apache2 restart'
 alias webrel='sudo systemctl reload apache2'
 alias fws='sudo ufw status numbered'
+
+alias lcc='sudo certbot certificates'
+alias lca='sudo certbot --apache'
+alias lcr='sudo certbot revoke --cert-name'
 
 alias blockrpc='sudo a2enconf block-xmlrpc'
 
