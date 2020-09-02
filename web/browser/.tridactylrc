@@ -6,7 +6,7 @@
 " sanitise tridactyllocal tridactylsync
 
 " THEME
-colors dark
+colors quake
 
 " CONFIGURATION
 guiset hoverlink right
@@ -15,6 +15,8 @@ set allowautofocus false
 
 "UNBIND
 unbind <C-f>
+unbind <<
+unbind >>
 
 "NAVIGATION
 " bind --mode=ignore l tabnext
@@ -47,33 +49,43 @@ bind ;v exclaim gvim ~/.tridactylrc
 
 "SEARCH
 set searchurls.bl https://www.browserling.com/browse/win/7/chrome/72/%s
+set searchurls.dv https://www.dividend.com/search?q=%s
 set searchurls.gd https://drive.google.com/drive/search?q=%s
 set searchurls.ll https://lucidlife.wordpress.com/?s=%s
+set searchurls.rd https://www.reddit.com/search?q=%s
 set searchurls.sd https://slickdeals.net/newsearch.php?rating=2&q=%s
 set searchurls.st https://stocktwits.com/symbol/%s
 set searchurls.tv https://www.tradingview.com/chart/?symbol=%s
+set searchurls.yf https://finance.yahoo.com/quote/%s
 set searchurls.yt https://www.youtube.com/results?search_query=%s
 
 "SITES
 blacklistadd hassio.local
-blacklistadd facebook.com
 blacklistadd docs.google.com
 blacklistadd calendar.google.com
 blacklistadd script.google.com
 
-" Gmail Specific Keys allowed
+" Gmail
 unbindurl mail.google.com .
 unbindurl mail.google.com a
 unbindurl mail.google.com f
+unbindurl mail.google.com g
 unbindurl mail.google.com j
 unbindurl mail.google.com k
 unbindurl mail.google.com o
 unbindurl mail.google.com s
-unbindurl mail.google.com x
 unbindurl mail.google.com u
+unbindurl mail.google.com x
 unbindurl mail.google.com J
 unbindurl mail.google.com K
 unbindurl mail.google.com U
+
+" YouTube
+unbindurl youtube.com/watch f
+unbindurl youtube.com/watch <
+unbindurl youtube.com/watch >
+unbindurl youtube.com/watch J
+unbindurl youtube.com/watch K
 
 " Syntax Colors
 " vim: set filetype=vim:

@@ -1,8 +1,11 @@
-alias vi='start //b gvim'
+alias vi='code'
+#alias vi='start //b gvim'
 alias vj='vi manifest.json'
 alias ne='node exam'
 alias nm='node manifest'
+alias nt='node topics'
 alias gurp='gars && gulp'
+alias grnt='gars && nt'
 alias gRe='git rebase origin/english'
 alias rocky='./cntlm -H -c cntlm.ini && vi cntlm.ini'
 
@@ -44,7 +47,7 @@ alias garr='git archive --remote=$repo/Assembly.git master | tar -xv shell/templ
 ## gcrp
 clone_package_rebase() {
     if [[ ($# -eq 0 || "$1" = "." ) && "$PWD" =~ Package ]]; then
-        git clone $repo/package.git .
+        git clone $repo/package.git . || read -p "... Press enter to dismiss ..."
         dir="."
     else
         if [ "$2" = "." ]; then
@@ -68,9 +71,13 @@ clone_package_rebase() {
     fi
 
     cd $dir
-    git rebase origin/master
-    rm -rf .git*
-    vi zip-package.bat
+
+    if [ -f zip-package.bat ]; then
+        git rebase origin/master
+        rm -rf .git*
+        vi zip-package.bat
+    fi
+
     exit
 }
 
@@ -99,7 +106,8 @@ clone_manifest_rebase() {
 
     cd manifest
     git rebase origin/master
-    vi manifest.json
+    # vi manifest.json
+    code .
     exit
 }
 
@@ -147,6 +155,7 @@ archive_project() {
         rm -rf "3 Development"
         rm -rf "4 Production/Assembly"
         rm -rf "4 Production/Interactive Assembly"
+        rm -rf "4 Production/Interactive Package/manifest/.git"
         rm -f  "4 Production"/*.zip
         rm -f "$project".7z
 

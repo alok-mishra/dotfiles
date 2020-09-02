@@ -38,12 +38,12 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 "GIT REPOS
-Plugin 'bling/vim-airline'
+" Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
-Plugin 'tmhedberg/matchit'
+" Plugin 'tmhedberg/matchit'
 Plugin 'tomtom/tcomment_vim'
-Plugin 'scrooloose/syntastic'
+" Plugin 'scrooloose/syntastic'
 
 " Plugin 'scrooloose/nerdtree'
 " Plugin 'kien/ctrlp.vim'
@@ -60,13 +60,13 @@ Plugin 'scrooloose/syntastic'
 " Plugin 'tpope/vim-fugitive'
 
 "Arduino
-Plugin 'jplaut/vim-arduino-ino'
+"Plugin 'jplaut/vim-arduino-ino'
 
 "Handlebars
 Plugin 'mustache/vim-mustache-handlebars'
 
 "Markdown
-Plugin 'godlygeek/tabular'
+" Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 
 " GoLang (not needed right now)
@@ -75,21 +75,21 @@ Plugin 'plasticboy/vim-markdown'
 " Plugin 'jstemmer/gotags'
 
 " SnipMate
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
+" Plugin 'MarcWeber/vim-addon-mw-utils'
+" Plugin 'tomtom/tlib_vim'
+" Plugin 'garbas/vim-snipmate'
 
 " UltiSnips
 " Plugin 'sirver/ultisnips'
 
 " Snippets
-Plugin 'honza/vim-snippets'
+" Plugin 'honza/vim-snippets'
 
 " Syntax
 Plugin 'elzr/vim-json'
-Plugin 'jeroenbourgois/vim-actionscript'
-Plugin 'vim-scripts/aspnetcs'
-Plugin 'groenewege/vim-less'
+"Plugin 'jeroenbourgois/vim-actionscript'
+"Plugin 'vim-scripts/aspnetcs'
+" Plugin 'groenewege/vim-less'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'PotatoesMaster/i3-vim-syntax'
 

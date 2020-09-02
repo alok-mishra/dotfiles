@@ -109,6 +109,10 @@ alias extract='tar -zxvf'
 alias up='sudo apt-get update && time sudo apt-get upgrade'
 alias upd='sudo apt-get update && time sudo apt-get dist-upgrade'
 
+alias flash=flash_image
+flash_image() { sudo dd if=$1 of=$2 bs=4M oflag=direct status=progress && sync; }
+
+
 alias dblog='sudo cat /var/log/mysql/error.log'
 alias dbres='sudo service mysql start'
 alias dbbak=db_backup
@@ -118,7 +122,7 @@ alias weblog='sudo cat /var/log/apache2/access.log'
 alias rpclog='sudo grep xmlrpc /var/log/apache2/access.log'
 
 alias chowd='sudo chown -R www-data:www-data .'
-alias webres='sudo service apache2 restart'
+alias webres='sudo systemctl restart apache2'
 alias webrel='sudo systemctl reload apache2'
 alias fws='sudo ufw status numbered'
 

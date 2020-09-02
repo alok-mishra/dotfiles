@@ -51,8 +51,8 @@ alias gwRS='git reset --soft HEAD~1'
 alias gwRM='git reset --mixed HEAD~1'
 alias gwRH='git reset --hard HEAD~1'
 
-alias gCn='git clean -n'
-alias gCf='git clean -f'
+alias gCn='git clean --dry-run'
+alias gCf='git clean -force -d'
 
 # Fetch / Merge / Pull / Rebase / Push
 alias fetch='git fetch'

@@ -18,14 +18,12 @@
     "telemetry.enableCrashReporter": false,
 
     "terminal.integrated.shell.windows": "C:\\Workspace\\.tmp\\.apps\\Git\\bin\\bash.exe",
-    "terminal.integrated.showExitAlert": false,
-    "terminal.integrated.rendererType": "dom",
+    // "terminal.integrated.showExitAlert": false,
+    // "terminal.integrated.rendererType": "dom",
 
     "window.menuBarVisibility": "toggle",
 
     "breadcrumbs.enabled": true,
-
-    "workbench.colorTheme": "Gruvbox Dark Hard",
     "workbench.iconTheme": "material-icon-theme",
     "workbench.startupEditor": "newUntitledFile",
     "workbench.statusBar.feedback.visible": false,
@@ -88,6 +86,7 @@
             "commands": [ { "command": ":nohl", "args": [] } ]
         },
         {
+            // "before":["leader", "b"], "after":[],
             "before":["leader", "b"], "after":[],
             "commands": [ { "command": "workbench.action.tasks.build", "args": [] } ]
         },
@@ -99,6 +98,10 @@
             "before": ["leader", "s"], "after": [],
             "commands": [ { "command": "workbench.action.files.save", "args": [] } ]
         },
+        {
+            "before": ["leader", "S"], "after": [],
+            "commands": [ { "command": "workbench.action.files.saveWithoutFormatting", "args": [] } ]
+        },
 
         // MACROS
         {
@@ -106,8 +109,19 @@
             "before": ["@", "\""], "after": [ "v", "i", "\"", "\"", "*", "P"]
         },
         {
+            // Paste Vi Clipboard between double quotes
+            "before": ["@", "v"], "after": [ "v", "i", "\"", "P", "y", "i", "\""]
+        },
+        {
             // Paste Clipboard between single quotes
             "before": ["@", "'"], "after": [ "v", "i", "'", "\"", "*", "P"]
+        },
+        {
+            // Paste Clipboard between brackets and add quotes
+            "before": ["@", "]"], "after": [
+                "v","i", "]", "\"", "*", "P",
+                "v","i", "]", "b", "$", "I", "\"", "<esc>",
+                "v","i", "]", "b", "$", "A", "\"", ",", "<esc>"]
         },
     ],
 
@@ -122,6 +136,7 @@
     "prettier.tabWidth": 4,
     "prettier.printWidth": 120,
     "prettier.singleQuote": true,
+    "prettier.arrowParens": "avoid",
     "prettier.trailingComma": "es5",
     "prettier.disableLanguages": [
         "html",
@@ -159,4 +174,13 @@
     "workbench.activityBar.visible": true,
     "window.zoomLevel": 0,
     "liveServer.settings.donotShowInfoMsg": true,
+    "workbench.colorTheme": "Gruvbox Material Dark",
+    "cSpell.userWords": [
+        "scorm"
+    ],
+    "settingsSync.ignoredExtensions": [
+        "mikael.angular-beastcode",
+        "angular.ng-template",
+        "infinity1207.angular2-switcher"
+    ],
 }
