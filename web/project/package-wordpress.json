@@ -9,8 +9,10 @@
     "private": true,
     "scripts": {
         "scss": "node-sass --output-style compact --watch wp-content/themes/website/css/tsn.scss --output wp-content/themes/website/css",
-        "serve": "browser-sync start --proxy 192.168.99.100 --files \"wp-content/themes/**/*.css, wp-content/themes/**/*.php\"",
-        "start": "concurrently \"yarn serve\" \"yarn scss\""
+        "serve:windows": "browser-sync start --proxy 192.168.99.100 --files \"wp-content/themes/**/*.css, wp-content/themes/**/*.php\"",
+        "start:windows": "concurrently \"yarn serve:windows\" \"yarn scss\"",
+        "serve:linux": "browser-sync start --proxy localhost --files \"wp-content/themes/**/*.css, wp-content/themes/**/*.php\"",
+        "start:linux": "concurrently \"yarn serve:linux\" \"yarn scss\""
     },
     "devDependencies": {
         "browser-sync": "^2.26.7",

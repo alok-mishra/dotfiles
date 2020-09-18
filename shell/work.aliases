@@ -75,7 +75,7 @@ clone_package_rebase() {
     if [ -f zip-package.bat ]; then
         git rebase origin/master
         rm -rf .git*
-        vi zip-package.bat
+        code . -g zip-package.bat:4:13
     fi
 
     exit
@@ -106,8 +106,7 @@ clone_manifest_rebase() {
 
     cd manifest
     git rebase origin/master
-    # vi manifest.json
-    code .
+    code . -g manifest.json:2:29
     exit
 }
 

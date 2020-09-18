@@ -108,6 +108,10 @@ call vundle#end()
 
 "======================================== Global Settings ======================================
 
+"CURSOR
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
+ 
 "FILE
 filetype plugin indent on
 set nobackup    " do not create a backup file
@@ -129,7 +133,6 @@ if has('multi_byte')
 endif
 
 "COLORS
-
 function! ForceColors()
     highlight Search guifg=black guibg=yellowgreen gui=bold
     highlight LineNr guibg=#111111
@@ -163,8 +166,8 @@ set splitbelow
 set splitright
 set equalalways
 set laststatus=2
-set columns=120
-set lines=50
+" set columns=120     " Not compatible with i3wm
+" set lines=50        " Not compatible with i3wm
 set cursorline
 set visualbell
 set shortmess=aoOtT   " Short Messages

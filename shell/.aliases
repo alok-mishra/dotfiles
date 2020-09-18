@@ -100,6 +100,8 @@ git_clone_wordpress() {
 ############################## ADMIN  ##############################
 HISTTIMEFORMAT="%d/%m/%y %T "
 
+alias suvi='sudo -E vim'
+
 alias wcd=www_cd
 www_cd() { cd /var/www/$1; }
 
@@ -117,6 +119,9 @@ alias dblog='sudo cat /var/log/mysql/error.log'
 alias dbres='sudo service mysql start'
 alias dbbak=db_backup
 db_backup() { mysqldump --user wordpress --password=$1 wordpress > ~/backups/db-backup.sql; }
+
+alias syncup=sync_uploads
+sync_uploads() { rsync -raz --ignore-existing --omit-dir-times --max-size=1000kb --progress $1:/var/www/$2/wp-content/uploads wp-content/; }
 
 alias weblog='sudo cat /var/log/apache2/access.log'
 alias rpclog='sudo grep xmlrpc /var/log/apache2/access.log'

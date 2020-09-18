@@ -37,7 +37,8 @@ alias gchm='git checkout master'
 alias gd='git diff'
 alias gdn='git diff --name-only'
 alias gdm='git diff origin/master'
-alias gdo='git diff origin'
+alias gdo='git_diff_origin_branch'
+git_diff_origin_branch() { git diff origin/$1; }
 
 alias gdt='git difftool'
 
@@ -51,8 +52,8 @@ alias gwRS='git reset --soft HEAD~1'
 alias gwRM='git reset --mixed HEAD~1'
 alias gwRH='git reset --hard HEAD~1'
 
-alias gCn='git clean --dry-run'
-alias gCf='git clean -force -d'
+alias gCn='git clean -d --dry-run'
+alias gCf='git clean -d --force'
 
 # Fetch / Merge / Pull / Rebase / Push
 alias fetch='git fetch'

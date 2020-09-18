@@ -24,3 +24,5 @@
 [core]
     editor = vim
     autocrlf = input
+[pull]
+	ff = only

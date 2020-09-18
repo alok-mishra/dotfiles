@@ -18,7 +18,7 @@
     "telemetry.enableCrashReporter": false,
 
     "terminal.integrated.shell.windows": "C:\\Workspace\\.tmp\\.apps\\Git\\bin\\bash.exe",
-    // "terminal.integrated.showExitAlert": false,
+    "terminal.integrated.showExitAlert": false,
     // "terminal.integrated.rendererType": "dom",
 
     "window.menuBarVisibility": "toggle",
@@ -105,6 +105,10 @@
 
         // MACROS
         {
+            // Paste Clipboard between html tags
+            "before": ["@", "t"], "after": [ "v", "i", "t", "\"", "*", "P"]
+        },
+        {
             // Paste Clipboard between double quotes
             "before": ["@", "\""], "after": [ "v", "i", "\"", "\"", "*", "P"]
         },
@@ -174,13 +178,8 @@
     "workbench.activityBar.visible": true,
     "window.zoomLevel": 0,
     "liveServer.settings.donotShowInfoMsg": true,
-    "workbench.colorTheme": "Gruvbox Material Dark",
+    "workbench.colorTheme": "Gruvbox Dark Hard",
     "cSpell.userWords": [
         "scorm"
-    ],
-    "settingsSync.ignoredExtensions": [
-        "mikael.angular-beastcode",
-        "angular.ng-template",
-        "infinity1207.angular2-switcher"
     ],
 }
