@@ -12,6 +12,9 @@ alias ocd='cd "$OLDPWD"'
 alias md5=md5hash
 md5hash() { echo -n "$1" | openssl md5; }
 
+alias mk4=mkv_to_mp4
+mkv_to_mp4() { for i in *.mkv; do ffmpeg -i "$i" -loglevel error -codec copy "${i%.*}.mp4"; done; }
+
 alias sha1='openssl sha1'
 alias path='echo "${PATH//:/$'"'"'\n'"'"'}"'
 alias scpid='ssh-copy-id -i ~/.ssh/id_rsa'
@@ -80,12 +83,22 @@ alias dotfiles='git clone git@github.com:alok-mishra/dotfiles.git'
 github_init() { curl -u "alok-mishra" https://api.github.com/user/repos -d "{'name':$1,'description':$2}"; }
 alias ghi='github_init'
 
+
 # GitLab
-gitlab_clone_mediarave() { git clone git@gitlab.com:mediarave/$1 $2; }
 alias gclglm='gitlab_clone_mediarave'
+gitlab_clone_mediarave() { git clone git@gitlab.com:mediarave/$1 $2; }
+
+alias gclglf='gitlab_clone_fcapi'
+gitlab_clone_fcapi() { git clone git@gitlab.com:fcapi/$1 $2; }
+
 alias pushalllab='git push gitlab --all'
 alias remotelabpackage='git remote add gitlab git@gitlab.com:fcapi/package.git'
 alias remotelabmanifest='git remote add gitlab git@gitlab.com:fcapi/manifest.git'
+
+
+# BitBucket
+alias gclbb='gitlab_clone_bitbucket'
+gitlab_clone_bitbucket() { git clone git@bitbucket.org:learnlife/$1 $2; }
 
 # WordPress
 alias gclwp=git_clone_wordpress
@@ -114,19 +127,25 @@ alias upd='sudo apt-get update && time sudo apt-get dist-upgrade'
 alias flash=flash_image
 flash_image() { sudo dd if=$1 of=$2 bs=4M oflag=direct status=progress && sync; }
 
+alias phpinfo='php -i | grep php.ini'
 
-alias dblog='sudo cat /var/log/mysql/error.log'
+alias dbroot='sudo mysql --user=root --password=`cat /root/.digitalocean_password`'
+alias dblog='sudo less /var/log/mysql/error.log'
 alias dbres='sudo service mysql start'
 alias dbbak=db_backup
 db_backup() { mysqldump --user wordpress --password=$1 wordpress > ~/backups/db-backup.sql; }
 
-alias syncup=sync_uploads
-sync_uploads() { rsync -raz --ignore-existing --omit-dir-times --max-size=1000kb --progress $1:/var/www/$2/wp-content/uploads wp-content/; }
+alias syncdu=sync_down_uploads
+sync_down_uploads() { rsync -raz --ignore-existing --omit-dir-times --max-size=$3mb --progress $1:/var/www/$2/wp-content/uploads wp-content/; }
 
-alias weblog='sudo cat /var/log/apache2/access.log'
+alias syncuu=sync_up_uploads
+sync_up_uploads() { rsync -raz --ignore-existing --omit-dir-times --max-size=$3mb --progress wp-content/uploads $1:/var/www/$2/wp-content/; }
+
+alias weblog='sudo less /var/log/apache2/access.log'
 alias rpclog='sudo grep xmlrpc /var/log/apache2/access.log'
 
-alias chowd='sudo chown -R www-data:www-data .'
+alias chowh='sudo chown -R http:http . && sudo chown -R alok:alok .git'
+alias choww='sudo chown -R www-data:www-data .'
 alias webres='sudo systemctl restart apache2'
 alias webrel='sudo systemctl reload apache2'
 alias fws='sudo ufw status numbered'
@@ -159,7 +178,21 @@ alias pca='conda activate'
 alias pcd='conda deactivate'
 
 ############################## NODE  ##############################
-alias ys='yarn start'
+
+export PATH=$PATH:~/.config/yarn/global/node_modules/.bin
+
+alias nrd='npm run dev'
+alias nid='npm install --save-dev'
+
+alias ys=yarn_start
+yarn_start() {
+    if [[ $# -ne 0 ]]; then
+        yarn $1
+    else
+        yarn start
+    fi
+}
+
 alias yga='yarn global add'
 alias yda='yarn --dev add'
 alias yul='yarn upgrade --latest'
@@ -168,17 +201,19 @@ alias ygu='yarn global --verbose upgrade'
 
 alias scss='node-sass --output-style compact'
 
-############################## ANGULAR ##############################
-export PATH=$PATH:~/.config/yarn/global/node_modules/.bin
+############################## SVELTE ##############################
+alias svelte='npx degit sveltejs/template $1'
+alias skit='npm init svelte@next $1'
 
-alias ngs='ng serve --open'
-alias ngb='ng build --prod'
-alias ngn='ng new --routing --style=scss --skip-install'
-alias nggc='ng generate component --flat --spec=false'
-alias nggl='ng generate class'
-alias nggm='ng generate module --flat'
-alias nggp='ng generate pipe --flat --spec=false'
-alias nggs='ng generate service --flat --spec=false'
+############################## ANGULAR ##############################
+# alias ngs='ng serve --open'
+# alias ngb='ng build --prod'
+# alias ngn='ng new --routing --style=scss --skip-install'
+# alias nggc='ng generate component --flat --spec=false'
+# alias nggl='ng generate class'
+# alias nggm='ng generate module --flat'
+# alias nggp='ng generate pipe --flat --spec=false'
+# alias nggs='ng generate service --flat --spec=false'
 
 ############################## FLUTTER ##############################
 export PATH=$PATH:~/sdk/flutter/bin

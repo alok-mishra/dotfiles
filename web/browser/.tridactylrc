@@ -2,6 +2,9 @@
 " :installnative to activate
 " :source to load (or restart)
 
+" No native alternative - get gsync url from network tab of dev tools
+" :source --url <paste url>
+
 " Clear settings
 " sanitise tridactyllocal tridactylsync
 
@@ -23,8 +26,11 @@ unbind >>
 " bind --mode=ignore h tabprev
 bind l tabnext
 bind h tabprev
-bind o fillcmdline bmarks
-bind t fillcmdline bmarks -t
+
+bind B fillcmdline bmarks
+bind b fillcmdline bmarks -t
+
+bind z fillcmdline tab
 
 "TOOLS
 bind ,p pin
@@ -45,11 +51,13 @@ bind p clipboard tabopen
 "SYSTEM
 bind ;c viewconfig
 bind ;s source
-bind ;v exclaim gvim ~/.tridactylrc
+" bind ;S clipboard source --url
+bind ;v exclaim code ~/.tridactylrc
 
 "SEARCH
 set searchurls.bl https://www.browserling.com/browse/win/7/chrome/72/%s
 set searchurls.dv https://www.dividend.com/search?q=%s
+set searchurls.fv https://finviz.com/quote.ashx?t=%s
 set searchurls.gd https://drive.google.com/drive/search?q=%s
 set searchurls.ll https://lucidlife.wordpress.com/?s=%s
 set searchurls.rd https://www.reddit.com/search?q=%s
@@ -86,6 +94,11 @@ unbindurl youtube.com/watch <
 unbindurl youtube.com/watch >
 unbindurl youtube.com/watch J
 unbindurl youtube.com/watch K
+
+"Twitch
+unbindurl twitch.tv/videos f
+unbindurl twitch.tv/videos ,
+unbindurl twitch.tv/videos .
 
 " Syntax Colors
 " vim: set filetype=vim:

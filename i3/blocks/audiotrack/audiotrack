@@ -28,10 +28,10 @@ album = subprocess.check_output(
 if artist == '':
     artist = 'Advertisement'
     album = 'Muted ' + datetime.datetime.now().strftime(" %H:%M:%S")
-    subprocess.call(['pactl', 'set-sink-mute', '0', '1'],
+    subprocess.call(['pactl', 'set-sink-mute', '1', '1'],
                     stdout=subprocess.DEVNULL)
 else:
-    subprocess.call(['pactl', 'set-sink-mute', '0', '0'],
+    subprocess.call(['pactl', 'set-sink-mute', '1', '0'],
                     stdout=subprocess.DEVNULL)
 
 # Escaped to show special characters like ampersand (&)

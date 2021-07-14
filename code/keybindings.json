@@ -109,29 +109,9 @@
 
     // Sync //
     {
-        "key": "ctrl+alt+d",
-        "command": "syncing.downloadSettings"
+        "key": "ctrl+shift+alt+s",
+        "command": "workbench.userDataSync.actions.syncNow"
     },
-    {
-        "key": "ctrl+alt+u",
-        "command": "syncing.uploadSettings"
-    },
-
-    // Bookmarks //
-    // {
-    //     "key": "ctrl+alt+h",
-    //     "command": "bookmarks.jumpToPrevious",
-    //     "when": "editorTextFocus"
-    // },
-    // {
-    //     "key": "shift+alt+h",
-    //     "command": "bookmarks.expandSelectionToPrevious",
-    //     "when": "editorTextFocus"
-    // },
-    // {
-    //     "key": "ctrl+alt+b",
-    //     "command": "bookmarks.listFromAllFiles"
-    // },
 
     // Explorer //
     {
@@ -147,7 +127,7 @@
     {
         "key": "shift+c",
         "command": "workbench.files.action.collapseExplorerFolders",
-        "when": "filesExplorerFocus"
+        "when": "filesExplorerFocus && !inputFocus"
     },
     {
         "key": "e",
@@ -188,37 +168,32 @@
         "key": "ctrl+alt+g",
         "command": "git.viewHistory"
     },
-    // {
-    //     "key": "ctrl+r",
-    //     "command": "editor.action.startFindReplaceAction",
-    //     "when": "editorHasSelection"
-    // },
     {
         "key": "shift+enter",
         "command": "python.execInTerminal",
         "when": "editorFocus && !findInputFocussed && !replaceInputFocussed && !editorHasSelection && editorLangId == 'python'"
     },
-
-    // Markdown //
-    // {
-    //     "key": "ctrl+m ctrl+b",
-    //     "command": "md-shortcut.toggleBold",
-    //     "when": "editorTextFocus && editorLangId == 'markdown'"
-    // },
-    // {
-    //     "key": "ctrl+b",
-    //     "command": "-md-shortcut.toggleBold",
-    //     "when": "editorTextFocus && editorLangId == 'markdown'"
-    // },
-    // {
-    //     "key": "ctrl+m ctrl+8",
-    //     "command": "md-shortcut.toggleBullets",
-    //     "when": "editorTextFocus && editorLangId == 'markdown'"
-    // },
-    // {
-    //     "key": "ctrl+m ctrl+b",
-    //     "command": "-md-shortcut.toggleBullets",
-    //     "when": "editorTextFocus && editorLangId == 'markdown'"
-    // },
-
+    {
+        "key": "ctrl+alt+f",
+        "command": "eslint.executeAutofix",
+        "when": "editorFocus"
+    },
+    {
+        "key": "ctrl+f",
+        "command": "editor.action.startFindReplaceAction",
+        "when": "editorFocus || editorIsOpen"
+    },
+    {
+        "key": "ctrl+h",
+        "command": "-editor.action.startFindReplaceAction",
+        "when": "editorFocus || editorIsOpen"
+    },
+    {
+        "key": "shift+alt+`",
+        "command": "workbench.action.toggleSidebarVisibility"
+    },
+    {
+        "key": "ctrl+b",
+        "command": "-workbench.action.toggleSidebarVisibility"
+    }
 ]

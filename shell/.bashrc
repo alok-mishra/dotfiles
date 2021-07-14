@@ -28,6 +28,10 @@ fi
 if [ -d /usr/share/git/completion/ ]; then
     source /usr/share/git/completion/git-completion.bash
     source /usr/share/git/completion/git-prompt.sh
+
+    __git_complete gch _git_checkout
+    __git_complete gm _git_merge
+    __git_complete gp _git_pull
 fi
 
 ##################################### PROMPT  #####################################

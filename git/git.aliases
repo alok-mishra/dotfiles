@@ -10,6 +10,7 @@ alias gr='git remote'
 alias grv='git remote -v'
 alias gra='git remote add'
 alias gru='git remote set-url'
+alias grD='git remote rm'
 
 # Logs
 alias gl='git log'
@@ -35,7 +36,7 @@ alias gchb='git checkout -b'
 alias gchm='git checkout master'
 
 alias gd='git diff'
-alias gdn='git diff --name-only'
+alias gdn='git diff --name-status'
 alias gdm='git diff origin/master'
 alias gdo='git_diff_origin_branch'
 git_diff_origin_branch() { git diff origin/$1; }
@@ -82,6 +83,7 @@ alias gRa='git rebase --abort'
 alias gRc='git rebase --continue'
 alias gRs='git rebase --skip'
 alias gRm='git rebase origin/master'
+alias gRu='git rebase upstream/master'
 
 # Remove sensitive and binary files from list git history. Push force all branches afterwards.
 git_remove_filter_branch() {

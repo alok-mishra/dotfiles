@@ -1,22 +1,25 @@
 alias vi='code'
-#alias vi='start //b gvim'
+alias code='code-insiders'
 alias vj='vi manifest.json'
 alias ne='node exam'
 alias nm='node manifest'
 alias nt='node topics'
 alias gurp='gars && gulp'
-alias grnt='gars && nt'
+alias grnt='gart && nt && rm topics.js'
 alias gRe='git rebase origin/english'
 alias rocky='./cntlm -H -c cntlm.ini && vi cntlm.ini'
 
 ##################################### DOCKER #####################################
 
 # eval "$(docker-machine env devbox)"   (# errors if Docker Machine isn't alerady started)
-export DOCKER_TLS_VERIFY="1"
-export DOCKER_HOST="tcp://192.168.99.100:2376"
-export DOCKER_CERT_PATH="C:\Users\T5005A0\.docker\machine\machines\devbox"
-export DOCKER_MACHINE_NAME="devbox"
-export COMPOSE_CONVERT_WINDOWS_PATHS="true"
+# export DOCKER_TLS_VERIFY="1"
+# export DOCKER_HOST="tcp://192.168.99.100:2376"
+# export DOCKER_CERT_PATH="C:\Users\T5005A0\.docker\machine\machines\devbox"
+# export DOCKER_MACHINE_NAME="devbox"
+# export COMPOSE_CONVERT_WINDOWS_PATHS="true"
+
+alias dcu='cmd <<< "docker compose up -d"'
+alias dcd='cmd <<< "docker compose down"'
 
 ##################################### GIT #####################################
 # Set a environment variable for the repository
@@ -41,8 +44,9 @@ alias vcw='winpty vue.cmd create'
 
 # Archive / Extract
 alias gara='git archive --remote=$repo/Assembly.git master | tar -xv'
-alias gars='git archive --remote=$repo/scripts.git master | tar -xv storyline/ --strip-components=1'
 alias garr='git archive --remote=$repo/Assembly.git master | tar -xv shell/templates/retrofit/ --strip-components=3'
+alias gars='git archive --remote=$repo/scripts.git master | tar -xv storyline/ --strip-components=1'
+alias gart='git archive --remote=$repo/manifest.git master | tar -xv topics.js'
 
 ## gcrp
 clone_package_rebase() {
@@ -74,7 +78,7 @@ clone_package_rebase() {
 
     if [ -f zip-package.bat ]; then
         git rebase origin/master
-        rm -rf .git*
+        rm -rf .git*  *.css *.js *.lock package.json
         code . -g zip-package.bat:4:13
     fi
 
@@ -159,8 +163,8 @@ archive_project() {
         rm -f "$project".7z
 
         echo "Archiving \"$project\" ..."
-        "C:\Program Files\7-Zip\7z.exe" a "$project".7z .
-        "C:\Program Files\7-Zip\7z.exe" l "$project".7z '-xr!.git'
+        "C:\Program Files\7-Zip\7z.exe" a "$project".7z -xr!.git -xr!*.pdf -xr!*.zip .
+        "C:\Program Files\7-Zip\7z.exe" l "$project".7z
         manifests=$("C:\Program Files\7-Zip\7z.exe" l "$project".7z  | grep 'manifest\\manifest.json' | tr -s ' ' | cut -d ' ' -f 4)
 
         for size in $manifests
@@ -189,11 +193,6 @@ archive_project() {
     fi
 }
 
-
-# GitLab
-gitlab_clone_fcapi() { git clone git@gitlab.com:fcapi/$1 $2; }
-alias gclglf='gitlab_clone_fcapi'
-
 # Sync local repo with gitlab cloud repo
 alias glsync='gitlab_repo_sync'
 gitlab_repo_sync() {
@@ -204,6 +203,6 @@ gitlab_repo_sync() {
     git remote add gitlab git@gitlab.com:fcapi/$1.git
     fetchall
     git branch -a
-    echo "============ Verify GitLab branches are unprotected if force push is required! ============"
+    echo "====== Unprotect repo branches in GitLab before force pushing. Reprotect afterwards! ======"
     pushrall gitlab
 }

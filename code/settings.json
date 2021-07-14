@@ -1,32 +1,48 @@
 {
     ////// VSCODE //////
-    "editor.fontFamily": "Ligconsolata, Consolas, FontAwesome, Droid Sans Mono, monospace",
+    "editor.fontFamily": "Ligconsolata, Fira Code, Consolas, FontAwesome, Droid Sans Mono, monospace",
     "editor.fontLigatures": true,
-    "editor.wordWrap": "on",
+    "editor.wordWrap": "off",
     "editor.selectionHighlight": false,
     "editor.detectIndentation": false,
     "editor.formatOnSave": true,
-    "editor.suggestSelection": "first",
+    "editor.suggestSelection": "recentlyUsedByPrefix",
 
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
 
-    "material-icon-theme.activeIconPack": "vue",
+    "material-icon-theme.activeIconPack": "none",
     "material-icon-theme.showUpdateMessage": false,
 
     "telemetry.enableTelemetry": false,
     "telemetry.enableCrashReporter": false,
 
-    "terminal.integrated.shell.windows": "C:\\Workspace\\.tmp\\.apps\\Git\\bin\\bash.exe",
-    "terminal.integrated.showExitAlert": false,
-    // "terminal.integrated.rendererType": "dom",
+    "security.workspace.trust.enabled": false,
+
+    // "terminal.integrated.shell.windows": "bash.exe",
+    // "terminal.integrated.shell.windows": "c:\\apps\\git\\bin\\bash.exe",
+    // "terminal.integrated.shell.windows": "c:\\workspace\\.tmp\\.apps\\git\\bin\\bash.exe",
+
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": null,
+        "Command Prompt": null,
+        "Git Bash": null, // does not work
+        "GitBash": {
+            "path": "bash.exe"
+            // "source": "Git Bash"
+        }
+    },
+    "terminal.external.windowsExec": "bash.exe",
+    "terminal.integrated.defaultProfile.windows": "GitBash",
 
     "window.menuBarVisibility": "toggle",
+    "window.zoomLevel": 0,
 
     "breadcrumbs.enabled": true,
+
+    "workbench.colorTheme": "Gruvbox Dark Hard",
     "workbench.iconTheme": "material-icon-theme",
     "workbench.startupEditor": "newUntitledFile",
-    "workbench.statusBar.feedback.visible": false,
     "workbench.list.automaticKeyboardNavigation": false,
     "workbench.list.keyboardNavigation": "filter",
     "workbench.settings.openDefaultSettings": false,
@@ -35,8 +51,10 @@
     "workbench.editor.limit.enabled": true,
     "workbench.editor.limit.value": 6,
 
+    "workbench.statusBar.visible": true,
+    "workbench.activityBar.visible": true,
+
     "extensions.ignoreRecommendations": true,
-    "extensions.showRecommendationsOnlyOnDemand": true,
 
     "files.eol": "\n",
     "files.insertFinalNewline": true,
@@ -45,9 +63,10 @@
 
     "files.associations": {
         "*.aliases": "shellscript",
-        "*.tridactylrc": "vimrc"
+        "*.tridactylrc": "vimrc",
+        "*.scad": "javascript",
+        "*.jscad": "javascript"
     },
-
 
     ////// VIM //////
     // "vim.leader": "<space>",
@@ -63,69 +82,85 @@
         "<C-c>": false, // copy
         "<C-f>": false, // find
         "<C-k>": false, // vscode
-        "<C-v>": false, // paste
-        "<C-y>": false, // redo
+        // "<C-v>": false, // paste, disabled to work in command mode (works in insert anyway)
+        "<C-y>": false // redo
     },
-
 
     // Native Undo and Redo
     "vim.normalModeKeyBindings": [
         {
-            "before": ["u"], "after": [],
-            "commands": [ { "command": "undo" } ]
+            "before": ["u"],
+            "after": [],
+            "commands": [{ "command": "undo" }]
         },
         {
-            "before": ["C-r"], "after": [],
-            "commands": [ { "command": "redo" } ]
-        },
+            "before": ["C-r"],
+            "after": [],
+            "commands": [{ "command": "redo" }]
+        }
+    ],
+
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": ["leader", "s"],
+            "after": [],
+            "commands": [{ "command": "workbench.action.files.save", "args": [] }]
+        }
     ],
 
     "vim.normalModeKeyBindingsNonRecursive": [
         {
-            "before":["leader", "/"], "after":[],
-            "commands": [ { "command": ":nohl", "args": [] } ]
+            "before": ["leader", "/"],
+            "after": [],
+            "commands": [{ "command": ":nohl", "args": [] }]
         },
         {
             // "before":["leader", "b"], "after":[],
-            "before":["leader", "b"], "after":[],
-            "commands": [ { "command": "workbench.action.tasks.build", "args": [] } ]
+            "before": ["leader", "b"],
+            "after": [],
+            "commands": [{ "command": "workbench.action.tasks.build", "args": [] }]
         },
         {
-            "before":["leader", "n"], "after":[],
-            "commands": [ { "command": ":nohl", "args": [] } ]
+            "before": ["leader", "n"],
+            "after": [],
+            "commands": [{ "command": ":nohl", "args": [] }]
         },
         {
-            "before": ["leader", "s"], "after": [],
-            "commands": [ { "command": "workbench.action.files.save", "args": [] } ]
+            "before": ["leader", "s"],
+            "after": [],
+            "commands": [{ "command": "workbench.action.files.save", "args": [] }]
         },
         {
-            "before": ["leader", "S"], "after": [],
-            "commands": [ { "command": "workbench.action.files.saveWithoutFormatting", "args": [] } ]
+            "before": ["leader", "S"],
+            "after": [],
+            "commands": [{ "command": "workbench.action.files.saveWithoutFormatting", "args": [] }]
         },
 
         // MACROS
         {
             // Paste Clipboard between html tags
-            "before": ["@", "t"], "after": [ "v", "i", "t", "\"", "*", "P"]
+            "before": ["@", "t"],
+            "after": ["v", "i", "t", "\"", "*", "P"]
         },
         {
             // Paste Clipboard between double quotes
-            "before": ["@", "\""], "after": [ "v", "i", "\"", "\"", "*", "P"]
+            "before": ["@", "\""],
+            "after": ["v", "i", "\"", "\"", "*", "P"]
         },
         {
             // Paste Vi Clipboard between double quotes
-            "before": ["@", "v"], "after": [ "v", "i", "\"", "P", "y", "i", "\""]
+            "before": ["@", "v"],
+            "after": ["v", "i", "\"", "P", "y", "i", "\""]
         },
         {
             // Paste Clipboard between single quotes
-            "before": ["@", "'"], "after": [ "v", "i", "'", "\"", "*", "P"]
+            "before": ["@", "'"],
+            "after": ["v", "i", "'", "\"", "*", "P"]
         },
         {
             // Paste Clipboard between brackets and add quotes
-            "before": ["@", "]"], "after": [
-                "v","i", "]", "\"", "*", "P",
-                "v","i", "]", "b", "$", "I", "\"", "<esc>",
-                "v","i", "]", "b", "$", "A", "\"", ",", "<esc>"]
+            "before": ["@", "]"],
+            "after": [ "v", "i", "]", "\"", "*", "P", "v", "i", "]", "b", "$", "I", "\"", "<esc>", "v", "i", "]", "b", "$", "A", "\"", ",", "<esc>" ]
         },
     ],
 
@@ -133,53 +168,71 @@
     "[handlebars]": {
         "editor.formatOnSave": false
     },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        // "editor.defaultFormatter": "vscode.json-language-features"
+    },
     "[jsonc]": {
-        "editor.formatOnSave": false
+        "editor.formatOnSave": false,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
 
     "prettier.tabWidth": 4,
     "prettier.printWidth": 120,
+    "prettier.jsxBracketSameLine": false,
     "prettier.singleQuote": true,
     "prettier.arrowParens": "avoid",
-    "prettier.trailingComma": "es5",
-    "prettier.disableLanguages": [
-        "html",
-        "xml",
-        "yaml",
-    ],
-
 
     ////// MISCELLANEOUS //////
     "markdown.preview.breaks": true,
     "git.enableSmartCommit": true,
     "timeline.showView": true,
     "php.validate.enable": false,
-    "html.format.contentUnformatted":"pre,code,textarea,b",
+    "html.format.contentUnformatted": "pre,code,textarea,b",
     "html.format.unformatted": "b, span",
+    "html.autoClosingTags": false,
     "vetur.format.enable": false,
+    "vetur.validation.template": false,
+    "vetur.experimental.templateInterpolationService": true,
     "emmet.includeLanguages": {
         "javascript": "javascriptreact",
+        "postcss": "css",
         "vue-html": "html",
     },
-
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[markdown]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[svelte]": {
+        "editor.defaultFormatter": "svelte.svelte-vscode"
+    },
 
     ////// AREA UNDER DEVELOPMENT //////
     "workbench.colorCustomizations": {
         "editorSuggestWidget.selectedBackground": "#076678",
         "tab.activeForeground": "#d3869b",
         "tab.activeBorder": "#b16286",
-        "editorCursor.foreground": "#CCC",
-        "tab.activeBackground": "#282828"
+        "editorCursor.foreground": "#ebdbb2",
+        "tab.activeBackground": "#282828",
+        "window.activeBorder": "#458588",
+        "window.inactiveBorder": "#d65d0e"
     },
 
     "python.jediEnabled": false,
     "python.linting.pylintEnabled": true,
-    "workbench.statusBar.visible": true,
-    "workbench.activityBar.visible": true,
-    "window.zoomLevel": 0,
     "liveServer.settings.donotShowInfoMsg": true,
-    "workbench.colorTheme": "Gruvbox Dark Hard",
-    "cSpell.userWords": [
-        "scorm"
-    ],
+    "liveServer.settings.port": 5656,
+    "tailwindCSS.emmetCompletions": true,
+    "tailwindCSS.includeLanguages": {
+        "php": "html"
+    },
+    "svelte.plugin.css.diagnostics.enable": false,
 }

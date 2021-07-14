@@ -16,13 +16,15 @@
 [merge]
     tool = bc
 [mergetool "bc"]
-    path = C:/Program Files/Beyond Compare 4/BComp.exe 
+    path = C:/Program Files/Beyond Compare 4/BComp.exe
 [push]
     default = simple
 [mergetool]
     keepBackup = false
 [core]
-    editor = vim
+	editor = vim
     autocrlf = input
 [pull]
 	ff = only
+[init]
+	defaultBranch = master
