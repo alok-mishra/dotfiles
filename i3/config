@@ -249,7 +249,7 @@ bindsym $mod+w mode "resize"
 # System Control
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # $ convert image.jpg image.png
-set $lock i3lock -c 228866 -i ~/.config/wallpapers/lynx.png && sleep 1
+set $lock i3lock -c 228866 -i ~/.config/backgrounds/aurora.png && sleep 1
 
 set $mode_system "System [l]ock, [L]ogout, [R]eboot, [s]uspend, [S]hutdown"
 mode $mode_system {
@@ -317,7 +317,7 @@ exec --no-startup-id xinput set-prop "SYN2602:00 06CB:78D3 Touchpad" "libinput T
 exec --no-startup-id redshift -P -O 5000
 
 exec --no-startup-id rclone mount gDrive: ~/sync/gDrive/ --vfs-cache-mode full
-exec --no-startup-id rclone mount gSync: ~/sync/gSync/ --vfs-cache-mode full
+exec --no-startup-id rclone mount gSync: ~/sync/gSync/ --vfs-cache-mode full --log-file ~/sync/gSync.log --log-level INFO
 
 exec --no-startup-id dropbox-cli start
 

@@ -51,7 +51,8 @@ alias gart='git archive --remote=$repo/manifest.git master | tar -xv topics.js'
 ## gcrp
 clone_package_rebase() {
     if [[ ($# -eq 0 || "$1" = "." ) && "$PWD" =~ Package ]]; then
-        git clone $repo/package.git . || read -p "... Press enter to dismiss ..."
+        # git clone $repo/package.git . || read -p "... Press enter to dismiss ..."
+        git clone --depth 1 $repo/package.git . || read -p "... Press enter to dismiss ..."
         dir="."
     else
         if [ "$2" = "." ]; then
@@ -67,7 +68,8 @@ clone_package_rebase() {
         fi
 
         if [[ $# -ne 0 && "$1" != "." ]]; then
-            git clone $repo/package.git -b $branch $dir
+            # git clone $repo/package.git -b $branch $dir
+            git archive --depth 1 $repo/package.git $branch $dir
         else
             read -p "You aren't in a Package directory ... Press enter to dismiss ..."
             exit
@@ -158,7 +160,7 @@ archive_project() {
         rm -rf "3 Development"
         rm -rf "4 Production/Assembly"
         rm -rf "4 Production/Interactive Assembly"
-        rm -rf "4 Production/Interactive Package/manifest/.git"
+        rm -rf "4 Production/Interactive Package/content"
         rm -f  "4 Production"/*.zip
         rm -f "$project".7z
 
@@ -200,9 +202,9 @@ gitlab_repo_sync() {
     cd $1
     trackall
     pullall
-    git remote add gitlab git@gitlab.com:fcapi/$1.git
+    git remote add gitlab git@gitlab.com:stellantispi/$1.git
     fetchall
     git branch -a
-    echo "====== Unprotect repo branches in GitLab before force pushing. Reprotect afterwards! ======"
+    echo "====== Proceed after force pushing is allowed on GitLab repo! ======"
     pushrall gitlab
 }

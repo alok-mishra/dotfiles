@@ -10,27 +10,24 @@
 
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
+    "explorer.openEditors.visible": 0,
 
     "material-icon-theme.activeIconPack": "none",
     "material-icon-theme.showUpdateMessage": false,
 
-    "telemetry.enableTelemetry": false,
+    "telemetry.telemetryLevel": "off",
     "telemetry.enableCrashReporter": false,
 
     "security.workspace.trust.enabled": false,
 
-    // "terminal.integrated.shell.windows": "bash.exe",
-    // "terminal.integrated.shell.windows": "c:\\apps\\git\\bin\\bash.exe",
-    // "terminal.integrated.shell.windows": "c:\\workspace\\.tmp\\.apps\\git\\bin\\bash.exe",
-
     "terminal.integrated.profiles.windows": {
-        "PowerShell": null,
         "Command Prompt": null,
         "Git Bash": null, // does not work
         "GitBash": {
             "path": "bash.exe"
             // "source": "Git Bash"
-        }
+        },
+        "PowerShell": null,
     },
     "terminal.external.windowsExec": "bash.exe",
     "terminal.integrated.defaultProfile.windows": "GitBash",
@@ -40,19 +37,31 @@
 
     "breadcrumbs.enabled": true,
 
-    "workbench.colorTheme": "Gruvbox Dark Hard",
     "workbench.iconTheme": "material-icon-theme",
     "workbench.startupEditor": "newUntitledFile",
     "workbench.list.automaticKeyboardNavigation": false,
     "workbench.list.keyboardNavigation": "filter",
     "workbench.settings.openDefaultSettings": false,
-    "workbench.editor.enablePreviewFromQuickOpen": false,
 
-    "workbench.editor.limit.enabled": true,
     "workbench.editor.limit.value": 6,
+    "workbench.editor.limit.enabled": true,
+    "workbench.editor.untitled.hint": "hidden",
+    "workbench.editor.enablePreviewFromQuickOpen": false,
 
     "workbench.statusBar.visible": true,
     "workbench.activityBar.visible": true,
+
+    "workbench.colorTheme": "Gruvbox Dark Hard",
+    "workbench.colorCustomizations": {
+        "editorSuggestWidget.selectedBackground": "#076678",
+        "tab.activeForeground": "#d3869b",
+        "tab.activeBorder": "#b16286",
+        "editorCursor.foreground": "#ebdbb2",
+        "tab.activeBackground": "#282828",
+        "window.activeBorder": "#458588",
+        "window.inactiveBorder": "#d65d0e"
+    },
+
 
     "extensions.ignoreRecommendations": true,
 
@@ -60,8 +69,10 @@
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
+    "files.hotExit": "off",
 
     "files.associations": {
+        "config": "shellscript",
         "*.aliases": "shellscript",
         "*.tridactylrc": "vimrc",
         "*.scad": "javascript",
@@ -176,6 +187,24 @@
         "editor.formatOnSave": false,
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[markdown]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[svelte]": {
+        "editor.defaultFormatter": "svelte.svelte-vscode"
+    },
+    "[yaml]": {
+        "editor.formatOnSave": false,
+    },
 
     "prettier.tabWidth": 4,
     "prettier.printWidth": 120,
@@ -199,33 +228,8 @@
         "postcss": "css",
         "vue-html": "html",
     },
-    "[html]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[javascript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[typescript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[markdown]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[svelte]": {
-        "editor.defaultFormatter": "svelte.svelte-vscode"
-    },
 
     ////// AREA UNDER DEVELOPMENT //////
-    "workbench.colorCustomizations": {
-        "editorSuggestWidget.selectedBackground": "#076678",
-        "tab.activeForeground": "#d3869b",
-        "tab.activeBorder": "#b16286",
-        "editorCursor.foreground": "#ebdbb2",
-        "tab.activeBackground": "#282828",
-        "window.activeBorder": "#458588",
-        "window.inactiveBorder": "#d65d0e"
-    },
-
     "python.jediEnabled": false,
     "python.linting.pylintEnabled": true,
     "liveServer.settings.donotShowInfoMsg": true,

@@ -3,7 +3,7 @@ alias gi='git init'
 alias gib='git init --bare'
 alias gs='git status'
 alias ga='git add'
-alias gaa='git add --all :/'
+alias gaa='git add --all'
 
 # Remotes
 alias gr='git remote'
@@ -103,8 +103,7 @@ git_remove_filter_branch() {
 alias gRfb='git_remove_filter_branch'
 
 # Commit
-alias gco='git commit -m'
-alias gca='git commit -am'
+alias gcm='git commit -m'
 alias gcv='git commit --verbose --all'
 alias gcA='git commit -a --amend'
 
