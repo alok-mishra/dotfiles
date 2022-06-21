@@ -1,5 +1,5 @@
 # Common
-alias gi='git init'
+alias gi='git init --initial-branch=main'
 alias gib='git init --bare'
 alias gs='git status'
 alias ga='git add'
@@ -35,17 +35,23 @@ alias gch='git checkout'
 alias gchb='git checkout -b'
 alias gchm='git checkout master'
 
+# Worktree
+alias gwl='git worktree list'
+alias gwa='git_worktree_add'
+git_worktree_add() { git worktree add "worktrees/$1"; }
+alias gwr='git worktree remove'
+alias gwp='git worktree prune'
+
+# Diff / Show
 alias gd='git diff'
 alias gdn='git diff --name-status'
 alias gdm='git diff origin/master'
+alias gd~='git diff HEAD~'
 alias gdo='git_diff_origin_branch'
 git_diff_origin_branch() { git diff origin/$1; }
+alias gss='git show --stat $1'
 
 alias gdt='git difftool'
-
-alias stash='git stash'
-alias pop='git stash pop'
-alias cache='git rm -r --cached .'
 
 # Reset / Clean
 alias gwRh='git reset --hard HEAD'
@@ -56,12 +62,18 @@ alias gwRH='git reset --hard HEAD~1'
 alias gCn='git clean -d --dry-run'
 alias gCf='git clean -d --force'
 
+alias stash='git stash'
+alias pop='git stash pop'
+alias cache='git rm -r --cached .'
+
 # Fetch / Merge / Pull / Rebase / Push
 alias fetch='git fetch'
 alias pull='git pull'
+alias pullf='pull --rebase'
 alias push='git push --follow-tags'
-alias pushf='git push --force'
+alias pushf='push --force'
 alias pushu='git push --set-upstream origin'
+
 
 # Sync local repo with cloud repo
 ## Usage: glsync repo (trackall; pullall; git remote gitlab ...; fetchall; pushrall gitlab;)
@@ -73,6 +85,7 @@ alias pushrall='push_remote_all'
 push_remote_all() { git push $1 --force --all; }
 
 alias gm='git merge'
+alias gma='git merge --abort'
 alias gms='git merge --squash'
 alias gmm='git merge master'
 alias gmt='git mergetool'
@@ -83,7 +96,7 @@ alias gRa='git rebase --abort'
 alias gRc='git rebase --continue'
 alias gRs='git rebase --skip'
 alias gRm='git rebase origin/master'
-alias gRu='git rebase upstream/master'
+alias gRb='git_fetch_rebase_branch'; git_fetch_rebase_branch() { git fetch origin $1:$1; git rebase $1; }
 
 # Remove sensitive and binary files from list git history. Push force all branches afterwards.
 git_remove_filter_branch() {
@@ -104,15 +117,18 @@ alias gRfb='git_remove_filter_branch'
 
 # Commit
 alias gcm='git commit -m'
+alias gCm='git commit -am'
+alias gcA='git commit --amend'
+alias gcAm='git commit --amend -m'
 alias gcv='git commit --verbose --all'
-alias gcA='git commit -a --amend'
 
 # Tag
 alias tags='git tag -n'
 alias gt='git tag'
 alias gt1='git tag -a v1.0 -m'
+alias gts='git show'
 alias gta='git_tag_message'
-git_tag_message() { git tag -a $1 -m $2; }
+git_tag_message() { git tag -a "$1" -m "$2"; }
 
 # Submodules
 alias gS='git submodule'

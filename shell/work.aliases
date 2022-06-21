@@ -11,17 +11,12 @@ alias rocky='./cntlm -H -c cntlm.ini && vi cntlm.ini'
 
 ##################################### DOCKER #####################################
 
-# eval "$(docker-machine env devbox)"   (# errors if Docker Machine isn't alerady started)
-# export DOCKER_TLS_VERIFY="1"
-# export DOCKER_HOST="tcp://192.168.99.100:2376"
-# export DOCKER_CERT_PATH="C:\Users\T5005A0\.docker\machine\machines\devbox"
-# export DOCKER_MACHINE_NAME="devbox"
-# export COMPOSE_CONVERT_WINDOWS_PATHS="true"
-
 alias dcu='cmd <<< "docker compose up -d"'
 alias dcd='cmd <<< "docker compose down"'
 
+
 ##################################### GIT #####################################
+
 # Set a environment variable for the repository
 repo=file:///C:/Workspace/Repository/Git
 
@@ -39,8 +34,8 @@ alias gcle='git clone $repo/exam.git'
 alias gcrp=clone_package_rebase
 alias gcrm=clone_manifest_rebase
 
-# Vue
-alias vcw='winpty vue.cmd create'
+# Stellantis
+alias gces='git config user.email "alok.mishra@stellantis.com"'
 
 # Archive / Extract
 alias gara='git archive --remote=$repo/Assembly.git master | tar -xv'
@@ -68,8 +63,7 @@ clone_package_rebase() {
         fi
 
         if [[ $# -ne 0 && "$1" != "." ]]; then
-            # git clone $repo/package.git -b $branch $dir
-            git archive --depth 1 $repo/package.git $branch $dir
+            git clone $repo/package.git -b $branch $dir || read -p "... Press enter to dismiss ..."
         else
             read -p "You aren't in a Package directory ... Press enter to dismiss ..."
             exit
@@ -116,6 +110,7 @@ clone_manifest_rebase() {
     exit
 }
 
+
 ##################################### DEV #####################################
 
 alias 7x=extract_to_folder
@@ -139,6 +134,10 @@ send_to_newdealer() {
 alias swatch=sass_watch
 sass_watch() {
     sass --watch $1 $2
+}
+
+autoshell_package() {
+    "C:\Program Files\7-Zip\7z.exe" x "C:\workspace\CACreative\Operations\3_Templates & Job Aids\4 Production\Packages\SL360 Package\AUTOSHELL.zip"
 }
 
 # Execute from an immediate directory within a project via Beyond Compare

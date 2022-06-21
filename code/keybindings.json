@@ -37,11 +37,6 @@
         "when": "editorFocus"
     },
     {
-        "key": "ctrl+alt+`",
-        "command": "workbench.action.toggleMaximizedPanel",
-        "when": "terminalFocus"
-    },
-    {
         "key": "ctrl+alt+z",
         "command": "workbench.action.toggleZenMode"
     },
@@ -159,6 +154,10 @@
         "when": "editorLangId == 'markdown'"
     },
     {
+        "key": "ctrl+alt+b",
+        "command": "simpleBrowser.show"
+    },
+    {
         "key": "ctrl+alt+t",
         "command": "editor.action.peekTypeDefinition"
     },
@@ -193,7 +192,22 @@
         "command": "workbench.action.toggleSidebarVisibility"
     },
     {
+        "key": "shift+alt+`",
+        "command": "workbench.action.toggleMaximizedPanel",
+        "when": "terminalFocus"
+    },
+    {
         "key": "ctrl+b",
         "command": "-workbench.action.toggleSidebarVisibility"
-    }
+    },
+    {
+        "key": "e",
+        "command": "search.action.revealInSideBar",
+        "when": "searchViewletFocus && !inputFocus"
+    },
+    {
+        "key": "shift+c",
+        "command": "search.action.collapseSearchResults",
+        "when": "searchViewletFocus && !inputFocus"
+    },
 ]

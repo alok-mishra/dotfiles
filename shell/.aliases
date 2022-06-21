@@ -19,7 +19,9 @@ alias sha1='openssl sha1'
 alias path='echo "${PATH//:/$'"'"'\n'"'"'}"'
 alias scpid='ssh-copy-id -i ~/.ssh/id_rsa'
 alias scpidr='ssh-copy-id -i ~/.ssh/mediarave_rsa'
-sshkey() { ssh-keygen -t ed25519 -f $1_ed25519 -C alok@$1; }
+
+alias sshkey=sshkey_ed25519
+sshkey_ed25519() { ssh-keygen -t ed25519 -f $1_ed25519 -C alok@$1; }
 
 alias vib='vi ~/.bashrc'
 alias vic='vi ~/.ssh/config'
@@ -112,6 +114,12 @@ git_clone_wordpress() {
     git clone --depth 1 https://github.com/WordPress/WordPress.git $dir && rm -rf $dir/.git;
 }
 
+## Heroku
+alias hbn='heroku buildpacks:set heroku/nodejs'
+alias hbr='heroku buildpacks:set mars/create-react-app'
+alias pushh=git_push_heroku
+git_push_heroku() { git push heroku $1:master --force; }
+
 ############################## ADMIN  ##############################
 HISTTIMEFORMAT="%d/%m/%y %T "
 
@@ -183,17 +191,25 @@ alias pcd='conda deactivate'
 
 export PATH=$PATH:~/.config/yarn/global/node_modules/.bin
 
-alias nrd='npm run dev'
-alias nid='npm install --save-dev'
-
-alias ys=yarn_start
-yarn_start() {
-    if [[ $# -ne 0 ]]; then
-        yarn $1
+node_run() {
+    if [ -f ./yarn.lock ]; then
+        pm=yarn
+    elif [ -f ./package-lock.json ]; then
+        pm=npm
     else
-        yarn start
+        echo "Have you installed the package?"
     fi
+
+    $pm run $1
 }
+
+alias nr='node_run'
+alias nrb='node_run build'
+alias nrd='node_run dev'
+alias nrs='node_run start'
+
+alias nid='npm install --save-dev'
+alias nup='npm update'
 
 alias yga='yarn global add'
 alias yda='yarn --dev add'
@@ -204,8 +220,8 @@ alias ygu='yarn global --verbose upgrade'
 alias scss='node-sass --output-style compact'
 
 ############################## SVELTE ##############################
-alias svelte='npx degit sveltejs/template $1'
-alias skit='npm init svelte@next $1'
+alias svelte='npm init vite $1 -- --template svelte'
+alias skit='npm init svelte $1'
 
 ############################## ANGULAR ##############################
 # alias ngs='ng serve --open'

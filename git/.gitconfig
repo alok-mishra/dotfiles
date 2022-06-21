@@ -10,13 +10,17 @@
     ui = true
     pager = true
 [diff]
-    tool = bc
+    tool = vscode
 [difftool "bc"]
     path = C:/Program Files/Beyond Compare 4/BComp.exe
+[difftool "vscode"]
+    cmd = code-insiders --wait --diff $LOCAL $REMOTE
 [merge]
-    tool = bc
+    tool = vscode
 [mergetool "bc"]
     path = C:/Program Files/Beyond Compare 4/BComp.exe
+[mergetool "vscode"]
+	cmd = code-insiders --wait $MERGED
 [push]
     default = simple
 [mergetool]

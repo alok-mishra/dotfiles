@@ -1,39 +1,62 @@
 {
     ////// VSCODE //////
-    "editor.fontFamily": "Ligconsolata, Fira Code, Consolas, FontAwesome, Droid Sans Mono, monospace",
-    "editor.fontLigatures": true,
-    "editor.wordWrap": "off",
+    "editor.fontFamily": "Cascadia Code, Ligconsolata, Fira Code, Consolas, FontAwesome, Droid Sans Mono, monospace",
+    "editor.fontLigatures": "'zero'",
+    "editor.wordWrap": "on",
     "editor.selectionHighlight": false,
     "editor.detectIndentation": false,
     "editor.formatOnSave": true,
     "editor.suggestSelection": "recentlyUsedByPrefix",
+    "editor.cursorSmoothCaretAnimation": true,
+    "editor.cursorBlinking": "phase",
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": "active",
 
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
     "explorer.openEditors.visible": 0,
+    "explorer.experimental.fileNesting.enabled": true,
+    "explorer.experimental.fileNesting.patterns": {
+        "postcss.config.js": "tailwind.*",
+        "docker-compose.yml": ".env, php-config.ini, .db",
+        "exam.json": "exam.js, expert_exam.scss, manifest.hbs",
+        "package.json": "package-lock.json, yarn.lock, yarn-error.log, rollup.config.js, postcss.config.js, tsconfig.json",
+        "wp-config.php": "wp-*.php",
+    },
+
+    "window.zoomLevel": 0,
+    "window.menuBarVisibility": "compact",
+    "window.restoreWindows": "none",
+    // "window.openFoldersInNewWindow":"on",
 
     "material-icon-theme.activeIconPack": "none",
     "material-icon-theme.showUpdateMessage": false,
 
     "telemetry.telemetryLevel": "off",
-    "telemetry.enableCrashReporter": false,
 
     "security.workspace.trust.enabled": false,
 
     "terminal.integrated.profiles.windows": {
-        "Command Prompt": null,
-        "Git Bash": null, // does not work
-        "GitBash": {
-            "path": "bash.exe"
-            // "source": "Git Bash"
-        },
         "PowerShell": null,
+        "Windows PowerShell": null,
+        "Command Prompt": null,
+        "Git Bash": null,
+        "GitBash": {
+            // "path": "bash.exe",  //WSL
+            // "path": "C:\\workspace\\.tmp\\.apps\\git\\bin\\bash.exe",
+            "path": "C:\\apps\\git\\bin\\bash.exe"
+        },
+        "WSL": {
+            "path": "C:\\WINDOWS\\System32\\wsl.exe",
+            "args": [
+                "-d",
+                "Ubuntu"
+            ]
+        }
     },
     "terminal.external.windowsExec": "bash.exe",
     "terminal.integrated.defaultProfile.windows": "GitBash",
-
-    "window.menuBarVisibility": "toggle",
-    "window.zoomLevel": 0,
+    "terminal.integrated.persistentSessionReviveProcess": "never",
 
     "breadcrumbs.enabled": true,
 
@@ -47,9 +70,6 @@
     "workbench.editor.limit.enabled": true,
     "workbench.editor.untitled.hint": "hidden",
     "workbench.editor.enablePreviewFromQuickOpen": false,
-
-    "workbench.statusBar.visible": true,
-    "workbench.activityBar.visible": true,
 
     "workbench.colorTheme": "Gruvbox Dark Hard",
     "workbench.colorCustomizations": {
@@ -71,11 +91,14 @@
     "files.trimTrailingWhitespace": true,
     "files.hotExit": "off",
 
+    "files.exclude": {
+        "**/desktop.ini": true
+    },
+
     "files.associations": {
         "config": "shellscript",
         "*.aliases": "shellscript",
         "*.tridactylrc": "vimrc",
-        "*.scad": "javascript",
         "*.jscad": "javascript"
     },
 
@@ -188,7 +211,7 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[html]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "vscode.html-language-features"
     },
     "[javascript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -210,6 +233,7 @@
     "prettier.printWidth": 120,
     "prettier.jsxBracketSameLine": false,
     "prettier.singleQuote": true,
+    "prettier.trailingComma": "none",
     "prettier.arrowParens": "avoid",
 
     ////// MISCELLANEOUS //////
@@ -220,14 +244,13 @@
     "html.format.contentUnformatted": "pre,code,textarea,b",
     "html.format.unformatted": "b, span",
     "html.autoClosingTags": false,
-    "vetur.format.enable": false,
-    "vetur.validation.template": false,
-    "vetur.experimental.templateInterpolationService": true,
     "emmet.includeLanguages": {
         "javascript": "javascriptreact",
         "postcss": "css",
         "vue-html": "html",
     },
+    "openscad.launchPath": "C:\\workspace\\.tmp\\.apps\\openscad\\openscad.exe",
+    "openscad.interface.showKillIconInEditorTitleMenu": false,
 
     ////// AREA UNDER DEVELOPMENT //////
     "python.jediEnabled": false,
@@ -239,4 +262,16 @@
         "php": "html"
     },
     "svelte.plugin.css.diagnostics.enable": false,
+    "svelte.enable-ts-plugin": true,
+    "editor.inlineSuggest.enabled": true,
+    "timeline.excludeSources": [
+        "timeline.localHistory"
+    ],
+    "terminal.integrated.enableMultiLinePasteWarning": false,
+    "github.copilot.enable": {
+        "*": true,
+        "yaml": false,
+        "plaintext": true,
+        "markdown": false
+    },
 }

@@ -21,12 +21,97 @@ endif
 
 set guifontwide=NSimsun:h12
 
+"======================================== Vundle Settings ========================================
+
+filetype off        "Temporarily disable filetypes, it will be first handled by Vundle/Git repos
+
+"git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
+
+" HTTPS_PROXY needs to be set on a corporate Windows machine
+
+" Point Vundle to ~, same as $USERPROFILE and $HOME in Windows
+set rtp+=~/.vim/bundle/Vundle.vim
+
+call vundle#begin()
+
+" Vundle managed by Vundle itself 'https://github.com/gmarik/vundle.git'
+Plugin 'gmarik/Vundle.vim'
+
+"GIT REPOS
+" Plugin 'bling/vim-airline'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
+" Plugin 'tmhedberg/matchit'
+Plugin 'tomtom/tcomment_vim'
+" Plugin 'scrooloose/syntastic'
+
+" Plugin 'scrooloose/nerdtree'
+" Plugin 'kien/ctrlp.vim'
+" Plugin 'majutsushi/tagbar'
+" Plugin 'Lokaltog/vim-easymotion'
+" Plugin 'Valloric/YouCompleteMe'
+" Plugin 'Shougo/neocomplete.vim'
+" Plugin 'fidian/hexmode'
+
+"Git
+" Plugin 'airblade/vim-gitgutter'
+
+" (( This one causes problems ))
+" Plugin 'tpope/vim-fugitive'
+
+"Arduino
+"Plugin 'jplaut/vim-arduino-ino'
+
+"Handlebars
+Plugin 'mustache/vim-mustache-handlebars'
+
+"Markdown
+" Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+
+" GoLang (not needed right now)
+" Plugin 'fatih/vim-go'
+" Plugin 'nsf/gocode', {'rtp': 'vim/'}
+" Plugin 'jstemmer/gotags'
+
+" SnipMate
+" Plugin 'MarcWeber/vim-addon-mw-utils'
+" Plugin 'tomtom/tlib_vim'
+" Plugin 'garbas/vim-snipmate'
+
+" UltiSnips
+" Plugin 'sirver/ultisnips'
+
+" Snippets
+" Plugin 'honza/vim-snippets'
+
+" Syntax
+Plugin 'elzr/vim-json'
+"Plugin 'jeroenbourgois/vim-actionscript'
+"Plugin 'vim-scripts/aspnetcs'
+" Plugin 'groenewege/vim-less'
+Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'PotatoesMaster/i3-vim-syntax'
+
+" Colors
+Plugin 'morhetz/gruvbox'
+" Plugin 'chankaward/vim-railscasts-theme'
+" Plugin 'tomasr/molokai'
+" Plugin 'altercation/vim-colors-solarized'
+
+" Tools
+" Plugin 'duncansmart/less.js-windows'
+
+" Plugin 'powerline/fonts'
+
+call vundle#end()
+
 "======================================== Global Settings ======================================
 
 "CURSOR
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
-
+ 
 "FILE
 filetype plugin indent on
 set nobackup    " do not create a backup file
@@ -62,8 +147,8 @@ function! ColorScheme(colorscheme)
 endfunction
 
 set background=dark
-
-" colorscheme gruvbox
+colorscheme gruvbox
+"autocmd FileType json call ColorScheme("railscasts")
 
 " Custom Colors
 " call ForceColors()

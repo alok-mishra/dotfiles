@@ -1,30 +1,22 @@
 const colors = require('tailwindcss/colors');
 
 module.exports = {
-    mode: 'jit',
-    purge: ['index.html'],
-    darkMode: false, // or 'media' or 'class'
+    content: ['./wp-content/themes/**/*.{html,js,php}', './wp-content/themes/**/templates/*.php'],
+    safelist: [],
     theme: {
         extend: {
             colors: {
-                teal: colors.teal,
-                purple: {
-                    lighter: '#E3DFE8',
-                    light: '#A392BA',
-                    DEFAULT: '#4E2B6B',
-                    dark: '#472766',
-                    grey: '#A49CB6',
-                    pink: '#8D79A1',
-                },
+                teal: colors.teal
             },
-        },
-    },
-    variants: {
-        extend: {},
+            maxWidth: {
+                xxs: '16rem'
+            }
+        }
     },
     plugins: [],
+
     corePlugins: {
-        // backgroundOpacity: false,
-        textOpacity: false,
-    },
+        backgroundOpacity: false,
+        preflight: false
+    }
 };

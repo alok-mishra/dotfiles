@@ -3,7 +3,9 @@ wp-config*.php
 
 wp-content/*/
 !wp-content/plugins/
+!wp-content/mu-plugins/
 !wp-content/themes/
+wp-content/themes/twenty*
 
 /.htaccess
 /license.txt
