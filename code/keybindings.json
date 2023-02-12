@@ -1,5 +1,7 @@
-// Keybindings //
+////// Keybindings //////
 [
+
+    // Editor //
     {
         "key": "ctrl+,",
         "command": "workbench.action.openSettingsJson"
@@ -9,32 +11,13 @@
         "command": "workbench.action.previousEditor"
     },
     {
+        "key": "ctrl+h",
+        "command": "-editor.action.startFindReplaceAction",
+        "when": "editorFocus || editorIsOpen"
+    },
+    {
         "key": "ctrl+l",
         "command": "workbench.action.nextEditor"
-    },
-    {
-        "key": "ctrl+h",
-        "command": "workbench.action.terminal.focusPrevious",
-        "when": "terminalFocus"
-    },
-    {
-        "key": "ctrl+l",
-        "command": "workbench.action.terminal.focusNext",
-        "when": "terminalFocus"
-    },
-    {
-        "key": "alt+`",
-        "command": "workbench.action.focusActiveEditorGroup",
-    },
-    {
-        "key": "alt+`",
-        "command": "workbench.files.action.focusFilesExplorer",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "ctrl+`",
-        "command": "workbench.action.terminal.focus",
-        "when": "editorFocus"
     },
     {
         "key": "ctrl+alt+z",
@@ -51,23 +34,27 @@
     },
     {
         "key": "ctrl+p",
-        "command": "workbench.action.quickOpenNavigatePreviousInFilePicker",
-        "when": "inFilesPicker && inQuickOpen"
-    },
-    {
-        "key": "ctrl+n",
-        "command": "workbench.action.quickOpenNavigateNextInFilePicker",
-        "when": "inFilesPicker && inQuickOpen"
-    },
-    {
-        "key": "ctrl+n",
-        "command": "workbench.action.quickOpenNavigateNextInTerminalPicker",
-        "when": "inQuickOpen"
+        "command": "focusPreviousCodeAction",
+        "when": "CodeActionMenuVisible"
     },
     {
         "key": "ctrl+p",
-        "command": "workbench.action.quickOpenNavigatePreviousInTerminalPicker",
+        "command": "workbench.action.quickOpenSelectPrevious",
         "when": "inQuickOpen"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "workbench.action.quickOpenSelectNext",
+        "when": "inQuickOpen"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "focusNextCodeAction",
+        "when": "CodeActionMenuVisible"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "-workbench.action.files.newUntitledFile",
     },
     {
         "key": "shift+alt+,",
@@ -80,6 +67,10 @@
     {
         "key": "ctrl+alt+r",
         "command": "workbench.action.reloadWindow"
+    },
+    {
+        "key": "ctrl+r",
+        "command": "-workbench.action.openRecent"
     },
     {
         "key": "ctrl+alt+p",
@@ -101,41 +92,27 @@
         "key": "ctrl+alt+h",
         "command": "workbench.action.moveEditorToLeftGroup"
     },
-
-    // Sync //
     {
-        "key": "ctrl+shift+alt+s",
-        "command": "workbench.userDataSync.actions.syncNow"
-    },
-
-    // Explorer //
-    {
-        "key": "insert",
-        "command": "explorer.newFile",
-        "when": "filesExplorerFocus"
+        "key": "ctrl+alt+k",
+        "command": "editor.emmet.action.incrementNumberByOne"
     },
     {
-        "key": "shift+insert",
-        "command": "explorer.newFolder",
-        "when": "filesExplorerFocus"
+        "key": "ctrl+shift+alt+k",
+        "command": "editor.emmet.action.incrementNumberByTen"
     },
     {
-        "key": "shift+c",
-        "command": "workbench.files.action.collapseExplorerFolders",
-        "when": "filesExplorerFocus && !inputFocus"
+        "key": "ctrl+alt+j",
+        "command": "editor.emmet.action.decrementNumberByOne"
     },
     {
-        "key": "e",
-        "command": "revealFileInOS",
-        "when": "filesExplorerFocus && !inputFocus"
+        "key": "ctrl+shift+alt+j",
+        "command": "editor.emmet.action.decrementNumberByTen"
     },
     {
-        "key": "t",
-        "command": "openInTerminal",
-        "when": "filesExplorerFocus && !inputFocus"
+        "key": "ctrl+f",
+        "command": "editor.action.startFindReplaceAction",
+        "when": "editorFocus || editorIsOpen"
     },
-
-    // Editor //
     {
         "key": "ctrl+alt+=",
         "command": "editor.action.fontZoomIn"
@@ -149,11 +126,6 @@
         "command": "editor.action.fontZoomReset"
     },
     {
-        "key": "ctrl+alt+v",
-        "command": "markdown.showPreviewToSide",
-        "when": "editorLangId == 'markdown'"
-    },
-    {
         "key": "ctrl+alt+b",
         "command": "simpleBrowser.show"
     },
@@ -161,35 +133,99 @@
         "key": "ctrl+alt+t",
         "command": "editor.action.peekTypeDefinition"
     },
-
-    // Miscellaneous //
     {
-        "key": "ctrl+alt+g",
-        "command": "git.viewHistory"
+        "key": "alt+n",
+        "command": "workbench.action.files.newUntitledFile"
     },
     {
-        "key": "shift+enter",
-        "command": "python.execInTerminal",
-        "when": "editorFocus && !findInputFocussed && !replaceInputFocussed && !editorHasSelection && editorLangId == 'python'"
+        "key": "shift+o",
+        "command": "workbench.files.action.expandExplorerFolders",
+        "when": "filesExplorerFocus && !inputFocus"
     },
     {
         "key": "ctrl+alt+f",
-        "command": "eslint.executeAutofix",
-        "when": "editorFocus"
+        "command": "editor.action.formatDocument",
+        "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
+    },
+
+
+    // Explorer //
+    {
+        "key": "insert",
+        "command": "explorer.newFile",
+        "when": "filesExplorerFocus"
     },
     {
-        "key": "ctrl+f",
-        "command": "editor.action.startFindReplaceAction",
-        "when": "editorFocus || editorIsOpen"
+        "key": "shift+insert",
+        "command": "explorer.newFolder",
+        "when": "filesExplorerFocus"
     },
     {
-        "key": "ctrl+h",
-        "command": "-editor.action.startFindReplaceAction",
-        "when": "editorFocus || editorIsOpen"
+        "key": "c",
+        "command": "workbench.files.action.collapseExplorerFolders",
+        "when": "filesExplorerFocus && !inputFocus"
+    },
+    {
+        "key": "c",
+        "command": "search.action.collapseSearchResults",
+        "when": "searchViewletFocus && !inputFocus"
+    },
+    {
+        "key": "f",
+        "command": "filesExplorer.findInFolder",
+        "when": "explorerResourceIsFolder && explorerViewletVisible && filesExplorerFocus && !inputFocus"
+    },
+    {
+        "key": "e",
+        "command": "revealInExplorer",
+        "when": "!editorFocus && !inputFocus"
+    },
+    {
+        "key": "e",
+        "command": "revealFileInOS",
+        "when": "filesExplorerFocus && !inputFocus"
+    },
+    {
+        "key": "t",
+        "command": "openInTerminal",
+        "when": "filesExplorerFocus && !inputFocus"
+    },
+
+
+    // Panes //
+    {
+        "key": "alt+0",
+        "command": "workbench.action.evenEditorWidths"
+    },
+    {
+        "key": "alt+=",
+        "command": "workbench.action.increaseViewWidth"
+    },
+    {
+        "key": "alt+-",
+        "command": "workbench.action.decreaseViewWidth"
+    },
+    {
+        "key": "alt+h",
+        "command": "workbench.action.navigateLeft",
+    },
+    {
+        "key": "alt+l",
+        "command": "workbench.action.navigateRight",
+    },
+    {
+        "key": "alt+`",
+        "command": "workbench.action.focusActiveEditorGroup",
+        "when": "!editorTextFocus"
+    },
+    {
+        "key": "alt+`",
+        "command": "workbench.action.toggleSidebarVisibility",
+        "when": "editorTextFocus"
     },
     {
         "key": "shift+alt+`",
-        "command": "workbench.action.toggleSidebarVisibility"
+        "command": "workbench.action.toggleEditorWidths"
     },
     {
         "key": "shift+alt+`",
@@ -201,13 +237,73 @@
         "command": "-workbench.action.toggleSidebarVisibility"
     },
     {
-        "key": "e",
-        "command": "search.action.revealInSideBar",
-        "when": "searchViewletFocus && !inputFocus"
+        "key": "ctrl+alt+j",
+        "command": "workbench.action.moveEditorToBelowGroup"
     },
     {
-        "key": "shift+c",
-        "command": "search.action.collapseSearchResults",
-        "when": "searchViewletFocus && !inputFocus"
+        "key": "ctrl+alt+k",
+        "command": "workbench.action.moveEditorToAboveGroup"
+    },
+    {
+        "key": "alt+k",
+        "command": "workbench.action.navigateUp"
+    },
+    {
+        "key": "alt+j",
+        "command": "workbench.action.navigateDown"
+    },
+
+
+    // Terminal //
+    {
+        "key": "ctrl+`",
+        "command": "workbench.action.terminal.focus",
+        "when": "editorFocus"
+    },
+    {
+        "key": "ctrl+shift+`",
+        "command": "workbench.action.terminal.split",
+        "when": "terminalFocus && terminalProcessSupported || terminalFocus && terminalWebExtensionContributedProfile"
+    },
+    {
+        "key": "alt+h",
+        "command": "workbench.action.terminal.focusPreviousPane",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "alt+l",
+        "command": "workbench.action.terminal.focusNextPane",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "alt+=",
+        "command": "workbench.action.terminal.resizePaneUp",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "alt+-",
+        "command": "workbench.action.terminal.resizePaneDown",
+        "when": "terminalFocus"
+    },
+
+
+    // Extensions //
+    {
+        "key": "ctrl+alt+v",
+        "command": "markdown.showPreviewToSide",
+        "when": "editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+alt+g",
+        "command": "git.viewHistory"
+    },
+    {
+        "key": "ctrl+shift+alt+s",
+        "command": "workbench.userDataSync.actions.syncNow"
+    },
+    {
+        "key": "shift+enter",
+        "command": "python.execInTerminal",
+        "when": "editorFocus && !findInputFocussed && !replaceInputFocussed && !editorHasSelection && editorLangId == 'python'"
     },
 ]

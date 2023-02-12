@@ -1,19 +1,39 @@
 {
     ////// VSCODE //////
-    "editor.fontFamily": "Cascadia Code, Ligconsolata, Fira Code, Consolas, FontAwesome, Droid Sans Mono, monospace",
-    "editor.fontLigatures": "'zero'",
-    "editor.wordWrap": "on",
-    "editor.selectionHighlight": false,
-    "editor.detectIndentation": false,
-    "editor.formatOnSave": true,
-    "editor.suggestSelection": "recentlyUsedByPrefix",
-    "editor.cursorSmoothCaretAnimation": true,
-    "editor.cursorBlinking": "phase",
+    "editor.fontFamily": "Cascadia Code, Inconsolata Nerd Font, Consolas, FontAwesome, Droid Sans Mono, monospace",
+    "editor.fontLigatures": "'zero', '// => !== == === < > <= >= && || !'",
+    // "editor.fontSize": 15,
+
+    "editor.acceptSuggestionOnCommitCharacter": false,
     "editor.bracketPairColorization.enabled": true,
+    "editor.cursorBlinking": "phase",
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.detectIndentation": true,
+
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+
     "editor.guides.bracketPairs": "active",
+    "editor.minimap.renderCharacters": false,
+    "editor.minimap.size": "fill",
+
+    "editor.quickSuggestions": { "strings": "on" },
+
+    // "editor.scrollbar.vertical": "hidden",
+    "editor.selectionHighlight": false,
+    "editor.suggest.insertMode": "replace",
+    "editor.suggest.showWords": false,
+    "editor.suggestSelection": "recentlyUsedByPrefix",
+    // "editor.wordWrap": "on", // use toggle word wrap (alt+z)
+    "editor.wordWrapColumn": 120,
+    // "editor.lineNumbers": "relative",
+
+    "editor.unfoldOnClickAfterEndOfLine": true,
 
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
+    "explorer.copyRelativePathSeparator": "/",
     "explorer.openEditors.visible": 0,
     "explorer.experimental.fileNesting.enabled": true,
     "explorer.experimental.fileNesting.patterns": {
@@ -21,69 +41,8 @@
         "docker-compose.yml": ".env, php-config.ini, .db",
         "exam.json": "exam.js, expert_exam.scss, manifest.hbs",
         "package.json": "package-lock.json, yarn.lock, yarn-error.log, rollup.config.js, postcss.config.js, tsconfig.json",
-        "wp-config.php": "wp-*.php",
+        "wp-config.php": "wp-*.php"
     },
-
-    "window.zoomLevel": 0,
-    "window.menuBarVisibility": "compact",
-    "window.restoreWindows": "none",
-    // "window.openFoldersInNewWindow":"on",
-
-    "material-icon-theme.activeIconPack": "none",
-    "material-icon-theme.showUpdateMessage": false,
-
-    "telemetry.telemetryLevel": "off",
-
-    "security.workspace.trust.enabled": false,
-
-    "terminal.integrated.profiles.windows": {
-        "PowerShell": null,
-        "Windows PowerShell": null,
-        "Command Prompt": null,
-        "Git Bash": null,
-        "GitBash": {
-            // "path": "bash.exe",  //WSL
-            // "path": "C:\\workspace\\.tmp\\.apps\\git\\bin\\bash.exe",
-            "path": "C:\\apps\\git\\bin\\bash.exe"
-        },
-        "WSL": {
-            "path": "C:\\WINDOWS\\System32\\wsl.exe",
-            "args": [
-                "-d",
-                "Ubuntu"
-            ]
-        }
-    },
-    "terminal.external.windowsExec": "bash.exe",
-    "terminal.integrated.defaultProfile.windows": "GitBash",
-    "terminal.integrated.persistentSessionReviveProcess": "never",
-
-    "breadcrumbs.enabled": true,
-
-    "workbench.iconTheme": "material-icon-theme",
-    "workbench.startupEditor": "newUntitledFile",
-    "workbench.list.automaticKeyboardNavigation": false,
-    "workbench.list.keyboardNavigation": "filter",
-    "workbench.settings.openDefaultSettings": false,
-
-    "workbench.editor.limit.value": 6,
-    "workbench.editor.limit.enabled": true,
-    "workbench.editor.untitled.hint": "hidden",
-    "workbench.editor.enablePreviewFromQuickOpen": false,
-
-    "workbench.colorTheme": "Gruvbox Dark Hard",
-    "workbench.colorCustomizations": {
-        "editorSuggestWidget.selectedBackground": "#076678",
-        "tab.activeForeground": "#d3869b",
-        "tab.activeBorder": "#b16286",
-        "editorCursor.foreground": "#ebdbb2",
-        "tab.activeBackground": "#282828",
-        "window.activeBorder": "#458588",
-        "window.inactiveBorder": "#d65d0e"
-    },
-
-
-    "extensions.ignoreRecommendations": true,
 
     "files.eol": "\n",
     "files.insertFinalNewline": true,
@@ -102,13 +61,114 @@
         "*.jscad": "javascript"
     },
 
+    "search.quickOpen.includeHistory": true,
+    "search.quickOpen.history.filterSortOrder": "recency",
+
+    ////// TERMINAL //////
+
+    "terminal.external.windowsExec": "bash.exe",
+    // "terminal.integrated.defaultProfile.windows": "WSL",
+    // "terminal.integrated.defaultProfile.windows": "GitBash",
+    "terminal.integrated.defaultProfile.windows": "GitZsh",
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "terminal.integrated.persistentSessionReviveProcess": "never",
+    "terminal.integrated.enableBell": false,
+    "terminal.integrated.enableMultiLinePasteWarning": false,
+    "terminal.integrated.fontFamily": "Inconsolata Nerd Fontx, MesloLGS NFx, Hack Nerd Font, Cascadia Code, Ligconsolata, Fira Code, Consolas",
+    // "terminal.integrated.fontSize": 14,
+
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": null,
+        "Windows PowerShell": null,
+        "Command Prompt": null,
+        "Git Bash": null,
+        "GitBash": {
+            "path": "bash.exe"
+            // "path": "c:\\workspace\\.tmp\\.apps\\git\\bin\\bash.exe",
+            // "path": "c:\\apps\\git\\usr\\bin\\zsh.exe"
+        },
+        "GitZsh": {
+            "path": "zsh.exe", // via GitBash manual MinGW64 package
+            "args": [ "-i" ]
+        },
+        "WSL": {
+            "path": "C:\\WINDOWS\\System32\\wsl.exe",
+            "args": ["-d", "Ubuntu"]
+        },
+        "MSYS2": {
+            "path": "zsh.exe", // via MSYS2 MinGW64
+            "args": [ "--login", "-i" ],
+            "env": {
+                "CHERE_INVOKING": "1",
+                "MSYSTEM": "MINGW64",
+                "MSYS2_PATH_TYPE": "inherit"
+            }
+        }
+    },
+
+    "terminal.integrated.profiles.linux": {
+        "bash": {
+            "path": "bash",
+            "icon": "terminal-bash"
+        },
+        "zsh": {
+            "path": "zsh"
+        },
+        "fish": {
+            "path": "fish"
+        },
+        "tmux": {
+            "path": "tmux",
+            "icon": "terminal-tmux"
+        },
+        "pwsh": {
+            "path": "pwsh",
+            "icon": "terminal-powershell"
+        }
+    },
+
+    ////// THEME //////
+    "workbench.iconTheme": "gruvbox-material-icon-theme",
+    // "material-icon-theme.folders.color": "#89b482",
+    "workbench.colorTheme": "Gruvbox Dark Hard",
+    "workbench.colorCustomizations": {
+        "editorSuggestWidget.selectedBackground": "#076678",
+        "tab.activeForeground": "#d3869b",
+        "tab.activeBorder": "#b16286",
+        "editorCursor.foreground": "#ebdbb2",
+        "tab.activeBackground": "#282828",
+        "window.activeBorder": "#458588",
+        "window.inactiveBorder": "#d65d0e",
+        "titleBar.activeBackground": "#224400",
+        "titleBar.inactiveBackground": "#442200"
+    },
+    "workbench.editor.limit.value": 6,
+    "workbench.editor.limit.enabled": true,
+    "workbench.editor.untitled.hint": "hidden",
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+
+    "workbench.layoutControl.type": "menu",
+    "workbench.list.defaultFindMode": "filter",
+    "workbench.settings.openDefaultSettings": false,
+    "workbench.startupEditor": "newUntitledFile",
+    "window.restoreWindows": "none",
+    "window.menuBarVisibility": "toggle",
+    // "window.openFoldersInNewWindow":"on",
+
     ////// VIM //////
+
+    "extensions.experimental.affinity": {
+        "vscodevim.vim": 1,
+        "asvetliakov.vscode-neovim": 1
+    },
+
     // "vim.leader": "<space>",
     "vim.leader": ",",
     "vim.hlsearch": true,
     // "vim.searchHighlightColor": "rgba(104, 157, 106, 0.4)", // #689D6A
     "vim.searchHighlightColor": "rgba(214, 96, 16, 0.4)", // #D65D0E
     "vim.easymotion": true,
+    "vim.foldfix": true,
 
     "vim.handleKeys": {
         "<C-a>": false, // select
@@ -173,105 +233,130 @@
         // MACROS
         {
             // Paste Clipboard between html tags
-            "before": ["@", "t"],
+            "before": ["leader", "t"],
             "after": ["v", "i", "t", "\"", "*", "P"]
         },
         {
-            // Paste Clipboard between double quotes
-            "before": ["@", "\""],
-            "after": ["v", "i", "\"", "\"", "*", "P"]
-        },
-        {
-            // Paste Vi Clipboard between double quotes
-            "before": ["@", "v"],
-            "after": ["v", "i", "\"", "P", "y", "i", "\""]
-        },
-        {
             // Paste Clipboard between single quotes
-            "before": ["@", "'"],
+            "before": ["leader", "'"],
             "after": ["v", "i", "'", "\"", "*", "P"]
         },
         {
-            // Paste Clipboard between brackets and add quotes
-            "before": ["@", "]"],
-            "after": [ "v", "i", "]", "\"", "*", "P", "v", "i", "]", "b", "$", "I", "\"", "<esc>", "v", "i", "]", "b", "$", "A", "\"", ",", "<esc>" ]
+            // Paste Clipboard between double quotes
+            "before": ["leader", "\""],
+            "after": ["v", "i", "\"", "\"", "*", "P"]
         },
+        {
+            // Paste Clipboard between double quotes and remove newline
+            "before": ["@", "\""],
+            "after": ["v", "i", "\"", "\"", "*", "P", "J", "x"]
+        },
+        {
+            // Paste yank between quotes
+            "before": ["leader", "v"],
+            "after": ["v", "i", "\"", "P", "y", "i", "\"", "<esc>"]
+        },
+        {
+            // Paste last yank
+            "before": ["leader", "p"],
+            "after": ["\"", "0", "P"]
+        },
+        {
+            // Paste Clipboard between brackets and add quotes
+            "before": ["leader", "]"],
+            "after": [ "v", "i", "]", "\"", "*", "P", "v", "i", "]", "b", "$", "I", "\"", "<esc>", "v", "i", "]", "b", "$", "A", "\"", ",", "<esc>" ]
+        }
     ],
+
 
     ////// FORMATTING //////
     "[handlebars]": {
         "editor.formatOnSave": false
     },
-    "[json]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-        // "editor.defaultFormatter": "vscode.json-language-features"
-    },
-    "[jsonc]": {
-        "editor.formatOnSave": false,
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
     "[html]": {
         "editor.defaultFormatter": "vscode.html-language-features"
     },
     "[javascript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        // "editor.defaultFormatter": "vscode.typescript-language-features",
+        // "editor.formatOnSaveMode": "modificationsIfAvailable",
     },
-    "[typescript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "[json]": {
+        // "editor.defaultFormatter": "vscode.json-language-features"
     },
-    "[markdown]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "[jsonc]": {
+        "editor.formatOnSave": false
+    },
+    "[php]": {
+        "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
     },
     "[svelte]": {
         "editor.defaultFormatter": "svelte.svelte-vscode"
     },
     "[yaml]": {
-        "editor.formatOnSave": false,
+        "editor.formatOnSave": false
     },
+
+    "html.autoClosingTags": false,
+    "html.format.contentUnformatted": "pre,code,textarea,b",
+    "html.format.unformatted": "b, span",
+    "html.format.wrapLineLength": 0,
 
     "prettier.tabWidth": 4,
     "prettier.printWidth": 120,
-    "prettier.jsxBracketSameLine": false,
     "prettier.singleQuote": true,
     "prettier.trailingComma": "none",
-    "prettier.arrowParens": "avoid",
+    "prettier.bracketSameLine": true,
 
     ////// MISCELLANEOUS //////
-    "markdown.preview.breaks": true,
-    "git.enableSmartCommit": true,
-    "timeline.showView": true,
+    // "breadcrumbs.enabled": false,
+    "extensions.ignoreRecommendations": true,
+    // "markdown.preview.breaks": true,
     "php.validate.enable": false,
-    "html.format.contentUnformatted": "pre,code,textarea,b",
-    "html.format.unformatted": "b, span",
-    "html.autoClosingTags": false,
     "emmet.includeLanguages": {
         "javascript": "javascriptreact",
         "postcss": "css",
-        "vue-html": "html",
+        "vue-html": "html"
     },
     "openscad.launchPath": "C:\\workspace\\.tmp\\.apps\\openscad\\openscad.exe",
     "openscad.interface.showKillIconInEditorTitleMenu": false,
+    "security.workspace.trust.enabled": false,
+    "telemetry.telemetryLevel": "off",
+    "scm.diffDecorationsIgnoreTrimWhitespace": "true",
+    "reactSnippets.settings.prettierEnabled": true,
+    "git.enableSmartCommit": true,
+    "git.terminalAuthentication": false,
 
-    ////// AREA UNDER DEVELOPMENT //////
-    "python.jediEnabled": false,
-    "python.linting.pylintEnabled": true,
-    "liveServer.settings.donotShowInfoMsg": true,
-    "liveServer.settings.port": 5656,
-    "tailwindCSS.emmetCompletions": true,
-    "tailwindCSS.includeLanguages": {
-        "php": "html"
-    },
-    "svelte.plugin.css.diagnostics.enable": false,
-    "svelte.enable-ts-plugin": true,
-    "editor.inlineSuggest.enabled": true,
-    "timeline.excludeSources": [
-        "timeline.localHistory"
-    ],
-    "terminal.integrated.enableMultiLinePasteWarning": false,
+    ////// EXTENSIONS //////
     "github.copilot.enable": {
         "*": true,
         "yaml": false,
         "plaintext": true,
-        "markdown": false
+        "markdown": true
     },
+
+    "svelte.plugin.css.diagnostics.enable": false,
+    "svelte.enable-ts-plugin": true,
+
+    "tailwindCSS.emmetCompletions": true,
+    "tailwindCSS.includeLanguages": {
+        "php": "html"
+    },
+
+    ////// AREA UNDER DEVELOPMENT //////
+    "settingsSync.keybindingsPerPlatform": false,
+    "python.jediEnabled": false,
+    "python.linting.pylintEnabled": true,
+    "liveServer.settings.donotShowInfoMsg": true,
+    "liveServer.settings.port": 5656,
+    "editor.inlineSuggest.enabled": true,
+    "remote.SSH.remotePlatform": {
+        "tsn": "linux",
+        "ywcad": "linux"
+    },
+    "diffEditor.ignoreTrimWhitespace": false,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "material-icon-theme.folders.theme": "classic",
+    "gitlens.views.commits.files.layout": "list",
+    "update.mode": "manual",
+    "editor.accessibilitySupport": "off"
 }
