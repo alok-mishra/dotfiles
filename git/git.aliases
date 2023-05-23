@@ -1,9 +1,10 @@
 # Common
-alias gi='git init --initial-branch=main'
+alias gi='git init'
 alias gib='git init --bare'
 alias gs='git status'
 alias ga='git add'
 alias gaa='git add --all'
+alias gcu='git config user.name && git config user.email'
 
 # Remotes
 alias gr='git remote'
@@ -11,53 +12,64 @@ alias grv='git remote -v'
 alias gra='git remote add'
 alias gru='git remote set-url'
 alias grD='git remote rm'
+alias grP='git fetch --prune'
 
 # Logs
-alias gl='git log'
+alias gl='git log --oneline'
+alias glz='git log --oneline | fzf' # fuzzy search git log
 alias glo='git log --oneline -10'
-alias gld='git log --pretty=format:"%h%x09%an%x09%ad%x09%s" --date=short -20'
-alias glg='git log --oneline --graph --all --decorate'
+alias gld='git log --pretty=format:"%C(yellow)%h%C(reset)%x09%an%x09%ad%x09%s" --date=short -20'
+alias glg='git log --oneline --graph'
+alias gla='git log --oneline --graph --all --decorate'
 
 # Clone
 alias gcl='git clone'
 alias gcl1='git clone --depth 1'
 
-# Branch / Checkout / Diff
+# Branch / Checkout
 alias gb='git branch'
-alias gba='git branch -a'
-alias gbu='git branch -u'
-alias gbv='git branch -v'
-alias gbm='git branch --merged'
-alias gbD='git branch --delete'
+alias gba='git branch --all'
+alias gbl="git for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(align:width=30)%(color:bold yellow)%(refname:short)%(end)%(color:reset) %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'"
+alias gbu='git branch -u' # set upstream branch
+alias gbv='git branch --verbose' # show last commit on branch
+alias gbD='git branch --delete --force' # delete local branch
 alias gbrD='git push origin --delete'
+alias gbDR='delete_local_and_remote_branch'; delete_local_and_remote_branch() { git branch -D $1; git push origin --delete $1; }
 
 alias gch='git checkout'
+alias gch~='git checkout @{-1}' # checkout previous branch
+alias gchz='git branch --list | fzf | xargs git checkout' # fuzzy search branch and checkout
 alias gchb='git checkout -b'
-alias gchm='git checkout master'
+alias gchd='git checkout develop'
+alias gchm='git_checkout_default'; git_checkout_default() { git checkout master || git checkout main; }
+alias gchn='git checkout main'
 
 # Worktree
 alias gwl='git worktree list'
-alias gwa='git_worktree_add'
-git_worktree_add() { git worktree add "worktrees/$1"; }
+alias gwa='git_worktree_add'; git_worktree_add() { git worktree add "../~worktrees/$1"; }
+alias gwd='git_worktree_diff'; git_worktree_diff() { bcompare . "../~worktrees/$1" & }
 alias gwr='git worktree remove'
 alias gwp='git worktree prune'
 
 # Diff / Show
 alias gd='git diff'
+alias gdc='git diff --cached'
 alias gdn='git diff --name-status'
 alias gdm='git diff origin/master'
+alias gdd='git diff develop'
 alias gd~='git diff HEAD~'
-alias gdo='git_diff_origin_branch'
-git_diff_origin_branch() { git diff origin/$1; }
+alias gd~b='git diff @{-1}' # diff current branch with previous branch
+alias gdo='git_diff_origin_branch'; git_diff_origin_branch() { git diff origin/$1; }
 alias gss='git show --stat $1'
 
-alias gdt='git difftool'
+alias gdt='git difftool --dir-diff'
 
 # Reset / Clean
-alias gwRh='git reset --hard HEAD'
-alias gwRS='git reset --soft HEAD~1'
-alias gwRM='git reset --mixed HEAD~1'
-alias gwRH='git reset --hard HEAD~1'
+alias g.RH='git reset --hard HEAD'
+alias g~RS='git reset --soft HEAD~1'
+alias g~RM='git reset --mixed HEAD~1'
+alias g~RH='git reset --hard HEAD~1'
+alias gmRH='git reset --hard origin/master'
 
 alias gCn='git clean -d --dry-run'
 alias gCf='git clean -d --force'
@@ -72,8 +84,14 @@ alias pull='git pull'
 alias pullf='pull --rebase'
 alias push='git push --follow-tags'
 alias pushf='push --force'
-alias pushu='git push --set-upstream origin'
-
+alias pushu='push_upstream'; push_upstream() {
+    if [ $# -eq 0 ]; then
+        remote="origin"
+    else
+        remote=${1}
+    fi
+    git push --set-upstream $remote `git branch --show-current`;
+}
 
 # Sync local repo with cloud repo
 ## Usage: glsync repo (trackall; pullall; git remote gitlab ...; fetchall; pushrall gitlab;)
@@ -81,8 +99,7 @@ alias showall='for remote in `git branch -r | grep -v "\->" | grep origin`; do e
 alias trackall='for remote in `git branch -r | grep -v "\->" | grep origin`; do git branch --track ${remote#origin/} $remote; done;'
 alias fetchall='git fetch --all'
 alias pullall='git pull --all'
-alias pushrall='push_remote_all'
-push_remote_all() { git push $1 --force --all; }
+alias pushrall='push_remote_all'; push_remote_all() { git push $1 --force --all; }
 
 alias gm='git merge'
 alias gma='git merge --abort'
@@ -95,8 +112,19 @@ alias gp1='git pull --depth 1'
 alias gRa='git rebase --abort'
 alias gRc='git rebase --continue'
 alias gRs='git rebase --skip'
-alias gRm='git rebase origin/master'
-alias gRb='git_fetch_rebase_branch'; git_fetch_rebase_branch() { git fetch origin $1:$1; git rebase $1; }
+alias gR~='git rebase @{-1}' # rebase current branch on previous branch
+alias gRb='git_rebase_branch'; git_rebase_branch() { git rebase $1; }
+alias gRS='git_rebase_squash'; git_rebase_squash() {
+    git log --oneline;
+    echo "Enter the commit after the ones to squash. Rename 'pick' to 'squash' or 'fixup', except first to 'reword' (p,s,f,r).";
+    read commit;
+    echo "Rebasing everything before $commit!";
+    git rebase --interactive $commit;
+}
+
+alias gRd='git rebase develop'
+alias gRm='git rebase master'
+alias gRo='git_fetch_rebase_branch'; git_fetch_rebase_branch() { git fetch origin $1:$1; git rebase $1; }
 
 # Remove sensitive and binary files from list git history. Push force all branches afterwards.
 git_remove_filter_branch() {
@@ -117,6 +145,7 @@ alias gRfb='git_remove_filter_branch'
 
 # Commit
 alias gcm='git commit -m'
+alias gce='git commit --allow-empty -m "~"'
 alias gCm='git commit -am'
 alias gcA='git commit --amend'
 alias gcAm='git commit --amend -m'
@@ -127,15 +156,16 @@ alias tags='git tag -n'
 alias gt='git tag'
 alias gt1='git tag -a v1.0 -m'
 alias gts='git show'
-alias gta='git_tag_message'
-git_tag_message() { git tag -a "$1" -m "$2"; }
+alias gta='git_tag_message'; git_tag_message() { git tag -a "$1" -m "$2"; }
 
 # Submodules
 alias gS='git submodule'
-alias gSa='git submodule add'
-alias gSu='git submodule update --init --recursive'
-alias gSr='git submodule foreach --recursive'
+alias gSab='git submodule add -b'
+alias gSi='git submodule update --init --recursive --remote'
+alias gSu='git submodule set-url'
+alias gSf='git submodule foreach --recursive'
 alias gSp='git pull --recurse-submodules'
+alias gSR='git_submodule_remove'; git_submodule_remove() { git rm $1; rm -rf .git/modules/$1; git config --remove-section submodule.$1; }
 
 
 # Archive / Extract

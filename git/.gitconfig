@@ -10,25 +10,32 @@
     ui = true
     pager = true
 [diff]
-    tool = vscode
+    tool = bc
+[difftool]
+    prompt = false
 [difftool "bc"]
-    path = C:/Program Files/Beyond Compare 4/BComp.exe
+    cmd = bcompare \"$LOCAL\" \"$REMOTE\"
 [difftool "vscode"]
     cmd = code-insiders --wait --diff $LOCAL $REMOTE
 [merge]
     tool = vscode
 [mergetool "bc"]
-    path = C:/Program Files/Beyond Compare 4/BComp.exe
+    cmd = bcompare
 [mergetool "vscode"]
-	cmd = code-insiders --wait $MERGED
+    cmd = code-insiders --wait $MERGED
 [push]
     default = simple
 [mergetool]
     keepBackup = false
 [core]
-	editor = vim
+    editor = vim
     autocrlf = input
+    symlinks = true
 [pull]
-	ff = only
+    ff = only
 [init]
-	defaultBranch = master
+    defaultBranch = master
+[safe]
+    directory = *
+[protocol "file"]
+    allow = always

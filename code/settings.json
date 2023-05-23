@@ -68,9 +68,10 @@
 
     "terminal.external.windowsExec": "bash.exe",
     // "terminal.integrated.defaultProfile.windows": "WSL",
-    // "terminal.integrated.defaultProfile.windows": "GitBash",
-    "terminal.integrated.defaultProfile.windows": "GitZsh",
-    "terminal.integrated.defaultProfile.linux": "bash",
+    "terminal.integrated.defaultProfile.windows": "GitBash",
+    // "terminal.integrated.defaultProfile.windows": "GitZsh",
+    // "terminal.integrated.defaultProfile.windows": "MSYS2",
+    "terminal.integrated.defaultProfile.linux": "zsh",
     "terminal.integrated.persistentSessionReviveProcess": "never",
     "terminal.integrated.enableBell": false,
     "terminal.integrated.enableMultiLinePasteWarning": false,
@@ -83,13 +84,11 @@
         "Command Prompt": null,
         "Git Bash": null,
         "GitBash": {
-            "path": "bash.exe"
-            // "path": "c:\\workspace\\.tmp\\.apps\\git\\bin\\bash.exe",
-            // "path": "c:\\apps\\git\\usr\\bin\\zsh.exe"
+            "path": "sh.exe" // using sh.exe from GitBash to not conflict with WSL
         },
         "GitZsh": {
-            "path": "zsh.exe", // via GitBash manual MinGW64 package
-            "args": [ "-i" ]
+            "path": "zsh.exe", // via GitBash
+            "args": [ "--login", "-i" ],
         },
         "WSL": {
             "path": "C:\\WINDOWS\\System32\\wsl.exe",
@@ -111,25 +110,19 @@
             "path": "bash",
             "icon": "terminal-bash"
         },
-        "zsh": {
-            "path": "zsh"
-        },
-        "fish": {
-            "path": "fish"
-        },
         "tmux": {
             "path": "tmux",
             "icon": "terminal-tmux"
         },
-        "pwsh": {
-            "path": "pwsh",
-            "icon": "terminal-powershell"
+        "zsh": {
+            "path": "zsh",
+            "icon": "terminal-linux"
         }
     },
 
     ////// THEME //////
     "workbench.iconTheme": "gruvbox-material-icon-theme",
-    // "material-icon-theme.folders.color": "#89b482",
+    // "material-icon-theme.folders.color": "#076678",
     "workbench.colorTheme": "Gruvbox Dark Hard",
     "workbench.colorCustomizations": {
         "editorSuggestWidget.selectedBackground": "#076678",
@@ -139,8 +132,8 @@
         "tab.activeBackground": "#282828",
         "window.activeBorder": "#458588",
         "window.inactiveBorder": "#d65d0e",
-        "titleBar.activeBackground": "#224400",
-        "titleBar.inactiveBackground": "#442200"
+        "titleBar.activeBackground": "#002826",
+        "titleBar.inactiveBackground": "#220806"
     },
     "workbench.editor.limit.value": 6,
     "workbench.editor.limit.enabled": true,
@@ -162,8 +155,8 @@
         "asvetliakov.vscode-neovim": 1
     },
 
-    // "vim.leader": "<space>",
-    "vim.leader": ",",
+    "vim.leader": "<space>",
+    // "vim.leader": ",",
     "vim.hlsearch": true,
     // "vim.searchHighlightColor": "rgba(104, 157, 106, 0.4)", // #689D6A
     "vim.searchHighlightColor": "rgba(214, 96, 16, 0.4)", // #D65D0E
@@ -220,7 +213,7 @@
             "commands": [{ "command": ":nohl", "args": [] }]
         },
         {
-            "before": ["leader", "s"],
+            "before": ["M-s"],
             "after": [],
             "commands": [{ "command": "workbench.action.files.save", "args": [] }]
         },
@@ -310,7 +303,7 @@
     ////// MISCELLANEOUS //////
     // "breadcrumbs.enabled": false,
     "extensions.ignoreRecommendations": true,
-    // "markdown.preview.breaks": true,
+    "markdown.preview.breaks": true,
     "php.validate.enable": false,
     "emmet.includeLanguages": {
         "javascript": "javascriptreact",
@@ -358,5 +351,6 @@
     "material-icon-theme.folders.theme": "classic",
     "gitlens.views.commits.files.layout": "list",
     "update.mode": "manual",
-    "editor.accessibilitySupport": "off"
+    "editor.accessibilitySupport": "off",
+    "typescript.disableAutomaticTypeAcquisition": true
 }
