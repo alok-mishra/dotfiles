@@ -1,5 +1,6 @@
 alias vi='code'
 alias code='code-insiders'
+alias bcompare='bcomp'
 alias vj='vi manifest.json'
 alias ne='node exam'
 alias nm='node manifest'
@@ -11,14 +12,15 @@ alias rocky='./cntlm -H -c cntlm.ini && vi cntlm.ini'
 
 ##################################### DOCKER #####################################
 
-alias dcu='cmd <<< "docker compose up -d"'
-alias dcd='cmd <<< "docker compose down"'
+# alias dcu='cmd <<< "docker compose up -d"'  # working in git bash now
+# alias dcd='cmd <<< "docker compose down"'  # working in git bash now
 
 
 ##################################### GIT #####################################
 
 # Set a environment variable for the repository
-repo=file:///C:/Workspace/Repository/Git
+# repo=/c/workspace/repository/git # works with submodules on msys2, and git bash, but not with depth parameter for local repos
+repo=file:///c/workspace/repository/git # works with depth parameter for local repos, and with gitbash, but not with submodules on msys2
 
 # Repos
 alias gcla='git clone $repo/assembly.git'
@@ -26,13 +28,12 @@ alias gclar='git clone --recursive --local $repo/assembly.git'
 alias gclp='git clone $repo/package.git'
 alias gclm='git clone $repo/manifest.git'
 alias gcls='git clone $repo/scripts.git'
-alias gclv='git clone $repo/video.git'
-alias gclc='git clone $repo/classes.git'
-alias gclf='git clone $repo/fla.git'
 alias gcln='git clone $repo/newdealer.git'
 alias gcle='git clone $repo/exam.git'
+alias gclv='git clone $repo/lev.git'
 alias gcrp=clone_package_rebase
 alias gcrm=clone_manifest_rebase
+alias gcra=autoshell_package
 
 # Stellantis
 alias gces='git config user.email "alok.mishra@stellantis.com"'
@@ -45,7 +46,7 @@ alias gart='git archive --remote=$repo/manifest.git master | tar -xv topics.js'
 
 ## gcrp
 clone_package_rebase() {
-    if [[ ($# -eq 0 || "$1" = "." ) && "$PWD" =~ Package ]]; then
+    if [[ ($# -eq 0 || "$1" = "." ) && ("$PWD" =~ Package ||  "$PWD" =~ package) ]]; then
         # git clone $repo/package.git . || read -p "... Press enter to dismiss ..."
         git clone --depth 1 $repo/package.git . || read -p "... Press enter to dismiss ..."
         dir="."
@@ -74,7 +75,7 @@ clone_package_rebase() {
 
     if [ -f zip-package.bat ]; then
         git rebase origin/master
-        rm -rf .git*  *.css *.js *.lock package.json
+        rm -rf .git*  *.css *.js package*.json manifest
         code . -g zip-package.bat:4:13
     fi
 
@@ -137,7 +138,7 @@ sass_watch() {
 }
 
 autoshell_package() {
-    "C:\Program Files\7-Zip\7z.exe" x "C:\workspace\CACreative\Operations\3_Templates & Job Aids\4 Production\Packages\SL360 Package\AUTOSHELL.zip"
+    "C:\Program Files\7-Zip\7z.exe" x "C:\workspace\CACreative\Operations\3_Templates and Job Aids\4 Production\Packages\SL360 Package\AUTOSHELL.zip"
 }
 
 # Execute from an immediate directory within a project via Beyond Compare
@@ -164,7 +165,7 @@ archive_project() {
         rm -f "$project".7z
 
         echo "Archiving \"$project\" ..."
-        "C:\Program Files\7-Zip\7z.exe" a "$project".7z -xr!.git -xr!*.pdf -xr!*.zip .
+        "C:\Program Files\7-Zip\7z.exe" a "$project".7z -xr!.git -xr!node_modules -xr!*.pdf -xr!*.zip .
         "C:\Program Files\7-Zip\7z.exe" l "$project".7z
         manifests=$("C:\Program Files\7-Zip\7z.exe" l "$project".7z  | grep 'manifest\\manifest.json' | tr -s ' ' | cut -d ' ' -f 4)
 
@@ -206,4 +207,5 @@ gitlab_repo_sync() {
     git branch -a
     echo "====== Proceed after force pushing is allowed on GitLab repo! ======"
     pushrall gitlab
+    cd ..
 }

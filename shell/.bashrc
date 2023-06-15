@@ -1,20 +1,36 @@
 ##################################### SHELL #####################################
+if command -v zsh &> /dev/null; then
+
+    if [ -z "$ZSH_VERSION" ]; then
+        : # exec zsh "$@"
+    fi
+
+fi
+
 if [ -f ~/.dotfiles/shell/.aliases ]; then
     source ~/.dotfiles/shell/.aliases
     alias via='vi ~/.dotfiles/shell/.aliases'
 fi
 
-if [ `uname` != 'Linux' ]; then
+# if [ `uname` != 'Linux' ]; then
+if [[ "$HOSTNAME" ==  W* ]]; then
     if [ -f ~/.dotfiles/shell/work.aliases ]; then
         source ~/.dotfiles/shell/work.aliases
         alias viwa='vi ~/.dotfiles/shell/work.aliases'
+    fi
+
+    if [ -f ~/.settings/aliases/pr.aliases ]; then
+        source ~/.settings/aliases/pr.aliases
+        alias vipr='vi ~/.settings/aliases/pr.aliases'
     fi
 else
     if [ -f ~/.dotfiles/shell/home.aliases ]; then
         source ~/.dotfiles/shell/home.aliases
         alias viha='vi ~/.dotfiles/shell/home.aliases'
     fi
+fi
 
+if [[ "$HOSTNAME" ==  Star* ]]; then
     if [ -f ~/.dotfiles/shell/arch.aliases ]; then
 
         export PATH="/home/alok/sdk/miniconda/bin:$PATH"
@@ -24,6 +40,12 @@ else
         alias viaa='vi ~/.dotfiles/shell/arch.aliases'
     fi
 fi
+
+if [ -d /mingw64/share/git/completion/ ]; then
+    source /mingw64/share/git/completion/git-completion.bash
+    source /mingw64/share/git/completion/git-prompt.sh
+fi
+
 
 if [ -d /usr/share/git/completion/ ]; then
     source /usr/share/git/completion/git-completion.bash
@@ -50,7 +72,7 @@ export PS1='\n\[\e[0;36m\]\W\[\e[1;36m\]$(__git_ps1) \[\e[0;36m\]$\[\e[0m\] '
 
 windows() { [[ -n "$WINDIR" ]]; }
 if windows; then
-    alias ln=symlink
+    alias link=symlink
 fi
 
 symlink() {
@@ -61,3 +83,13 @@ symlink() {
     fi
 }
 
+function setupNvs {
+	export NVS_HOME="$HOME\AppData\Local\nvs";
+	[ -s "$NVS_HOME/nvs.sh" ] && source "$NVS_HOME/nvs.sh" >> /dev/null;
+	return 0;
+}
+setupNvs
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

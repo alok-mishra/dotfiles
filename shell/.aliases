@@ -1,10 +1,20 @@
+# Source local aliases
+if [ -f ~/local.aliases ]; then
+    source local.aliases
+fi
+
+############################## CORE  ##############################
+
 alias ls='ls --color=auto'
 alias l='ls -hAlF'
 alias ll='ls -halF'
-alias vi='vim'
+alias v='vi'
+alias vi='nvim'
 alias grep='grep --color=auto'
 alias x='exit'
 alias ag='alias | grep'
+alias hfc='history 0 | fzf | cut -c 8- | clip'
+alias bc='bcompare'
 
 alias ..='cd ..'
 alias ocd='cd "$OLDPWD"'
@@ -16,6 +26,7 @@ alias mk4=mkv_to_mp4
 mkv_to_mp4() { for i in *.mkv; do ffmpeg -i "$i" -loglevel error -codec copy "${i%.*}.mp4"; done; }
 
 alias sha1='openssl sha1'
+alias sha256='openssl sha256'
 alias path='echo "${PATH//:/$'"'"'\n'"'"'}"'
 alias scpid='ssh-copy-id -i ~/.ssh/id_rsa'
 alias scpidr='ssh-copy-id -i ~/.ssh/mediarave_rsa'
@@ -25,6 +36,9 @@ sshkey_ed25519() { ssh-keygen -t ed25519 -f $1_ed25519 -C alok@$1; }
 
 alias vib='vi ~/.bashrc'
 alias vic='vi ~/.ssh/config'
+alias vin='vi ~/.dotfiles/config/nvim/init.lua'
+
+alias pSo='pacman -S --overwrite "*"'
 
 alias sr='screen -r'
 
@@ -35,6 +49,11 @@ alias calc='bc --quiet'
 alias hdc='rm ~/.bash_history && history -c'
 alias hdr=history_del_range
 history_del_range() { for i in {1..100}; do history -d $1; done; }
+
+alias cs=cheat_sheet; cheat_sheet() { curl cheat.sh/$1; }
+
+############################## APPS  ##############################
+alias sup='scoop update && scoop status && scoop update --all'
 
 ############################## DOCKER ##############################
 
@@ -54,9 +73,13 @@ alias dRf='docker rm -f'
 alias dat=attach_terminal
 attach_terminal() { docker exec -it "$1" bash; }
 
+alias da='docker attach'
+
 alias dim='docker images'
 alias diP='docker image prune'
 alias dRmi='docker rmi'
+
+alias dirt='docker_run'; docker_run() { docker run --name $2 -it $1; }
 
 alias dvl='docker volume ls'
 alias dvP='docker volume prune'
@@ -114,12 +137,6 @@ git_clone_wordpress() {
     git clone --depth 1 https://github.com/WordPress/WordPress.git $dir && rm -rf $dir/.git;
 }
 
-## Heroku
-alias hbn='heroku buildpacks:set heroku/nodejs'
-alias hbr='heroku buildpacks:set mars/create-react-app'
-alias pushh=git_push_heroku
-git_push_heroku() { git push heroku $1:master --force; }
-
 ############################## ADMIN  ##############################
 HISTTIMEFORMAT="%d/%m/%y %T "
 
@@ -172,10 +189,6 @@ www_backup() { tar -cvzf ~/backups/$1.tar.gz /var/www/$1; }
 alias warc=static_archive
 static_archive() { wget -P $2 -mpck --user-agent="" -e robots=off --wait 1 -E $1; }
 
-# Source local aliases
-if [ -f ~/.aliases ]; then
-    source .aliases
-fi
 
 ############################## PYTHON ##############################
 alias pcl='conda list'
@@ -194,20 +207,23 @@ export PATH=$PATH:~/.config/yarn/global/node_modules/.bin
 node_run() {
     if [ -f ./yarn.lock ]; then
         pm=yarn
+        $pm run "$1"
     elif [ -f ./package-lock.json ]; then
         pm=npm
+        $pm run "$@"
     else
         echo "Have you installed the package?"
     fi
 
-    $pm run $1
 }
 
 alias nr='node_run'
 alias nrb='node_run build'
-alias nrd='node_run dev'
+alias nrd='npm run develop --if-present && npm run dev --if-present && npm run start'
 alias nrs='node_run start'
+alias nrt='node_run test'
 
+alias ni='npm install'
 alias nid='npm install --save-dev'
 alias nup='npm update'
 
@@ -221,7 +237,8 @@ alias scss='node-sass --output-style compact'
 
 ############################## SVELTE ##############################
 alias svelte='npm init vite $1 -- --template svelte'
-alias skit='npm init svelte $1'
+alias skit='npm create svelte@latest'
+alias wskit='winpty npm.cmd create svelte@latest'
 
 ############################## ANGULAR ##############################
 # alias ngs='ng serve --open'

@@ -1,0 +1,57 @@
+# ~/.config/starship.toml
+
+format = """
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$fill\
+$all"""
+
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
+symbol = " "
+
+[git_branch]
+format="[$symbol$branch(:$remote_branch)]($style) "
+symbol = " "
+
+[fill]
+symbol = " "
+
+[nodejs]
+format = "[$symbol $version](bold green) "
+symbol = " "
+
+[conda]
+symbol = " "
+
+[dart]
+symbol = " "
+
+[directory]
+read_only = " "
+
+[docker_context]
+symbol = " "
+
+[golang]
+symbol = " "
+
+[memory_usage]
+symbol = " "
+
+[python]
+symbol = " "
+
+[rlang]
+symbol = "ﳒ "
+
+[rust]
+symbol = " "
