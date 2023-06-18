@@ -1,6 +1,6 @@
 # Source local aliases
 if [ -f ~/local.aliases ]; then
-    source local.aliases
+    source ~/local.aliases
 fi
 
 ############################## CORE  ##############################
