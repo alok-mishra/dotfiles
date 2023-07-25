@@ -58,7 +58,7 @@
         "config": "shellscript",
         "*.aliases": "shellscript",
         "*.tridactylrc": "vimrc",
-        "*.jscad": "javascript"
+        "*.jscad": "javascript",
     },
 
     "search.quickOpen.includeHistory": true,
@@ -78,13 +78,19 @@
     "terminal.integrated.fontFamily": "Inconsolata Nerd Fontx, MesloLGS NFx, Hack Nerd Font, Cascadia Code, Ligconsolata, Fira Code, Consolas",
     // "terminal.integrated.fontSize": 14,
 
+    "terminal.integrated.automationProfile.windows": {
+        "path": "cmd.exe"
+    },
+
     "terminal.integrated.profiles.windows": {
         "PowerShell": null,
         "Windows PowerShell": null,
         "Command Prompt": null,
         "Git Bash": null,
         "GitBash": {
-            "path": "sh.exe" // using sh.exe from GitBash to not conflict with WSL
+            // "path": "sh.exe", // using sh.exe from GitBash to not conflict with WSL
+            "path": "bash.exe", // figure out why paths matter
+            "args": [ "--login", "-i" ],
         },
         "GitZsh": {
             "path": "zsh.exe", // via GitBash
@@ -222,6 +228,10 @@
             "after": [],
             "commands": [{ "command": "workbench.action.files.saveWithoutFormatting", "args": [] }]
         },
+        // {
+        //     "before": ["g", "h"],
+        //     "commands": [{ "command": "editor.action.showDefinitionPreviewHover" }]
+        // },
 
         // MACROS
         {

@@ -2,6 +2,7 @@
 alias gi='git init'
 alias gib='git init --bare'
 alias gs='git status'
+alias gsi='git status --ignored'
 alias ga='git add'
 alias gaa='git add --all'
 alias gcu='git config user.name && git config user.email'
@@ -33,6 +34,7 @@ alias gbl="git for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %
 alias gbu='git branch -u' # set upstream branch
 alias gbv='git branch --verbose' # show last commit on branch
 alias gbD='git branch --delete --force' # delete local branch
+alias gbm='git branch --move' # rename local branch
 alias gbrD='git push origin --delete'
 alias gbDR='delete_local_and_remote_branch'; delete_local_and_remote_branch() { git branch -D $1; git push origin --delete $1; }
 

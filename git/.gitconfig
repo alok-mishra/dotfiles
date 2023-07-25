@@ -31,6 +31,7 @@
     editor = vim
     autocrlf = input
     symlinks = true
+    excludesfile = ~/.gitignore_global
 [pull]
     ff = only
 [init]
@@ -39,3 +40,5 @@
     directory = *
 [protocol "file"]
     allow = always
+[credential "helperselector"]
+    selected = <no helper>

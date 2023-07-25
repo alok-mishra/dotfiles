@@ -29,7 +29,7 @@
         "when": "editorFocus"
     },
     {
-        "key": "alt+shift+w",
+        "key": "alt+shift+d",
         "command": "workbench.action.closeAllEditors"
     },
     {
@@ -83,6 +83,10 @@
     {
         "key": "alt+s",
         "command": "workbench.action.files.save"
+    },
+    {
+        "key": "alt+shift+s",
+        "command": "workbench.action.files.saveWithoutFormatting"
     },
     {
         "key": "ctrl+alt+s",
@@ -309,5 +313,9 @@
         "key": "shift+enter",
         "command": "python.execInTerminal",
         "when": "editorFocus && !findInputFocussed && !replaceInputFocussed && !editorHasSelection && editorLangId == 'python'"
+    },
+    {
+        "key": "ctrl+alt+c",
+        "command": "workbench.action.chat.openInSidebar"
     },
 ]
