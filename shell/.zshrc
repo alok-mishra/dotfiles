@@ -2,10 +2,11 @@
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
+unsetopt beep
 bindkey -v
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '/c/Users/alok/.zshrc'
+zstyle :compinstall filename '/home/alok/.zshrc'
 
 autoload -Uz compinit
 compinit
@@ -30,8 +31,6 @@ source ~/.zsh/powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# MSYS2 Mingw64 - uncomment MSYS2_PATH_TYPE in mingw64.ini
-
 # unsetopt completealiases ## allows completion of aliases
 
 #################### SHELL ####################
@@ -43,17 +42,20 @@ if [ -f ~/.dotfiles/shell/.aliases ]; then
     alias via='vi ~/.dotfiles/shell/.aliases'
 fi
 
-#if [ `uname` != 'Linux' ]; then
-if [[ "$HOSTNAME" == W* ]]; then
+if [[ `hostname` == W* ]]; then
     if [ -f ~/.dotfiles/shell/work.aliases ]; then
         source ~/.dotfiles/shell/work.aliases
         alias viwa='vi ~/.dotfiles/shell/work.aliases'
     fi
 
-    if [ -f ~/.settings/aliases/pr.aliases ]; then
-        source ~/.settings/aliases/pr.aliases
-        alias vipr='vi ~/.settings/aliases/pr.aliases'
-    fi
+    # NVS - Node Version Switcher (Windows)
+    function setupNvs {
+        export NVS_HOME="$HOME\AppData\Local\nvs";
+        [ -s "$NVS_HOME/nvs.sh" ] && source "$NVS_HOME/nvs.sh" >> /dev/null;
+        return 0;
+    }
+    setupNvs
+
 else
     if [ -f ~/.dotfiles/shell/home.aliases ]; then
         source ~/.dotfiles/shell/home.aliases
@@ -61,25 +63,29 @@ else
     fi
 fi
 
-if [[ "$HOSTNAME" == Star* ]]; then
-    if [ -f ~/.dotfiles/shell/arch.aliases ]; then
-
-        export PATH="/home/alok/sdk/miniconda/bin:$PATH"
-        . /home/alok/sdk/miniconda/etc/profile.d/conda.sh
-
-        source ~/.dotfiles/shell/arch.aliases
-        alias viaa='vi ~/.dotfiles/shell/arch.aliases'
-    fi
+if [ -f ~/.dotfiles/aliases/pr.aliases ]; then
+    source ~/.dotfiles/aliases/pr.aliases
+    alias vipr='vi ~/.dotfiles/aliases/pr.aliases'
 fi
 
-# NVS - Node Version Switcher
-function setupNvs {
-	export NVS_HOME="$HOME\AppData\Local\nvs";
-	[ -s "$NVS_HOME/nvs.sh" ] && source "$NVS_HOME/nvs.sh" >> /dev/null;
-	return 0;
-}
-setupNvs
+if [[ `hostname` == star* ]]; then
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+    if [ -f ~/.dotfiles/shell/pop.aliases ]; then
+        source ~/.dotfiles/shell/pop.aliases
+        alias vipa='vi ~/.dotfiles/shell/pop.aliases'
+
+    #     export PATH="/home/alok/sdk/miniconda/bin:$PATH"
+    #     . /home/alok/sdk/miniconda/etc/profile.d/conda.sh
+    fi
+
+    # NVS - Node Version Switcher (Linux)
+    export NVS_HOME="$HOME/.nvs"
+    export PATH="$PATH:$NVS_HOME/default/bin/node" # for copilot
+    [ -s "$NVS_HOME/nvs.sh" ] && . "$NVS_HOME/nvs.sh"
+    export NODE_PATH="$NVS_HOME/default/lib/node_modules/"
+
+    # Linuxbrew env set in ~/.profile (upon login for GUI apps)
+fi
+
+
+# export PATH="$HOME/bin:$PATH"
