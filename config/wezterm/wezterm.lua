@@ -51,7 +51,6 @@ end
 
 config.background = {
 	{
-
 		source = { File = randomBackground(wezterm.home_dir .. "/sync/settings/backgrounds") },
 		-- opacity = 0.88,
 		-- attachment = { Parallax = 0.2 },
