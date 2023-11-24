@@ -4,19 +4,19 @@ if [ -f ~/local.aliases ]; then
 fi
 
 ############################## CORE  ##############################
-
 alias ls='ls --color=auto'
 alias l='ls -hAlF'
 alias ll='ls -halF'
-alias v='vi'
-alias vi='nvim'
 alias grep='grep --color=auto'
+alias search='grep -rl'
 alias x='exit'
 alias ag='alias | grep'
 alias hfc='history 0 | fzf | cut -c 8- | clip'
-alias bc='bcompare'
+alias bc='bcomp.exe'
+alias code='code-insiders'
 
 alias ..='cd ..'
+alias ~='cd -'
 alias ocd='cd "$OLDPWD"'
 
 alias md5=md5hash
@@ -34,11 +34,9 @@ alias scpidr='ssh-copy-id -i ~/.ssh/mediarave_rsa'
 alias sshkey=sshkey_ed25519
 sshkey_ed25519() { ssh-keygen -t ed25519 -f $1_ed25519 -C alok@$1; }
 
-alias vib='vi ~/.bashrc'
-alias vic='vi ~/.ssh/config'
-alias vin='vi ~/.dotfiles/config/nvim/init.lua'
-
-alias pSo='pacman -S --overwrite "*"'
+ssh_agent_forward() { eval $(ssh-agent -s) && ssh-add ~/.ssh/$1 && ssh -A $2 && ssh-agent -k; }
+alias ssa='ssh_agent_forward id_rsa $1'
+alias ssr='ssh_agent_forward dev/random_ed25519 $1'
 
 alias sr='screen -r'
 
@@ -54,12 +52,73 @@ alias cs=cheat_sheet; cheat_sheet() { curl cheat.sh/$1; }
 
 ############################## APPS  ##############################
 alias sup='scoop update && scoop status && scoop update --all'
+alias src='scoop cleanup --all && scoop cache rm --all'
+alias bup='brew update && brew upgrade && brew cleanup'
+
+############################## WSL  ##############################
+
+alias wlv='wsl --list -v'
+alias wex="wsl --export arch arch-$(date +'%Y%m%d').tar"
+
+if [[ $is_wsl ]]; then
+	alias dev='cd ~/workspace/develop/'
+
+	wbc() {
+		local path1="$(wslpath -w "$1")"
+		local path2="$(wslpath -w "$2")"
+		bc "$path1" "$path2" &
+	}
+fi
+
+############################## NEOVIM  ##############################
+alias v='vi'
+alias vi='nvim'
+alias nvir=nvim_remote
+nvim_remote() { nvim scp://$1//var/www/$2; }
+
+alias vib='vi ~/.bashrc'
+alias vic='vi ~/.ssh/config'
+alias vin='cd ~/.dotfiles/nvim/ && vi ./lua/config/keymaps.lua ./lua/plugins/plugins.lua'
+alias viw='vi ~/.config/wezterm/wezterm.lua'
+
+alias nvl='nv nvim-lazyvim'   # alias nvl="NVIM_APPNAME=nvim-lazyvim nvim"
+alias nvk='nv nvim-kickstart' # alias nvk="NVIM_APPNAME=nvim-kickstart nvim"
+alias nvh='nv nvim-chad'      # alias nva="NVIM_APPNAME=nvim-chad nvim"
+alias nvc='nv nvim-core'      # alias nvc="NVIM_APPNAME=nvim-core nvim"
+
+function nv() {
+	items=("default" "nvim-lazyvim" "nvim-kickstart" "nvim-astrovim" "nvim-core")
+
+	if [[ -z $1 ]]; then
+		config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config:" --height=~50% --layout=reverse --border --exit-0)
+	else
+		config=$1
+	fi
+
+	if [[ -z $config ]]; then
+		echo "Nothing selected"
+		return 0
+	elif [[ $config == "default" ]]; then
+		config=""
+	else
+		alias vi="NVIM_APPNAME=${config} nvim"
+	fi
+	NVIM_APPNAME=$config nvim $@
+}
+
+if [ -n "$($SHELL -c 'echo $ZSH_VERSION')" ]; then
+	bindkey -s ^a "nvims\n"
+elif [ -n "$($SHELL -c 'echo $BASH_VERSION')" ]; then
+	bind -x '"\C-a": nvims'
+else
+	bindkey -s ^a "nvims\n"
+fi
 
 ############################## DOCKER ##############################
 
-alias dm='docker-machine'
-alias dmip='docker-machine ip devbox'
-alias denv='docker-machine env devbox --shell bash'
+if [[ $is_wsl ]]; then
+	alias dss='sudo systemctl status docker'
+fi
 
 alias dp='docker ps -a'
 alias dps='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Command}}\t{{.Ports}}\t{{.Names}}"'
@@ -76,8 +135,8 @@ attach_terminal() { docker exec -it "$1" bash; }
 alias da='docker attach'
 
 alias dim='docker images'
+alias diRm='docker rmi'
 alias diP='docker image prune'
-alias dRmi='docker rmi'
 
 alias dirt='docker_run'; docker_run() { docker run --name $2 -it $1; }
 
@@ -88,29 +147,25 @@ alias dc='docker-compose'
 alias dcu='docker-compose up -d'
 alias dcd='docker-compose down'
 alias dcr='docker-compose restart'
-alias dcp='cp -r ~/.dotfiles/web/project/. .'
+alias dcp='cp -r ~/sync/project/. .'
 
 alias ds='docker start'
 alias dS='docker stop'
 alias dsa='docker start $(docker ps -a -q)'
 alias dSa='docker stop $(docker ps -a -q)'
 
-alias dssh='ssh docker@192.168.99.100'
-
-
 ############################## GIT  ##############################
-if [ -f ~/.dotfiles/git/git.aliases ]; then source ~/.dotfiles/git/git.aliases
-    alias vigc='vi ~/.gitconfig'
-    alias viga='vi ~/.dotfiles/git/git.aliases'
+if [ -f ~/.dotfiles/git/git.aliases ]; then
+	source ~/.dotfiles/git/git.aliases
+	alias vigc='vi ~/.gitconfig'
+	alias viga='vi ~/.dotfiles/git/git.aliases'
 fi
 
 # GitHub
-# alias dotfiles='git remote set-url origin git@alok-github:alok-mishra/dotfiles.git'
-alias dotremote='git remote set-url origin git@github.com:alok-mishra/dotfiles.git'
 alias dotfiles='git clone git@github.com:alok-mishra/dotfiles.git'
+alias dotnvim='git clone git@github.com:alok-mishra/nvim.git'
 github_init() { curl -u "alok-mishra" https://api.github.com/user/repos -d "{'name':$1,'description':$2}"; }
 alias ghi='github_init'
-
 
 # GitLab
 gitlab_clone() { git clone git@gitlab.com:$1/$2 $3; }
@@ -119,9 +174,8 @@ alias gclglf='gitlab_clone fcapi $1 $2'
 alias gclgls='gitlab_clone stellantispi $1 $2'
 
 alias pushalllab='git push gitlab --all'
-alias remotelabpackage='git remote add gitlab git@gitlab.com:fcapi/package.git'
-alias remotelabmanifest='git remote add gitlab git@gitlab.com:fcapi/manifest.git'
-
+alias remotelabpackage='git remote add gitlab git@gitlab.com:stellantispi/package.git'
+alias remotelabmanifest='git remote add gitlab git@gitlab.com:stellantispi/manifest.git'
 
 # BitBucket
 alias gclbb='gitlab_clone_bitbucket'
@@ -130,11 +184,11 @@ gitlab_clone_bitbucket() { git clone git@bitbucket.org:learnlife/$1 $2; }
 # WordPress
 alias gclwp=git_clone_wordpress
 git_clone_wordpress() {
-    dir="wordpress"
-    if [[ $# -ne 0 ]]; then
-        dir=${1}
-    fi
-    git clone --depth 1 https://github.com/WordPress/WordPress.git $dir && rm -rf $dir/.git;
+	dir="wordpress"
+	if [[ $# -ne 0 ]]; then
+		dir=${1}
+	fi
+	git clone --depth 1 https://github.com/WordPress/WordPress.git $dir && rm -rf $dir/.git
 }
 
 ############################## ADMIN  ##############################
@@ -148,8 +202,8 @@ www_cd() { cd /var/www/$1; }
 alias compress='tar -cvzf ../${PWD##*/}.tar.gz .'
 alias extract='tar -zxvf'
 
-alias up='sudo apt-get update && time sudo apt-get upgrade'
-alias upd='sudo apt-get update && time sudo apt-get dist-upgrade'
+alias up='sudo apt update && time sudo apt upgrade'
+alias upd='sudo apt update && time sudo apt dist-upgrade'
 
 alias flash=flash_image
 flash_image() { sudo dd if=$1 of=$2 bs=4M oflag=direct status=progress && sync; }
@@ -172,7 +226,9 @@ alias weblog='sudo less /var/log/apache2/access.log'
 alias rpclog='sudo grep xmlrpc /var/log/apache2/access.log'
 
 alias chowh='sudo chown -R http:http . && sudo chown -R alok:alok .git'
-alias choww='sudo chown -R www-data:www-data .'
+alias choww='sudo chown -R www-data:www-data . && sudo chown -R alok:alok .git'
+alias chowa='sudo chown -R alok:alok .'
+
 alias webres='sudo systemctl restart apache2'
 alias webrel='sudo systemctl reload apache2'
 alias fws='sudo ufw status numbered'
@@ -189,20 +245,20 @@ www_backup() { tar -cvzf ~/backups/$1.tar.gz /var/www/$1; }
 alias warc=static_archive
 static_archive() { wget -P $2 -mpck --user-agent="" -e robots=off --wait 1 -E $1; }
 
-
 ############################## PYTHON ##############################
-alias pcl='conda list'
-alias pcle='conda env list'
-alias pci='conda install'
-alias pcic='conda install -c'
-alias pcu='conda update'
-alias pcc='conda create -n'
-alias pca='conda activate'
-alias pcd='conda deactivate'
+
+if command -v conda &>/dev/null; then
+	alias pcl='conda list'
+	alias pcle='conda env list'
+	alias pci='conda install'
+	alias pcic='conda install -c'
+	alias pcu='conda update'
+	alias pcc='conda create -n'
+	alias pca='conda activate'
+	alias pcd='conda deactivate'
+fi
 
 ############################## NODE  ##############################
-
-export PATH=$PATH:~/.config/yarn/global/node_modules/.bin
 
 node_run() {
     if [ -f ./yarn.lock ]; then
@@ -219,24 +275,21 @@ node_run() {
 
 alias nr='node_run'
 alias nrb='node_run build'
+alias nrp='node_run preview'
 alias nrd='npm run develop --if-present && npm run dev --if-present && npm run start'
 alias nrs='node_run start'
 alias nrt='node_run test'
 
 alias ni='npm install'
-alias nid='npm install --save-dev'
+alias nig='npm --global install'
+alias nic='npm ci'
+alias nid='npm --save-dev install'
 alias nup='npm update'
-
-alias yga='yarn global add'
-alias yda='yarn --dev add'
-alias yul='yarn upgrade --latest'
-alias ygr='yarn global --verbose remove'
-alias ygu='yarn global --verbose upgrade'
 
 alias scss='node-sass --output-style compact'
 
 ############################## SVELTE ##############################
-alias svelte='npm init vite $1 -- --template svelte'
+alias vite='npm create vite@latest'
 alias skit='npm create svelte@latest'
 alias wskit='winpty npm.cmd create svelte@latest'
 
@@ -251,30 +304,22 @@ alias wskit='winpty npm.cmd create svelte@latest'
 # alias nggs='ng generate service --flat --spec=false'
 
 ############################## FLUTTER ##############################
-export PATH=$PATH:~/sdk/flutter/bin
-
-alias gclfsdk='git clone --depth 1 https://github.com/flutter/flutter.git -b stable ~/sdk/flutter/'
-
-
-############################## ATOM ##############################
-alias alp='apm list --installed --bare > ~/Dropbox/dotfiles/atom/.packages'
-alias aip='apm install --packages-file ~/Dropbox/dotfiles/atom/.packages'
-alias aiv='apm install --verbose'
-alias aul='apm upgrade --list'
-alias auv='apm upgrade --verbose'
-
+# export PATH=$PATH:~/sdk/flutter/bin
+# alias gclfsdk='git clone --depth 1 https://github.com/flutter/flutter.git -b stable ~/sdk/flutter/'
 
 ############################## ANDROID ##############################
-#Android Platform Tools
-PATH=$PATH:~/sdk/android/platform-tools/:~/sdk/android/tools/:~/sdk/android/tools/bin
-
-alias avdlst='avdmanager.bat list avd'
-alias avdgal='avdmanager.bat create avd --force --name "galaxy" --abi "google_apis/x86" --device "Galaxy Nexus" --package "system-images;android-18;google_apis;x86"'
-alias avdnex='avdmanager.bat create avd --force --name "nexus" --abi "google_apis/x86" --device "Nexus 5X" --package "system-images;android-25;google_apis;x86"'
-alias emunex='emulator -avd nexus -gpu on -skin 1080x1920'
-alias emugal='emulator -avd galaxy -gpu on -skin 720x1280'
-alias adbi='adb install'
-alias adbu='adb uninstall'
+# if [ -d "~/sdk/android/" ]; then
+#     #Android Platform Tools
+#     PATH=$PATH:~/sdk/android/platform-tools/:~/sdk/android/tools/:~/sdk/android/tools/bin
+#
+#     alias avdlst='avdmanager.bat list avd'
+#     alias avdgal='avdmanager.bat create avd --force --name "galaxy" --abi "google_apis/x86" --device "Galaxy Nexus" --package "system-images;android-18;google_apis;x86"'
+#     alias avdnex='avdmanager.bat create avd --force --name "nexus" --abi "google_apis/x86" --device "Nexus 5X" --package "system-images;android-25;google_apis;x86"'
+#     alias emunex='emulator -avd nexus -gpu on -skin 1080x1920'
+#     alias emugal='emulator -avd galaxy -gpu on -skin 720x1280'
+#     alias adbi='adb install'
+#     alias adbu='adb uninstall'
+# fi
 
 ############################## GO ##############################
 alias gor='go run'
