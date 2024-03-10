@@ -3,9 +3,25 @@ alias gi='git init'
 alias gib='git init --bare'
 alias gs='git status'
 alias gsi='git status --ignored'
+alias gsy='files_modified_before_today'
+files_modified_before_today() {
+	git status | while read mode file; do
+		if [ -e "$file" ]; then
+			modification_date=$(stat -c %Y "$file")
+			yesterday_date=$(date -d yesterday +%s)
+			if [ "$modification_date" -lt "$yesterday_date" ]; then
+				echo "$file $(stat -c %y "$file")"
+			fi
+		fi
+	done
+}
+
 alias ga='git add'
 alias gaa='git add --all'
+alias gaf='git add --force'
 alias gcu='git config user.name && git config user.email'
+
+alias ignore='git update-index --skip-worktree' # ignore file from being indexed
 
 # Remotes
 alias gr='git remote'
@@ -17,10 +33,10 @@ alias grD='git remote rm'
 alias grP='git fetch --prune'
 
 # Logs
-alias gl='git log --oneline'
-alias glz='git log --oneline | fzf' # fuzzy search git log
-alias glo='git log --oneline -10'
-alias gld='git log --pretty=format:"%C(yellow)%h%C(reset)%x09%an%x09%ad%x09%s" --date=short -20'
+alias gl='git log --pretty=format:"%C(auto)%h %C(cyan)%ad %C(auto)%s %d" --date=short -6'
+alias glz='git log --pretty=format:"%C(auto)%h %C(magenta)%ad %C(auto)%s %d" --date=short | fzf --ansi' # fuzzy search
+alias gld='git log --pretty=format:"%C(auto)%h %C(magenta)%<(10,trunc)%an %C(cyan)%ad %C(auto)%s %d" --date=short'
+# alias glo='git log --oneline'
 alias glg='git log --oneline --graph'
 alias gla='git log --oneline --graph --all --decorate'
 
@@ -46,7 +62,7 @@ delete_local_and_remote_branch() {
 alias gch='git checkout'
 alias gch~='git checkout @{-1}'                           # checkout previous branch
 alias gchz='git branch --list | fzf | xargs git checkout' # fuzzy search branch and checkout
-alias gchB='git checkout -b'
+alias gchb='git checkout -b'
 alias gchd='git checkout develop'
 alias gchm='git_checkout_default'
 git_checkout_default() { git checkout master || git checkout main; }
@@ -56,8 +72,8 @@ alias gchn='git checkout main'
 alias gwl='git worktree list'
 alias gwa='git_worktree_add'
 git_worktree_add() { git worktree add "../~worktrees/$1"; }
-alias gwc='git_worktree_compare'
-git_worktree_compare() { bcompare . "../~worktrees/$1" & }
+alias gwd='git_worktree_diff'
+git_worktree_diff() { bcomp . "../~worktrees/$1" & }
 alias gwr='git worktree remove'
 alias gwp='git worktree prune'
 
@@ -80,6 +96,7 @@ alias g.RH='git reset --hard HEAD'
 alias g~RS='git reset --soft HEAD~1'
 alias g~RM='git reset --mixed HEAD~1'
 alias g~RH='git reset --hard HEAD~1'
+alias g~R9='git reset --hard HEAD~9'
 alias gmRH='git reset --hard origin/master'
 
 alias gCn='git clean -d --dry-run'
@@ -93,9 +110,10 @@ alias cache='git rm -r --cached .'
 # Fetch / Merge / Pull / Rebase / Push
 alias gf='git fetch'
 alias gp='git pull'
-alias gpr='pull --rebase'
+alias gpF='git_rebase_remote_branch origin $(git branch --show-current)' # force pull
+alias gpR='git pull --rebase'
 alias gP='git push --follow-tags'
-alias gPf='git push --force'
+alias gPF='git push --force'
 
 alias gPu='push_upstream'
 push_upstream() {
@@ -175,7 +193,8 @@ alias gcv='git commit --verbose --all'
 # Tag
 alias tags='git tag -n'
 alias gt='git tag'
-alias gt1='git tag -a v1.0 -m'
+alias gt1='git tag -a 1.0 -m'
+alias gtd='git tag -d'
 alias gts='git show'
 alias gta='git_tag_message'
 git_tag_message() { git tag -a "$1" -m "$2"; }
@@ -195,4 +214,4 @@ git_submodule_remove() {
 }
 
 # Archive / Extract
-alias gar='git archive HEAD --format=zip > "../${PWD##*/}.zip"'
+alias gAr='git archive HEAD --format=zip > "../${PWD##*/}.zip"'

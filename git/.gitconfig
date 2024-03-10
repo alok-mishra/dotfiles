@@ -10,17 +10,20 @@
     ui = true
     pager = true
 [diff]
-    tool = bc
-[difftool]
-    prompt = false
-[difftool "bc"]
-    cmd = bcompare \"$LOCAL\" \"$REMOTE\"
+    prompt = true
+    tool = wsl_beyondcompare
+[difftool "beyondcompare"]
+    cmd = bcomp.exe \"$LOCAL\" \"$REMOTE\"
+[difftool "wsl_beyondcompare"]
+    cmd = bcomp.exe "$(wslpath -aw $LOCAL)" "$(wslpath -aw $REMOTE)"
 [difftool "vscode"]
     cmd = code-insiders --wait --diff $LOCAL $REMOTE
 [merge]
     tool = vscode
-[mergetool "bc"]
-    cmd = bcompare
+[mergetool "beyondcompare"]
+    cmd = bc
+[mergetool "wsl_beyondcompare"]
+    cmd = bc "$(wslpath -aw $LOCAL)" "$(wslpath -aw $REMOTE)" "$(wslpath -aw $BASE)" "$(wslpath -aw $MERGED)"
 [mergetool "vscode"]
     cmd = code-insiders --wait $MERGED
 [push]
