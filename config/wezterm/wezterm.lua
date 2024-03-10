@@ -73,6 +73,11 @@ config.keys = {
     { key = "|", mods = "SHIFT|ALT|CTRL", action = wezterm.action.SplitVertical },
     { key = "'", mods = "ALT|CTRL", action = wezterm.action.PaneSelect },
     { key = '"', mods = "ALT|CTRL|SHIFT", action = wezterm.action({ PaneSelect = { mode = "SwapWithActive" } }) },
+
+    { key = "h", mods = "ALT", action = wezterm.action.ActivatePaneDirection 'Left' },
+    { key = "j", mods = "ALT", action = wezterm.action.ActivatePaneDirection 'Down' },
+    { key = "k", mods = "ALT", action = wezterm.action.ActivatePaneDirection 'Up' },
+    { key = "l", mods = "ALT", action = wezterm.action.ActivatePaneDirection 'Right' },
 }
 
 return config
