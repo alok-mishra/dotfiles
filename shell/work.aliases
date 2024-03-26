@@ -1,20 +1,16 @@
-alias vi='code'
-alias code='code-insiders'
 alias bcompare='bcomp'
-alias vj='vi manifest.json'
 alias ne='node exam'
 alias nm='node manifest'
 alias nt='node topics'
 alias gurp='gars && gulp'
 alias grnt='gart && nt && rm topics.js'
 alias gRe='git rebase origin/english'
-alias rocky='./cntlm -H -c cntlm.ini && vi cntlm.ini'
+# alias rocky='./cntlm -H -c cntlm.ini && vi cntlm.ini'
 
 ##################################### DOCKER #####################################
 
 # alias dcu='cmd <<< "docker compose up -d"'  # working in git bash now
 # alias dcd='cmd <<< "docker compose down"'  # working in git bash now
-
 
 ##################################### GIT #####################################
 
@@ -26,6 +22,7 @@ repo=file:///c/workspace/repository/git # works with depth parameter for local r
 alias gcla='git clone $repo/assembly.git'
 alias gclar='git clone --recursive --local $repo/assembly.git'
 alias gclp='git clone $repo/package.git'
+alias gclc='git clone $repo/csod-package.git'
 alias gclm='git clone $repo/manifest.git'
 alias gcls='git clone $repo/scripts.git'
 alias gcln='git clone $repo/newdealer.git'
@@ -39,10 +36,11 @@ alias gcra=autoshell_package
 alias gces='git config user.email "alok.mishra@stellantis.com"'
 
 # Archive / Extract
-alias gara='git archive --remote=$repo/Assembly.git master | tar -xv'
-alias garr='git archive --remote=$repo/Assembly.git master | tar -xv shell/templates/retrofit/ --strip-components=3'
 alias gars='git archive --remote=$repo/scripts.git master | tar -xv storyline/ --strip-components=1'
 alias gart='git archive --remote=$repo/manifest.git master | tar -xv topics.js'
+
+# Migrate CSOD
+alias ganm='git archive --remote=$repo/manifest.git master | tar -xv csod/migrate.js && node csod/migrate csod-package && rm -rf csod'
 
 ## gcrp
 clone_package_rebase() {
@@ -140,6 +138,13 @@ sass_watch() {
 autoshell_package() {
     "C:\Program Files\7-Zip\7z.exe" x "C:\workspace\CACreative\Operations\3_Templates and Job Aids\4 Production\Packages\SL360 Package\AUTOSHELL.zip"
 }
+interim_package() {
+    cp -r "C:\workspace\CACreative\Operations\3_Templates and Job Aids\4 Production\Packages\CSOD Packages\CSOD New Courses\csod-interim-package" .
+}
+
+csod_migrate_exe() {
+    cp "C:\workspace\CACreative\Operations\3_Templates and Job Aids\4 Production\Packages\CSOD Packages\CSOD New Courses\migrate-to-csod.exe" . && ./migrate-to-csod && rm ./migrate-to-csod.exe
+}
 
 # Execute from an immediate directory within a project via Beyond Compare
 archive_project() {
@@ -169,8 +174,7 @@ archive_project() {
         "C:\Program Files\7-Zip\7z.exe" l "$project".7z
         manifests=$("C:\Program Files\7-Zip\7z.exe" l "$project".7z  | grep 'manifest\\manifest.json' | tr -s ' ' | cut -d ' ' -f 4)
 
-        for size in $manifests
-        do
+        for size in $manifests; do
             if [[ $size -gt 600 ]]; then
                 archived=true;
                 echo "This manifest in the archive looks good!"
@@ -201,11 +205,38 @@ gitlab_repo_sync() {
     git clone $repo/$1.git
     cd $1
     trackall
-    pullall
+    git pull --all
     git remote add gitlab git@gitlab.com:stellantispi/$1.git
-    fetchall
+    git fetch --all
     git branch -a
     echo "====== Proceed after force pushing is allowed on GitLab repo! ======"
-    pushrall gitlab
+    git push gitlab --force --all
     cd ..
+}
+
+alias story='check_story_incomplete'
+check_story_incomplete() {
+    echo -e "\nProject path?\n"
+    if read -rp "" project_path; then
+        project_path=$(echo "$project_path" | sed 's/W:/U:/')
+
+        if [ -d "$project_path" ]; then
+            story_path="$project_path/4 Production/Interactive Package/content/en/html/js/"
+            file_path="$project_path/4 Production/Interactive Package/content/en/html/js/story.js"
+            if [ -f "$file_path" ]; then
+                if grep -q "Incomplete" "$file_path"; then
+                    echo -e "\nFOUND: Incomplete Status"
+                else
+                    echo -e "\nMISSING: Incomplete Status"
+                    cd "$story_path"
+                fi
+            else
+                echo "File does not exist: $file_path"
+            fi
+        else
+            cd "$project_path"
+        fi
+    else
+        echo "That path doesn't exist! Are you connected to VPN?"
+    fi
 }

@@ -1,19 +1,19 @@
 # Common
+alias g='git status'
 alias gi='git init'
 alias gib='git init --bare'
-alias gs='git status'
-alias gsi='git status --ignored'
-alias gsy='files_modified_before_today'
+alias gg='git status --ignored'
+alias gy='files_modified_before_today'
 files_modified_before_today() {
-	git status | while read mode file; do
-		if [ -e "$file" ]; then
-			modification_date=$(stat -c %Y "$file")
-			yesterday_date=$(date -d yesterday +%s)
-			if [ "$modification_date" -lt "$yesterday_date" ]; then
-				echo "$file $(stat -c %y "$file")"
-			fi
-		fi
-	done
+    git status | while read mode file; do
+        if [ -e "$file" ]; then
+            modification_date=$(stat -c %Y "$file")
+            yesterday_date=$(date -d yesterday +%s)
+            if [ "$modification_date" -lt "$yesterday_date" ]; then
+                echo "$file $(stat -c %y "$file")"
+            fi
+        fi
+    done
 }
 
 alias ga='git add'
@@ -21,7 +21,8 @@ alias gaa='git add --all'
 alias gaf='git add --force'
 alias gcu='git config user.name && git config user.email'
 
-alias ignore='git update-index --skip-worktree' # ignore file from being indexed
+alias gig='git update-index --no-skip-worktree' # unignore file from being indexed
+alias gIg='git update-index --skip-worktree'    # ignore file from being indexed
 
 # Remotes
 alias gr='git remote'
@@ -60,20 +61,28 @@ delete_local_and_remote_branch() {
 }
 
 alias gch='git checkout'
-alias gch~='git checkout @{-1}'                           # checkout previous branch
-alias gchz='git branch --list | fzf | xargs git checkout' # fuzzy search branch and checkout
-alias gchb='git checkout -b'
-alias gchd='git checkout develop'
-alias gchm='git_checkout_default'
-git_checkout_default() { git checkout master || git checkout main; }
-alias gchn='git checkout main'
+# alias gch~='git checkout @{-1}'                           # checkout previous branch
+# alias gchz='git branch --list | fzf | xargs git checkout' # fuzzy search branch and checkout
+# alias gchb='git checkout -b'
+# alias gchd='git checkout develop'
+# alias gchm='git_checkout_default'
+# git_checkout_default() { git checkout master || git checkout main; }
+
+alias gs='git switch'
+alias gs~='git switch @{-1}'                           # switch to previous branch
+alias gsz='git branch --list | fzf | xargs git switch' # fuzzy search branch and switch
+alias gsB='git switch -c'
+alias gsd='git switch develop'
+alias gsm='git_switch_default'
+git_switch_default() { git switch master 2>/dev/null || git switch main; }
+alias gsn='git switch main'
 
 # Worktree
 alias gwl='git worktree list'
 alias gwa='git_worktree_add'
-git_worktree_add() { git worktree add "../~worktrees/$1"; }
+git_worktree_add() { git worktree add ".git-worktrees/$1"; }
 alias gwd='git_worktree_diff'
-git_worktree_diff() { bcomp . "../~worktrees/$1" & }
+git_worktree_diff() { bcomp . ".git-worktrees/$1" & }
 alias gwr='git worktree remove'
 alias gwp='git worktree prune'
 

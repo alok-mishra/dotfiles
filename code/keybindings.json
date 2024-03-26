@@ -1,6 +1,5 @@
 ////// Keybindings //////
 [
-
     // Editor //
     {
         "key": "ctrl+,",
@@ -24,15 +23,6 @@
         "command": "workbench.action.toggleZenMode"
     },
     {
-        "key": "alt+d",
-        "command": "workbench.action.closeActiveEditor",
-        "when": "editorFocus"
-    },
-    {
-        "key": "alt+shift+d",
-        "command": "workbench.action.closeAllEditors"
-    },
-    {
         "key": "ctrl+p",
         "command": "focusPreviousCodeAction",
         "when": "CodeActionMenuVisible"
@@ -54,7 +44,7 @@
     },
     {
         "key": "ctrl+n",
-        "command": "-workbench.action.files.newUntitledFile",
+        "command": "-workbench.action.files.newUntitledFile"
     },
     {
         "key": "shift+alt+,",
@@ -79,18 +69,6 @@
     {
         "key": "ctrl+alt+,",
         "command": "workbench.action.openGlobalKeybindingsFile"
-    },
-    {
-        "key": "alt+s",
-        "command": "workbench.action.files.save"
-    },
-    {
-        "key": "alt+shift+s",
-        "command": "workbench.action.files.saveWithoutFormatting"
-    },
-    {
-        "key": "ctrl+alt+s",
-        "command": "workbench.action.files.saveWithoutFormatting"
     },
     {
         "key": "ctrl+alt+l",
@@ -155,7 +133,33 @@
         "command": "editor.action.formatDocument",
         "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
     },
-
+    {
+        "key": "alt+/",
+        "command": "editor.action.commentLine",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+/",
+        "command": "-editor.action.commentLine",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "alt+d",
+        "command": "workbench.action.closeActiveEditor",
+        "when": "editorFocus"
+    },
+    {
+        "key": "alt+shift+d",
+        "command": "workbench.action.closeAllEditors"
+    },
+    {
+        "key": "alt+s",
+        "command": "workbench.action.files.save"
+    },
+    {
+        "key": "alt+shift+s",
+        "command": "workbench.action.files.saveWithoutFormatting"
+    },
 
     // Explorer //
     {
@@ -199,7 +203,6 @@
         "when": "filesExplorerFocus && !inputFocus"
     },
 
-
     // Panes //
     {
         "key": "alt+0",
@@ -215,11 +218,11 @@
     },
     {
         "key": "alt+h",
-        "command": "workbench.action.navigateLeft",
+        "command": "workbench.action.navigateLeft"
     },
     {
         "key": "alt+l",
-        "command": "workbench.action.navigateRight",
+        "command": "workbench.action.navigateRight"
     },
     {
         "key": "alt+`",
@@ -261,7 +264,6 @@
         "command": "workbench.action.navigateDown"
     },
 
-
     // Terminal //
     {
         "key": "ctrl+`",
@@ -294,7 +296,6 @@
         "when": "terminalFocus"
     },
 
-
     // Extensions //
     {
         "key": "ctrl+alt+v",
@@ -317,5 +318,5 @@
     {
         "key": "ctrl+alt+c",
         "command": "workbench.action.chat.openInSidebar"
-    },
+    }
 ]

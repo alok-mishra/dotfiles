@@ -62,8 +62,7 @@ function! ColorScheme(colorscheme)
 endfunction
 
 set background=dark
-
-" colorscheme gruvbox
+colorscheme habamax
 
 " Custom Colors
 " call ForceColors()
