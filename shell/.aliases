@@ -13,11 +13,36 @@ alias x='exit'
 alias ag='alias | grep'
 alias hfc='history 0 | fzf | cut -c 8- | clip'
 alias bc='bcomp.exe'
+alias v='vi'
+alias vi='vim'
 alias code='code-insiders'
 
 alias ..='cd ..'
 alias ~='cd -'
 alias ocd='cd "$OLDPWD"'
+
+if [[ "$TERM_PROGRAM" == "vscode" ]]; then
+	alias vi='code'
+elif [[ "$TERM_PROGRAM" == "WezTerm" ]]; then
+	if command -v nvim &>/dev/null; then
+		alias vi='nvim'
+	elif command -v code &>/dev/null; then
+		alias vi='code'
+	fi
+else
+	alias vi='vim'
+fi
+
+alias type=smart_type # smart_type will either show the alias or the function definition
+smart_type() {
+	alias_command=$(alias "$1" 2>/dev/null)
+	if [[ $alias_command == *"'"* ]]; then
+		builtin type -f "$1"
+	else
+		function_name="${alias_command#*=}"
+		builtin type -f "$function_name"
+	fi
+}
 
 alias md5=md5hash
 md5hash() { echo -n "$1" | openssl md5; }
@@ -48,31 +73,19 @@ alias hdc='rm ~/.bash_history && history -c'
 alias hdr=history_del_range
 history_del_range() { for i in {1..100}; do history -d $1; done; }
 
-alias cs=cheat_sheet; cheat_sheet() { curl cheat.sh/$1; }
+alias cs=cheat_sheet
+cheat_sheet() { curl cheat.sh/$1; }
+
+alias duh='du -hxd2 | sort -rh | head -20' # Show the top 20 largest directories in the current directory
 
 ############################## APPS  ##############################
 alias sup='scoop update && scoop status && scoop update --all'
-alias src='scoop cleanup --all && scoop cache rm --all'
+alias suv='scoop update vscode-insiders --skip'
+alias src='scoop cache rm --all && scoop cleanup --all'
 alias bup='brew update && brew upgrade && brew cleanup'
 
-############################## WSL  ##############################
-
-alias wlv='wsl --list -v'
-alias wex="wsl --export arch arch-$(date +'%Y%m%d').tar"
-
-if [[ $is_wsl ]]; then
-	alias dev='cd ~/workspace/develop/'
-
-	wbc() {
-		local path1="$(wslpath -w "$1")"
-		local path2="$(wslpath -w "$2")"
-		bc "$path1" "$path2" &
-	}
-fi
-
 ############################## NEOVIM  ##############################
-alias v='vi'
-alias vi='nvim'
+alias n='nvim'
 alias nvir=nvim_remote
 nvim_remote() { nvim scp://$1//var/www/$2; }
 
@@ -114,8 +127,29 @@ else
 	bindkey -s ^a "nvims\n"
 fi
 
-############################## DOCKER ##############################
+############################## WSL  ##############################
+alias wlv='wsl --list -v'
+alias wSl='wsl --shutdown'
+alias wdx="wsl --export arch arch-$(date +'%Y%m%d').tar"
+alias wdi='wsl --import arch /d/WSL/arch/'
 
+if [[ $is_wsl ]]; then
+	alias vi='code'
+	alias dev='cd ~/workspace/develop/'
+	alias dds='ddev start && ddev npm run dev'
+	alias ddd='ddev npm run dev'
+	alias ddx='ddev poweroff'
+
+	wbc() {
+		local path1="$(wslpath -w "$1")"
+		local path2="$(wslpath -w "$2")"
+		bc "$path1" "$path2" &
+	}
+fi
+
+alias p='paru'
+
+############################## DOCKER ##############################
 if [[ $is_wsl ]]; then
 	alias dss='sudo systemctl status docker'
 fi
@@ -124,7 +158,7 @@ alias dp='docker ps -a'
 alias dps='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Command}}\t{{.Ports}}\t{{.Names}}"'
 alias dpa='docker ps -a --format "table {{.ID}}\t{{.Image}}\t{{.Command}}\t{{.Ports}}\t{{.Names}}"'
 
-alias dl='docker logs'
+alias dl='docker logs --follow'
 
 alias dRf='docker rm -f'
 # alias dRaf='docker rm -f $(docker ps -a -q)'
@@ -138,14 +172,38 @@ alias dim='docker images'
 alias diRm='docker rmi'
 alias diP='docker image prune'
 
-alias dirt='docker_run'; docker_run() { docker run --name $2 -it $1; }
+alias dirt='docker_run'
+docker_run() { docker run --name $2 -it $1; }
 
 alias dvl='docker volume ls'
+alias dvR='docker volume rm'
 alias dvP='docker volume prune'
 
 alias dc='docker-compose'
-alias dcu='docker-compose up -d'
-alias dcd='docker-compose down'
+
+alias dcu=docker_compose_up
+docker_compose_up() {
+	local file="docker-compose.yml"
+
+	if [[ -n "$1" ]]; then
+		file="docker-compose-$1.yml"
+	fi
+
+	docker-compose --file $file up --detach
+}
+
+alias dcd=docker_compose_down
+docker_compose_down() {
+	local file="docker-compose.yml"
+
+	if [[ -n "$1" ]]; then
+		file="docker-compose-$1.yml"
+	fi
+
+	docker-compose --file $file down
+}
+
+
 alias dcr='docker-compose restart'
 alias dcp='cp -r ~/sync/project/. .'
 
@@ -162,10 +220,14 @@ if [ -f ~/.dotfiles/git/git.aliases ]; then
 fi
 
 # GitHub
-alias dotfiles='git clone git@github.com:alok-mishra/dotfiles.git'
-alias dotnvim='git clone git@github.com:alok-mishra/nvim.git'
-github_init() { curl -u "alok-mishra" https://api.github.com/user/repos -d "{'name':$1,'description':$2}"; }
+github_clone() { git clone git@github.com:$1/$2 $3; }
+alias gclgha='github_clone alok-mishra $1 $2'
+alias gclghm='github_clone mediarave $1 $2'
+alias dotfiles='gclgha dotfiles $2'
+alias dotnvim='gclgha nvim $2'
+
 alias ghi='github_init'
+github_init() { curl -u "alok-mishra" https://api.github.com/user/repos -d "{'name':$1,'description':$2}"; }
 
 # GitLab
 gitlab_clone() { git clone git@gitlab.com:$1/$2 $3; }
@@ -178,8 +240,8 @@ alias remotelabpackage='git remote add gitlab git@gitlab.com:stellantispi/packag
 alias remotelabmanifest='git remote add gitlab git@gitlab.com:stellantispi/manifest.git'
 
 # BitBucket
-alias gclbb='gitlab_clone_bitbucket'
-gitlab_clone_bitbucket() { git clone git@bitbucket.org:learnlife/$1 $2; }
+alias gclbb='git_clone_bitbucket'
+git_clone_bitbucket() { git clone git@bitbucket.org:learnlife/$1 $2; }
 
 # WordPress
 alias gclwp=git_clone_wordpress
@@ -191,16 +253,35 @@ git_clone_wordpress() {
 	git clone --depth 1 https://github.com/WordPress/WordPress.git $dir && rm -rf $dir/.git
 }
 
-############################## ADMIN  ##############################
+############################## SERVER ##############################
 HISTTIMEFORMAT="%d/%m/%y %T "
 
 alias suvi='sudo -E vim'
 
 alias wcd=www_cd
-www_cd() { cd /var/www/$1; }
+www_cd() {
+    wdir="/var/www/${1:-$(hostname)}"
+    
+    if [[ -d "$wdir" ]]; then
+        cd "$wdir"
+    else
+        cd /var/www
+    fi
+}
 
-alias compress='tar -cvzf ../${PWD##*/}.tar.gz .'
-alias extract='tar -zxvf'
+alias tzc=tar_gz_compress
+tar_gz_compress() { tar "$@" --exclude='*/node_modules' -cvzf ../${PWD##*/}_$(date +%Y%m%d-%H%M%S).tar.gz .; }
+alias tzx=tar_gz_extract
+tar_gz_extract() {
+    if [ -z "$1" ]; then
+        echo "Usage: tzx <filename.tar.gz>"
+    else
+        filename=$(basename -- "$1")
+        directory="${filename%%.*}"
+        mkdir -p "$directory" && tar -xvzf "$1" -C "$directory"
+    fi
+}
+
 
 alias up='sudo apt update && time sudo apt upgrade'
 alias upd='sudo apt update && time sudo apt dist-upgrade'
@@ -228,6 +309,7 @@ alias rpclog='sudo grep xmlrpc /var/log/apache2/access.log'
 alias chowh='sudo chown -R http:http . && sudo chown -R alok:alok .git'
 alias choww='sudo chown -R www-data:www-data . && sudo chown -R alok:alok .git'
 alias chowa='sudo chown -R alok:alok .'
+alias chgw='sudo chmod -R g+w .'
 
 alias webres='sudo systemctl restart apache2'
 alias webrel='sudo systemctl reload apache2'
@@ -246,7 +328,6 @@ alias warc=static_archive
 static_archive() { wget -P $2 -mpck --user-agent="" -e robots=off --wait 1 -E $1; }
 
 ############################## PYTHON ##############################
-
 if command -v conda &>/dev/null; then
 	alias pcl='conda list'
 	alias pcle='conda env list'
@@ -259,7 +340,6 @@ if command -v conda &>/dev/null; then
 fi
 
 ############################## NODE  ##############################
-
 node_run() {
     if [ -f ./yarn.lock ]; then
         pm=yarn
@@ -285,6 +365,7 @@ alias nig='npm --global install'
 alias nic='npm ci'
 alias nid='npm --save-dev install'
 alias nup='npm update'
+alias ncuu='ncu -u'
 
 alias scss='node-sass --output-style compact'
 
@@ -322,10 +403,23 @@ alias wskit='winpty npm.cmd create svelte@latest'
 # fi
 
 ############################## GO ##############################
+alias goi='go mod init' ## module
 alias gor='go run'
+alias gom='go run .'
+alias gog='go get -u' ## update package
+alias goc='go clean -modcache' ## clean corrupted module cache
+alias got='go mod tidy' ## add missing and remove unused modules
+alias wbw='wails build -platform windows'
+alias wbd='wails build -platform windows -o desktop' # make a symlink to a desktop folder in the build/bin directory
+alias wbdb='wails build -platform windows -o desktop -ldflags "-X main.buildTime=$(date -u +%Y-%m-%dT%H:%M:%SZ)"' # add build time to the binary
+alias wbdc='wails build -platform windows -windowsconsole -debug -o desktop -ldflags "-X main.buildTime=$(date -u +%Y-%m-%dT%H:%M:%SZ)"'
 
 ############################## HASS  ##############################
 if [ -f /home/homeassistant/.homeassistant/ha.aliases ]; then
    source /home/homeassistant/.homeassistant/ha.aliases
    alias viha='vi /home/homeassistant/.homeassistant/ha.aliases'
 fi
+
+############################## LF #################################
+alias vilf='vi ~/.config/lf/lfrc'
+alias lfd='lf -doc | less'
