@@ -2,13 +2,18 @@
 
 "$schema" = 'https://starship.rs/config-schema.json'
 
+command_timeout = 1000
+
 format = """
 $container\
 $directory\
 $git_branch\
+$git_commit\
 $git_status\
 $fill\
-$all"""
+$time\
+$all
+"""
 
 [hostname]
 disabled = true
@@ -26,7 +31,7 @@ format = "[$output](bold blue) "
 
 [container]
 format = "[$symbol($version )]($style)"
-symbol = "🐳 "
+symbol = "[](blue) "
 
 [directory]
 truncation_length = 2
@@ -43,15 +48,15 @@ format="[$symbol$branch(:$remote_branch)]($style) "
 symbol = " "
 
 [git_status]
-conflicted = "✖"
-ahead = "↑"
-behind = "↓"
-diverged = "⚡"
-renamed = "➜"
-untracked = "✭"
-stashed = "⚑"
-modified = "✚"
-staged = "●"
+conflicted = "🍂"
+ahead = "🐇️"
+behind = "🐢️"
+diverged = "🌵️"
+renamed = "🌾️️️"
+untracked ="🍃️️"
+stashed = "🎍"
+modified = "🌱"
+staged = "🌴"
 
 ####################################################################################################
 
@@ -75,6 +80,7 @@ symbol = " "
 
 [golang]
 symbol = " "
+format = "[$symbol($version) ]($style)"
 
 [memory_usage]
 symbol = " "
@@ -82,11 +88,12 @@ symbol = " "
 [python]
 symbol = " "
 
-[rlang]
-symbol = "ﳒ "
-
 [rust]
 symbol = " "
 
 [fill]
 symbol = " "
+
+[time]
+format = "[$time]($style)"
+style = "green"

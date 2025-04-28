@@ -74,7 +74,8 @@ alias gsz='git branch --list | fzf | xargs git switch' # fuzzy search branch and
 alias gsB='git switch -c'
 alias gsd='git switch develop'
 alias gsm='git_switch_default'
-git_switch_default() { git switch master 2>/dev/null || git switch main; }
+git_switch_default() { git switch main 2>/dev/null || git switch master; }
+alias gsr='git switch master'
 alias gsn='git switch main'
 
 # Worktree
@@ -82,8 +83,8 @@ alias gwl='git worktree list'
 alias gwa='git_worktree_add'
 git_worktree_add() { git worktree add ".git-worktrees/$1"; }
 alias gwd='git_worktree_diff'
-git_worktree_diff() { bcomp . ".git-worktrees/$1" & }
-alias gwr='git worktree remove'
+git_worktree_diff() { bc . ".git-worktrees/$1" & }
+alias gwD='git worktree remove'
 alias gwp='git worktree prune'
 
 # Diff / Show
@@ -114,7 +115,9 @@ alias gCf='git clean -d --force'
 alias gS='git stash'
 alias gSl='git stash list'
 alias gSp='git stash pop'
-alias cache='git rm -r --cached .'
+alias gSd='git stash show -p' # show diff of stash
+alias gSD='git stash drop'
+alias cache='git rm -r --cached .'  # remove files from cache
 
 # Fetch / Merge / Pull / Rebase / Push
 alias gf='git fetch'
@@ -143,10 +146,10 @@ alias pullall='git pull --all'
 alias pushrall='push_remote_all'
 push_remote_all() { git push $1 --force --all; }
 
-alias gm='git merge'
-alias gma='git merge --abort'
-alias gms='git merge --squash'
-alias gmm='git merge master'
+alias gM='git merge'
+alias gMa='git merge --abort'
+alias gMs='git merge --squash'
+alias gMm='git merge master'
 alias gmt='git mergetool'
 
 alias gp1='git pull --depth 1'
@@ -168,6 +171,7 @@ git_rebase_squash() {
 
 alias gRd='git rebase develop'
 alias gRm='git rebase master'
+alias gRn='git rebase main'
 alias gRrb='git_rebase_remote_branch'
 git_rebase_remote_branch() {
     git fetch $1 $2
@@ -178,9 +182,12 @@ git_rebase_remote_branch() {
 git_remove_filter_branch() {
 
     # [Git Filter Branch](https://help.github.com/en/github/authenticating-to-github/removing-sensitive-data-from-a-repository#using-filter-branch)
-    git filter-branch --force --index-filter "git rm -r --cached --ignore-unmatch $1" --prune-empty --tag-name-filter cat -- --all
+    git filter-branch --force --index-filter "git rm --cached --ignore-unmatch $1" --prune-empty --tag-name-filter cat -- --all
 
-    ## After removal:
+    # Multiple:
+    # git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch data/document.*; git rm --cached --ignore-unmatch tables.*' --prune-empty -- --all
+
+    ## After removal (only affects local repo):
     git for-each-ref --format='delete %(refname)' refs/original | git update-ref --stdin
     git reflog expire --expire=now --all
     git gc --prune=now
@@ -199,13 +206,18 @@ alias gcA='git commit --amend'
 alias gcAm='git commit --amend -m'
 alias gcv='git commit --verbose --all'
 
+# Cherry Pick
+alias gCp='git cherry-pick $1'
+alias gCc='git cherry-pick --continue'
+alias gCa='git cherry-pick --abort'
+
+
 # Tag
-alias tags='git tag -n'
 alias gt='git tag'
-alias gt1='git tag -a 1.0 -m'
-alias gtd='git tag -d'
+alias gtl='git tag --list -n' # list tags
+alias gtd='git tag -d' # delete tag
 alias gts='git show'
-alias gta='git_tag_message'
+alias gtm='git_tag_message'
 git_tag_message() { git tag -a "$1" -m "$2"; }
 
 # Submodules
