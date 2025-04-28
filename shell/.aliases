@@ -181,18 +181,32 @@ alias dvP='docker volume prune'
 
 alias dc='docker-compose'
 
-alias dcu=docker_compose_up
-docker_compose_up() {
+alias dcu='docker_compose up'
+alias dcd='docker_compose down'
+docker_compose() {
 	local file="docker-compose.yml"
+    local container=""
 
-	if [[ -n "$1" ]]; then
-		file="docker-compose-$1.yml"
+	if [[ -n "$2" ]]; then
+        local special="docker-compose-$2.yml"
+        if [[ -f "$special" ]]; then
+            file="$special"
+            container="$3"
+        else
+            container="$2"
+        fi
 	fi
 
-	docker-compose --file $file up --detach
+    if [[ $1 == "up" ]]; then
+        docker compose --file $file up --detach $container
+    elif [[ $1 == "down" ]]; then
+	docker compose --file $file down $container
+    else
+        echo "Usage: dcd | dcd [env] [container]"
+        return 1
+    fi
 }
 
-alias dcd=docker_compose_down
 docker_compose_down() {
 	local file="docker-compose.yml"
 
@@ -200,7 +214,6 @@ docker_compose_down() {
 		file="docker-compose-$1.yml"
 	fi
 
-	docker-compose --file $file down
 }
 
 
