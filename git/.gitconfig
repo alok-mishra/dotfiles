@@ -44,4 +44,6 @@
 [protocol "file"]
     allow = always
 [credential "helperselector"]
-    selected = <no helper>
+	selected = <no helper>
+[http]
+	sslBackend = openssl

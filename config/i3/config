@@ -11,7 +11,10 @@ set $icons             
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 set $mod Mod4
 set $alt Mod1
+set $ctl Control
 set $malt Mod4+Mod1
+set $mctl $mod+$ctl
+set $mcs $mod+$ctl+shift
 
 # 1:Terminal, 2:Web, 3:Miscellaneous, 4:Code, 5:Social, 6:Media
 set $ws0 "0:  "
@@ -107,6 +110,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 2
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 bindsym $malt+b exec --no-startup-id bcompare
 bindsym $malt+c exec --no-startup-id code
+bindsym $malt+v exec --no-startup-id code-insiders
 bindsym $malt+f exec --no-startup-id firefox
 bindsym $malt+k exec --no-startup-id keepassxc
 bindsym $malt+m exec --no-startup-id speedcrunch
@@ -115,7 +119,7 @@ bindsym $malt+r exec --no-startup-id i3-sensible-terminal -e ranger
 bindsym $malt+s exec --no-startup-id spotify; workspace $ws6
 bindsym $malt+t exec --no-startup-id i3-sensible-terminal; workspace $ws1
 bindsym $malt+w exec --no-startup-id google-chrome-stable
-bindsym control+shift+space exec --no-startup-id "rofi -theme gruvbox-dark -modi run,calc -show run"
+bindsym control+shift+space exec --no-startup-id "rofi -theme gruvbox-dark -modi run,calc -show run -calc-command 'echo {result} | xclip'"
 # bindsym control+shift+space exec --no-startup-id "rofi -theme gruvbox-dark -combi-modi combi,run,calc -modi combi -show run"
 # bindsym control+shift+space exec --no-startup-id "rofi -show run -show calc -modi calc -no-show-match -no-sort"
 
@@ -171,15 +175,15 @@ bindsym $mod+m exec --no-startup-id i3-dmenu-desktop
 # bindsym $mod+u exec --no-startup-id udisksctl mount -b /dev/sdb1
 
 # focus container on the left, bottom, top, right
-bindsym $alt+h focus left
-bindsym $alt+j focus down
-bindsym $alt+k focus up
-bindsym $alt+l focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 bindsym $alt+Tab focus right
-bindsym $alt+shift+h move left
-bindsym $alt+shift+j move down
-bindsym $alt+shift+k move up
-bindsym $alt+shift+l move right
+bindsym $mod+shift+h move left
+bindsym $mod+shift+j move down
+bindsym $mod+shift+k move up
+bindsym $mod+shift+l move right
 
 
 # Workspace Keybindings
@@ -197,29 +201,29 @@ bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 
-bindsym $mod+h workspace prev
-bindsym $mod+Left workspace prev
+bindsym $mod+ctrl+h workspace prev
+bindsym $mod+ctrl+Left workspace prev
 bindsym $mod+shift+Tab workspace prev
 
-bindsym $mod+l workspace next
-bindsym $mod+Right workspace next
+bindsym $mod+ctrl+l workspace next
+bindsym $mod+ctrl+Right workspace next
 bindsym $mod+Tab workspace next
 
 
 # move focused container to workspace
-bindsym $mod+shift+0 move container to workspace $ws0
-bindsym $mod+shift+1 move container to workspace $ws1
-bindsym $mod+shift+2 move container to workspace $ws2
-bindsym $mod+shift+3 move container to workspace $ws3
-bindsym $mod+shift+4 move container to workspace $ws4
-bindsym $mod+shift+5 move container to workspace $ws5
-bindsym $mod+shift+6 move container to workspace $ws6
-bindsym $mod+shift+7 move container to workspace $ws7
-bindsym $mod+shift+8 move container to workspace $ws8
-bindsym $mod+shift+9 move container to workspace $ws9
+bindsym $mod+ctrl+shift+0 move container to workspace $ws0
+bindsym $mod+ctrl+shift+1 move container to workspace $ws1
+bindsym $mod+ctrl+shift+2 move container to workspace $ws2
+bindsym $mod+ctrl+shift+3 move container to workspace $ws3
+bindsym $mod+ctrl+shift+4 move container to workspace $ws4
+bindsym $mod+ctrl+shift+5 move container to workspace $ws5
+bindsym $mod+ctrl+shift+6 move container to workspace $ws6
+bindsym $mod+ctrl+shift+7 move container to workspace $ws7
+bindsym $mod+ctrl+shift+8 move container to workspace $ws8
+bindsym $mod+ctrl+shift+9 move container to workspace $ws9
 
-bindsym $mod+shift+h move container to workspace prev; workspace prev
-bindsym $mod+shift+l move container to workspace next; workspace next
+bindsym $mod+ctrl+shift+h move container to workspace prev; workspace prev
+bindsym $mod+ctrl+shift+l move container to workspace next; workspace next
 
 
 # Resize Windows
@@ -267,7 +271,8 @@ mode $mode_system {
 bindsym $mod+x mode $mode_system
 
 # Edit the config file directly
-bindsym $mod+v exec --no-startup-id gvim ~/.config/i3/config
+bindsym $mod+i exec --no-startup-id gvim ~/.config/i3/config
+bindsym $mod+shift+i exec --no-startup-id code-insiders ~/.config/i3/config
 
 
 # i3bar Status
@@ -316,15 +321,22 @@ exec --no-startup-id xinput set-prop "SYN2602:00 06CB:78D3 Touchpad" "libinput T
 
 exec --no-startup-id redshift -P -O 5000
 
-exec --no-startup-id rclone mount gDrive: ~/sync/gDrive/ --vfs-cache-mode full
-exec --no-startup-id rclone mount gSync: ~/sync/gSync/ --vfs-cache-mode full --log-file ~/sync/gSync.log --log-level INFO
+# exec --no-startup-id nm-applet ## seems to be crashing the system
+
+# exec --no-startup-id rclone mount gDrive: ~/sync/gDrive/ --vfs-cache-mode full
+# exec --no-startup-id rclone mount gSync: ~/sync/gSync/ --vfs-cache-mode full --log-file ~/sync/gSync.log --log-level INFO
+exec --no-startup-id rclone mount gTask: ~/cloud/gTask/ --vfs-cache-mode full --log-file ~/cloud/gTask.log --log-level INFO
 
 exec --no-startup-id dropbox-cli start
 
 # Bring screen to a readable size on a HiDPI screen
-exec_always --no-startup-id xrandr --output HDMI1 --off --output VIRTUAL1 --off --output eDP1 --primary --mode 1920x1080 --pos 0x0 --rotate normal
+# exec_always --no-startup-id xrandr --output HDMI1 --off --output VIRTUAL1 --off --output eDP1 --primary --mode 1920x1080 --pos 0x0 --rotate normal
+# exec_always --no-startup-id xrandr --output HDMI1 --auto --output eDP1 --primary --mode 1920x1080
+# exec_always --no-startup-id xrandr --output eDP1 --primary --mode 1920x1080 --output HDMI1 --mode 2560x1440
+exec_always --no-startup-id xrandr --output eDP1 --primary --mode 2560x1440 --output HDMI1 --mode 2560x1440
+
+# Bluetooth seems to connect to keyboard with initial settings via bluez and bluez-utils (bluetoothctl)
 
 # Background image
 exec_always --no-startup-id feh --bg-fill ~/.config/backgrounds/aurora.jpg
 # exec_always --no-startup-id feh --bg-fill --randomize ~/.config/backgrounds/botw-*.jpg
-
