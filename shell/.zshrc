@@ -74,8 +74,29 @@ if [[ $is_work ]]; then
         [ -s "$NVS_HOME/nvs.sh" ] && source "$NVS_HOME/nvs.sh" >> /dev/null;
         # nvs auto on >> /dev/null
         return 0
+        # nvs auto on >> /dev/null
+        return 0
     }
     setupNvs
+
+    if [[ $is_msys ]]; then
+        IP_ADDRESS=$(ipconfig | grep -m 1 "IPv4" | cut -d: -f2 | tr -d ' ')
+    elif
+        [[ $is_wsl ]]; then
+        IP_ADDRESS=$(ip addr show | grep -A 3 "eth.*state UP" | grep 'inet ' | head -1 | awk '{print $2}' | cut -d/ -f1)
+    fi
+
+# Set proxies if NOT on home network
+MY_LOCATION="home"
+if [[ "$IP_ADDRESS" != 192.168.* ]]; then
+    MY_LOCATION="work"
+    export http_proxy="http://localhost:6060"
+    export https_proxy="http://localhost:6060"
+    export no_proxy="localhost,127.0.0.1"
+    echo "PX Proxy: $https_proxy"
+fi
+export MY_LOCATION
+
 
     if [[ $is_msys ]]; then
         IP_ADDRESS=$(ipconfig | grep -m 1 "IPv4" | cut -d: -f2 | tr -d ' ')
@@ -122,6 +143,10 @@ if [[ $is_wsl ]]; then
         source "$LFCD"
         alias lf='lfcd'
     fi
+
+    export GDK_SCALE=1.5
+    export QT_SCALE_FACTOR=1.5
+    export XCURSOR_SIZE=24
 
 else
     # if [[ `hostname` == star* ]]; then

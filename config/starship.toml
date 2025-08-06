@@ -15,20 +15,6 @@ $time\
 $all
 """
 
-[hostname]
-disabled = true
-
-[custom.hostname]
-when = "true"
-command = '''
-if [ "$(hostname)" = "home" ]; then
-  echo "🍓 $(hostname)"
-else
-  echo "🌎 $(hostname)"
-fi
-'''
-format = "[$output](bold blue) "
-
 [container]
 format = "[$symbol($version )]($style)"
 symbol = "[](blue) "
