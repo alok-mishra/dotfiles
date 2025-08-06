@@ -6,6 +6,7 @@ command_timeout = 1000
 
 format = """
 $container\
+$custom\
 $directory\
 $git_branch\
 $git_commit\
@@ -14,6 +15,22 @@ $fill\
 $time\
 $all
 """
+
+[username]
+disabled = true
+
+[hostname]
+disabled = true
+
+[custom.hostname]
+when = "true"
+command = '''
+if [ "$(hostname)" = "home" ]; then
+  echo "🍓"
+else
+  echo ""
+fi
+'''
 
 [container]
 format = "[$symbol($version )]($style)"

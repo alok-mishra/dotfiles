@@ -176,11 +176,9 @@ alias wdi='wsl --import arch /d/WSL/arch/'
 
 if [[ $is_wsl ]]; then
 	alias dev='cd ~/workspace/develop/'
-	alias dds='ddev start && ddev npm run dev'
-	alias ddd='ddev npm run dev'
-	alias ddx='ddev poweroff'
 
-	wbc() {
+	alias wbc=wsl_bc
+	wsl_bc() {
 		local path1="$(wslpath -w "$1")"
 		local path2="$(wslpath -w "$2")"
 		bc "$path1" "$path2" &
@@ -203,8 +201,10 @@ alias dl='docker logs --follow'
 alias dRf='docker rm -f'
 # alias dRaf='docker rm -f $(docker ps -a -q)'
 
-alias dat=attach_terminal
-attach_terminal() { docker exec -it "$1" bash; }
+alias dat=docker_attach_terminal
+docker_attach_terminal() {
+	docker exec -it $1 bash || docker exec -it $1 sh
+}
 
 alias dirt='docker_run'
 docker_run() { docker run --name $2 -it $1; }
@@ -226,6 +226,8 @@ alias dcl='docker compose logs --follow'
 alias dcb='docker compose build'
 alias dcB='docker compose build --pull --no-cache'
 alias dcr='docker compose restart'
+
+alias dcU='docker compose pull --ignore-pull-failures && docker compose up -d' # docker-compose upgrade
 
 alias dcu='docker_compose up'
 alias dcd='docker_compose down'
@@ -294,6 +296,12 @@ git_clone_wordpress() {
 	git clone --depth 1 https://github.com/WordPress/WordPress.git $dir && rm -rf $dir/.git
 }
 
+############################## WORDPRESS ##############################
+alias wes='wp-env start'
+alias weS='wp-env stop'
+alias weD='wp-env destroy'
+alias wcb='npx @wordpress/create-block@latest --variant dynamic'
+
 ############################## SERVER ##############################
 HISTTIMEFORMAT="%d/%m/%y %T "
 
@@ -323,7 +331,7 @@ tar_gz_extract() {
 	fi
 }
 
-alias up='sudo apt update && time sudo apt upgrade'
+alias up='sudo apt update && time sudo apt upgrade -y'
 alias upd='sudo apt update && time sudo apt dist-upgrade'
 
 alias flash=flash_image
@@ -349,7 +357,7 @@ alias rpclog='sudo grep xmlrpc /var/log/apache2/access.log'
 alias chowh='sudo chown -R http:http . && sudo chown -R alok:alok .git'
 alias choww='sudo chown -R www-data:www-data . && sudo chown -R alok:alok .git'
 alias chowa='sudo chown -R alok:alok .'
-alias chgw='sudo chmod -R g+w .'
+alias chmgw='sudo chmod -R g+w .'
 
 alias webres='sudo systemctl restart apache2'
 alias webrel='sudo systemctl reload apache2'
@@ -401,10 +409,11 @@ alias nrs='node_run start'
 alias nrt='node_run test'
 
 alias ni='npm install'
-alias nig='npm --global install'
-alias nic='npm ci'
-alias nid='npm --save-dev install'
-alias nup='npm update'
+alias nic='npm ci' # install using package-lock
+alias nid='npm install --save-dev'
+alias nig='npm install --global'
+alias nil='npm install --legacy-peer-deps'
+alias nup='npx npm-check-updates --interactive'
 alias ncuu='ncu -u'
 
 alias scss='node-sass --output-style compact'
@@ -441,10 +450,6 @@ alias wskit='winpty npm.cmd create svelte@latest'
 #     alias adbi='adb install'
 #     alias adbu='adb uninstall'
 # fi
-
-############################## Python ##############################
-# uses poetry
-alias ppe='poetry env info --executable'
 
 ############################## GO ##############################
 alias goi='go mod init' ## module
