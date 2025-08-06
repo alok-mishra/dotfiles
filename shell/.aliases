@@ -1,6 +1,6 @@
 # Source local aliases
 if [ -f ~/local.aliases ]; then
-    source ~/local.aliases
+	source ~/local.aliases
 fi
 
 ############################## CORE  ##############################
@@ -15,7 +15,16 @@ alias hfc='history 0 | fzf | cut -c 8- | clip'
 alias bc='bcomp.exe'
 alias v='vi'
 alias vi='vim'
+alias gsync='rclone sync gdrive:sync ~/sync --progress --verbose'
+
+# if ! command -v code &>/dev/null; then
 alias code='code-insiders'
+# fi
+
+alias codepx='code --proxy-server=127.0.0.1:6060'
+alias px='px --verbose'
+alias pxpass='px --password'
+alias gsync='rclone sync gdrive:sync ~/sync --progress'
 
 alias ..='cd ..'
 alias ~='cd -'
@@ -53,15 +62,46 @@ mkv_to_mp4() { for i in *.mkv; do ffmpeg -i "$i" -loglevel error -codec copy "${
 alias sha1='openssl sha1'
 alias sha256='openssl sha256'
 alias path='echo "${PATH//:/$'"'"'\n'"'"'}"'
-alias scpid='ssh-copy-id -i ~/.ssh/id_rsa'
-alias scpidr='ssh-copy-id -i ~/.ssh/mediarave_rsa'
+alias scpid='ssh-copy-id -i ~/.ssh/id_ed25519'
+alias scpidr='ssh-copy-id -i ~/.ssh/mediarave_ed25519'
 
 alias sshkey=sshkey_ed25519
 sshkey_ed25519() { ssh-keygen -t ed25519 -f $1_ed25519 -C alok@$1; }
 
-ssh_agent_forward() { eval $(ssh-agent -s) && ssh-add ~/.ssh/$1 && ssh -A $2 && ssh-agent -k; }
-alias ssa='ssh_agent_forward id_rsa $1'
-alias ssr='ssh_agent_forward dev/random_ed25519 $1'
+alias sss='eval $(ssh-agent -s) && ssh-add ~/.ssh/id_ed25519' # ssh agent start
+
+# Check key is loaded in ssh-agent
+ssh_key_loaded() {
+	ssh-add -l | grep -q "$(ssh-keygen -lf "$1" | awk '{print $2}')"
+}
+
+# SSH agent forwarding
+ssh_agent_forward() {
+	local key_path="$1"
+	local server="$2"
+
+	# Start agent if not running
+	if ! ssh-add -l >/dev/null 2>&1; then
+		eval $(ssh-agent -s)
+	fi
+
+	# Check if key is loaded, if not try to add it
+	if ! ssh_key_loaded "$key_path"; then
+		ssh-add "$key_path"
+	fi
+
+	# Connect with agent forwarding
+	ssh -A "$server"
+
+	# Kill agent when done
+	# ssh-agent -k
+}
+
+# SSH agent forwards with specific keys
+alias ssi='ssh_agent_forward ~/.ssh/id_rsa'
+alias ssa='ssh_agent_forward ~/.ssh/id_ed25519'
+alias ssr='ssh_agent_forward ~/.ssh/mediarave_rsa'
+alias ssn='ssh_agent_forward ~/.ssh/dev/random_ed25519'
 
 alias sr='screen -r'
 
@@ -80,7 +120,7 @@ alias duh='du -hxd2 | sort -rh | head -20' # Show the top 20 largest directories
 
 ############################## APPS  ##############################
 alias sup='scoop update && scoop status && scoop update --all'
-alias suv='scoop update vscode-insiders --skip'
+alias suv='scoop update vscode-insiders --skip-hash-check'
 alias src='scoop cache rm --all && scoop cleanup --all'
 alias bup='brew update && brew upgrade && brew cleanup'
 
@@ -119,22 +159,22 @@ function nv() {
 	NVIM_APPNAME=$config nvim $@
 }
 
-if [ -n "$($SHELL -c 'echo $ZSH_VERSION')" ]; then
-	bindkey -s ^a "nvims\n"
-elif [ -n "$($SHELL -c 'echo $BASH_VERSION')" ]; then
-	bind -x '"\C-a": nvims'
+if [ -n "${ZSH_VERSION:-}" ]; then
+	bindkey -s ^n "nv\n"
+elif [ -n "${BASH_VERSION:-}" ]; then
+	bind -x '"\C-n": nv'
 else
-	bindkey -s ^a "nvims\n"
+	bindkey -s ^n "nv\n"
 fi
 
 ############################## WSL  ##############################
+alias wsl='wsl --cd "~"'
 alias wlv='wsl --list -v'
 alias wSl='wsl --shutdown'
 alias wdx="wsl --export arch arch-$(date +'%Y%m%d').tar"
 alias wdi='wsl --import arch /d/WSL/arch/'
 
 if [[ $is_wsl ]]; then
-	alias vi='code'
 	alias dev='cd ~/workspace/develop/'
 	alias dds='ddev start && ddev npm run dev'
 	alias ddd='ddev npm run dev'
@@ -166,64 +206,52 @@ alias dRf='docker rm -f'
 alias dat=attach_terminal
 attach_terminal() { docker exec -it "$1" bash; }
 
-alias da='docker attach'
-
-alias dim='docker images'
-alias diRm='docker rmi'
-alias diP='docker image prune'
-
 alias dirt='docker_run'
 docker_run() { docker run --name $2 -it $1; }
+
+alias dim='docker images'
+alias diR='docker rmi'
+alias diP='docker image prune'
 
 alias dvl='docker volume ls'
 alias dvR='docker volume rm'
 alias dvP='docker volume prune'
 
-alias dc='docker-compose'
+alias ds='docker start'
+alias dS='docker stop'
+alias dsa='docker start $(docker ps -a -q)'
+alias dSa='docker stop $(docker ps -a -q)'
+
+alias dcl='docker compose logs --follow'
+alias dcb='docker compose build'
+alias dcB='docker compose build --pull --no-cache'
+alias dcr='docker compose restart'
 
 alias dcu='docker_compose up'
 alias dcd='docker_compose down'
 docker_compose() {
 	local file="docker-compose.yml"
-    local container=""
+	local container=""
 
 	if [[ -n "$2" ]]; then
-        local special="docker-compose-$2.yml"
-        if [[ -f "$special" ]]; then
-            file="$special"
-            container="$3"
-        else
-            container="$2"
-        fi
+		local special="docker-compose-$2.yml"
+		if [[ -f "$special" ]]; then
+			file="$special"
+			container="$3"
+		else
+			container="$2"
+		fi
 	fi
 
-    if [[ $1 == "up" ]]; then
-        docker compose --file $file up --detach $container
-    elif [[ $1 == "down" ]]; then
-	docker compose --file $file down $container
-    else
-        echo "Usage: dcd | dcd [env] [container]"
-        return 1
-    fi
-}
-
-docker_compose_down() {
-	local file="docker-compose.yml"
-
-	if [[ -n "$1" ]]; then
-		file="docker-compose-$1.yml"
+	if [[ $1 == "up" ]]; then
+		docker compose --file $file up --detach $container
+	elif [[ $1 == "down" ]]; then
+		docker compose --file $file down $container
+	else
+		echo "Usage: dcd | dcd [env] [container]"
+		return 1
 	fi
-
 }
-
-
-alias dcr='docker-compose restart'
-alias dcp='cp -r ~/sync/project/. .'
-
-alias ds='docker start'
-alias dS='docker stop'
-alias dsa='docker start $(docker ps -a -q)'
-alias dSa='docker stop $(docker ps -a -q)'
 
 ############################## GIT  ##############################
 if [ -f ~/.dotfiles/git/git.aliases ]; then
@@ -273,28 +301,27 @@ alias suvi='sudo -E vim'
 
 alias wcd=www_cd
 www_cd() {
-    wdir="/var/www/${1:-$(hostname)}"
-    
-    if [[ -d "$wdir" ]]; then
-        cd "$wdir"
-    else
-        cd /var/www
-    fi
+	wdir="/var/www/${1:-$(hostname)}"
+
+	if [[ -d "$wdir" ]]; then
+		cd "$wdir"
+	else
+		cd /var/www
+	fi
 }
 
 alias tzc=tar_gz_compress
 tar_gz_compress() { tar "$@" --exclude='*/node_modules' -cvzf ../${PWD##*/}_$(date +%Y%m%d-%H%M%S).tar.gz .; }
 alias tzx=tar_gz_extract
 tar_gz_extract() {
-    if [ -z "$1" ]; then
-        echo "Usage: tzx <filename.tar.gz>"
-    else
-        filename=$(basename -- "$1")
-        directory="${filename%%.*}"
-        mkdir -p "$directory" && tar -xvzf "$1" -C "$directory"
-    fi
+	if [ -z "$1" ]; then
+		echo "Usage: tzx <filename.tar.gz>"
+	else
+		filename=$(basename -- "$1")
+		directory="${filename%%.*}"
+		mkdir -p "$directory" && tar -xvzf "$1" -C "$directory"
+	fi
 }
-
 
 alias up='sudo apt update && time sudo apt upgrade'
 alias upd='sudo apt update && time sudo apt dist-upgrade'
@@ -354,15 +381,15 @@ fi
 
 ############################## NODE  ##############################
 node_run() {
-    if [ -f ./yarn.lock ]; then
-        pm=yarn
-        $pm run "$1"
-    elif [ -f ./package-lock.json ]; then
-        pm=npm
-        $pm run "$@"
-    else
-        echo "Have you installed the package?"
-    fi
+	if [ -f ./yarn.lock ]; then
+		pm=yarn
+		$pm run "$1"
+	elif [ -f ./package-lock.json ]; then
+		pm=npm
+		$pm run "$@"
+	else
+		echo "Have you installed the package?"
+	fi
 
 }
 
@@ -415,23 +442,21 @@ alias wskit='winpty npm.cmd create svelte@latest'
 #     alias adbu='adb uninstall'
 # fi
 
+############################## Python ##############################
+# uses poetry
+alias ppe='poetry env info --executable'
+
 ############################## GO ##############################
 alias goi='go mod init' ## module
 alias gor='go run'
 alias gom='go run .'
-alias gog='go get -u' ## update package
+alias gog='go get -u'          ## update package
 alias goc='go clean -modcache' ## clean corrupted module cache
-alias got='go mod tidy' ## add missing and remove unused modules
+alias got='go mod tidy'        ## add missing and remove unused modules
 alias wbw='wails build -platform windows'
-alias wbd='wails build -platform windows -o desktop' # make a symlink to a desktop folder in the build/bin directory
-alias wbdb='wails build -platform windows -o desktop -ldflags "-X main.buildTime=$(date -u +%Y-%m-%dT%H:%M:%SZ)"' # add build time to the binary
-alias wbdc='wails build -platform windows -windowsconsole -debug -o desktop -ldflags "-X main.buildTime=$(date -u +%Y-%m-%dT%H:%M:%SZ)"'
-
-############################## HASS  ##############################
-if [ -f /home/homeassistant/.homeassistant/ha.aliases ]; then
-   source /home/homeassistant/.homeassistant/ha.aliases
-   alias viha='vi /home/homeassistant/.homeassistant/ha.aliases'
-fi
+alias wbd='wails build -platform windows -o desktop'                                                                                     # make a symlink to a desktop folder in the build/bin directory
+alias wbdb='wails build -platform windows -o desktop -ldflags "-X main.buildTime=$(date -u +%Y-%m-%dT%H:%M:%SZ)"'                        # add build time to the binary (Production build)
+alias wbdc='wails build -platform windows -windowsconsole -debug -o desktop -ldflags "-X main.buildTime=$(date -u +%Y-%m-%dT%H:%M:%SZ)"' # Debug build
 
 ############################## LF #################################
 alias vilf='vi ~/.config/lf/lfrc'
