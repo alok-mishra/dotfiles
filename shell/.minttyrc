@@ -1,7 +1,7 @@
 BoldAsFont=yes
 Columns=120
 Rows=40
-Font=FiraCode Nerd Font Mono
+Font=Consolas
 FontHeight=10
 BellFlash=yes
 BellType=0

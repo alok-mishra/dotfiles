@@ -61,7 +61,6 @@ elif [ -f ~/pr.aliases ]; then
     alias vipr='vi ~/pr.aliases'
 fi
 
-# if [[ `uname -n` == WIT* ]]; then
 if [[ $is_work ]]; then
     if [ -f ~/.dotfiles/shell/work.aliases ]; then
         source ~/.dotfiles/shell/work.aliases
@@ -74,8 +73,6 @@ if [[ $is_work ]]; then
         [ -s "$NVS_HOME/nvs.sh" ] && source "$NVS_HOME/nvs.sh" >> /dev/null;
         # nvs auto on >> /dev/null
         return 0
-        # nvs auto on >> /dev/null
-        return 0
     }
     setupNvs
 
@@ -86,36 +83,16 @@ if [[ $is_work ]]; then
         IP_ADDRESS=$(ip addr show | grep -A 3 "eth.*state UP" | grep 'inet ' | head -1 | awk '{print $2}' | cut -d/ -f1)
     fi
 
-# Set proxies if NOT on home network
-MY_LOCATION="home"
-if [[ "$IP_ADDRESS" != 192.168.* ]]; then
-    MY_LOCATION="work"
-    export http_proxy="http://localhost:6060"
-    export https_proxy="http://localhost:6060"
-    export no_proxy="localhost,127.0.0.1"
-    echo "PX Proxy: $https_proxy"
-fi
-export MY_LOCATION
-
-
-    if [[ $is_msys ]]; then
-        IP_ADDRESS=$(ipconfig | grep -m 1 "IPv4" | cut -d: -f2 | tr -d ' ')
-    elif
-        [[ $is_wsl ]]; then
-        IP_ADDRESS=$(ip addr show | grep -A 3 "eth.*state UP" | grep 'inet ' | head -1 | awk '{print $2}' | cut -d/ -f1)
+    # Set proxies if NOT on home network
+    MY_LOCATION="home"
+    if [[ "$IP_ADDRESS" != 192.168.* ]]; then
+        MY_LOCATION="work"
+        export http_proxy="http://localhost:6060"
+        export https_proxy="http://localhost:6060"
+        export no_proxy="localhost,127.0.0.1"
+        echo "PX Proxy: $https_proxy"
     fi
-
-# Set proxies if NOT on home network
-MY_LOCATION="home"
-if [[ "$IP_ADDRESS" != 192.168.* ]]; then
-    MY_LOCATION="work"
-    export http_proxy="http://localhost:6060"
-    export https_proxy="http://localhost:6060"
-    export no_proxy="localhost,127.0.0.1"
-    echo "PX Proxy: $https_proxy"
-fi
-export MY_LOCATION
-
+    export MY_LOCATION
 
 else
     if [ -f ~/.dotfiles/shell/home.aliases ]; then
@@ -144,9 +121,10 @@ if [[ $is_wsl ]]; then
         alias lf='lfcd'
     fi
 
-    export GDK_SCALE=1.5
-    export QT_SCALE_FACTOR=1.5
-    export XCURSOR_SIZE=24
+    export GDK_SCALE=1.25
+    export XCURSOR_SIZE=32
+    export QT_SCALE_FACTOR=1.25
+    export XDG_CURRENT_DESKTOP=sway
 
 else
     # if [[ `hostname` == star* ]]; then
