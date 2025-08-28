@@ -1,0 +1,315 @@
+###### ###### ###### ###### ###### ###### ###### ######
+#  Sway config - https://github.com/swaywm/sway  #
+###### ###### ###### ###### ###### ###### ###### ######
+
+# Font Icons: https://fontawesome.com/cheatsheet/
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+set $icons             
+
+# Settings
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+set $mod Mod2
+
+set $alt Mod1
+set $ctl Control
+set $shift Shift
+
+set $malt $mod+$alt
+set $mist $mod+$shift
+
+# direction keys
+set $left h
+set $down j
+set $up k
+set $right l
+
+# 1:Terminal, 2:Web, 3:Miscellaneous, 4:Code, 5:Social, 6:Media
+set $ws0 "0:  "
+set $ws1 "1:  "
+set $ws2 "2:  "
+set $ws3 "3:  "
+set $ws4 "4:  "
+set $ws5 "5:  "
+set $ws6 "6:  "
+set $ws7 "7:  "
+set $ws8 "8:  "
+set $ws9 "9:  "
+
+# workspace_auto_back_and_forth yes
+bindsym $mod+grave workspace back_and_forth
+
+# Mouse
+focus_follows_mouse no
+
+# Font for window titles.
+font pango:DejaVu Sans Mono, FontAwesome 12
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# Appearance
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+gaps inner 20
+gaps outer 10
+#smart_gaps on
+
+# class                 border  backgr. text    indicator child_border
+client.focused          #4c7899 #D65D0E #ffffff #2e9ef4   #AF3A03
+client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+client.background       #ffffff
+
+# Assignments
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# $ swaymsg -t get_tree
+assign [app_id="firefox"] $ws2
+assign [app_id="org.keepassxc.KeePassXC"] $ws3
+assign [app_id="code"] $ws4
+assign [app_id="nvim"] $ws4
+assign [app_id="google-chrome"] $ws5
+
+for_window [app_id="^.*"] border pixel 2, focus
+
+# Configuration
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# reload the configuration file
+bindsym $mod+r reload
+# restart sway inplace
+bindsym $mod+shift+r exec swaymsg reload
+
+# Media Control
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym --locked XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym $malt+bracketleft exec playerctl previous
+bindsym $malt+bracketright exec playerctl next
+bindsym $malt+backslash exec playerctl play-pause
+
+# Brightness (requires light package)
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+
+# Apps
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+bindsym $malt+b exec bcompare
+bindsym $malt+c exec code
+bindsym $malt+f exec firefox
+bindsym $malt+n exec nvim
+bindsym $malt+k exec keepassxc
+bindsym $malt+r exec foot ranger
+bindsym $malt+t exec foot; workspace $ws1
+bindsym $malt+w exec google-chrome-stable
+bindsym control+shift+space exec "wofi --show run"
+
+# Screenshots
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Selection screenshot (interactive area selection)
+bindsym $mod+Shift+s exec grim -g "$(slurp)" ~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png
+
+# Full screen screenshot
+bindsym $mod+Ctrl+s exec grim ~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png
+
+# Copy selection to clipboard
+bindsym $mod+Alt+s exec grim -g "$(slurp)" - | wl-copy
+
+# Layout Keybindings
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# split orientation - toggle between horizontal and vertical
+bindsym $mod+z splith; exec notify-send 'Horizontal Split'
+bindsym $mod+v splitv; exec notify-send 'Vertical Split'
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout toggle split
+bindsym $mod+t layout toggle all
+
+# enter fullscreen mode for the focused container
+bindsym $mod+space fullscreen toggle
+
+# toggle / focus - tiling / floating
+bindsym $mod+f floating toggle
+bindsym $mod+shift+space focus mode_toggle
+
+# focus the parent / child container
+bindsym $mod+p focus parent
+bindsym $mod+c focus child
+
+# Window Keybindings (Navigation)
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Terminal
+
+set $term wezterm
+# set $term foot
+
+bindsym $mod+Return exec $term
+bindsym $mod+shift+Return workspace $ws1; exec $term
+
+bindsym $mod+backslash exec $term lf
+bindsym $mod+shift+backslash workspace $ws1; exec $term ranger
+
+# kill focused window
+bindsym $mod+q kill
+
+# File manager
+bindsym $mod+n exec nautilus
+bindsym $mod+shift+n workspace $ws3; exec nautilus
+
+# Menu
+bindsym $mod+m exec wofi --show drun
+
+# focus container on the left, bottom, top, right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+bindsym $mod+shift+h move left
+bindsym $mod+shift+j move down
+bindsym $mod+shift+k move up
+bindsym $mod+shift+l move right
+
+# Workspace Keybindings
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# switch to workspace
+bindsym $mod+0 workspace $ws0
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+
+bindsym $mod+ctrl+h workspace prev
+bindsym $mod+ctrl+Left workspace prev
+bindsym $mod+shift+Tab workspace prev
+
+bindsym $mod+ctrl+l workspace next
+bindsym $mod+ctrl+Right workspace next
+bindsym $mod+Tab workspace next
+
+# move focused container to workspace
+bindsym $mod+ctrl+shift+0 move container to workspace $ws0
+bindsym $mod+ctrl+shift+1 move container to workspace $ws1
+bindsym $mod+ctrl+shift+2 move container to workspace $ws2
+bindsym $mod+ctrl+shift+3 move container to workspace $ws3
+bindsym $mod+ctrl+shift+4 move container to workspace $ws4
+bindsym $mod+ctrl+shift+5 move container to workspace $ws5
+bindsym $mod+ctrl+shift+6 move container to workspace $ws6
+bindsym $mod+ctrl+shift+7 move container to workspace $ws7
+bindsym $mod+ctrl+shift+8 move container to workspace $ws8
+bindsym $mod+ctrl+shift+9 move container to workspace $ws9
+
+bindsym $mod+ctrl+shift+h move container to workspace prev; workspace prev
+bindsym $mod+ctrl+shift+l move container to workspace next; workspace next
+
+# Resize Windows
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+mode "resize" {
+    # These bindings trigger as soon as you enter the resize mode
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize shrink height 10 px or 10 ppt
+    bindsym k resize grow height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
+
+    # same bindings, but for the arrow keys
+    bindsym Left resize shrink width 20 px or 20 ppt
+    bindsym Down resize grow height 20 px or 20 ppt
+    bindsym Up resize shrink height 20 px or 20 ppt
+    bindsym Right resize grow width 20 px or 20 ppt
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
+}
+
+bindsym $mod+w mode "resize"
+
+# System Control
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+set $lock swaylock -c 228866 && sleep 1
+
+set $mode_system "System [l]ock, [L]ogout, [R]eboot, [s]uspend, [S]hutdown"
+mode $mode_system {
+    bindsym l exec --no-startup-id $lock, mode "default"
+    bindsym Shift+l exec --no-startup-id swaymsg exit, mode "default"
+    bindsym Shift+r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym s exec --no-startup-id $lock && systemctl suspend, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
+
+    # back to normal: q, Enter or Escape
+    bindsym q mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+x mode $mode_system
+bindsym $mod+Shift+x exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+# Edit the config file directly
+bindsym $mod+i exec foot vim ~/.config/sway/config
+
+# Status Bar
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Using waybar instead of sway's built-in bar
+# bar {
+#     position top
+#     status_command waybar
+#     font pango: DejaVu Sans Mono, FontAwesome 12
+#     strip_workspace_numbers yes
+#
+#     colors {
+#         background #00000088
+#         statusline #CCCCCC
+#     }
+# }
+
+# Output configuration
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# You can get the names of your outputs by running: swaymsg -t get_outputs
+
+# Default background for all outputs
+output * bg ~/sync/settings/backgrounds/alena-aenami-lake.jpg fill
+
+# High-DPI scaling - 4K at 150%
+output WL-1 scale 1.5
+
+# Input configuration
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# You can get the names of your inputs by running: swaymsg -t get_inputs
+input type:touchpad {
+    tap enabled
+    natural_scroll enabled
+}
+
+# Startup
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# For screen sharing
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
+# Notification daemon
+exec mako
+
+# Status bar
+exec waybar
+
+# WSL2 specific settings
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Fix for applications that need D-Bus
+exec dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus
+
+# WSL2 has issues with XWayland socket permissions
+# Disable XWayland since it's problematic in WSL2
+xwayland disable
+
+# Move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window
+bindsym $mod+minus scratchpad show

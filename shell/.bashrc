@@ -84,9 +84,9 @@ symlink() {
 }
 
 function setupNvs {
-	export NVS_HOME="$HOME\AppData\Local\nvs";
-	[ -s "$NVS_HOME/nvs.sh" ] && source "$NVS_HOME/nvs.sh" >> /dev/null;
-	return 0;
+    export NVS_HOME="$HOME/scoop/apps/nvs/current"
+    [ -s "$NVS_HOME/nvs.sh" ] && source "$NVS_HOME/nvs.sh" >>/dev/null
+    return 0
 }
 setupNvs
 

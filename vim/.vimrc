@@ -62,7 +62,7 @@ function! ColorScheme(colorscheme)
 endfunction
 
 set background=dark
-colorscheme habamax
+colorscheme default
 
 " Custom Colors
 " call ForceColors()

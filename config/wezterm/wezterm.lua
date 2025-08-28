@@ -5,29 +5,57 @@ local wezterm = require("wezterm")
 local mux = wezterm.mux
 local config = {}
 
--- maximize window on startup (disabled)
-wezterm.on("gui-startup", function(cmd)
-    local tab, pane, window = mux.spawn_window(cmd or {})
-    -- window:gui_window():maximize()
-    window:gui_window():set_position(200, 200)
-end)
-
 if wezterm.config_builder then
     config = wezterm.config_builder()
 end
 
+-- prevent infinite reloads
+local wallpaper = wezterm.home_dir .. "/.config/wezterm/background.jpg"
+
+local function randomBackground(dir)
+    local success, files = pcall(wezterm.read_dir, dir)
+
+    if success and files then
+        local jpgs = {}
+        for _, file in ipairs(files) do
+            if file:match("%.jpe?g$") then
+                table.insert(jpgs, file)
+            end
+        end
+        if #jpgs > 0 then
+            return jpgs[math.random(1, #jpgs)]
+        end
+    end
+    return wallpaper
+end
+
+wezterm.on("gui-startup", function(cmd)
+    local tab, pane, window = mux.spawn_window(cmd or {})
+    window:gui_window():set_position(200, 200)
+
+    -- Random background only once at startup
+    local bg_path = randomBackground(wezterm.home_dir .. "/sync/settings/backgrounds")
+    window:gui_window():set_config_overrides({
+        background = {
+            {
+                source = { File = bg_path },
+                hsb = { hue = 1.0, saturation = 1.0, brightness = 0.06 },
+            },
+        },
+    })
+end)
+
 -- conditional config based on os
 if string.find(wezterm.target_triple, "linux") then
-    print("linux")
+    wezterm.log_info("Running on Linux")
     config.window_decorations = "RESIZE" -- hides window title
-
     config.font = wezterm.font_with_fallback({ "FiraCode Nerd Font", "FiraCode NFM" })
 elseif string.find(wezterm.target_triple, "windows") then
-    print("windows")
+    wezterm.log_info("Running on Windows")
     config.default_prog = { "zsh", "--login", "-i" } -- set shell to bash
-
     config.font = wezterm.font_with_fallback({ "Cascadia Code", "FiraCode NFM" })
 end
+
 
 -- config.debug_key_events = true
 
@@ -43,29 +71,6 @@ config.font_size = 10.0
 
 config.color_scheme = "GruvboxDark"
 -- config.color_scheme = "Catppuccin Mocha"
-
-local function randomBackground(dir)
-    local success, files = pcall(wezterm.read_dir, dir)
-
-    if success and files then
-        local file = files[math.random(1, #files)]
-
-        if file:match("%.jpe?g$") then
-            return file
-        end
-    end
-
-    return wezterm.home_dir .. "/.config/wezterm/background.jpg"
-end
-
-config.background = {
-    {
-        source = { File = randomBackground(wezterm.home_dir .. "/sync/settings/backgrounds") },
-        -- opacity = 0.88,
-        -- attachment = { Parallax = 0.2 },
-        hsb = { hue = 1.0, saturation = 1.0, brightness = 0.06 },
-    },
-}
 
 -- config.disable_default_key_bindings = true (changed my mind)
 config.keys = {

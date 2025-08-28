@@ -1,4 +1,4 @@
 dotfiles
 ========
 
-Alok's dotfiles, shared between linux and windows environments.
+Alok's dotfiles, shared between linux and wsl environments.

@@ -2,16 +2,12 @@
 
 # Linux Dotfiles Bootstrap
 
-ln -s ~/Dropbox/dotfiles ~/.dotfiles
+ln -s ~/sync/dotfiles ~/.dotfiles
+ln -s ~/sync/keys/.ssh ~/.ssh
 
+ln -s ~/.dotfiles/shell/.aliases ~/.aliases
 ln -s ~/.dotfiles/shell/.zshrc ~/.zshrc
-
 ln -s ~/.dotfiles/git/.gitconfig ~/.gitconfig
+# ln -s ~/.dotfiles/vscode/settings.json ~/.config/Code/User/settings.json
 
-ln -s ~/.dotfiles/vim/.vimrc ~/.vimrc
-ln -s ~/.dotfiles/vim/.vimperatorrc ~/.vimperatorrc
-ln -s ~/.dotfiles/vim/vimperator/colors ~/.vimperator/colors
 
-ln -s ~/Dropbox/Tools/Keys/.ssh ~/.ssh
-
-ln -s ~/.dotfiles/vscode/settings.json ~/.config/Code/User/settings.json

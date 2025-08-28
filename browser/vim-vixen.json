@@ -12,12 +12,12 @@
         "a": { "type": "command.show.addbookmark", "alter": true },
         "k": { "type": "scroll.vertically", "count": -1 },
         "j": { "type": "scroll.vertically", "count": 1 },
-        "h": { "type": "scroll.horizonally", "count": -1 },
-        "l": { "type": "scroll.horizonally", "count": 1 },
+        "~h": { "type": "scroll.horizonally", "count": -1 },
+        "~l": { "type": "scroll.horizonally", "count": 1 },
         "<C-U>": { "type": "scroll.pages", "count": -0.5 },
         "<C-D>": { "type": "scroll.pages", "count": 0.5 },
-        "<C-B>": { "type": "scroll.pages", "count": -1 },
-        "<C-F>": { "type": "scroll.pages", "count": 1 },
+        "~<C-B>": { "type": "scroll.pages", "count": -1 },
+        "~<C-F>": { "type": "scroll.pages", "count": 1 },
         "gg": { "type": "scroll.top" },
         "G": { "type": "scroll.bottom" },
         "$": { "type": "scroll.end" },
@@ -92,18 +92,18 @@
             "gd": "https://drive.google.com/drive/search?q={}",
             "sd": "https://slickdeals.net/newsearch.php?rating=2&q={}",
             "st": "https://stocktwits.com/symbol/{}",
-            "yf": "https://finance.yahoo.com/quote/{}"
+            "yf": "https://finance.yahoo.com/quote/{}/financials"
         }
     },
     "properties": {
         "hintchars": "abcdefghijklmnopqrstuvwxyz",
         "smoothscroll": false,
         "complete": "sbh",
-        "colorscheme": "system"
+        "colorscheme": "dark"
     },
     "blacklist": [
-        { "url": "mail.google.com", "keys": [".", "a", "f", "g", "j", "k", "o", "s", "u", "x", "J", "K", "U"] },
-        { "url": "youtube.com/watch", "keys": ["f", "<", ">", "J", "K"] },
+        { "url": "mail.google.com", "keys": [".", "/", "a", "f", "g", "j", "k", "o", "s", "u", "x", "J", "K", "U"] },
+        { "url": "www.youtube.com/watch", "keys": ["f", "j", "k", "<", ">", ",", "."] },
         { "url": "twitch.tv/videos ", "keys": ["f", ",", "."] }
     ]
 }
