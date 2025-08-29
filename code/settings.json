@@ -1,8 +1,12 @@
 {
     ////// VSCODE //////
-    "editor.fontFamily": "Cascadia Code, Inconsolata Nerd Font, Consolas, FontAwesome, Droid Sans Mono, monospace",
+    "editor.fontFamily": "CaskaydiaCove Nerd Font, Cascadia Code NF, Cascadia Code, MesloLGS Nerd Font, Inconsolata Nerd Font, Consolas, FontAwesome",
     "editor.fontLigatures": "'zero', '// => !== == === < > <= >= && || !'",
     // "editor.fontSize": 15,
+
+    // "editor.stickyScroll.enabled": false,
+
+    "editor.stickyScroll.maxLineCount": 1,
 
     "editor.acceptSuggestionOnCommitCharacter": false,
     "editor.bracketPairColorization.enabled": true,
@@ -11,8 +15,10 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.detectIndentation": true,
 
-    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
     "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "modificationsIfAvailable",
 
     "editor.guides.bracketPairs": "active",
     "editor.minimap.renderCharacters": false,
@@ -34,9 +40,9 @@
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
     "explorer.copyRelativePathSeparator": "/",
-    "explorer.openEditors.visible": 0,
-    "explorer.experimental.fileNesting.enabled": true,
-    "explorer.experimental.fileNesting.patterns": {
+    "explorer.openEditors.visible": 1,
+    // "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.patterns": {
         "postcss.config.js": "tailwind.*",
         "docker-compose.yml": ".env, php-config.ini, .db",
         "exam.json": "exam.js, expert_exam.scss, manifest.hbs",
@@ -57,8 +63,9 @@
     "files.associations": {
         "config": "shellscript",
         "*.aliases": "shellscript",
+        "*.toml": "ini",
         "*.tridactylrc": "vimrc",
-        "*.jscad": "javascript",
+        "*.jscad": "javascript"
     },
 
     "search.quickOpen.includeHistory": true,
@@ -67,15 +74,15 @@
     ////// TERMINAL //////
 
     "terminal.external.windowsExec": "bash.exe",
-    // "terminal.integrated.defaultProfile.windows": "WSL",
-    "terminal.integrated.defaultProfile.windows": "GitBash",
-    // "terminal.integrated.defaultProfile.windows": "GitZsh",
-    // "terminal.integrated.defaultProfile.windows": "MSYS2",
+    // "terminal.integrated.defaultProfile.windows": "GitBash",
+    "terminal.integrated.defaultProfile.windows": "GitZsh", // Not launching ZSH via bash anymore, doesn't work with bc4
     "terminal.integrated.defaultProfile.linux": "zsh",
     "terminal.integrated.persistentSessionReviveProcess": "never",
-    "terminal.integrated.enableBell": false,
-    "terminal.integrated.enableMultiLinePasteWarning": false,
-    "terminal.integrated.fontFamily": "Inconsolata Nerd Fontx, MesloLGS NFx, Hack Nerd Font, Cascadia Code, Ligconsolata, Fira Code, Consolas",
+    "terminal.integrated.enableMultiLinePasteWarning": "never",
+    "terminal.integrated.fontFamily": "CaskaydiaCove Nerd Font, MesloLGS NF, Inconsolata Nerd Font, Cascadia Code, Fira Code, Consolas",
+    "terminal.integrated.stickyScroll.enabled": false,
+    "terminal.integrated.enableVisualBell": false,
+    "terminal.integrated.scrollback": 10000,
     // "terminal.integrated.fontSize": 14,
 
     "terminal.integrated.automationProfile.windows": {
@@ -88,13 +95,12 @@
         "Command Prompt": null,
         "Git Bash": null,
         "GitBash": {
-            // "path": "sh.exe", // using sh.exe from GitBash to not conflict with WSL
-            "path": "bash.exe", // figure out why paths matter
-            "args": [ "--login", "-i" ],
+            "path": "sh.exe", // Can't remote WSL in windows features due to Docker (conflicts with bash.exe from GitBash)
+            "args": ["--login", "-i"]
         },
         "GitZsh": {
             "path": "zsh.exe", // via GitBash
-            "args": [ "--login", "-i" ],
+            "args": ["--login", "-i"]
         },
         "WSL": {
             "path": "C:\\WINDOWS\\System32\\wsl.exe",
@@ -102,7 +108,7 @@
         },
         "MSYS2": {
             "path": "zsh.exe", // via MSYS2 MinGW64
-            "args": [ "--login", "-i" ],
+            "args": ["--login", "-i"],
             "env": {
                 "CHERE_INVOKING": "1",
                 "MSYSTEM": "MINGW64",
@@ -127,9 +133,9 @@
     },
 
     ////// THEME //////
-    "workbench.iconTheme": "gruvbox-material-icon-theme",
-    // "material-icon-theme.folders.color": "#076678",
     "workbench.colorTheme": "Gruvbox Dark Hard",
+    "workbench.iconTheme": "catppuccin-mocha",
+
     "workbench.colorCustomizations": {
         "editorSuggestWidget.selectedBackground": "#076678",
         "tab.activeForeground": "#d3869b",
@@ -139,22 +145,38 @@
         "window.activeBorder": "#458588",
         "window.inactiveBorder": "#d65d0e",
         "titleBar.activeBackground": "#002826",
-        "titleBar.inactiveBackground": "#220806"
+        "titleBar.inactiveBackground": "#220806",
+        "editorStickyScroll.shadow": "#b8bb26"
     },
-    "workbench.editor.limit.value": 6,
+    "workbench.editorAssociations": {
+        "*.svg": "svgPreview.previewEditor"
+    },
+    "workbench.editor.limit.value": 10,
     "workbench.editor.limit.enabled": true,
-    "workbench.editor.untitled.hint": "hidden",
     "workbench.editor.enablePreviewFromQuickOpen": false,
 
     "workbench.layoutControl.type": "menu",
     "workbench.list.defaultFindMode": "filter",
     "workbench.settings.openDefaultSettings": false,
     "workbench.startupEditor": "newUntitledFile",
+
+    "workbench.activityBar.orientation": "vertical",
+
     "window.restoreWindows": "none",
     "window.menuBarVisibility": "toggle",
+    "window.commandCenter": false,
+    "window.title": "${dirty}${activeEditorShort}${separator}${rootName}${separator}${profileName}",
     // "window.openFoldersInNewWindow":"on",
 
+    "zenMode.centerLayout": false,
+    "zenMode.fullScreen": false,
+
+    ////// NEOVIM //////
+    "vscode-neovim.useWSL": true, // this is all, other defaults will pick up .config/nvim
+
     ////// VIM //////
+
+    "editor.experimentalEditContextEnabled": false, // fixes insertions of j and k characters in normal mode
 
     "extensions.experimental.affinity": {
         "vscodevim.vim": 1,
@@ -190,7 +212,9 @@
             "before": ["C-r"],
             "after": [],
             "commands": [{ "command": "redo" }]
-        }
+        },
+        { "before": ["L"], "after": ["$"] },
+        { "before": ["H"], "after": ["0"] }
     ],
 
     "vim.visualModeKeyBindingsNonRecursive": [
@@ -202,42 +226,39 @@
     ],
 
     "vim.normalModeKeyBindingsNonRecursive": [
+        { "before": ["leader", "b"], "commands": [{ "command": "workbench.action.tasks.build", "args": [] }] },
+        { "before": ["leader", "e"], "commands": [{ "command": "editor.action.marker.next", "args": [] }] },
         {
-            "before": ["leader", "/"],
-            "after": [],
-            "commands": [{ "command": ":nohl", "args": [] }]
+            "before": ["leader", "m"],
+            "commands": [
+                { "command": "workbench.action.editor.nextChange", "args": [] },
+                { "command": "workbench.action.compareEditor.nextChange", "args": [] }
+            ]
         },
-        {
-            // "before":["leader", "b"], "after":[],
-            "before": ["leader", "b"],
-            "after": [],
-            "commands": [{ "command": "workbench.action.tasks.build", "args": [] }]
-        },
-        {
-            "before": ["leader", "n"],
-            "after": [],
-            "commands": [{ "command": ":nohl", "args": [] }]
-        },
-        {
-            "before": ["M-s"],
-            "after": [],
-            "commands": [{ "command": "workbench.action.files.save", "args": [] }]
-        },
+
         {
             "before": ["leader", "S"],
-            "after": [],
             "commands": [{ "command": "workbench.action.files.saveWithoutFormatting", "args": [] }]
         },
-        // {
-        //     "before": ["g", "h"],
-        //     "commands": [{ "command": "editor.action.showDefinitionPreviewHover" }]
-        // },
+        { "before": ["M-s"], "commands": ["workbench.action.files.save"] },
+        { "before": ["<C-p>"], "commands": ["workbench.action.quickOpen"] },
+
+        // NeoVim Migration
+        { "before": ["<esc>"], "commands": [{ "command": ":nohl", "args": [] }] }, // clear search highlight
+        { "before": ["leader", "r"], "commands": [{ "command": "workbench.action.openRecent", "args": [] }] },
+        { "before": ["leader", "leader"], "commands": [{ "command": "workbench.action.quickOpen", "args": [] }] },
+        { "before": ["leader", "/"], "commands": [{ "command": "workbench.action.findInFiles", "args": [] }] },
 
         // MACROS
+        // Yank between double quotes to Clipboard
+        {
+            "before": ["leader", "y"],
+            "after": ["\"", "*", "y", "i", "\"", "<esc>"]
+        },
         {
             // Paste Clipboard between html tags
             "before": ["leader", "t"],
-            "after": ["v", "i", "t", "\"", "*", "P"]
+            "after": ["c", "i", "t", "<esc>", "\"", "*", "p"]
         },
         {
             // Paste Clipboard between single quotes
@@ -248,6 +269,11 @@
             // Paste Clipboard between double quotes
             "before": ["leader", "\""],
             "after": ["v", "i", "\"", "\"", "*", "P"]
+        },
+        {
+            // Yank visual selection to Clipboard
+            "before": ["leader", "c"],
+            "after": ["\"", "*", "y"]
         },
         {
             // Paste Clipboard between double quotes and remove newline
@@ -267,14 +293,106 @@
         {
             // Paste Clipboard between brackets and add quotes
             "before": ["leader", "]"],
-            "after": [ "v", "i", "]", "\"", "*", "P", "v", "i", "]", "b", "$", "I", "\"", "<esc>", "v", "i", "]", "b", "$", "A", "\"", ",", "<esc>" ]
+            "after": [
+                "v",
+                "i",
+                "]",
+                "\"",
+                "*",
+                "P",
+                "v",
+                "i",
+                "]",
+                "b",
+                "$",
+                "I",
+                "\"",
+                "<esc>",
+                "v",
+                "i",
+                "]",
+                "b",
+                "$",
+                "A",
+                "\"",
+                ",",
+                "<esc>"
+            ]
+        },
+        {
+            // Paste Clipboard between html tags
+            "before": ["leader", "t"],
+            "after": ["c", "i", "t", "<esc>", "\"", "*", "p"]
+        },
+        {
+            // Paste Clipboard between single quotes
+            "before": ["leader", "'"],
+            "after": ["v", "i", "'", "\"", "*", "P"]
+        },
+        {
+            // Paste Clipboard between double quotes
+            "before": ["leader", "\""],
+            "after": ["v", "i", "\"", "\"", "*", "P"]
+        },
+        {
+            // Paste Clipboard between double quotes
+            "before": ["leader", "c"],
+            "after": ["v", "i", "\"", "\"", "*", "y"]
+        },
+        {
+            // Paste Clipboard between double quotes and remove newline
+            "before": ["@", "\""],
+            "after": ["v", "i", "\"", "\"", "*", "P", "J", "x"]
+        },
+        {
+            // Paste yank between quotes
+            "before": ["leader", "v"],
+            "after": ["v", "i", "\"", "P", "y", "i", "\"", "<esc>"]
+        },
+        {
+            // Paste last yank
+            "before": ["leader", "p"],
+            "after": ["\"", "0", "P"]
+        },
+        {
+            // Paste Clipboard between brackets and add quotes
+            "before": ["leader", "]"],
+            "after": [
+                "v",
+                "i",
+                "]",
+                "\"",
+                "*",
+                "P",
+                "v",
+                "i",
+                "]",
+                "b",
+                "$",
+                "I",
+                "\"",
+                "<esc>",
+                "v",
+                "i",
+                "]",
+                "b",
+                "$",
+                "A",
+                "\"",
+                ",",
+                "<esc>"
+            ]
         }
     ],
 
-
     ////// FORMATTING //////
+    "[go]": {
+        "editor.defaultFormatter": "golang.go",
+        "editor.insertSpaces": true,
+        "editor.codeActionsOnSave": {}
+    },
     "[handlebars]": {
-        "editor.formatOnSave": false
+        "editor.defaultFormatter": "vscode.html-language-features"
     },
     "[html]": {
         "editor.defaultFormatter": "vscode.html-language-features"
@@ -284,19 +402,25 @@
         // "editor.formatOnSaveMode": "modificationsIfAvailable",
     },
     "[json]": {
-        // "editor.defaultFormatter": "vscode.json-language-features"
+        "editor.tabSize": 2
     },
     "[jsonc]": {
-        "editor.formatOnSave": false
+        // "editor.formatOnSave": false
     },
     "[php]": {
         "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
     },
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
     "[svelte]": {
         "editor.defaultFormatter": "svelte.svelte-vscode"
     },
+    "[xml]": {
+        "editor.defaultFormatter": "DotJoshJohnson.xml"
+    },
     "[yaml]": {
-        "editor.formatOnSave": false
+        "editor.tabSize": 2
     },
 
     "html.autoClosingTags": false,
@@ -307,7 +431,6 @@
     "prettier.tabWidth": 4,
     "prettier.printWidth": 120,
     "prettier.singleQuote": true,
-    "prettier.trailingComma": "none",
     "prettier.bracketSameLine": true,
 
     ////// MISCELLANEOUS //////
@@ -320,11 +443,13 @@
         "postcss": "css",
         "vue-html": "html"
     },
-    "openscad.launchPath": "C:\\workspace\\.tmp\\.apps\\openscad\\openscad.exe",
-    "openscad.interface.showKillIconInEditorTitleMenu": false,
     "security.workspace.trust.enabled": false,
     "telemetry.telemetryLevel": "off",
+
     "scm.diffDecorationsIgnoreTrimWhitespace": "true",
+    "scm.showChangesSummary": false,
+    "scm.showOutgoingChanges": "never",
+
     "reactSnippets.settings.prettierEnabled": true,
     "git.enableSmartCommit": true,
     "git.terminalAuthentication": false,
@@ -332,9 +457,10 @@
     ////// EXTENSIONS //////
     "github.copilot.enable": {
         "*": true,
-        "yaml": false,
         "plaintext": true,
-        "markdown": true
+        "markdown": true,
+        "scminput": false,
+        "yaml": true
     },
 
     "svelte.plugin.css.diagnostics.enable": false,
@@ -342,6 +468,7 @@
 
     "tailwindCSS.emmetCompletions": true,
     "tailwindCSS.includeLanguages": {
+        "hbs": "html",
         "php": "html"
     },
 
@@ -352,15 +479,48 @@
     "liveServer.settings.donotShowInfoMsg": true,
     "liveServer.settings.port": 5656,
     "editor.inlineSuggest.enabled": true,
+
+    "remote.SSH.useExecServer": false,
     "remote.SSH.remotePlatform": {
-        "tsn": "linux",
-        "ywcad": "linux"
+        "ywcad": "linux",
+        "hhf": "linux",
+        "home": "linux"
     },
-    "diffEditor.ignoreTrimWhitespace": false,
+    "diffEditor.ignoreTrimWhitespace": true,
     "javascript.updateImportsOnFileMove.enabled": "always",
-    "material-icon-theme.folders.theme": "classic",
-    "gitlens.views.commits.files.layout": "list",
     "update.mode": "manual",
     "editor.accessibilitySupport": "off",
-    "typescript.disableAutomaticTypeAcquisition": true
+    "accessibility.voice.keywordActivation": "inlineChat",
+    "typescript.disableAutomaticTypeAcquisition": true,
+    "security.allowedUNCHosts": ["wsl.localhost", "HASSIO"],
+    "workbench.editor.empty.hint": "hidden",
+
+    "markdown-pdf.displayHeaderFooter": false,
+    "markdown-pdf.margin.top": "1.0cm",
+    "markdown-pdf.scale": 0.9,
+
+    // "git-graph.openNewTabEditorGroup": "Two",
+
+    "codeium.enableConfig": {
+        "*": true,
+        "markdown": true,
+        "scad": true,
+        "plaintext": true
+    },
+
+    "gitblame.inlineMessageEnabled": true,
+    "gitblame.inlineMessageFormat": "${author.name} • ${author.date}",
+    "openscad.launchPath": "openscad.exe",
+
+    "intelephense.format.braces": "k&r",
+    "timeline.pageSize": 10,
+    "accessibility.signals.terminalBell": {
+        "sound": "off"
+    },
+    "http.proxySupport": "on", // set proxy support to on in the office for exensions
+    "cursor.cpp.disabledLanguages": ["scminput"],
+    "cursor.general.disableHttp2": true,
+    "cursor.general.disableHttp1SSE": true,
+    "cursor.general.gitGraphIndexing": "enabled",
+    "workbench.editor.enablePreview": false
 }
