@@ -83,7 +83,7 @@ alias gwl='git worktree list'
 alias gwa='git_worktree_add'
 git_worktree_add() { git worktree add ".git-worktrees/$1"; }
 alias gwd='git_worktree_diff'
-git_worktree_diff() { bc . ".git-worktrees/$1" } # don't add &, or no diffs will be found
+git_worktree_diff() { bc . ".git-worktrees/$1"; } # don't add &, or no diffs will be found
 alias gwR='git worktree remove'
 alias gwP='git worktree prune'
 

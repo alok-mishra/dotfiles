@@ -15,17 +15,6 @@ alias hfc='history 0 | fzf | cut -c 8- | clip'
 alias bc='bcomp.exe'
 alias v='vi'
 alias vi='vim'
-alias gsync='rclone sync gdrive:sync ~/sync --progress --verbose'
-
-# if ! command -v code &>/dev/null; then
-alias code='code-insiders'
-# fi
-
-alias codepx='code --proxy-server=127.0.0.1:6060'
-alias px='px --verbose'
-alias pxpass='px --password'
-alias gsync='rclone sync gdrive:sync ~/sync --progress'
-
 alias ..='cd ..'
 alias ~='cd -'
 alias ocd='cd "$OLDPWD"'
@@ -119,9 +108,18 @@ cheat_sheet() { curl cheat.sh/$1; }
 alias duh='du -hxd2 | sort -rh | head -20' # Show the top 20 largest directories in the current directory
 
 ############################## APPS  ##############################
+alias code='code-insiders'
+
+alias px='px --verbose'
+alias pxpass='px --password'
+alias codepx='code --proxy-server=127.0.0.1:6060'
+
+alias gsync='rclone sync gdrive:sync ~/sync --progress --verbose'
+
 alias sup='scoop update && scoop status && scoop update --all'
 alias suv='scoop update vscode-insiders --skip-hash-check'
 alias src='scoop cache rm --all && scoop cleanup --all'
+
 alias bup='brew update && brew upgrade && brew cleanup'
 
 ############################## NEOVIM  ##############################

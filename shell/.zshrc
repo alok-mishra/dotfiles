@@ -121,10 +121,11 @@ if [[ $is_wsl ]]; then
         alias lf='lfcd'
     fi
 
-    export GDK_DPI_SCALE=1.25
-    export XCURSOR_SIZE=32
-    export QT_SCALE_FACTOR=1.25
-    export XDG_CURRENT_DESKTOP=sway
+    if [[ "$MY_LOCATION" == home ]]; then
+        export GDK_DPI_SCALE=1.25
+        export XCURSOR_SIZE=32
+        export QT_SCALE_FACTOR=1.25
+    fi
 
 else
     # if [[ `hostname` == star* ]]; then
