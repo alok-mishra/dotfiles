@@ -17,6 +17,7 @@ files_modified_before_today() {
 }
 
 alias ga='git add'
+alias ga.='git add .'
 alias gaa='git add --all'
 alias gaf='git add --force'
 alias gcu='git config user.name && git config user.email'

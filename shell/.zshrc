@@ -3,6 +3,7 @@ HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 unsetopt beep
+setopt nullglob
 bindkey -v
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
@@ -41,32 +42,26 @@ fi
 
 # unsetopt completealiases ## allows completion of aliases
 
+#################### SHARED CONFIG ####################
+
+# Source shared configurations
+if [ -f ~/.dotfiles/config/shell/env.sh ]; then
+    source ~/.dotfiles/config/shell/env.sh
+fi
+
+if [ -f ~/.dotfiles/config/shell/functions.sh ]; then
+    source ~/.dotfiles/config/shell/functions.sh
+fi
+
 #################### SHELL ####################
 
 alias viz='vi ~/.zshrc'
-is_wsl=$(uname -a | grep -i wsl)
-is_msys=$(uname -a | grep -i msys)
-is_work=$(uname -a | grep -i wit)
-
-if [ -f ~/.dotfiles/shell/.aliases ]; then
-    source ~/.dotfiles/shell/.aliases
-    alias via='vi ~/.dotfiles/shell/.aliases'
-fi
-
-if [ -f ~/.dotfiles/aliases/pr.aliases ]; then
-    source ~/.dotfiles/aliases/pr.aliases
-    alias vipr='vi ~/.dotfiles/aliases/pr.aliases'
-elif [ -f ~/pr.aliases ]; then
-    source ~/pr.aliases
-    alias vipr='vi ~/pr.aliases'
+# Load shared aliases configuration
+if [ -f ~/.dotfiles/config/shell/aliases.sh ]; then
+    source ~/.dotfiles/config/shell/aliases.sh
 fi
 
 if [[ $is_work ]]; then
-    if [ -f ~/.dotfiles/shell/work.aliases ]; then
-        source ~/.dotfiles/shell/work.aliases
-        alias viwa='vi ~/.dotfiles/shell/work.aliases'
-    fi
-
     # NVS - Node Version Switcher (Windows)
     function setupNvs {
         export NVS_HOME="$HOME/scoop/apps/nvs/current";
@@ -78,8 +73,7 @@ if [[ $is_work ]]; then
 
     if [[ $is_msys ]]; then
         IP_ADDRESS=$(ipconfig | grep -m 1 "IPv4" | cut -d: -f2 | tr -d ' ')
-    elif
-        [[ $is_wsl ]]; then
+    elif [[ $is_wsl ]]; then
         IP_ADDRESS=$(ip addr show | grep -A 3 "eth.*state UP" | grep 'inet ' | head -1 | awk '{print $2}' | cut -d/ -f1)
     fi
 
@@ -95,13 +89,18 @@ if [[ $is_work ]]; then
     export MY_LOCATION
 
 else
-    if [ -f ~/.dotfiles/shell/home.aliases ]; then
-        source ~/.dotfiles/shell/home.aliases
-        alias viha='vi ~/.dotfiles/shell/home.aliases'
+    if [ -f ~/.dotfiles/aliases/home.aliases ]; then
+        source ~/.dotfiles/aliases/home.aliases
+        alias viha='vi ~/.dotfiles/aliases/home.aliases'
     fi
 fi
 
 if [[ $is_wsl ]]; then
+    if [ -f ~/.dotfiles/aliases/arch.aliases ]; then
+        source ~/.dotfiles/aliases/arch.aliases
+        alias viaa='vi ~/.dotfiles/aliases/arch.aliases'
+    fi
+
     # NVS - Node Version Switcher (nvs-git via AUR)
     export NVS_HOME="$HOME/.nvs"
     source /opt/nvs/nvs.sh
@@ -132,12 +131,9 @@ else
     #if [[ "$HOSTNAME" == star* ]]; then
     if [[ `uname -n` == star* ]]; then
 
-        if [ -f ~/.dotfiles/shell/pop.aliases ]; then
-            source ~/.dotfiles/shell/pop.aliases
-            alias vipa='vi ~/.dotfiles/shell/pop.aliases'
-
-        #     export PATH="/home/alok/sdk/miniconda/bin:$PATH"
-        #     . /home/alok/sdk/miniconda/etc/profile.d/conda.sh
+        if [ -f ~/.dotfiles/aliases/pop.aliases ]; then
+            source ~/.dotfiles/aliases/pop.aliases
+            alias vipa='vi ~/.dotfiles/aliases/pop.aliases'
         fi
 
         # NVS - Node Version Switcher (Linux)

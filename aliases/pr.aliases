@@ -1,0 +1,65 @@
+# Source sensitive configurations
+if [ -f ~/.sync/private/pr-private.aliases ]; then
+    source ~/sync/private/pr-private.aliases
+fi
+
+## Heroku
+alias hli='heroku login -i' # use interactive login to avoid browser
+
+alias hbn='heroku buildpacks:set heroku/nodejs'
+alias hbr='heroku buildpacks:set mars/create-react-app'
+alias hbC='heroku builds:cache:purge -a $1' ## heroku plugins:install heroku-builds
+alias gPhF=git_push_heroku
+git_push_heroku() { git push heroku $1:master --force; }
+alias gPhs='git push heroku-staging develop:master --force'
+alias gPhp='git push heroku-production master:master'
+
+# Sequelize
+alias sm='npx sequelize-cli db:migrate'
+alias smg='npx sequelize-cli migration:generate --name $1'
+
+# npx sequelize-cli db:migrate
+# npx sequelize-cli db:migrate:undo
+# npx sequelize-cli db:create
+# npx sequelize-cli db:drop
+# npx sequelize-cli db:migrate:undo:all
+# npx sequelize-cli db:seed:all
+# npx sequelize-cli db:seed:undo:all
+
+# turn all above into aliases
+
+alias nsc='sequelize_cli'
+
+sequelize_cli() {
+    case $1 in
+        "migrate") npx sequelize-cli db:migrate;;
+        "create") npx sequelize-cli db:create;;
+        "drop") npx sequelize-cli db:drop;;
+        "seed") npx sequelize-cli db:seed:all;;
+        "generate") npx sequelize-cli migration:generate --name $2;;
+        "seed-generate") npx sequelize-cli seed:generate --name $2;;
+        "undo") npx sequelize-cli db:migrate:undo;;
+        "migrate-undo") npx sequelize-cli db:migrate:undo:all;;
+        "seed-undo") npx sequelize-cli db:seed:undo:all;;
+        *) echo "Invalid command";;
+    esac
+}
+
+alias docker_proxy_toggle='proxy_toggle'
+
+# Django with Docker Compose
+alias dcMm='docker compose exec django poetry run python manage.py makemigrations'
+
+# if /etc/docker/daemon.json exists, then toggle proxy by renaming it to daemon.json-work
+proxy_toggle() {
+    if [[ -f /etc/docker/daemon.json ]]; then
+        sudo mv /etc/docker/daemon.json /etc/docker/daemon.json-work
+        echo "Proxy disabled. Docker daemon configuration file renamed to daemon.json-work."
+    elif [[ -f /etc/docker/daemon.json-work ]]; then
+        sudo mv /etc/docker/daemon.json-work /etc/docker/daemon.json
+        sudo systemctl restart docker
+        echo "Proxy enabled. Docker daemon configuration file restored to daemon.json."
+    else
+        echo "No proxy configuration found."
+    fi
+}
