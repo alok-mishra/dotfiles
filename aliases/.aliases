@@ -231,7 +231,8 @@ alias dcb='docker compose build'
 alias dcB='docker compose build --pull --no-cache'
 alias dcr='docker compose restart'
 
-alias dcU='docker compose pull --ignore-pull-failures && docker compose up -d' # docker-compose upgrade
+# docker compose build and update
+alias dcU='docker compose build --pull && docker compose pull --ignore-pull-failures && docker compose up -d --no-build && docker image prune -f'
 
 alias dcu='docker_compose up'
 alias dcd='docker_compose down'
