@@ -96,6 +96,21 @@ else
 fi
 
 if [[ $is_wsl ]]; then
+
+    #export GALLIUM_DRIVER=d3d12
+    export GALLIUM_DRIVER=llvmpipe
+    export LIBVA_DRIVER_NAME=d3d12
+    export XDG_SESSION_TYPE=wayland
+    export MOZ_ENABLE_WAYLAND=1
+    export MOZ_WEBRENDER=1
+    # export MESA_LOADER_DRIVER_OVERRIDE=d3d12  # Force D3D12 driver
+
+    if [[ "$MY_LOCATION" == home ]]; then
+        export GDK_DPI_SCALE=1.25
+        export XCURSOR_SIZE=32
+        export QT_SCALE_FACTOR=1.25
+    fi
+
     if [ -f ~/.dotfiles/aliases/arch.aliases ]; then
         source ~/.dotfiles/aliases/arch.aliases
         alias viaa='vi ~/.dotfiles/aliases/arch.aliases'
@@ -120,11 +135,7 @@ if [[ $is_wsl ]]; then
         alias lf='lfcd'
     fi
 
-    if [[ "$MY_LOCATION" == home ]]; then
-        export GDK_DPI_SCALE=1.25
-        export XCURSOR_SIZE=32
-        export QT_SCALE_FACTOR=1.25
-    fi
+    eval "$(zoxide init zsh)"
 
 else
     # if [[ `hostname` == star* ]]; then

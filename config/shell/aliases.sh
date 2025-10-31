@@ -1,8 +1,3 @@
-# Detect environment
-is_wsl=$(uname -a | grep -i wsl)
-is_msys=$(uname -a | grep -i msys)
-is_work=$(uname -a | grep -i wit)
-
 # Load common aliases
 if [ -f ~/.dotfiles/aliases/.aliases ]; then
     source ~/.dotfiles/aliases/.aliases

@@ -1,4 +1,7 @@
-# Shared environment variables and setup
+# Detect environment
+is_wsl=$(uname -a | grep -i wsl)
+is_msys=$(uname -a | grep -i msys)
+is_work=$(uname -a | grep -i wit)
 
 # NVM Setup
 export NVM_DIR="$HOME/.nvm"

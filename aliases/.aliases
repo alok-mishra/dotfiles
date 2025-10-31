@@ -13,6 +13,7 @@ alias x='exit'
 alias ag='alias | grep'
 alias hfc='history 0 | fzf | cut -c 8- | clip'
 alias bc='bcomp.exe'
+alias f='firefox &'
 alias v='vi'
 alias vi='vim'
 alias ..='cd ..'
@@ -48,11 +49,10 @@ md5hash() { echo -n "$1" | openssl md5; }
 alias mk4=mkv_to_mp4
 mkv_to_mp4() { for i in *.mkv; do ffmpeg -i "$i" -loglevel error -codec copy "${i%.*}.mp4"; done; }
 
-# alias flop='mkdir -p opus && for f in *.flac; do opusenc --bitrate 160 "$f" "opus/${f%.flac}.opus"; done' # opus-tools has opusenc
 alias flac2mp3='mkdir -p mp3 && for f in *.flac; do ffmpeg -v error -stats -i "$f" -c:a libmp3lame -b:a 256k "mp3/${f%.flac}.mp3"; done'
 alias flac2opus='mkdir -p opus && for f in *.flac; do ffmpeg -v error -stats -i "$f" -c:a libopus -b:a 160k "opus/${f%.flac}.opus"; done'
 alias opus='mkdir -p opus && for f in *.{flac,wav,mp3,m4a,aac}; do [ -f "$f" ] && echo "${f%.*}" && ffmpeg -y -v error -stats -i "$f" -c:a libopus -b:a 160k "opus/${f%.*}.opus"; echo ""; done'
-
+alias flop='mkdir -p flop && for f in *.flac; do opusenc --bitrate 160 "$f" "flop/${f%.flac}.opus"; done' # opus-tools only supports flac
 
 alias sha1='openssl sha1'
 alias sha256='openssl sha256'
