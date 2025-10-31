@@ -29,13 +29,9 @@ local function randomBackground(dir)
     return wallpaper
 end
 
-wezterm.on("gui-startup", function(cmd)
-    local tab, pane, window = mux.spawn_window(cmd or {})
-    window:gui_window():set_position(200, 200)
-
-    -- Random background only once at startup
+local function setRandomBackground(window)
     local bg_path = randomBackground(wezterm.home_dir .. "/sync/settings/backgrounds")
-    window:gui_window():set_config_overrides({
+    window:set_config_overrides({
         background = {
             {
                 source = { File = bg_path },
@@ -43,6 +39,14 @@ wezterm.on("gui-startup", function(cmd)
             },
         },
     })
+end
+
+wezterm.on("gui-startup", function(cmd)
+    local tab, pane, window = mux.spawn_window(cmd or {})
+    window:gui_window():set_position(200, 200)
+
+    -- Random background only once at startup
+    setRandomBackground(window:gui_window())
 end)
 
 -- conditional config based on os
@@ -83,6 +87,10 @@ config.keys = {
     { key = "j", mods = "ALT", action = wezterm.action.ActivatePaneDirection 'Down' },
     { key = "k", mods = "ALT", action = wezterm.action.ActivatePaneDirection 'Up' },
     { key = "l", mods = "ALT", action = wezterm.action.ActivatePaneDirection 'Right' },
+
+    { key = "r", mods = "CTRL|SHIFT", action = wezterm.action_callback(function(window, pane)
+        setRandomBackground(window)
+    end) },
 }
 
 return config
