@@ -189,7 +189,7 @@ if [[ $is_wsl ]]; then
 	}
 fi
 
-alias p='paru'
+alias yay='paru'
 
 ############################## DOCKER ##############################
 if [[ $is_wsl ]]; then
@@ -381,6 +381,48 @@ alias warc=static_archive
 static_archive() { wget -P $2 -mpck --user-agent="" -e robots=off --wait 1 -E $1; }
 
 ############################## PYTHON ##############################
+
+alias py='python3'
+alias pi='pip install'
+alias piu='pip install --upgrade'
+alias pir='pip install -r requirements.txt'
+alias pfr='pip freeze > requirements.txt'
+alias pl='pip list'
+alias pcp='pip cache purge'
+alias pmp='python3 -m pip'
+
+alias pva='python_venv_activate'
+python_venv_activate() {
+  if [ -d venv ]; then
+    echo "Activating existing venv/ environment"
+    source venv/bin/activate
+  elif [ -d .venv ]; then
+    echo "Activating existing .venv/ environment"
+    source .venv/bin/activate
+  else
+    echo "No venv found — creating .venv"
+    python3 -m venv .venv
+    source .venv/bin/activate
+  fi
+}
+
+alias pvd='python_venv_deactivate'
+python_venv_deactivate() {
+  if declare -f deactivate >/dev/null; then
+    echo "Deactivating virtual environment..."
+    deactivate
+  else
+    echo "No active virtual environment."
+  fi
+}
+
+# lightweight HTTP server (optional port)
+py_serve() { python3 -m http.server "${1:-8000}"; }
+
+# remove pyc and caches
+py_clean() { find . -name "__pycache__" -type d -exec rm -rf {} +; find . -name "*.pyc" -delete; }
+
+
 if command -v conda &>/dev/null; then
 	alias pcl='conda list'
 	alias pcle='conda env list'

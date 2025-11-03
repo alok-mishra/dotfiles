@@ -4,22 +4,20 @@ alias pacu='pac -Syu'  # sync / refresh repos, update packages
 alias pacI='pac -Syu --ignore'  # sync / update, but ignore a package
 alias pacr='pac -Runs' # remove package and dependencies not being used
 alias pacR='pac -Rs'   # remove package and dependencies recursively
-alias pacc='pac -Sc && pac -c && paccache -r'   # clear cache for packages not yet installed
+alias pacc='pac -Scc --noconfirm && paccache -r'   # clear all cached packages and old package versions
 alias pacs='pac -Qs'   # search packages installed
 alias pacS='pac -s'    # search packages
 alias pacq='pac -Qi'   # find packages dependant upon this
 alias paco='pac -Qu'   # outdated packages list
-# alias pack='pac-key --populate archlinux'   # populate the package signing keys
-alias pack='pac -S archlinux-keyring'   # populate the package signing keys
-alias pacg='gpg --recv-key' # add a missing public key
+alias pace='paru --sudoflags -E' # pass environment variables
+
+alias pack='sudo pacman-key --populate archlinux'
+alias pacg='gpg --recv-key' # import a missing key manually
 
 alias up='pacu'
 
 alias vi3='vi ~/.config/i3/config'
 
-alias pare='paru --sudoflags -E'
-
-# alias code='code-insiders'
 
 # dhcpcd needs to be enabled and runnning (systemctl start dhcpcd)
 #nmcli device wifi connect "The SSID!" password "The Password" hidden true
