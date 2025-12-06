@@ -49,19 +49,15 @@ wezterm.on("gui-startup", function(cmd)
     setRandomBackground(window:gui_window())
 end)
 
--- conditional config based on os
-if string.find(wezterm.target_triple, "linux") then
-    wezterm.log_info("Running on Linux")
+if wezterm.target_triple:find("windows") then
+    -- config.default_prog = { "zsh", "--login", "-i" } -- set shell to zsh
+    -- config.default_prog = { "wsl" } -- launch wsl
+    config.default_domain = (string.find(wezterm.hostname(), "daas", 1, true) == 1) and "WSL:Ubuntu" or "WSL:Arch"
+elseif wezterm.target_triple:find("linux") then
     config.window_decorations = "RESIZE" -- hides window title
-    config.font = wezterm.font_with_fallback({ "FiraCode Nerd Font", "FiraCode NFM" })
-elseif string.find(wezterm.target_triple, "windows") then
-    wezterm.log_info("Running on Windows")
-    config.default_prog = { "zsh", "--login", "-i" } -- set shell to bash
-    config.font = wezterm.font_with_fallback({ "Cascadia Code", "FiraCode NFM" })
 end
 
-
--- config.debug_key_events = true
+config.font = wezterm.font_with_fallback({ "Cascadia Code", "FiraCode NFM" })
 
 config.check_for_updates = false
 config.initial_rows = 40
@@ -75,6 +71,7 @@ config.font_size = 10.0
 
 config.color_scheme = "GruvboxDark"
 -- config.color_scheme = "Catppuccin Mocha"
+-- config.debug_key_events = true
 
 -- config.disable_default_key_bindings = true (changed my mind)
 config.keys = {

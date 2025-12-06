@@ -18,7 +18,6 @@ alias up='pacu'
 
 alias vi3='vi ~/.config/i3/config'
 
-
 # dhcpcd needs to be enabled and runnning (systemctl start dhcpcd)
 #nmcli device wifi connect "The SSID!" password "The Password" hidden true
 alias nml='nmcli device wifi list'

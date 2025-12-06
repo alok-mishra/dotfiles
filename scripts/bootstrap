@@ -1,13 +1,9 @@
-#!/usr/bin/env bash
-
 # Linux Dotfiles Bootstrap
 
 ln -s ~/sync/dotfiles ~/.dotfiles
 ln -s ~/sync/keys/.ssh ~/.ssh
 
-ln -s ~/.dotfiles/shell/.aliases ~/.aliases
+ln -s ~/.dotfiles/aliases/.aliases ~/.aliases
 ln -s ~/.dotfiles/shell/.zshrc ~/.zshrc
 ln -s ~/.dotfiles/git/.gitconfig ~/.gitconfig
-# ln -s ~/.dotfiles/vscode/settings.json ~/.config/Code/User/settings.json
-
-
+ln -s ~/.dotfiles/config/starship.toml ~/.config/starship.toml
