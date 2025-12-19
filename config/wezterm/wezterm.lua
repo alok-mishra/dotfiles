@@ -7,9 +7,6 @@ if wezterm.config_builder then
     config = wezterm.config_builder()
 end
 
--- prevent infinite reloads
-local wallpaper = wezterm.home_dir .. "/.config/wezterm/background.jpg"
-
 local function randomBackground(dir)
     local success, files = pcall(wezterm.read_dir, dir)
 
@@ -24,21 +21,27 @@ local function randomBackground(dir)
             return jpgs[math.random(1, #jpgs)]
         end
     end
-    return wallpaper
+    return nil
 end
 
 local function setRandomBackground(window)
     local bg_path = randomBackground(wezterm.home_dir .. "/sync/settings/backgrounds")
-    wezterm.log_info("Background: " .. bg_path:match("([^/\\]+)$"))
 
-    window:set_config_overrides({
-        background = {
-            {
-                source = { File = bg_path },
-                hsb = { hue = 1.0, saturation = 1.0, brightness = 0.06 },
+    if not bg_path then
+        bg_path = randomBackground(wezterm.home_dir .. "/.config/backgrounds")
+    end
+
+    if bg_path then
+        wezterm.log_info("Background: " .. bg_path:match("([^/\\]+)$"))
+        window:set_config_overrides({
+            background = {
+                {
+                    source = { File = bg_path },
+                    hsb = { hue = 1.0, saturation = 1.0, brightness = 0.06 },
+                },
             },
-        },
-    })
+        })
+    end
 end
 
 if wezterm.target_triple:find("windows") then
@@ -93,26 +96,29 @@ end)
 
 config.font = wezterm.font_with_fallback({ "Cascadia Code", "FiraCode NFM" })
 
-config.check_for_updates = false
-
 config.initial_rows = 40
 config.initial_cols = 160
 config.enable_scroll_bar = true
 
 config.audible_bell = "Disabled"
-
+config.check_for_updates = false
 config.hide_tab_bar_if_only_one_tab = true
 config.window_close_confirmation = "NeverPrompt"
+config.skip_close_confirmation_for_processes_named = { "bash", "sh", "zsh", "fish", "tmux" }
+
 config.font_size = 10.0
-
 config.color_scheme = "GruvboxDark"
--- config.color_scheme = "Catppuccin Mocha"
--- config.debug_key_events = true
 
--- config.disable_default_key_bindings = true (changed my mind)
+-- config.debug_key_events = true
+-- config.disable_default_key_bindings = true
+
 config.keys = {
-    { key = "\\", mods = "ALT|CTRL", action = wezterm.action.SplitHorizontal },
-    { key = "|", mods = "SHIFT|ALT|CTRL", action = wezterm.action.SplitVertical },
+    { key = "w", mods = "ALT", action = wezterm.action.CloseCurrentTab { confirm = false } },
+    { key = "h", mods = "CTRL", action = wezterm.action.ActivateTabRelative(-1) },
+    { key = "l", mods = "CTRL", action = wezterm.action.ActivateTabRelative(1) },
+
+    { key = "\\", mods = "ALT|CTRL", action = wezterm.action.SplitVertical },
+    { key = "|", mods = "SHIFT|ALT|CTRL", action = wezterm.action.SplitHorizontal },
     { key = "'", mods = "ALT|CTRL", action = wezterm.action.PaneSelect },
     { key = '"', mods = "ALT|CTRL|SHIFT", action = wezterm.action({ PaneSelect = { mode = "SwapWithActive" } }) },
 
@@ -125,11 +131,28 @@ config.keys = {
         setRandomBackground(window)
     end) },
 
-    { key = "z", mods = "CTRL|SHIFT", action = wezterm.action.SpawnCommandInNewTab {
-        label = "Native Zsh",
-        domain = { DomainName = "local" },
-        args = { "zsh.exe", "--login", "-i" },
-    }},
+    -- Domain switching keybindings
+    { key = " ", mods = "CTRL|ALT", action = wezterm.action.ShowLauncher },
+
+    { key = "z", mods = "CTRL|SHIFT", action = wezterm.action_callback(function(window, pane)
+        local zsh_exists, _, _ = wezterm.run_child_process({"where.exe", "zsh.exe"})
+        if zsh_exists then
+            window:perform_action(wezterm.action.SpawnCommandInNewTab {
+                label = "Native Zsh",
+                domain = { DomainName = "local" },
+                args = { "zsh.exe", "--login", "-i" },
+            }, pane)
+        else
+            local bash_exists, _, _ = wezterm.run_child_process({"where.exe", "bash.exe"})
+            if bash_exists then
+                window:perform_action(wezterm.action.SpawnCommandInNewTab {
+                    label = "Native Bash",
+                    domain = { DomainName = "local" },
+                    args = { "bash.exe", "--login", "-i" },
+                }, pane)
+            end
+        end
+    end) },
 }
 
 return config
