@@ -68,6 +68,8 @@
         "*.jscad": "javascript"
     },
 
+    "git.autoRepositoryDetection": "openEditors",
+
     "search.quickOpen.includeHistory": true,
     "search.quickOpen.history.filterSortOrder": "recency",
 
@@ -133,8 +135,10 @@
     },
 
     ////// THEME //////
-    "workbench.colorTheme": "Gruvbox Dark Hard",
-    "workbench.iconTheme": "catppuccin-mocha",
+    // "workbench.colorTheme": "Gruvbox Dark Hard",
+    // "workbench.iconTheme": "catppuccin-mocha",
+    "workbench.colorTheme": "Catppuccin Mocha",
+    "workbench.iconTheme": "gruvbox-material-icon-theme",
 
     "workbench.colorCustomizations": {
         "editorSuggestWidget.selectedBackground": "#076678",
@@ -492,21 +496,12 @@
     "editor.accessibilitySupport": "off",
     "accessibility.voice.keywordActivation": "inlineChat",
     "typescript.disableAutomaticTypeAcquisition": true,
-    "security.allowedUNCHosts": ["wsl.localhost", "HASSIO"],
+    "security.allowedUNCHosts": ["wsl.localhost"],
     "workbench.editor.empty.hint": "hidden",
 
     "markdown-pdf.displayHeaderFooter": false,
     "markdown-pdf.margin.top": "1.0cm",
     "markdown-pdf.scale": 0.9,
-
-    // "git-graph.openNewTabEditorGroup": "Two",
-
-    "codeium.enableConfig": {
-        "*": true,
-        "markdown": true,
-        "scad": true,
-        "plaintext": true
-    },
 
     "gitblame.inlineMessageEnabled": true,
     "gitblame.inlineMessageFormat": "${author.name} • ${author.date}",
@@ -517,10 +512,12 @@
     "accessibility.signals.terminalBell": {
         "sound": "off"
     },
-    "http.proxySupport": "on", // set proxy support to on in the office for exensions
+    "http.proxySupport": "on",
     "cursor.cpp.disabledLanguages": ["scminput"],
     "cursor.general.disableHttp2": true,
     "cursor.general.disableHttp1SSE": true,
     "cursor.general.gitGraphIndexing": "enabled",
-    "workbench.editor.enablePreview": false
+    "workbench.editor.enablePreview": false,
+    "python.analysis.typeCheckingMode": "basic",
+    "claudeCode.preferredLocation": "panel"
 }

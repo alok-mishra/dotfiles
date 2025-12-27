@@ -35,9 +35,6 @@ if [ -f ~/.p10k.zsh ]; then
     source ~/.p10k.zsh
     source ~/.zsh/powerlevel10k/powerlevel10k.zsh-theme
 
-elif command -v starship &> /dev/null; then
-    # Starship
-    eval "$(starship init zsh)"
 fi
 
 # unsetopt completealiases ## allows completion of aliases
@@ -45,20 +42,20 @@ fi
 #################### SHARED CONFIG ####################
 
 # Source shared configurations
-if [ -f ~/.dotfiles/config/shell/env.sh ]; then
-    source ~/.dotfiles/config/shell/env.sh
+if [ -f ~/.dotfiles/shell/env.sh ]; then
+    source ~/.dotfiles/shell/env.sh
 fi
 
-if [ -f ~/.dotfiles/config/shell/functions.sh ]; then
-    source ~/.dotfiles/config/shell/functions.sh
+if [ -f ~/.dotfiles/shell/functions.sh ]; then
+    source ~/.dotfiles/shell/functions.sh
 fi
 
 #################### SHELL ####################
 
 alias viz='vi ~/.zshrc'
 # Load shared aliases configuration
-if [ -f ~/.dotfiles/config/shell/aliases.sh ]; then
-    source ~/.dotfiles/config/shell/aliases.sh
+if [ -f ~/.dotfiles/shell/aliases.sh ]; then
+    source ~/.dotfiles/shell/aliases.sh
 fi
 
 if [[ $is_work ]]; then
@@ -118,13 +115,16 @@ if [[ $is_wsl ]]; then
 
     # NVS - Node Version Switcher (nvs-git via AUR)
     export NVS_HOME="$HOME/.nvs"
-    source /opt/nvs/nvs.sh
+    # source /opt/nvs/nvs.sh
+    source /usr/share/nvs/nvs.sh
     # export PATH="$PATH:$NVS_HOME/default/bin/node" # for copilot
     # [ -s "$NVS_HOME/nvs.sh" ] && . "$NVS_HOME/nvs.sh"
     export NODE_PATH="$NVS_HOME/default/lib/node_modules/"
 
-    export GOPATH="$HOME/go"
-    export PATH="$PATH:$(go env GOBIN):$(go env GOPATH)/bin"
+    if command -v go &> /dev/null; then
+        export GOPATH="$HOME/go"
+        export PATH="$PATH:$(go env GOBIN):$(go env GOPATH)/bin"
+    fi
 
     # Poetry - Python Package Manager
     export PATH="$HOME/.local/bin:$PATH"
@@ -135,7 +135,14 @@ if [[ $is_wsl ]]; then
         alias lf='lfcd'
     fi
 
-    eval "$(zoxide init zsh)"
+    if command -v starship &> /dev/null; then
+        STARSHIP_CONFIG=${HOME}/.config/starship.toml
+        eval "$(starship init zsh)"
+    fi
+
+    if command -v zoxide &> /dev/null; then
+        eval "$(zoxide init zsh)"
+    fi
 
 else
     # if [[ `hostname` == star* ]]; then

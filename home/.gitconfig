@@ -35,6 +35,7 @@
     autocrlf = input
     symlinks = true
     excludesfile = ~/.gitignore_global
+    hooksPath = /home/alok/.git-hooks
 [pull]
     ff = only
 [init]

@@ -1,0 +1,42 @@
+[
+  // Editor Navigation
+  {
+    "bindings": {
+      "ctrl-h": "pane::ActivatePreviousItem",
+      "ctrl-l": "pane::ActivateNextItem",
+    },
+  },
+
+  // Pane Navigation (vim-style)
+  {
+    "bindings": {
+      "alt-h": "workspace::ActivatePaneLeft",
+      "alt-j": "workspace::ActivatePaneRight",
+      "alt-k": "workspace::ActivatePaneUp",
+      "alt-l": "workspace::ActivatePaneDown",
+    },
+  },
+
+  // File Operations
+  {
+    "bindings": {
+      "ctrl-alt-p": "projects::OpenRecent",
+      "alt-d": "pane::CloseActiveItem",
+      "alt-s": "workspace::Save",
+    },
+  },
+
+  // Sidebar
+  {
+    "bindings": {
+      "alt-`": "workspace::ToggleLeftDock",
+    },
+  },
+
+  // Settings
+  {
+    "bindings": {
+      "ctrl-,": "zed::OpenSettings",
+    },
+  },
+]

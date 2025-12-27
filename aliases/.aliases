@@ -16,6 +16,7 @@ alias bc='bcomp.exe'
 alias f='firefox &'
 alias v='vi'
 alias vi='vim'
+alias viv='claude'
 alias ..='cd ..'
 alias ~='cd -'
 alias ocd='cd "$OLDPWD"'
@@ -233,7 +234,7 @@ alias dcB='docker compose build --pull --no-cache'
 alias dcr='docker compose restart'
 
 # docker compose build and update
-alias dcU='docker compose build --pull && docker compose pull --ignore-pull-failures && docker compose up -d --no-build && docker image prune -f --verbose'
+alias dcU='docker compose build --pull && docker compose pull --ignore-pull-failures && docker compose up -d --no-build && docker image prune -f'
 
 alias dcu='docker_compose up'
 alias dcd='docker_compose down'
@@ -262,10 +263,10 @@ docker_compose() {
 }
 
 ############################## GIT  ##############################
-if [ -f ~/.dotfiles/git/git.aliases ]; then
-	source ~/.dotfiles/git/git.aliases
+if [ -f ~/.dotfiles/aliases/git.aliases ]; then
+	source ~/.dotfiles/aliases/git.aliases
 	alias vigc='vi ~/.gitconfig'
-	alias viga='vi ~/.dotfiles/git/git.aliases'
+	alias viga='vi ~/.dotfiles/aliases/git.aliases'
 fi
 
 # GitHub

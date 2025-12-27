@@ -1,7 +1,7 @@
 ##################################### SHELL #####################################
 # Load shared aliases configuration
-if [ -f ~/.dotfiles/config/shell/aliases.sh ]; then
-    source ~/.dotfiles/config/shell/aliases.sh
+if [ -f ~/.dotfiles/shell/aliases.sh ]; then
+    source ~/.dotfiles/shell/aliases.sh
 fi
 
 # Conda setup (moved from arch.aliases section)
@@ -28,12 +28,12 @@ fi
 ##################################### SHARED CONFIG #####################################
 
 # Source shared configurations
-if [ -f ~/.dotfiles/config/shell/env.sh ]; then
-    source ~/.dotfiles/config/shell/env.sh
+if [ -f ~/.dotfiles/shell/env.sh ]; then
+    source ~/.dotfiles/shell/env.sh
 fi
 
-if [ -f ~/.dotfiles/config/shell/functions.sh ]; then
-    source ~/.dotfiles/config/shell/functions.sh
+if [ -f ~/.dotfiles/shell/functions.sh ]; then
+    source ~/.dotfiles/shell/functions.sh
 fi
 
 if windows; then
