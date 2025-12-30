@@ -22,7 +22,13 @@ bindkey '^R' history-incremental-search-backward
 
 #################### ENVIRONMENT ####################
 
-if [ -f ~/.p10k.zsh ]; then
+export PATH="$HOME/.local/bin:$PATH"
+
+if command -v starship &> /dev/null; then
+    STARSHIP_CONFIG=${HOME}/.config/starship.toml
+    eval "$(starship init zsh)"
+
+elif [ -f ~/.p10k.zsh ]; then
     # Powerlevel10k - to customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 
     # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -126,18 +132,10 @@ if [[ $is_wsl ]]; then
         export PATH="$PATH:$(go env GOBIN):$(go env GOPATH)/bin"
     fi
 
-    # Poetry - Python Package Manager
-    export PATH="$HOME/.local/bin:$PATH"
-
     LFCD="/home/alok/.config/lf/lfcd.sh"
     if [ -f "$LFCD" ]; then
         source "$LFCD"
         alias lf='lfcd'
-    fi
-
-    if command -v starship &> /dev/null; then
-        STARSHIP_CONFIG=${HOME}/.config/starship.toml
-        eval "$(starship init zsh)"
     fi
 
     if command -v zoxide &> /dev/null; then
@@ -145,8 +143,6 @@ if [[ $is_wsl ]]; then
     fi
 
 else
-    # if [[ `hostname` == star* ]]; then
-    #if [[ "$HOSTNAME" == star* ]]; then
     if [[ `uname -n` == star* ]]; then
 
         if [ -f ~/.dotfiles/aliases/pop.aliases ]; then

@@ -1,6 +1,7 @@
 # Detect environment
 is_wsl=$(uname -a | grep -i wsl)
 is_msys=$(uname -a | grep -i msys)
+is_rpi=$(uname -a | grep -i rpi)
 is_work=$(uname -a | grep -i wit)
 
 # NVM Setup

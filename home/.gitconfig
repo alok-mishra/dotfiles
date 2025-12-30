@@ -46,5 +46,3 @@
     allow = always
 [credential "helperselector"]
 	selected = <no helper>
-[http]
-	sslBackend = openssl
