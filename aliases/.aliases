@@ -1,8 +1,3 @@
-# Source local aliases
-if [ -f ~/local.aliases ]; then
-	source ~/local.aliases
-fi
-
 ############################## CORE  ##############################
 alias ls='ls --color=auto'
 alias l='ls -hAlF'
@@ -20,6 +15,8 @@ alias viv='claude'
 alias ..='cd ..'
 alias ~='cd -'
 alias ocd='cd "$OLDPWD"'
+
+command -v zeditor &>/dev/null && alias zed='zeditor'
 
 if [[ "$TERM_PROGRAM" == "vscode" ]]; then
 	alias vi='code'
@@ -138,6 +135,7 @@ alias vib='vi ~/.bashrc'
 alias vic='vi ~/.ssh/config'
 alias vin='cd ~/.dotfiles/nvim/ && vi ./lua/config/keymaps.lua ./lua/plugins/plugins.lua'
 alias viw='vi ~/.config/wezterm/wezterm.lua'
+alias viz='vi ~/.zshrc'
 
 alias nvl='nv nvim-lazyvim'   # alias nvl="NVIM_APPNAME=nvim-lazyvim nvim"
 alias nvk='nv nvim-kickstart' # alias nvk="NVIM_APPNAME=nvim-kickstart nvim"
@@ -263,11 +261,6 @@ docker_compose() {
 }
 
 ############################## GIT  ##############################
-if [ -f ~/.dotfiles/aliases/git.aliases ]; then
-	source ~/.dotfiles/aliases/git.aliases
-	alias vigc='vi ~/.gitconfig'
-	alias viga='vi ~/.dotfiles/aliases/git.aliases'
-fi
 
 # GitHub
 github_clone() { git clone git@github.com:$1/$2 $3; }

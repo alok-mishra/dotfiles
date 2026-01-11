@@ -1,15 +1,12 @@
 # Detect environment
 is_wsl=$(uname -a | grep -i wsl)
-is_msys=$(uname -a | grep -i msys)
 is_rpi=$(uname -a | grep -i rpi)
 is_work=$(uname -a | grep -i wit)
+is_arch=$([ -f /etc/os-release ] && grep "ID=arch" /etc/os-release)
 
-# NVM Setup
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+#################### TOOL SETUP FUNCTIONS ####################
 
-# NVS Setup
+# NVS - Node Version Switcher
 function setupNvs {
     if [[ -n "$WINDIR" ]]; then
         export NVS_HOME="$HOME/scoop/apps/nvs/current"
@@ -21,4 +18,18 @@ function setupNvs {
     [ -s "$NVS_HOME/nvs.sh" ] && source "$NVS_HOME/nvs.sh" >>/dev/null
     return 0
 }
-setupNvs
+
+# Go
+function setupGo {
+    if command -v go &> /dev/null; then
+        export GOPATH="$HOME/go"
+        export PATH="$PATH:$(go env GOBIN):$(go env GOPATH)/bin"
+    fi
+}
+
+# Zoxide - smarter cd
+function setupZoxide {
+    if command -v zoxide &> /dev/null; then
+        eval "$(zoxide init $(basename $SHELL))"
+    fi
+}

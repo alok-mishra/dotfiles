@@ -1,5 +1,6 @@
-# Linux Dotfiles Bootstrap - Manual symlinks
-# Note: Use bootstrap.sh for Stow-based setup instead
+#!/bin/bash
+# Linux Dotfiles Bootstrap - Manual symlinks (no stow required)
+# Note: Use scripts/bootstrap.sh for Stow-based setup instead
 
 ln -s ~/sync/dotfiles ~/.dotfiles
 ln -s ~/sync/keys/.ssh ~/.ssh
@@ -13,7 +14,7 @@ ln -s ~/.dotfiles/home/.bash_profile ~/.bash_profile
 ln -s ~/.dotfiles/home/.gitconfig ~/.gitconfig
 ln -s ~/.dotfiles/home/.gitignore_global ~/.gitignore_global
 
-# App configs from .config/
-ln -s ~/.dotfiles/.config/wezterm ~/.config/wezterm
-ln -s ~/.dotfiles/.config/nvim ~/.config/nvim
+# App configs from config/
+ln -s ~/.dotfiles/config/wezterm ~/.config/wezterm
+ln -s ~/.dotfiles/config/nvim ~/.config/nvim
 ln -s ~/.dotfiles/config/starship.toml ~/.config/starship.toml

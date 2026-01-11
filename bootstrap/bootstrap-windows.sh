@@ -1,7 +1,7 @@
 #!/bin/bash
 # Windows Bootstrap - Create symlinks for dotfiles
 # Run from Git Bash (Windows side) with Admin privileges
-# Must be run from the dotfiles directory: cd ~/.dotfiles && bash scripts/bootstrap-windows.sh
+# Must be run from the dotfiles directory: cd ~/.dotfiles && bash bootstrap/bootstrap-windows.sh
 
 echo "=== Windows Dotfiles Bootstrap ==="
 

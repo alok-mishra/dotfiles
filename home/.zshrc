@@ -1,27 +1,19 @@
-# Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 unsetopt beep
 setopt nullglob
-bindkey -v
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
-
-# curl -o ~/.config/git/git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
-# curl -o ~/.zsh/_git https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.zsh
-# curl -o ~/.zsh/git-completion.bash https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
-fpath=(~/.zsh $fpath)
 
 autoload -Uz compinit && compinit
-# End of lines added by compinstall
 
 #################### KEYBINDINGS ####################
 
+bindkey -v  # Enable vi mode
 bindkey '^R' history-incremental-search-backward
 
 #################### ENVIRONMENT ####################
 
+# User-local binaries (pipx, poetry, cargo, pip --user, etc.)
 export PATH="$HOME/.local/bin:$PATH"
 
 if command -v starship &> /dev/null; then
@@ -29,21 +21,14 @@ if command -v starship &> /dev/null; then
     eval "$(starship init zsh)"
 
 elif [ -f ~/.p10k.zsh ]; then
-    # Powerlevel10k - to customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-
-    # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-    # Initialization code that may require console input (password prompts, [y/n]
-    # confirmations, etc.) must go above this block; everything else may go below.
+    # Powerlevel10k fallback (Windows)
     if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+        source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
     fi
 
     source ~/.p10k.zsh
     source ~/.zsh/powerlevel10k/powerlevel10k.zsh-theme
-
 fi
-
-# unsetopt completealiases ## allows completion of aliases
 
 #################### SHARED CONFIG ####################
 
@@ -58,29 +43,20 @@ fi
 
 #################### SHELL ####################
 
-alias viz='vi ~/.zshrc'
 # Load shared aliases configuration
 if [ -f ~/.dotfiles/shell/aliases.sh ]; then
     source ~/.dotfiles/shell/aliases.sh
 fi
 
-if [[ $is_work ]]; then
-    # NVS - Node Version Switcher (Windows)
-    function setupNvs {
-        export NVS_HOME="$HOME/scoop/apps/nvs/current";
-        [ -s "$NVS_HOME/nvs.sh" ] && source "$NVS_HOME/nvs.sh" >> /dev/null;
-        # nvs auto on >> /dev/null
-        return 0
-    }
-    setupNvs
+#################### ENVIRONMENT-SPECIFIC ####################
 
-    if [[ $is_msys ]]; then
-        IP_ADDRESS=$(ipconfig | grep -m 1 "IPv4" | cut -d: -f2 | tr -d ' ')
-    elif [[ $is_wsl ]]; then
+# Work environment (location detection for proxies)
+if [[ $is_work ]]; then
+    # Detect work vs home network (for proxies)
+    if [[ $is_wsl ]]; then
         IP_ADDRESS=$(ip addr show | grep -A 3 "eth.*state UP" | grep 'inet ' | head -1 | awk '{print $2}' | cut -d/ -f1)
     fi
 
-    # Set proxies if NOT on home network
     MY_LOCATION="home"
     if [[ "$IP_ADDRESS" != 192.168.* ]]; then
         MY_LOCATION="work"
@@ -90,73 +66,28 @@ if [[ $is_work ]]; then
         echo "PX Proxy: $https_proxy"
     fi
     export MY_LOCATION
-
-else
-    if [ -f ~/.dotfiles/aliases/home.aliases ]; then
-        source ~/.dotfiles/aliases/home.aliases
-        alias viha='vi ~/.dotfiles/aliases/home.aliases'
-    fi
 fi
 
+# WSL-specific configuration
 if [[ $is_wsl ]]; then
-
-    #export GALLIUM_DRIVER=d3d12
+    # Graphics and Wayland
     export GALLIUM_DRIVER=llvmpipe
     export LIBVA_DRIVER_NAME=d3d12
     export XDG_SESSION_TYPE=wayland
     export MOZ_ENABLE_WAYLAND=1
     export MOZ_WEBRENDER=1
-    # export MESA_LOADER_DRIVER_OVERRIDE=d3d12  # Force D3D12 driver
 
+    # DPI scaling (home network only)
     if [[ "$MY_LOCATION" == home ]]; then
         export GDK_DPI_SCALE=1.25
         export XCURSOR_SIZE=32
         export QT_SCALE_FACTOR=1.25
     fi
 
-    if [ -f ~/.dotfiles/aliases/arch.aliases ]; then
-        source ~/.dotfiles/aliases/arch.aliases
-        alias viaa='vi ~/.dotfiles/aliases/arch.aliases'
-    fi
-
-    # NVS - Node Version Switcher (nvs-git via AUR)
-    export NVS_HOME="$HOME/.nvs"
-    # source /opt/nvs/nvs.sh
-    source /usr/share/nvs/nvs.sh
-    # export PATH="$PATH:$NVS_HOME/default/bin/node" # for copilot
-    # [ -s "$NVS_HOME/nvs.sh" ] && . "$NVS_HOME/nvs.sh"
-    export NODE_PATH="$NVS_HOME/default/lib/node_modules/"
-
-    if command -v go &> /dev/null; then
-        export GOPATH="$HOME/go"
-        export PATH="$PATH:$(go env GOBIN):$(go env GOPATH)/bin"
-    fi
-
-    LFCD="/home/alok/.config/lf/lfcd.sh"
-    if [ -f "$LFCD" ]; then
-        source "$LFCD"
-        alias lf='lfcd'
-    fi
-
-    if command -v zoxide &> /dev/null; then
-        eval "$(zoxide init zsh)"
-    fi
-
-else
-    if [[ `uname -n` == star* ]]; then
-
-        if [ -f ~/.dotfiles/aliases/pop.aliases ]; then
-            source ~/.dotfiles/aliases/pop.aliases
-            alias vipa='vi ~/.dotfiles/aliases/pop.aliases'
-        fi
-
-        # NVS - Node Version Switcher (Linux)
-        export NVS_HOME="$HOME/.nvs"
-        export PATH="$PATH:$NVS_HOME/default/bin/node" # for copilot
-        [ -s "$NVS_HOME/nvs.sh" ] && . "$NVS_HOME/nvs.sh"
-        export NODE_PATH="$NVS_HOME/default/lib/node_modules/"
-
-        # Linuxbrew env set in ~/.profile (upon login for GUI apps)
-    fi
-
 fi
+
+#################### TOOLS ####################
+
+setupNvs
+setupGo
+setupZoxide
