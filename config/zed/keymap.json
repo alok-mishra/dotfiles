@@ -11,9 +11,9 @@
   {
     "bindings": {
       "alt-h": "workspace::ActivatePaneLeft",
-      "alt-j": "workspace::ActivatePaneRight",
+      "alt-l": "workspace::ActivatePaneRight",
       "alt-k": "workspace::ActivatePaneUp",
-      "alt-l": "workspace::ActivatePaneDown",
+      "alt-j": "workspace::ActivatePaneDown",
     },
   },
 
