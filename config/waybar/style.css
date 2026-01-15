@@ -1,0 +1,140 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font Mono", monospace;
+    font-size: 14px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: rgba(30, 30, 30, 0.2);
+    color: #ffffff;
+    transition-property: background-color;
+    transition-duration: 0.5s;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+#workspaces button {
+    padding: 0 8px;
+    background-color: transparent;
+    color: #888888;
+    border-bottom: 2px solid transparent;
+}
+
+#workspaces button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+#workspaces button.active {
+    color: #ffffff;
+    border-bottom: 2px solid #ffffff;
+}
+
+#workspaces button.urgent {
+    background-color: #ff5555;
+    color: #000000;
+}
+
+#window {
+    padding: 0 12px;
+    color: #cccccc;
+    font-weight: normal;
+}
+
+#mpris {
+    padding: 0 12px;
+    color: #ffffff;
+}
+
+#mpris.paused {
+    color: #888888;
+    font-style: italic;
+}
+
+#cpu,
+#memory,
+#temperature,
+#pulseaudio,
+#network,
+#battery,
+#clock {
+    padding: 0 10px;
+    margin: 0 2px;
+    color: #ffffff;
+}
+
+#cpu {
+    font-size: 16px;
+}
+
+#cpu.warning {
+    color: #ffaa00;
+}
+
+#cpu.critical {
+    color: #ff5555;
+    animation: blink 1s ease-in-out infinite;
+}
+
+#memory {
+    font-size: 16px;
+}
+
+#memory.warning {
+    color: #ffaa00;
+}
+
+#memory.critical {
+    color: #ff5555;
+    animation: blink 1s ease-in-out infinite;
+}
+
+#temperature.critical {
+    color: #ff5555;
+    animation: blink 1s ease-in-out infinite;
+}
+
+#pulseaudio.muted {
+    color: #888888;
+}
+
+#network.disconnected {
+    color: #ff5555;
+}
+
+#battery.warning:not(.charging) {
+    color: #ffaa00;
+}
+
+#battery.critical:not(.charging) {
+    color: #ff5555;
+    animation: blink 1s ease-in-out infinite;
+}
+
+#clock {
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+#tray {
+    padding: 0 8px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: #ff5555;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0.5;
+    }
+}

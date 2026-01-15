@@ -1,0 +1,162 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font Mono", monospace;
+    font-size: 14px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: #282828;
+    color: #ebdbb2;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+#workspaces button {
+    padding: 0 8px;
+    background-color: transparent;
+    color: #928374;
+    border-bottom: 2px solid transparent;
+}
+
+#workspaces button:hover {
+    background-color: #3c3836;
+    color: #ebdbb2;
+}
+
+#workspaces button.active {
+    color: #fe8019;
+    border-bottom: 2px solid #fe8019;
+}
+
+#workspaces button.urgent {
+    background-color: #fb4934;
+    color: #282828;
+}
+
+#window {
+    padding: 0 12px;
+    color: #ebdbb2;
+    font-weight: normal;
+}
+
+#mpris {
+    padding: 0 12px;
+    color: #8ec07c;
+}
+
+#mpris.paused {
+    color: #928374;
+    font-style: italic;
+}
+
+#cpu,
+#memory,
+#temperature,
+#pulseaudio,
+#network,
+#battery,
+#clock {
+    padding: 0 10px;
+    margin: 0 2px;
+}
+
+#cpu {
+    color: #83a598;
+    font-size: 16px;
+}
+
+#cpu.warning {
+    color: #fe8019;
+}
+
+#cpu.critical {
+    color: #fb4934;
+    animation: blink 1s ease-in-out infinite;
+}
+
+#memory {
+    color: #d3869b;
+    font-size: 16px;
+}
+
+#memory.warning {
+    color: #fe8019;
+}
+
+#memory.critical {
+    color: #fb4934;
+    animation: blink 1s ease-in-out infinite;
+}
+
+#temperature {
+    color: #fabd2f;
+}
+
+#temperature.critical {
+    color: #fb4934;
+    animation: blink 1s ease-in-out infinite;
+}
+
+#pulseaudio {
+    color: #83a598;
+}
+
+#pulseaudio.muted {
+    color: #665c54;
+}
+
+#network {
+    color: #b8bb26;
+}
+
+#network.disconnected {
+    color: #fb4934;
+}
+
+#battery {
+    color: #b8bb26;
+}
+
+#battery.charging {
+    color: #8ec07c;
+}
+
+#battery.warning:not(.charging) {
+    color: #fe8019;
+}
+
+#battery.critical:not(.charging) {
+    color: #fb4934;
+    animation: blink 1s ease-in-out infinite;
+}
+
+#clock {
+    color: #d3869b;
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+#tray {
+    padding: 0 8px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: #fb4934;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0.5;
+    }
+}
