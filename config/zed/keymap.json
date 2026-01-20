@@ -1,9 +1,19 @@
 [
-  // Editor Navigation
+  // Remap defaults that conflict with my bindings
+  {
+    "bindings": {
+      "ctrl-f": "buffer_search::DeployReplace", // default ctrl-h, I use ctrl-h for tabs
+      "ctrl-shift-l": "editor::SelectLine", // default ctrl-l, I use ctrl-l for tabs
+    },
+  },
+
+  // Editor/Tab Navigation
   {
     "bindings": {
       "ctrl-h": "pane::ActivatePreviousItem",
       "ctrl-l": "pane::ActivateNextItem",
+      "shift-alt-,": "pane::SwapItemLeft",
+      "shift-alt-.": "pane::SwapItemRight",
     },
   },
 
@@ -17,19 +27,73 @@
     },
   },
 
+  // Move Editor to Pane
+  {
+    "bindings": {
+      "ctrl-alt-h": "pane::SplitAndMoveLeft",
+      "ctrl-alt-l": "pane::SplitAndMoveRight",
+      "ctrl-alt-k": "pane::SplitAndMoveUp",
+      "ctrl-alt-j": "pane::SplitAndMoveDown",
+    },
+  },
+
   // File Operations
   {
     "bindings": {
       "ctrl-alt-p": "projects::OpenRecent",
       "alt-d": "pane::CloseActiveItem",
+      "shift-alt-d": "pane::CloseAllItems",
       "alt-s": "workspace::Save",
+      "shift-alt-s": "workspace::SaveWithoutFormat",
+      "alt-n": "workspace::NewFile",
+      "ctrl-alt-f": "editor::Format",
     },
   },
 
-  // Sidebar
+  // Editing
+  {
+    "bindings": {
+      "alt-/": "editor::ToggleComments",
+      "alt-w": "editor::ToggleSoftWrap",
+    },
+  },
+
+  // Git (Editor context)
+  {
+    "context": "Editor",
+    "bindings": {
+      "alt-g": "editor::ExpandAllDiffHunks",
+      "] g": "editor::GoToHunk",
+      "[ g": "editor::GoToPreviousHunk",
+    },
+  },
+
+  // UI / Layout
   {
     "bindings": {
       "alt-`": "workspace::ToggleLeftDock",
+      "alt-z": "workspace::ToggleCenteredLayout",
+      "shift-alt-`": "workspace::ToggleZoom",
+      "alt-=": "workspace::IncreaseActiveDockSize",
+      "alt--": "workspace::DecreaseActiveDockSize",
+      "ctrl-alt-r": "workspace::ReloadActiveItem",
+    },
+  },
+
+  // Font Size
+  {
+    "bindings": {
+      "ctrl-alt-=": "zed::IncreaseBufferFontSize",
+      "ctrl-alt--": "zed::DecreaseBufferFontSize",
+      "ctrl-0": "zed::ResetBufferFontSize",
+    },
+  },
+
+  // Terminal
+  {
+    "bindings": {
+      "ctrl-`": "terminal_panel::ToggleFocus",
+      "ctrl-shift-`": "workspace::NewTerminal",
     },
   },
 
@@ -37,6 +101,19 @@
   {
     "bindings": {
       "ctrl-,": "zed::OpenSettings",
+      "ctrl-alt-,": "zed::OpenKeymap",
+    },
+  },
+
+  // Project Panel context
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "insert": "project_panel::NewFile",
+      "shift-insert": "project_panel::NewDirectory",
+      "c": "project_panel::CollapseSelectedEntry",
+      "shift-o": "project_panel::ExpandSelectedEntry",
+      "e": "project_panel::RevealInFileManager",
     },
   },
 ]

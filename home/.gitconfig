@@ -16,6 +16,8 @@
     cmd = bcomp.exe \"$LOCAL\" \"$REMOTE\"
 [difftool "wsl_beyondcompare"]
     cmd = bcomp.exe "$(wslpath -aw $LOCAL)" "$(wslpath -aw $REMOTE)"
+[difftool "meld"]
+    cmd = meld "$LOCAL" "$REMOTE"
 [difftool "vscode"]
     cmd = code-insiders --wait --diff $LOCAL $REMOTE
 [merge]

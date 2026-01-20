@@ -7,6 +7,9 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "session": {
+    "trust_all_worktrees": true,
+  },
   "buffer_font_family": "CaskaydiaCove Nerd Font",
   "git_panel": {
     "tree_view": true,
@@ -27,6 +30,6 @@
   "theme": {
     "mode": "dark",
     "light": "Gruvbox Light",
-    "dark": "Gruvbox Dark",
+    "dark": "Gruvbox Dark Hard",
   },
 }

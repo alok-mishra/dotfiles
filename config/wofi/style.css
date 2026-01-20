@@ -1,0 +1,68 @@
+/* Gruvbox Dark Hard theme for Wofi */
+
+* {
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+    font-size: 14px;
+}
+
+window {
+    background-color: #1d2021;
+    border: 2px solid #504945;
+    border-radius: 8px;
+}
+
+#input {
+    background-color: #282828;
+    color: #ebdbb2;
+    border: none;
+    border-bottom: 2px solid #504945;
+    border-radius: 0;
+    padding: 12px;
+    margin: 0;
+}
+
+#input:focus {
+    border-bottom: 2px solid #fabd2f;
+}
+
+#inner-box {
+    background-color: transparent;
+    margin: 0;
+    padding: 8px;
+}
+
+#outer-box {
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+}
+
+#scroll {
+    margin: 0;
+    padding: 0;
+}
+
+#text {
+    color: #ebdbb2;
+    margin: 0;
+    padding: 0;
+}
+
+#entry {
+    padding: 8px 12px;
+    margin: 2px 0;
+    border-radius: 4px;
+}
+
+#entry:selected {
+    background-color: #3c3836;
+    border-left: 3px solid #fabd2f;
+}
+
+#entry:selected #text {
+    color: #fbf1c7;
+}
+
+#img {
+    margin-right: 8px;
+}
