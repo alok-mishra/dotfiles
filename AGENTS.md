@@ -1,9 +1,16 @@
 # Dotfiles Repository
 
-## Overview
-This is Alok's personal dotfiles repository, shared between Linux and WSL environments. It uses GNU Stow for symlink management to deploy configuration files across the system.
+## System Information
+- **OS**: Arch Linux (fresh install as of Jan 2026)
+- **Desktop Environments**:
+  - Hyprland (primary, currently in use)
+  - COSMIC (secondary)
+
+## Current Focus
+Configuring Hyprland on fresh Arch install and keeping dotfiles updated.
 
 ## Repository Structure
+This is a shared dotfiles repository for Linux and WSL environments, managed with GNU Stow.
 
 ### `/bootstrap/`
 Bootstrap scripts for setting up dotfiles on new systems:
@@ -25,8 +32,12 @@ XDG config directory files that get stowed to `~/.config/`:
 - `zed/` - Zed editor configuration
 - `Code/` - VSCode configuration
 - `wezterm/` - WezTerm terminal configuration
+- `ghostty/` - Ghostty terminal configuration
 - `hypr/` - Hyprland window manager configuration
+  - `hyprland.conf` - Custom config (sources defaults)
+  - `hyprland-defaults.conf` - Original Hyprland defaults (update separately)
 - `waybar/` - Waybar status bar configuration
+- `rofi/` - Rofi launcher configuration (gruvbox theme, vim keys)
 - `starship.toml` - Starship prompt configuration
 
 ### `/shell/`
@@ -46,6 +57,19 @@ Organized alias files by category:
 ### `/archive/`
 Historical/archived configurations
 
+## Configuration Notes
+- Shell: ZSH with Starship prompt (fallback to Powerlevel10k on Windows)
+- Terminal: ghostty, WezTerm
+- Editor: Neovim (submodule), Zed
+- Launcher: rofi (gruvbox theme, Papirus icons)
+- Previous WM experience: i3, Sway (archived)
+- Tools: NVS (Node), Go, zoxide
+
+## System Dependencies
+Packages that should be installed for full functionality:
+- `papirus-icon-theme` - Icons for rofi
+- `stow` - Dotfiles management
+
 ## Installation
 
 1. Clone the repository: `git clone <repo-url> ~/.dotfiles`
@@ -59,11 +83,15 @@ Historical/archived configurations
 - **Multi-shell**: Supports both Bash and Zsh
 - **Cross-platform**: Works on Linux and WSL environments
 
+## Session Notes
+Session notes are stored in `.agents/sessions/` with date-based filenames (YYYY-MM-DD-topic.md). Check the most recent file in this directory for context from previous conversations.
+
 ## Notes for AI Agents
 - When modifying configurations, respect the Stow structure (files in `home/` map to `~/`, files in `config/` map to `~/.config/`)
 - The Neovim config is a submodule - changes should be made in the upstream repository
 - Shell configurations are modular - check both `/shell/` and `/aliases/` directories
 - Bootstrap scripts use GNU Stow with specific ignore patterns for `.bashrc` and `.bash_profile`
+- Test configurations before committing
 
 ## Documentation Resources
 Where to find official documentation for tools used in this repository:
@@ -78,6 +106,10 @@ Where to find official documentation for tools used in this repository:
   - Documentation: https://neovim.io/doc/
 - **WezTerm**: https://github.com/wez/wezterm
   - Documentation: https://wezfurlong.org/wezterm/
+- **Ghostty**: https://github.com/ghostty-org/ghostty
+  - Documentation: https://ghostty.org/docs
+- **Rofi**: https://github.com/davatorium/rofi
+  - Documentation: https://github.com/davatorium/rofi/wiki
 - **Starship**: https://github.com/starship/starship
   - Documentation: https://starship.rs/
 - **Hyprland**: https://github.com/hyprwm/Hyprland

@@ -1,0 +1,10 @@
+configuration {
+    show-icons: true;
+    icon-theme: "Papirus-Dark";
+}
+
+@theme "gruvbox-dark-hard"
+
+element-icon {
+    size: 32px;
+}
