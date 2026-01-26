@@ -7,29 +7,30 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "session": {
-    "trust_all_worktrees": true,
-  },
-  "buffer_font_family": "CaskaydiaCove Nerd Font",
-  "git_panel": {
-    "tree_view": true,
-  },
-  "icon_theme": {
-    "mode": "dark",
-    "light": "Zed (Default)",
-    "dark": "Zed (Default)",
-  },
-  "base_keymap": "VSCode",
-  "vim_mode": true,
-  "telemetry": {
-    "diagnostics": false,
-    "metrics": false,
-  },
-  "ui_font_size": 16,
-  "buffer_font_size": 15,
-  "theme": {
-    "mode": "dark",
-    "light": "Gruvbox Light",
-    "dark": "Gruvbox Dark Hard",
-  },
+    "tab_size": 4,
+    "session": {
+        "trust_all_worktrees": true,
+    },
+    "buffer_font_family": "CaskaydiaCove Nerd Font",
+    "git_panel": {
+        "tree_view": true,
+    },
+    "icon_theme": {
+        "mode": "dark",
+        "light": "Zed (Default)",
+        "dark": "Zed (Default)",
+    },
+    "base_keymap": "VSCode",
+    "vim_mode": true,
+    "telemetry": {
+        "diagnostics": false,
+        "metrics": false,
+    },
+    "ui_font_size": 16,
+    "buffer_font_size": 15,
+    "theme": {
+        "mode": "dark",
+        "light": "Gruvbox Light",
+        "dark": "Gruvbox Dark Hard",
+    },
 }

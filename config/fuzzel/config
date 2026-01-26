@@ -1,0 +1,26 @@
+[main]
+font=JetBrainsMono Nerd Font:size=12
+horizontal-pad=32
+vertical-pad=24
+inner-pad=16
+border-radius=18
+background-color=rgba(30,30,40,0.85)
+text-color=#ebdbb2
+selection-color=#282828
+selection-text-color=#fabd2f
+border-width=2
+border-color=#fabd2f
+prompt=
+
+[entry]
+background-color=rgba(40,40,50,0.85)
+text-color=#ebdbb2
+selection-color=#fabd2f
+selection-text-color=#282828
+
+[overlay]
+background-color=rgba(20,20,30,0.6)
+
+# Calculator integration: use a custom script
+# Add this to your keybindings or run: fuzzel --dmenu | bc
+# Example: echo "2+2" | fuzzel --dmenu | bc

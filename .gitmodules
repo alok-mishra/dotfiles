@@ -2,3 +2,4 @@
 	path = config/nvim
 	url = git@github.com:alok-mishra/nvim.git
 	branch = main
+	ignore = dirty

@@ -86,12 +86,16 @@ Packages that should be installed for full functionality:
 ## Session Notes
 Session notes are stored in `.agents/sessions/` with date-based filenames (YYYY-MM-DD-topic.md). Check the most recent file in this directory for context from previous conversations.
 
+General note: When searching the repository, always ensure your search includes dot-prefixed (hidden) directories like `.agents/` to avoid missing important files.
+
 ## Notes for AI Agents
 - When modifying configurations, respect the Stow structure (files in `home/` map to `~/`, files in `config/` map to `~/.config/`)
 - The Neovim config is a submodule - changes should be made in the upstream repository
 - Shell configurations are modular - check both `/shell/` and `/aliases/` directories
 - Bootstrap scripts use GNU Stow with specific ignore patterns for `.bashrc` and `.bash_profile`
 - Test configurations before committing
+- Before making configuration changes to any component (e.g., Hyprland, Waybar, Zed, etc.), always fetch and read the latest official documentation for that component using the documentation links in the "Documentation Resources" section to ensure syntax and best practices are current.
+
 
 ## Documentation Resources
 Where to find official documentation for tools used in this repository:
