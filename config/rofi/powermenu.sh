@@ -1,17 +1,16 @@
 #!/usr/bin/env bash
 
 ## Options
-shutdown="󰐥 Shutdown"
-reboot="󰜉 Reboot"
-lock="󰌾 Lock"
-suspend="󰒲 Sleep"
-logout="󰍃 Logout"
+shutdown="󰐥 Shutdown (S)"
+reboot="󰜉 Reboot (R)"
+lock="󰌾 Lock (l)"
+suspend="󰒲 Sleep (s)"
+logout="󰍃 Logout (L)"
 
 ## Rofi command with custom keybinds
 rofi_cmd() {
     rofi -dmenu \
         -p "Power Menu" \
-        -mesg "l=Lock | L=Logout | s=Lock+Sleep | S=Shutdown | R=Reboot" \
         -kb-custom-1 "l" \
         -kb-custom-2 "L" \
         -kb-custom-3 "s" \
