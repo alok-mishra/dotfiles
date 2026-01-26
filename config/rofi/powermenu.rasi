@@ -1,0 +1,28 @@
+configuration {
+    show-icons: false;
+    font: "CaskaydiaCove Nerd Font 14";
+}
+
+@theme "gruvbox-dark-hard"
+
+window {
+    width: 700px;
+}
+
+listview {
+    columns: 5;
+    lines: 1;
+    spacing: 10px;
+    cycle: true;
+}
+
+element {
+    padding: 15px;
+    border-radius: 8px;
+    text-color: @foreground;
+}
+
+element selected {
+    background-color: @selected-normal-background;
+    text-color: @selected-normal-foreground;
+}
