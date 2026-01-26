@@ -117,8 +117,8 @@ config.keys = {
     { key = "h", mods = "CTRL", action = wezterm.action.ActivateTabRelative(-1) },
     { key = "l", mods = "CTRL", action = wezterm.action.ActivateTabRelative(1) },
 
-    { key = "\\", mods = "ALT|CTRL", action = wezterm.action.SplitVertical },
-    { key = "|", mods = "SHIFT|ALT|CTRL", action = wezterm.action.SplitHorizontal },
+    { key = "|", mods = "ALT|CTRL", action = wezterm.action.SplitVertical },
+    { key = "\\", mods = "SHIFT|ALT|CTRL", action = wezterm.action.SplitHorizontal },
     { key = "'", mods = "ALT|CTRL", action = wezterm.action.PaneSelect },
     { key = '"', mods = "ALT|CTRL|SHIFT", action = wezterm.action({ PaneSelect = { mode = "SwapWithActive" } }) },
 
