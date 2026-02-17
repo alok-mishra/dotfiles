@@ -54,6 +54,7 @@ fi
 if [[ $is_work ]]; then
     # Detect work vs home network (for proxies)
     if [[ $is_wsl ]]; then
+        unset HTTP_PROXY HTTPS_PROXY NO_PROXY # Clear windows proxy, for apps that check uppercase (i.e. rclone)
         IP_ADDRESS=$(ip addr show | grep -A 3 "eth.*state UP" | grep 'inet ' | head -1 | awk '{print $2}' | cut -d/ -f1)
     fi
 
