@@ -1,36 +1,62 @@
-// Zed settings
-//
-// For information on how to configure Zed, see the Zed
-// documentation: https://zed.dev/docs/configuring-zed
-//
-// To see all of Zed's default settings without changing your
-// custom settings, run `zed: open default settings` from the
-// command palette (cmd-shift-p / ctrl-shift-p)
+// https://zed.dev/docs/configuring-zed (`zed: open default settings`)
+
 {
-    "tab_size": 4,
-    "session": {
-        "trust_all_worktrees": true,
+    ////// GENERAL //////
+    "auto_update": false,
+    "telemetry": {
+        "diagnostics": false,
+        "metrics": false,
     },
-    "buffer_font_family": "CaskaydiaCove Nerd Font",
-    "git_panel": {
-        "tree_view": true,
+
+    ////// APPEARANCE //////
+    "theme": {
+        "mode": "dark",
+        "light": "Gruvbox Light",
+        "dark": "Gruvbox Dark Hard",
     },
     "icon_theme": {
         "mode": "dark",
         "light": "Zed (Default)",
         "dark": "Zed (Default)",
     },
+    "buffer_font_family": "CaskaydiaCove Nerd Font",
+    "buffer_font_size": 12,
+    "ui_font_size": 15,
+
+    ////// KEYMAP //////
     "base_keymap": "VSCode",
     "vim_mode": true,
-    "telemetry": {
-        "diagnostics": false,
-        "metrics": false,
+
+    ////// Search //////
+    "use_smartcase_search": true,
+    "search": {
+        "center_on_match": true,
     },
-    "ui_font_size": 16,
-    "buffer_font_size": 15,
-    "theme": {
-        "mode": "dark",
-        "light": "Gruvbox Light",
-        "dark": "Gruvbox Dark Hard",
+
+    ////// Layout //////
+    "tab_size": 4,
+    "tabs": {
+        "file_icons": true,
+        "git_status": true,
+    },
+    "project_panel": {
+        "default_width": 220.0,
+    },
+    "git_panel": {
+        "tree_view": true,
+    },
+    "session": {
+        "trust_all_worktrees": true,
+    },
+
+    ////// AGENTS //////
+    "agent_servers": {
+        "github-copilot": {
+            "type": "registry",
+        },
+    },
+
+    "file_types": {
+        "Shell Script": ["*.aliases"],
     },
 }

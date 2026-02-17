@@ -89,12 +89,13 @@ alias gwR='git worktree remove'
 alias gwP='git worktree prune'
 
 # Diff / Show
-alias gd='git diff'
+alias gd='git diff' # diff with staged
+alias gd.='git diff HEAD' # diff with last commit
+alias gd~='git diff HEAD~' # diff with previous commit
 alias gdc='git diff --cached'
 alias gdn='git diff --name-status'
 alias gdm='git diff origin/master'
 alias gdd='git diff develop'
-alias gd~='git diff HEAD~'
 alias gd~b='git diff @{-1}' # diff current branch with previous branch
 alias gdo='git_diff_origin_branch'
 git_diff_origin_branch() { git diff origin/$1; }
