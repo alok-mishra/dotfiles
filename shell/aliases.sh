@@ -26,7 +26,7 @@ elif [ -f ~/pr.aliases ]; then
 fi
 
 # Load work-specific aliases
-if [[ $is_work ]]; then
+if [[ $is_wit ]]; then
     if [ -f ~/.dotfiles/aliases/work.aliases ]; then
         source ~/.dotfiles/aliases/work.aliases
         alias viwa='vi ~/.dotfiles/aliases/work.aliases'

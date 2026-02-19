@@ -1,7 +1,7 @@
 # Detect environment
 is_wsl=$(uname -a | grep -i wsl)
 is_rpi=$(uname -a | grep -i rpi)
-is_work=$(uname -a | grep -i wit)
+is_wit=$(uname -a | grep -i wit)
 is_arch=$([ -f /etc/os-release ] && grep "ID=arch" /etc/os-release)
 
 #################### TOOL SETUP FUNCTIONS ####################

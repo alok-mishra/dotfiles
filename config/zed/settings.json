@@ -9,16 +9,8 @@
     },
 
     ////// APPEARANCE //////
-    "theme": {
-        "mode": "dark",
-        "light": "Gruvbox Light",
-        "dark": "Gruvbox Dark Hard",
-    },
-    "icon_theme": {
-        "mode": "dark",
-        "light": "Zed (Default)",
-        "dark": "Zed (Default)",
-    },
+    "theme": "Gruvbox Dark Hard",
+    "icon_theme": "Zed (Default)",
     "buffer_font_family": "CaskaydiaCove Nerd Font",
     "buffer_font_size": 12,
     "ui_font_size": 15,
@@ -27,6 +19,12 @@
     "base_keymap": "VSCode",
     "vim_mode": true,
 
+    ////// EDITOR //////
+    "tab_size": 4,
+    "file_types": {
+        "Shell Script": ["*.aliases"],
+    },
+
     ////// Search //////
     "use_smartcase_search": true,
     "search": {
@@ -34,7 +32,6 @@
     },
 
     ////// Layout //////
-    "tab_size": 4,
     "tabs": {
         "file_icons": true,
         "git_status": true,
@@ -56,7 +53,4 @@
         },
     },
 
-    "file_types": {
-        "Shell Script": ["*.aliases"],
-    },
 }

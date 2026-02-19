@@ -51,7 +51,7 @@ fi
 #################### ENVIRONMENT-SPECIFIC ####################
 
 # Work environment (location detection for proxies)
-if [[ $is_work ]]; then
+if [[ $is_wit ]]; then
     # Detect work vs home network (for proxies)
     if [[ $is_wsl ]]; then
         unset HTTP_PROXY HTTPS_PROXY NO_PROXY # Clear windows proxy, for apps that check uppercase (i.e. rclone)
@@ -61,11 +61,16 @@ if [[ $is_work ]]; then
     MY_LOCATION="home"
     if [[ "$IP_ADDRESS" != 192.168.* ]]; then
         MY_LOCATION="work"
-        export http_proxy="http://localhost:6060"
-        export https_proxy="http://localhost:6060"
+        PROXY="localhost:6060"
+        export http_proxy="http://$PROXY"
+        export https_proxy="http://$PROXY"
         export no_proxy="localhost,127.0.0.1"
-        echo "PX Proxy: $https_proxy"
+        # echo "PX Proxy: $https_proxy"
+        command -v scoop &> /dev/null && scoop config proxy $PROXY
+    else
+        command -v scoop &> /dev/null && scoop config rm proxy
     fi
+
     export MY_LOCATION
 fi
 
