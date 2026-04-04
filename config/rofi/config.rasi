@@ -3,7 +3,38 @@ configuration {
     icon-theme: "Papirus-Dark";
 }
 
-@theme "gruvbox-dark-hard"
+* {
+    background:     #1d2021;
+    foreground:     #ebdbb2;
+    selected:       #98971a;
+    selected-fg:    #000000;
+    active:         #b8bb26;
+    urgent:         #fb4934;
+    border:         #504945;
+}
+
+window {
+    border: 4px;
+    border-color: @border;
+    border-radius: 10px;
+    background-color: @background;
+    text-color: @foreground;
+}
+
+element normal.normal,
+element alternate.normal {
+    background-color: @background;
+}
+
+element selected.normal,
+element selected.alternate {
+    background-color: @selected;
+    text-color: #000;
+}
+
+element-text {
+    vertical-align: 0.5;
+}
 
 element-icon {
     size: 32px;

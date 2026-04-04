@@ -1,8 +1,7 @@
-.ai/
+.agents/
 .claude/
-.copilot/
 
-CLAUDE.md
 AGENTS.md
+CLAUDE.md
 
 .git-worktrees/
