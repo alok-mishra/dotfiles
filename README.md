@@ -53,6 +53,7 @@ bash bootstrap/bootstrap.sh
 - **Git**: For cloning and submodule management
 - **Zsh** (optional): For zsh-specific configurations
 - **Bash**: For bash-specific configurations
+- **noto-fonts-emoji**: `sudo pacman -S noto-fonts-emoji` — required for emoji rendering in Zed
 
 ## 💻 Environments
 

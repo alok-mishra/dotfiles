@@ -62,9 +62,16 @@
     {
         "context": "Editor",
         "bindings": {
-            "alt-g": "editor::ExpandAllDiffHunks",
+            "shift-alt-g": "editor::ExpandAllDiffHunks",
             "] g": "editor::GoToHunk",
             "[ g": "editor::GoToPreviousHunk",
+        },
+    },
+
+    // Lazygit
+    {
+        "bindings": {
+            "alt-g": ["task::Spawn", { "task_name": "lazygit" }],
         },
     },
 
