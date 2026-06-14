@@ -2,6 +2,17 @@
 
 {
     ////// GENERAL //////
+    "agent": {
+        "default_model": {
+            "provider": "copilot_chat",
+            "model": "claude-opus-4.6",
+            "enable_thinking": true,
+            "effort": "high",
+        },
+        "dock": "right",
+        "favorite_models": [],
+        "model_parameters": [],
+    },
     "auto_update": false,
     "telemetry": {
         "diagnostics": false,
@@ -52,5 +63,4 @@
             "type": "registry",
         },
     },
-
 }

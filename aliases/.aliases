@@ -85,7 +85,7 @@ ssh_agent_forward() {
 	fi
 
 	# Connect with agent forwarding
-	ssh -A "$server"
+	TERM=xterm-256color ssh -A "$server"
 
 	# Kill agent when done
 	# ssh-agent -k

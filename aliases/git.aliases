@@ -104,6 +104,7 @@ alias gss='git show --stat $1'
 alias gdt='git difftool --dir-diff --no-symlink'
 
 # Reset / Clean
+alias g.R='git reset'  # unstage all staged
 alias g.RH='git reset --hard HEAD'
 alias g~RS='git reset --soft HEAD~1'
 alias g~RM='git reset --mixed HEAD~1'
