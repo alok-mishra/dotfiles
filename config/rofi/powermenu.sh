@@ -27,7 +27,7 @@ exit_code=$?
 case $exit_code in
     10) hyprlock ;;                      # l - Lock
     11) hyprctl dispatch exit ;;         # Shift+l - Logout
-    12) hyprlock && systemctl suspend ;; # s - Lock+Sleep
+    12) hyprlock & sleep 2 && systemctl suspend ;; # s - Lock+Sleep
     13) systemctl poweroff ;;            # Shift+s - Shutdown
     14) systemctl reboot ;;              # Shift+r - Reboot
     0)  # Normal selection

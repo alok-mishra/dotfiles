@@ -48,9 +48,16 @@
         "git_status": true,
     },
     "project_panel": {
+        "hide_gitignore": false,
+        "git_status_indicator": true,
+        "git_status": true,
+        "dock": "left",
         "default_width": 220.0,
     },
     "git_panel": {
+        "show_count_badge": false,
+        "file_icons": true,
+        "dock": "left",
         "tree_view": true,
     },
     "session": {
