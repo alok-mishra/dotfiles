@@ -9,8 +9,8 @@ require("hyprland-defaults")
 
 local terminal = "ghostty"
 
-local mod  = "SUPER"
-local malt = "SUPER + ALT"
+local mod      = "SUPER"
+local malt     = "SUPER + ALT"
 
 -- #############################################################################
 -- AUTOSTART
@@ -41,7 +41,10 @@ hl.config({
         gaps_out = 10,
     },
     dwindle = {
-        force_split = 2,  -- always split right / bottom
+        force_split = 2, -- always split right / bottom
+    },
+    misc = {
+        disable_splash_rendering = true
     },
 })
 
@@ -141,8 +144,10 @@ hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl set +5%"), { locke
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set 5%-"), { locked = true, repeating = true })
 
 -- ---- Volume ------------------------------------------------------------------
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"), { locked = true, repeating = true })
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"),
+    { locked = true, repeating = true })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),
+    { locked = true, repeating = true })
 hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), { locked = true })
 
 -- ---- Media (playerctl) -------------------------------------------------------

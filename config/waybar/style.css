@@ -25,8 +25,9 @@ window#waybar.hidden {
 }
 
 #workspaces button:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background: rgba(80, 80, 80, 0.5);
     color: #ffffff;
+    box-shadow: none;
 }
 
 #workspaces button.active {
