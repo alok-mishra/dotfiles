@@ -62,7 +62,7 @@ function! ColorScheme(colorscheme)
 endfunction
 
 set background=dark
-colorscheme default
+colorscheme desert
 
 " Custom Colors
 " call ForceColors()

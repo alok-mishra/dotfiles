@@ -121,6 +121,7 @@ alias gSp='git stash pop'
 alias gSd='git stash show -p' # show diff of stash
 alias gSD='git stash drop'
 alias cache='git rm -r --cached .'  # remove files from cache
+alias unstage='git restore --staged'
 
 # Fetch / Merge / Pull / Rebase / Push
 alias gf='git fetch'
