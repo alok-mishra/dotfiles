@@ -16,8 +16,11 @@ alias ..='cd ..'
 alias ~='cd -'
 alias ocd='cd "$OLDPWD"'
 
-command -v zeditor &>/dev/null && alias zed='zeditor'
-command -v zed.exe &>/dev/null && alias zed='zed.exe'
+if command -v zeditor &>/dev/null; then
+	alias zed='zeditor'
+elif command -v zed.exe &>/dev/null; then
+	alias zed='zed.exe'
+fi
 
 if [[ "$TERM_PROGRAM" == "vscode" ]]; then
 	alias vi='code'

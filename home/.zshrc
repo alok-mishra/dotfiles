@@ -61,15 +61,15 @@ if [[ $is_wit ]]; then
     MY_LOCATION="home"
     if [[ "$IP_ADDRESS" != 192.168.* ]]; then
         MY_LOCATION="work"
-        echo "Debug: IP is [$IP_ADDRESS], Location set to [$MY_LOCATION]"
+        echo "NAT: [$IP_ADDRESS], Location: [$MY_LOCATION] (run 'home' if at home)"
         PROXY="172.25.144.1:6060"
         export http_proxy="http://$PROXY"
         export https_proxy="http://$PROXY"
         export no_proxy="localhost,127.0.0.1"
         # echo "PX Proxy: $https_proxy"
-        command -v scoop &> /dev/null && scoop config proxy $PROXY
+        [[ -n "$WINDIR" ]] && command -v scoop &> /dev/null && scoop config proxy $PROXY
     else
-        command -v scoop &> /dev/null && scoop config rm proxy
+        [[ -n "$WINDIR" ]] && command -v scoop &> /dev/null && scoop config rm proxy
     fi
 
     export MY_LOCATION
@@ -78,7 +78,7 @@ fi
 
 set_home_network() {
     unset http_proxy https_proxy no_proxy HTTP_PROXY HTTPS_PROXY NO_PROXY
-    command -v scoop &> /dev/null && scoop config rm proxy
+    [[ -n "$WINDIR" ]] && command -v scoop &> /dev/null && scoop config rm proxy
     export MY_LOCATION="home"
     echo "Switched to Home network"
 }
