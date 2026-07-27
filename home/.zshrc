@@ -51,38 +51,41 @@ fi
 #################### ENVIRONMENT-SPECIFIC ####################
 
 # Work environment (location detection for proxies)
-if [[ $is_wit ]]; then
-    # Detect work vs home network (for proxies)
-    if [[ $is_wsl ]]; then
-        unset HTTP_PROXY HTTPS_PROXY NO_PROXY # Clear windows proxy, for apps that check uppercase (i.e. rclone)
-        IP_ADDRESS=$(ip addr show | grep -A 3 "eth.*state UP" | grep 'inet ' | head -1 | awk '{print $2}' | cut -d/ -f1)
-    fi
-
-    MY_LOCATION="home"
-    if [[ "$IP_ADDRESS" != 192.168.* ]]; then
-        MY_LOCATION="work"
-        echo "NAT: [$IP_ADDRESS], Location: [$MY_LOCATION] (run 'home' if at home)"
-        PROXY="172.25.144.1:6060"
-        export http_proxy="http://$PROXY"
-        export https_proxy="http://$PROXY"
-        export no_proxy="localhost,127.0.0.1"
-        # echo "PX Proxy: $https_proxy"
-        [[ -n "$WINDIR" ]] && command -v scoop &> /dev/null && scoop config proxy $PROXY
-    else
-        [[ -n "$WINDIR" ]] && command -v scoop &> /dev/null && scoop config rm proxy
-    fi
-
-    export MY_LOCATION
-fi
-
+PROXY="172.25.144.1:6060"
 
 set_home_network() {
     unset http_proxy https_proxy no_proxy HTTP_PROXY HTTPS_PROXY NO_PROXY
     [[ -n "$WINDIR" ]] && command -v scoop &> /dev/null && scoop config rm proxy
     export MY_LOCATION="home"
-    echo "Switched to Home network"
+    [[ "$1" == "verbose" ]] && echo "Switched to Home network!"
 }
-alias home='set_home_network'
+alias home='set_home_network verbose'
+
+set_work_network() {
+    export http_proxy="http://$PROXY"
+    export https_proxy="http://$PROXY"
+    export no_proxy="localhost,127.0.0.1"
+    [[ -n "$WINDIR" ]] && command -v scoop &> /dev/null && scoop config proxy $PROXY
+    export MY_LOCATION="work"
+    echo "Switched to Work network! (proxy: $PROXY)"
+}
+alias work='set_work_network'
+
+if [[ $is_wit ]]; then
+    MY_LOCATION="home"
+
+    if [[ $is_wsl ]]; then
+        unset HTTP_PROXY HTTPS_PROXY NO_PROXY # Clear windows proxy, for apps that check uppercase (i.e. rclone)
+        # WSL2 always shows the NAT IP, probe the proxy port directly
+        timeout 0.2 bash -c "echo > /dev/tcp/${PROXY%:*}/${PROXY#*:}" &>/dev/null && MY_LOCATION="work"
+    fi
+
+    if [[ "$MY_LOCATION" == work ]]; then
+        set_work_network
+    else
+        set_home_network
+    fi
+fi
 
 # WSL-specific configuration
 if [[ $is_wsl ]]; then
