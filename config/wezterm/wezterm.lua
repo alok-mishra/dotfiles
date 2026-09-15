@@ -118,11 +118,18 @@ config.keys = {
     { key = "\\", mods = "ALT|CTRL",       action = wezterm.action.SplitHorizontal }, -- splits into two panes side by side (vertically)
     { key = "'",  mods = "ALT|CTRL",       action = wezterm.action.PaneSelect },
     { key = '"',  mods = "ALT|CTRL|SHIFT", action = wezterm.action({ PaneSelect = { mode = "SwapWithActive" } }) },
+    { key = 'z',  mods = 'ALT|CTRL',      action = wezterm.action.TogglePaneZoomState }, -- maximizes pane
 
     { key = "h",  mods = "ALT",            action = wezterm.action.ActivatePaneDirection 'Left' },
     { key = "j",  mods = "ALT",            action = wezterm.action.ActivatePaneDirection 'Down' },
     { key = "k",  mods = "ALT",            action = wezterm.action.ActivatePaneDirection 'Up' },
     { key = "l",  mods = "ALT",            action = wezterm.action.ActivatePaneDirection 'Right' },
+
+    -- new line for cli tools
+    { key = 'Enter',
+        mods = 'SHIFT',
+        action = wezterm.action.SendString '\x1b\r',
+    },
 
     {
         key = "r",

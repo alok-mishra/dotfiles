@@ -2,22 +2,25 @@
 
 {
     ////// GENERAL //////
-    "agent": {
-        "default_model": {
-            "provider": "copilot_chat",
-            "model": "claude-opus-4.6",
-            "enable_thinking": true,
-            "effort": "high",
-        },
-        "dock": "right",
-        "favorite_models": [],
-        "model_parameters": [],
+    "format_on_save": "on",
+    "diff_view_style": "split",
+    "cli_default_open_behavior": "existing_window",
+    "restore_on_startup": "empty_tab",
+    "terminal": {
+        "shell": {
+            "with_arguments": {
+                "program": "zsh",
+                "args": ["--login", "-i"]
+            }
+        }
     },
     "auto_update": false,
     "telemetry": {
         "diagnostics": false,
-        "metrics": false,
+        "metrics": false
     },
+
+    // "proxy": "http://localhost:6060",
 
     ////// APPEARANCE //////
     "theme": "Gruvbox Dark Hard",
@@ -26,48 +29,62 @@
     "buffer_font_size": 12,
     "ui_font_size": 15,
 
-    ////// KEYMAP //////
-    "base_keymap": "VSCode",
-    "vim_mode": true,
-
     ////// EDITOR //////
+    "base_keymap": "Atom",
     "tab_size": 4,
     "file_types": {
-        "Shell Script": ["*.aliases"],
+        "Shell Script": ["*.aliases"]
+    },
+    "vim_mode": true,
+    "vim": {
+        "use_smartcase_find": true,
+        "use_system_clipboard": "on_yank"
+    },
+    "prettier": {
+        "allowed": true,
+        "singleQuote": true,
+        "trailingComma": "es5"
     },
 
     ////// Search //////
     "use_smartcase_search": true,
     "search": {
-        "center_on_match": true,
+        "include_ignored": true,
+        "center_on_match": true
     },
 
     ////// Layout //////
     "tabs": {
         "file_icons": true,
-        "git_status": true,
+        "git_status": true
     },
     "project_panel": {
-        "hide_gitignore": false,
-        "git_status_indicator": true,
-        "git_status": true,
-        "dock": "left",
-        "default_width": 220.0,
+        "dock": "left"
     },
     "git_panel": {
-        "show_count_badge": false,
-        "file_icons": true,
         "dock": "left",
-        "tree_view": true,
+        "tree_view": true
+    },
+    "outline_panel": {
+        "dock": "left"
     },
     "session": {
-        "trust_all_worktrees": true,
+        "trust_all_worktrees": true
     },
 
     ////// AGENTS //////
     "agent_servers": {
+        "github-copilot-cli": {
+            "type": "registry"
+        },
+        "OpenCode": {
+            "type": "custom",
+            "command": "opencode",
+            "args": ["acp"]
+        },
         "github-copilot": {
             "type": "registry",
         },
     },
+
 }

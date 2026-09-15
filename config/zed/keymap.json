@@ -1,7 +1,8 @@
 [
-    // Remap defaults that conflict with my bindings
+    // Global
     {
         "bindings": {
+            "alt-shift-w": "workspace::CloseWindow",
             "ctrl-f": "buffer_search::DeployReplace", // default ctrl-h, I use ctrl-h for tabs
             "ctrl-shift-l": "editor::SelectLine", // default ctrl-l, I use ctrl-l for tabs
         },
@@ -62,16 +63,9 @@
     {
         "context": "Editor",
         "bindings": {
-            "shift-alt-g": "editor::ExpandAllDiffHunks",
+            "alt-g": "editor::ExpandAllDiffHunks",
             "] g": "editor::GoToHunk",
             "[ g": "editor::GoToPreviousHunk",
-        },
-    },
-
-    // Lazygit
-    {
-        "bindings": {
-            "alt-g": ["task::Spawn", { "task_name": "lazygit" }],
         },
     },
 
@@ -106,10 +100,21 @@
 
     // Settings
     {
+        "context": "!KeymapEditor",
+            "bindings": {
+            "ctrl-alt-,": "zed::OpenKeymap"
+        }
+    },
+    {
+        "context": "KeymapEditor",
         "bindings": {
-            "ctrl-,": "zed::OpenSettings",
-            "ctrl-alt-,": "zed::OpenKeymap",
-        },
+            "ctrl-alt-,": "zed::OpenKeymapFile"
+        }
+    },
+    {
+        "unbind": {
+            "ctrl-alt-,": "zed::OpenSettingsFile"
+        }
     },
 
     // Project Panel context
@@ -121,6 +126,42 @@
             "c": "project_panel::CollapseSelectedEntry",
             "shift-o": "project_panel::ExpandSelectedEntry",
             "e": "project_panel::RevealInFileManager",
+        },
+    },
+    {
+        "context": "(VimControl && !menu) || (!Editor && !Terminal)",
+        "bindings": {
+            "ctrl-alt-shift-l": "workspace::MovePaneRight",
+        },
+    },
+    {
+        "context": "(VimControl && !menu) || (!Editor && !Terminal)",
+        "unbind": {
+            "ctrl-w shift-l": "workspace::MovePaneRight",
+        },
+    },
+    {
+        "context": "(VimControl && !menu) || (!Editor && !Terminal)",
+        "bindings": {
+            "ctrl-alt-shift-h": "workspace::MovePaneLeft",
+        },
+    },
+    {
+        "context": "(VimControl && !menu) || (!Editor && !Terminal)",
+        "unbind": {
+            "ctrl-w shift-h": "workspace::MovePaneLeft",
+        },
+    },
+    {
+        "context": "vim_mode == insert",
+        "bindings": {
+            "ctrl-v": "editor::Paste",
+        },
+    },
+    {
+        "context": "vim_mode == insert",
+        "unbind": {
+            "ctrl-shift-v": "editor::Paste",
         },
     },
 ]

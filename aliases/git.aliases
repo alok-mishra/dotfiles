@@ -103,8 +103,8 @@ alias gss='git show --stat $1'
 
 alias gdt='git difftool --dir-diff --no-symlink'
 
-# Reset / Clean
-alias g.R='git reset'  # unstage all staged
+# Reset / Clean / Stash
+alias g.R='git restore --staged .'  # unstage all staged files
 alias g.RH='git reset --hard HEAD'
 alias g~RS='git reset --soft HEAD~1'
 alias g~RM='git reset --mixed HEAD~1'
@@ -121,7 +121,6 @@ alias gSp='git stash pop'
 alias gSd='git stash show -p' # show diff of stash
 alias gSD='git stash drop'
 alias cache='git rm -r --cached .'  # remove files from cache
-alias unstage='git restore --staged'
 
 # Fetch / Merge / Pull / Rebase / Push
 alias gf='git fetch'
