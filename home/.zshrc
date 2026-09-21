@@ -107,6 +107,6 @@ fi
 
 #################### TOOLS ####################
 
-setupNvs
+setupFNM
 setupGo
 setupZoxide

@@ -6,6 +6,16 @@ is_arch=$([ -f /etc/os-release ] && grep "ID=arch" /etc/os-release)
 
 #################### TOOL SETUP FUNCTIONS ####################
 
+
+# fnm
+function setupFNM {
+    FNM_PATH="/home/alok/.local/share/fnm"
+    if [ -d "$FNM_PATH" ]; then
+      export PATH="$FNM_PATH:$PATH"
+      eval "$(fnm env --shell zsh)"
+    fi
+}
+
 # NVS - Node Version Switcher
 function setupNvs {
     if [[ -n "$WINDIR" ]]; then
