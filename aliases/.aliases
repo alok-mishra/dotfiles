@@ -16,23 +16,28 @@ alias ..='cd ..'
 alias ~='cd -'
 alias ocd='cd "$OLDPWD"'
 
+killport() {
+  local pid=$(lsof -t -i :$1)
+  if [ -z "$pid" ]; then
+    echo "Nothing running on port $1"
+    return
+  fi
+  kill -9 $pid 2>/dev/null
+  echo "Killed process(es) on port $1: $pid"
+}
+
+
 if command -v zeditor &>/dev/null; then
 	alias zed='zeditor'
 elif command -v zed.exe &>/dev/null; then
 	alias zed='zed.exe'
 fi
 
-if [[ "$TERM_PROGRAM" == "vscode" ]]; then
-	alias vi='code'
-elif [[ "$TERM_PROGRAM" == "WezTerm" ]]; then
-	if command -v nvim &>/dev/null; then
-		alias vi='nvim'
-	elif command -v code &>/dev/null; then
-		alias vi='code'
-	fi
-else
-	alias vi='vim'
-fi
+case "$TERM_PROGRAM" in
+    vscode)  command -v code &>/dev/null && alias vi='code' ;;
+    zed)     command -v zed &>/dev/null && alias vi='zed' ;;
+    WezTerm) command -v nvim &>/dev/null && alias vi='nvim' ;;
+esac
 
 alias type=smart_type # smart_type will either show the alias or the function definition
 smart_type() {

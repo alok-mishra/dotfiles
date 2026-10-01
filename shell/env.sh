@@ -6,6 +6,11 @@ is_arch=$([ -f /etc/os-release ] && grep "ID=arch" /etc/os-release)
 
 #################### TOOL SETUP FUNCTIONS ####################
 
+# fnm - Fast Node Manager
+function setupFnm {
+    eval "$(fnm env --use-on-cd --shell zsh)"
+}
+
 # NVS - Node Version Switcher
 function setupNvs {
     if [[ -n "$WINDIR" ]]; then

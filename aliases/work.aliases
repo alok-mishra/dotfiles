@@ -240,3 +240,8 @@ check_story_incomplete() {
         echo "That path doesn't exist! Are you connected to VPN?"
     fi
 }
+
+svc() {
+  powershell.exe -NoProfile -Command "Start-Process reg.exe -Verb RunAs -Wait -ArgumentList 'add \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\$1\" /v Start /t REG_DWORD /d ${2:-3} /f'"
+  sc.exe qc "$1"
+}

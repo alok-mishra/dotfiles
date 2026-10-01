@@ -97,6 +97,12 @@ symbol = " "
 [rust]
 symbol = " "
 
+[aws]
+disabled = true
+
+[gcloud]
+disabled = true
+
 [fill]
 symbol = " "
 

@@ -52,10 +52,11 @@ fi
 
 # Work environment (location detection for proxies)
 PROXY="172.25.144.1:6060"
+HOST_PROXY="localhost:6060"
 
 set_home_network() {
     unset http_proxy https_proxy no_proxy HTTP_PROXY HTTPS_PROXY NO_PROXY
-    [[ -n "$WINDIR" ]] && command -v scoop &> /dev/null && scoop config rm proxy
+    # command -v scoop &> /dev/null && scoop config rm proxy
     export MY_LOCATION="home"
     [[ "$1" == "verbose" ]] && echo "Switched to Home network!"
 }
@@ -65,9 +66,9 @@ set_work_network() {
     export http_proxy="http://$PROXY"
     export https_proxy="http://$PROXY"
     export no_proxy="localhost,127.0.0.1"
-    [[ -n "$WINDIR" ]] && command -v scoop &> /dev/null && scoop config proxy $PROXY
+    command -v scoop &> /dev/null && scoop config proxy $HOST_PROXY
     export MY_LOCATION="work"
-    echo "Switched to Work network! (proxy: $PROXY)"
+    echo "Switched to Work network! (proxy: $PROXY, scoop proxy: $HOST_PROXY)"
 }
 alias work='set_work_network'
 
@@ -107,6 +108,6 @@ fi
 
 #################### TOOLS ####################
 
-setupNvs
+setupFnm
 setupGo
 setupZoxide
