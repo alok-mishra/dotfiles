@@ -3,6 +3,19 @@
 -- #############################################################################
 require("hyprland-defaults")
 
+-- Laptop Screen
+hl.monitor({
+output   = "eDP-1",
+   scale = 2,
+})
+
+-- External Monitor
+hl.monitor({
+    output   = "HDMI-A-1",
+    mode = "2500x1440@59.95Hz",
+    scale = 1,
+})
+
 -- #############################################################################
 -- PROGRAMS
 -- #############################################################################
@@ -134,6 +147,10 @@ hl.bind(mod .. " + SHIFT + Tab", hl.dsp.focus({ workspace = "e-1" }))
 hl.bind(mod .. " + CTRL + N", hl.dsp.focus({ workspace = "empty" }))
 hl.bind(mod .. " + grave", hl.dsp.focus({ workspace = "previous" }))
 hl.bind(mod .. " + Z", hl.dsp.layout("togglesplit"))
+
+-- ---- Move Workspace to Monitor ----------------------------------------------
+hl.bind(mod .. " + CTRL + ALT + H", hl.dsp.workspace.move({ monitor = "+1" }))
+hl.bind(mod .. " + CTRL + ALT + L", hl.dsp.workspace.move({ monitor = "-1" }))
 
 -- ---- Move window to workspace and follow -------------------------------------
 hl.bind(mod .. " + SHIFT + CTRL + H", hl.dsp.window.move({ workspace = "e-1" }))

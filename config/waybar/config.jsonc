@@ -3,7 +3,7 @@
     "position": "top",
     "height": 34,
     "spacing": 8,
-    "modules-left": ["hyprland/workspaces", "hyprland/window"],
+    "modules-left": ["ext/workspaces"],
     "modules-center": ["mpris"],
     "modules-right": [
         "cpu",
@@ -16,9 +16,9 @@
         "clock",
     ],
 
-    "hyprland/workspaces": {
+    "ext/workspaces": {
         "on-click": "activate",
-        "format": "{name}",
+        "sort-by-id": true,
     },
 
     "hyprland/window": {

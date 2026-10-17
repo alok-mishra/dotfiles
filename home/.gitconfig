@@ -11,7 +11,9 @@
     pager = true
 [diff]
     prompt = true
-    tool = wsl_beyondcompare
+    tool = bcompare
+[difftool "bcompare"]
+    cmd = bcompare \"$LOCAL\" \"$REMOTE\"
 [difftool "beyondcompare"]
     cmd = bcomp.exe \"$LOCAL\" \"$REMOTE\"
 [difftool "wsl_beyondcompare"]
