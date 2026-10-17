@@ -2,6 +2,13 @@
 
 {
     ////// GENERAL //////
+    "wsl_connections": [
+        {
+            "distro_name": "Arch",
+            "user": null,
+            "projects": []
+        }
+    ],
     "format_on_save": "on",
     "diff_view_style": "split",
     "cli_default_open_behavior": "existing_window",
@@ -25,13 +32,15 @@
     ////// APPEARANCE //////
     "theme": "Gruvbox Dark Hard",
     "icon_theme": "Zed (Default)",
-    "buffer_font_family": "CaskaydiaCove Nerd Font",
+
+    "ui_font_size": 14,
     "buffer_font_size": 12,
-    "ui_font_size": 15,
+    "buffer_font_family": "CaskaydiaCove Nerd Font",
 
     ////// EDITOR //////
     "base_keymap": "Atom",
     "tab_size": 4,
+    "preferred_line_length": 120,
     "file_types": {
         "Shell Script": ["*.aliases"]
     },
@@ -43,7 +52,7 @@
     "prettier": {
         "allowed": true,
         "singleQuote": true,
-        "trailingComma": "es5"
+        "trailingComma": "none"
     },
 
     ////// Search //////
@@ -62,29 +71,109 @@
         "dock": "left"
     },
     "git_panel": {
+        "group_by": "staging",
         "dock": "left",
         "tree_view": true
     },
     "outline_panel": {
         "dock": "left"
     },
+    "collaboration_panel": {
+        "button": false
+    },
     "session": {
         "trust_all_worktrees": true
     },
 
     ////// AGENTS //////
-    "agent_servers": {
-        "github-copilot-cli": {
-            "type": "registry"
+    "agent": {
+        "default_model": {
+            "provider": "copilot_chat",
+            "model": "claude-sonnet-5",
+            "enable_thinking": true,
+            "effort": "medium"
         },
+        "show_turn_stats": true,
+        "dock": "right",
+        "favorite_models": [],
+        "model_parameters": [],
+        "terminal_init_command": "copilot",
+        "tool_permissions": {
+            "tools": {
+                "fetch": {
+                    "default": "allow"
+                },
+                "terminal": {
+                    "default": "confirm",
+                    "always_allow": [
+                        {
+                            "pattern": "^(awk|cat|date|echo|grep|head|ls|pdftotext|pwd|sed|sleep|sort|tail|test|uname|wc)\\b"
+                        },
+                        {
+                            "pattern": "^docker\\s+((compose|container|image|network|volume)\\s+)?(diff|history|images|info|inspect|list|logs|ls|port|ps|stats|top|version)(\\s|$)"
+                        },
+                        {
+                            "pattern": "^git(\\s+--no-(pager|optional-locks))*\\s+(blame|diff|log|show|stash\\s+list|status)\\b"
+                        },
+                        {
+                            "pattern": "^uname\\b"
+                        },
+                        {
+                            "pattern": "^ver\\b"
+                        },
+                        {
+                            "pattern": "^cut\\b"
+                        },
+                        {
+                            "pattern": "^python3\\b"
+                        },
+                        {
+                            "pattern": "^docker\\s+exec(\\s|$)"
+                        },
+                        {
+                            "pattern": "^uv\\s+run(\\s|$)"
+                        }
+                    ],
+                    "always_confirm": [
+                        { "pattern": "\\b(chmod|chown|kill|mv|pkill|sudo)\\b" },
+                        { "pattern": ">>?\\s*[^&\\s]" },
+                        { "pattern": "^awk\\s+.*system\\s*\\(" },
+                        { "pattern": "^docker\\s+(.*\\s)?(build|down|exec|kill|prune|rm|rmi|run|stop|up)(\\s|$)" },
+                        { "pattern": "^git\\s+(add|checkout|commit|merge|rebase|reset|tag)\\b" }
+                    ],
+                    "always_deny": [{ "pattern": "\\bgit\\s+(.*\\s)?(reset\\s+.*--hard|clean\\s+.*(-\\w*f|--force))" }, { "pattern": "^git\\s+(.*\\s)?push(\\s|$)" }]
+                }
+            }
+        }
+    },
+    "agent_servers": {
         "OpenCode": {
             "type": "custom",
             "command": "opencode",
             "args": ["acp"]
-        },
-        "github-copilot": {
-            "type": "registry",
-        },
+        }
+    },
+    "edit_predictions": {
+        "provider": "copilot"
     },
 
+    ////// LSP //////
+    "lsp": {
+        "basedpyright": {
+            "settings": {
+                "python": {
+                    "pythonPath": ".venv/bin/python"
+                }
+            }
+        }
+    },
+    "languages": {
+        "JSON": {},
+        "JSONC": {
+            "preferred_line_length": 200
+        },
+        "Markdown": {
+            "language_servers": ["!markdownlint", "..."]
+        }
+    }
 }

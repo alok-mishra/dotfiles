@@ -4,8 +4,8 @@
         "bindings": {
             "alt-shift-w": "workspace::CloseWindow",
             "ctrl-f": "buffer_search::DeployReplace", // default ctrl-h, I use ctrl-h for tabs
-            "ctrl-shift-l": "editor::SelectLine", // default ctrl-l, I use ctrl-l for tabs
-        },
+            "ctrl-shift-l": "editor::SelectLine" // default ctrl-l, I use ctrl-l for tabs
+        }
     },
 
     // Editor/Tab Navigation
@@ -14,8 +14,8 @@
             "ctrl-h": "pane::ActivatePreviousItem",
             "ctrl-l": "pane::ActivateNextItem",
             "shift-alt-,": "pane::SwapItemLeft",
-            "shift-alt-.": "pane::SwapItemRight",
-        },
+            "shift-alt-.": "pane::SwapItemRight"
+        }
     },
 
     // Pane Navigation (vim-style)
@@ -24,8 +24,8 @@
             "alt-h": "workspace::ActivatePaneLeft",
             "alt-l": "workspace::ActivatePaneRight",
             "alt-k": "workspace::ActivatePaneUp",
-            "alt-j": "workspace::ActivatePaneDown",
-        },
+            "alt-j": "workspace::ActivatePaneDown"
+        }
     },
 
     // Move Editor to Pane
@@ -34,8 +34,8 @@
             "ctrl-alt-h": "pane::SplitAndMoveLeft",
             "ctrl-alt-l": "pane::SplitAndMoveRight",
             "ctrl-alt-k": "pane::SplitAndMoveUp",
-            "ctrl-alt-j": "pane::SplitAndMoveDown",
-        },
+            "ctrl-alt-j": "pane::SplitAndMoveDown"
+        }
     },
 
     // File Operations
@@ -47,16 +47,16 @@
             "alt-s": "workspace::Save",
             "shift-alt-s": "workspace::SaveWithoutFormat",
             "alt-n": "workspace::NewFile",
-            "ctrl-alt-f": "editor::Format",
-        },
+            "ctrl-alt-f": "editor::Format"
+        }
     },
 
     // Editing
     {
         "bindings": {
             "alt-/": "editor::ToggleComments",
-            "alt-w": "editor::ToggleSoftWrap",
-        },
+            "alt-w": "editor::ToggleSoftWrap"
+        }
     },
 
     // Git (Editor context)
@@ -65,20 +65,32 @@
         "bindings": {
             "alt-g": "editor::ExpandAllDiffHunks",
             "] g": "editor::GoToHunk",
-            "[ g": "editor::GoToPreviousHunk",
-        },
+            "[ g": "editor::GoToPreviousHunk"
+        }
     },
 
     // UI / Layout
     {
         "bindings": {
             "alt-`": "workspace::ToggleLeftDock",
-            "alt-z": "workspace::ToggleCenteredLayout",
-            "shift-alt-`": "workspace::ToggleZoom",
+            "alt-shift-`": "workspace::ToggleRightDock",
+            "alt-z": "workspace::ToggleZoom",
             "alt-=": "workspace::IncreaseActiveDockSize",
             "alt--": "workspace::DecreaseActiveDockSize",
-            "ctrl-alt-r": "workspace::ReloadActiveItem",
-        },
+            "ctrl-alt-r": "workspace::ReloadActiveItem"
+        }
+    },
+    {
+        "context": "!ProjectPanel",
+        "bindings": {
+            "alt-`": "project_panel::Toggle"
+        }
+    },
+    {
+        "context": "!GitPanel",
+        "bindings": {
+            "alt-`": "git_panel::Toggle"
+        }
     },
 
     // Font Size
@@ -86,34 +98,29 @@
         "bindings": {
             "ctrl-alt-=": "zed::IncreaseBufferFontSize",
             "ctrl-alt--": "zed::DecreaseBufferFontSize",
-            "ctrl-0": "zed::ResetBufferFontSize",
-        },
+            "ctrl-0": "zed::ResetBufferFontSize"
+        }
     },
 
     // Terminal
     {
         "bindings": {
             "ctrl-`": "terminal_panel::ToggleFocus",
-            "ctrl-shift-`": "workspace::NewTerminal",
-        },
+            "ctrl-shift-`": "workspace::NewTerminal"
+        }
     },
 
     // Settings
     {
         "context": "!KeymapEditor",
-            "bindings": {
-            "ctrl-alt-,": "zed::OpenKeymap"
+        "bindings": {
+            "ctrl-shift-,": "zed::OpenKeymap"
         }
     },
     {
         "context": "KeymapEditor",
         "bindings": {
-            "ctrl-alt-,": "zed::OpenKeymapFile"
-        }
-    },
-    {
-        "unbind": {
-            "ctrl-alt-,": "zed::OpenSettingsFile"
+            "ctrl-shift-,": "zed::OpenKeymapFile"
         }
     },
 
@@ -125,43 +132,49 @@
             "shift-insert": "project_panel::NewDirectory",
             "c": "project_panel::CollapseSelectedEntry",
             "shift-o": "project_panel::ExpandSelectedEntry",
-            "e": "project_panel::RevealInFileManager",
-        },
+            "e": "project_panel::RevealInFileManager"
+        }
     },
     {
         "context": "(VimControl && !menu) || (!Editor && !Terminal)",
         "bindings": {
-            "ctrl-alt-shift-l": "workspace::MovePaneRight",
-        },
+            "ctrl-alt-shift-l": "workspace::MovePaneRight"
+        }
     },
     {
         "context": "(VimControl && !menu) || (!Editor && !Terminal)",
         "unbind": {
-            "ctrl-w shift-l": "workspace::MovePaneRight",
-        },
+            "ctrl-w shift-l": "workspace::MovePaneRight"
+        }
     },
     {
         "context": "(VimControl && !menu) || (!Editor && !Terminal)",
         "bindings": {
-            "ctrl-alt-shift-h": "workspace::MovePaneLeft",
-        },
+            "ctrl-alt-shift-h": "workspace::MovePaneLeft"
+        }
     },
     {
         "context": "(VimControl && !menu) || (!Editor && !Terminal)",
         "unbind": {
-            "ctrl-w shift-h": "workspace::MovePaneLeft",
-        },
+            "ctrl-w shift-h": "workspace::MovePaneLeft"
+        }
     },
     {
         "context": "vim_mode == insert",
         "bindings": {
-            "ctrl-v": "editor::Paste",
-        },
+            "ctrl-v": "editor::Paste"
+        }
     },
     {
         "context": "vim_mode == insert",
         "unbind": {
-            "ctrl-shift-v": "editor::Paste",
-        },
+            "ctrl-shift-v": "editor::Paste"
+        }
     },
+    {
+        "context": "Workspace",
+        "unbind": {
+            "ctrl-shift-m": "diagnostics::Deploy"
+        }
+    }
 ]

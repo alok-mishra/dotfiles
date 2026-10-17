@@ -9,6 +9,7 @@
     interactive = auto
     ui = true
     pager = true
+
 [diff]
     prompt = true
     tool = bcompare
@@ -22,26 +23,33 @@
     cmd = meld "$LOCAL" "$REMOTE"
 [difftool "vscode"]
     cmd = code-insiders --wait --diff $LOCAL $REMOTE
+
 [merge]
-    tool = vscode
+    tool = wsl_zed
+[mergetool]
+    keepBackup = false
 [mergetool "beyondcompare"]
     cmd = bc
 [mergetool "wsl_beyondcompare"]
     cmd = bc "$(wslpath -aw $LOCAL)" "$(wslpath -aw $REMOTE)" "$(wslpath -aw $BASE)" "$(wslpath -aw $MERGED)"
 [mergetool "vscode"]
     cmd = code-insiders --wait $MERGED
+[mergetool "wsl_zed"]
+    cmd = zed.exe --wait "$(wslpath -aw $MERGED)"
+
+
 [push]
     default = simple
-[mergetool]
-    keepBackup = false
+[pull]
+    ff = only
+
 [core]
     editor = vim
     autocrlf = input
     symlinks = true
     excludesfile = ~/.gitignore_global
     hooksPath = /home/alok/.git-hooks
-[pull]
-    ff = only
+
 [init]
     defaultBranch = master
 [safe]
