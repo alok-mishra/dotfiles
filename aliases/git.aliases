@@ -225,16 +225,17 @@ git_tag_message() { git tag -a "$1" -m "$2"; }
 
 # Submodules
 alias gB='git submodule'
-alias gBab='git submodule add -b'
-alias gBi='git submodule update --init --recursive --remote'
+alias gBb='git submodule add -b'
+alias gBi='git submodule update --init --recursive' # sync submodules
+alias gBp='git submodule update --remote --merge' # upgrade submodules
 alias gBu='git submodule set-url'
 alias gBf='git submodule foreach --recursive'
-alias gBp='git pull --recurse-submodules'
+
 alias gBR='git_submodule_remove'
 git_submodule_remove() {
-    git rm $1
-    rm -rf .git/modules/$1
-    git config --remove-section submodule.$1
+    git submodule deinit -f "$1"
+    git rm -f "$1"
+    rm -rf ".git/modules/$1"
 }
 
 # Archive / Extract

@@ -98,6 +98,9 @@
         "favorite_models": [],
         "model_parameters": [],
         "terminal_init_command": "copilot",
+        "threads_sidebar": {
+            "position": "right"
+        },
         "tool_permissions": {
             "tools": {
                 "fetch": {
@@ -107,7 +110,7 @@
                     "default": "confirm",
                     "always_allow": [
                         {
-                            "pattern": "^(awk|cat|date|echo|grep|head|ls|pdftotext|pwd|sed|sleep|sort|tail|test|uname|wc)\\b"
+                            "pattern": "^(awk|cat|cut|date|echo|grep|head|ls|pdftotext|pwd|sed|sleep|sort|tail|test|uname|wc)\\b"
                         },
                         {
                             "pattern": "^docker\\s+((compose|container|image|network|volume)\\s+)?(diff|history|images|info|inspect|list|logs|ls|port|ps|stats|top|version)(\\s|$)"
@@ -116,19 +119,7 @@
                             "pattern": "^git(\\s+--no-(pager|optional-locks))*\\s+(blame|diff|log|show|stash\\s+list|status)\\b"
                         },
                         {
-                            "pattern": "^uname\\b"
-                        },
-                        {
-                            "pattern": "^ver\\b"
-                        },
-                        {
-                            "pattern": "^cut\\b"
-                        },
-                        {
                             "pattern": "^python3\\b"
-                        },
-                        {
-                            "pattern": "^docker\\s+exec(\\s|$)"
                         },
                         {
                             "pattern": "^uv\\s+run(\\s|$)"
@@ -148,6 +139,11 @@
     },
     "agent_servers": {
         "OpenCode": {
+            "default_config_options": {
+                "mode": "build",
+                "effort": "high",
+                "model": "opencode/glm-5.3-flash-free"
+            },
             "type": "custom",
             "command": "opencode",
             "args": ["acp"]
