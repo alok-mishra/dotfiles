@@ -3,7 +3,6 @@
 
 #################### SHARED CONFIG ####################
 
-# Source shared configurations
 if [ -f ~/.dotfiles/shell/env.sh ]; then
     source ~/.dotfiles/shell/env.sh
 fi
@@ -12,12 +11,23 @@ if [ -f ~/.dotfiles/shell/functions.sh ]; then
     source ~/.dotfiles/shell/functions.sh
 fi
 
-#################### SHELL ####################
-
-# Load shared aliases
 if [ -f ~/.dotfiles/shell/aliases.sh ]; then
     source ~/.dotfiles/shell/aliases.sh
 fi
+
+
+#################### SHELL ####################
+
+if command -v nvim >/dev/null 2>&1; then
+    export EDITOR="nvim"
+elif command -v vim >/dev/null 2>&1; then
+    export EDITOR="vim"
+else
+    export EDITOR="vi"
+fi
+
+export VISUAL="$EDITOR"
+
 
 # Git completion
 if [ -d /mingw64/share/git/completion/ ]; then
@@ -41,6 +51,6 @@ fi
 
 #################### TOOLS ####################
 
-setupNvs
+setupFnm
 setupGo
 setupZoxide

@@ -1,4 +1,5 @@
 HISTFILE=~/.histfile
+# Set preferred editor with fallback cascade
 HISTSIZE=1000
 SAVEHIST=1000
 unsetopt beep
@@ -16,6 +17,17 @@ bindkey '^R' history-incremental-search-backward
 # User-local binaries (pipx, poetry, cargo, pip --user, etc.)
 export PATH="$HOME/.local/bin:$PATH"
 
+if command -v nvim >/dev/null 2>&1; then
+    export EDITOR="nvim"
+elif command -v vim >/dev/null 2>&1; then
+    export EDITOR="vim"
+else
+    export EDITOR="vi"
+fi
+
+export VISUAL="$EDITOR"
+
+
 if command -v starship &> /dev/null; then
     STARSHIP_CONFIG=${HOME}/.config/starship.toml
     eval "$(starship init zsh)"
@@ -32,7 +44,6 @@ fi
 
 #################### SHARED CONFIG ####################
 
-# Source shared configurations
 if [ -f ~/.dotfiles/shell/env.sh ]; then
     source ~/.dotfiles/shell/env.sh
 fi
@@ -41,9 +52,6 @@ if [ -f ~/.dotfiles/shell/functions.sh ]; then
     source ~/.dotfiles/shell/functions.sh
 fi
 
-#################### SHELL ####################
-
-# Load shared aliases configuration
 if [ -f ~/.dotfiles/shell/aliases.sh ]; then
     source ~/.dotfiles/shell/aliases.sh
 fi

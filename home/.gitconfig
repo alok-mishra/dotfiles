@@ -56,5 +56,3 @@
     directory = *
 [protocol "file"]
     allow = always
-[credential "helperselector"]
-	selected = <no helper>

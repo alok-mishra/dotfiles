@@ -14,6 +14,21 @@ symlink() {
     fi
 }
 
+alias_grep() {
+    local f_names=$(declare -f | awk -v k="$1" 'BEGIN{RS="\n}\n"} $0 ~ k && $1 !~ /^_/ {print $1}')
+
+    local search_pattern="$1"
+    if [ -n "$f_names" ]; then
+        search_pattern="$1|$(echo "$f_names" | tr '\n' '|' | sed 's/|$//')"
+    fi
+
+    alias | grep --color=auto -E "$search_pattern"
+
+    if [ -n "$f_names" ]; then
+        declare -f $(echo "$f_names") | grep --color=auto -E "$1|$"
+    fi
+}
+
 if [[ -n "$BASH_VERSION" ]]; then
     if ! declare -f __git_ps1 > /dev/null; then
         [[ -f /usr/share/git-core/contrib/completion/git-prompt.sh ]] && \
