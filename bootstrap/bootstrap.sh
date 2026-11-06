@@ -5,7 +5,7 @@
 # Requires: GNU Stow (sudo pacman -S stow)
 
 # Initialize git submodules (nvim config)
-git submodule update --init --recursive --verbose
+git submodule update --init --recursive --progress
 
 stow --verbose=2 --ignore='.bashrc' --ignore='.bash_profile' -t ~ home 2>&1 | grep -E '^(LINK|UNLINK|---)'
 stow --verbose=2 -t ~/.config config 2>&1 | grep -E '^(LINK|UNLINK|---)'

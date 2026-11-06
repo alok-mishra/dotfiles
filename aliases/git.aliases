@@ -226,8 +226,8 @@ git_tag_message() { git tag -a "$1" -m "$2"; }
 # Submodules
 alias gB='git submodule'
 alias gBb='git submodule add -b'
-alias gBi='git submodule update --init --recursive' # sync submodules
-alias gBp='git submodule update --remote --merge' # upgrade submodules
+alias gBi='git submodule update --init --recursive'                     # sync pinned submodules
+alias gBR='git submodule update --init --recursive --remote --rebase'   # upgrade latest submodules
 alias gBu='git submodule set-url'
 alias gBf='git submodule foreach --recursive'
 

@@ -20,6 +20,7 @@
 
     // Pane Navigation (vim-style)
     {
+        // Move between panes
         "bindings": {
             "alt-h": "workspace::ActivatePaneLeft",
             "alt-l": "workspace::ActivatePaneRight",
@@ -27,14 +28,22 @@
             "alt-j": "workspace::ActivatePaneDown"
         }
     },
-
-    // Move Editor to Pane
     {
+        // Move item to new pane
         "bindings": {
             "ctrl-alt-h": "pane::SplitAndMoveLeft",
             "ctrl-alt-l": "pane::SplitAndMoveRight",
             "ctrl-alt-k": "pane::SplitAndMoveUp",
             "ctrl-alt-j": "pane::SplitAndMoveDown"
+        },
+    },
+    {
+        // Move item to existing pane
+        "bindings": {
+            "alt-shift-h": ["workspace::MoveItemToPaneInDirection", { "direction": "left" }],
+            "alt-shift-j": ["workspace::MoveItemToPaneInDirection", { "direction": "down" }],
+            "alt-shift-k": ["workspace::MoveItemToPaneInDirection", { "direction": "up" }],
+            "alt-shift-l": ["workspace::MoveItemToPaneInDirection", { "direction": "right" }]
         }
     },
 
@@ -72,7 +81,6 @@
     // UI / Layout
     {
         "bindings": {
-            "alt-`": "workspace::ToggleLeftDock",
             "alt-shift-`": "workspace::ToggleRightDock",
             "alt-z": "workspace::ToggleZoom",
             "alt-=": "workspace::IncreaseActiveDockSize",
@@ -81,15 +89,21 @@
         }
     },
     {
-        "context": "!ProjectPanel",
+        "context": "Workspace",
         "bindings": {
-            "alt-`": "project_panel::Toggle"
+            "alt-`": "project_panel::ToggleFocus"
         }
     },
     {
-        "context": "!GitPanel",
+        "context": "ProjectPanel",
         "bindings": {
-            "alt-`": "git_panel::Toggle"
+            "alt-`": "git_panel::ToggleFocus"
+        }
+    },
+    {
+        "context": "GitPanel",
+        "bindings": {
+            "alt-`": "workspace::ToggleLeftDock"
         }
     },
 
@@ -105,7 +119,6 @@
     // Terminal
     {
         "bindings": {
-            "ctrl-`": "terminal_panel::ToggleFocus",
             "ctrl-shift-`": "workspace::NewTerminal"
         }
     },
@@ -176,5 +189,5 @@
         "unbind": {
             "ctrl-shift-m": "diagnostics::Deploy"
         }
-    }
+    },
 ]

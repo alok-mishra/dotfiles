@@ -57,10 +57,23 @@ md5hash() { echo -n "$1" | openssl md5; }
 alias mk4=mkv_to_mp4
 mkv_to_mp4() { for i in *.mkv; do ffmpeg -i "$i" -loglevel error -codec copy "${i%.*}.mp4"; done; }
 
+# Media Conversion
 alias flac2mp3='mkdir -p mp3 && for f in *.flac; do ffmpeg -v error -stats -i "$f" -c:a libmp3lame -b:a 256k "mp3/${f%.flac}.mp3"; done'
 alias flac2opus='mkdir -p opus && for f in *.flac; do ffmpeg -v error -stats -i "$f" -c:a libopus -b:a 160k "opus/${f%.flac}.opus"; done'
 alias opus='mkdir -p opus && for f in *.{flac,wav,mp3,m4a,aac}; do [ -f "$f" ] && echo "${f%.*}" && ffmpeg -y -v error -stats -i "$f" -c:a libopus -b:a 160k "opus/${f%.*}.opus"; echo ""; done'
 alias flop='mkdir -p flop && for f in *.flac; do opusenc --bitrate 160 "$f" "flop/${f%.flac}.opus"; done' # opus-tools only supports flac
+
+gifvid() {
+  if [ -z "$1" ]; then
+    echo "Usage: gifvid <file.gif>"
+    return 1
+  fi
+
+  local input="$1"
+  local output="${input%.*}.mp4"
+
+  ffmpeg -f gif -i "$input" -filter_complex "[0:v]hflip,setpts=PTS/0.6,split[fwd][rev];[rev]reverse[rev];[fwd][rev]concat=n=2:v=1:a=0[out]" -map "[out]" -c:v libx264 -pix_fmt yuv420p -crf 20 -preset slow "$output"
+}
 
 alias sha1='openssl sha1'
 alias sha256='openssl sha256'
@@ -356,12 +369,12 @@ alias dbres='sudo service mysql start'
 alias dbbak=db_backup
 db_backup() {
     local pass=$(sudo grep 'wordpress_mysql_pass' /root/.digitalocean_password | awk -F'"' '{print $2}')
-    mysqldump --user=wordpress --password="$pass" --no-tablespaces wordpress > ~/backups/db_backup_$(date +%F).sql
+    mysqldump --user=wordpress --password="$pass" --no-tablespaces wordpress > ~/backups/${HOSTNAME}_$(date +%F).sql
 }
 
 alias wbak=www_backup
 www_backup() {
-    tar --exclude='.git' --exclude='node_modules' -cvzf ~/backups/$1_$(date +%F).tar.gz /var/www/$1
+    tar --exclude='.git' --exclude='node_modules' -cvzf ~/backups/${HOSTNAME}_$(date +%F).tar.gz /var/www/${HOSTNAME}
 }
 
 alias syncdu=sync_down_uploads
