@@ -8,9 +8,8 @@ is_arch=$([ -f /etc/os-release ] && grep "ID=arch" /etc/os-release)
 
 # fnm - Fast Node Manager
 function setupFnm {
-    if command -v fnm &> /dev/null; then
-        eval "$(fnm env --use-on-cd --shell zsh)"
-    fi
+    export PATH="$HOME/.local/share/fnm:$PATH"
+    command -v fnm &>/dev/null && eval "$(fnm env --use-on-cd --shell zsh)"
 }
 
 # NVS - Node Version Switcher

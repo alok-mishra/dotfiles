@@ -44,6 +44,7 @@
     "file_types": {
         "Shell Script": ["*.aliases"]
     },
+    "file_scan_exclusions": ["...", "**/desktop.ini"],
     "vim_mode": true,
     "vim": {
         "use_smartcase_find": true,
@@ -68,6 +69,7 @@
         "git_status": true
     },
     "project_panel": {
+        "hide_gitignore": false,
         "dock": "left"
     },
     "git_panel": {

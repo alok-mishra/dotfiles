@@ -190,4 +190,45 @@
             "ctrl-shift-m": "diagnostics::Deploy"
         }
     },
+    {
+        "context": "ProjectPanel",
+        "bindings": {
+            "`": "project_panel::ToggleHideGitIgnore"
+        }
+    },
+    {
+        "bindings": {
+            "ctrl-alt-shift-,": "zed::OpenKeymapFile"
+        }
+    },
+    {
+        "context": "KeymapEditor",
+        "unbind": {
+            "ctrl-e": "zed::OpenKeymapFile"
+        }
+    },
+    {
+        "context": "ChangesList",
+        "bindings": {
+            "`": "git_panel::ActivateHistoryTab"
+        }
+    },
+    {
+        "context": "GitPanel",
+        "unbind": {
+            "ctrl-2": "git_panel::ActivateHistoryTab"
+        }
+    },
+    {
+        "context": "HistoryList",
+        "bindings": {
+            "`": "git_panel::ActivateChangesTab"
+        }
+    },
+    {
+        "context": "GitPanel",
+        "unbind": {
+            "ctrl-1": "git_panel::ActivateChangesTab"
+        }
+    }
 ]

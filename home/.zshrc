@@ -1,5 +1,4 @@
 HISTFILE=~/.histfile
-# Set preferred editor with fallback cascade
 HISTSIZE=1000
 SAVEHIST=1000
 unsetopt beep

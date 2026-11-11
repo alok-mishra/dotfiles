@@ -153,6 +153,7 @@ alias gM='git merge'
 alias gMa='git merge --abort'
 alias gMs='git merge --squash'
 alias gMm='git merge master'
+alias gM~='git merge @{-1}' # merge previous branch into current branch
 alias gmt='git mergetool'
 
 alias gp1='git pull --depth 1'
